@@ -1,0 +1,11 @@
+# Schutz für emails.txt
+<Files "emails.txt">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# PHP Einstellungen
+php_flag display_errors Off
+
+# Weiterleitungen (optional)
+DirectoryIndex index.html index.php
