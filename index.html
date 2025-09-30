@@ -157,6 +157,48 @@
             font-size: 1.05rem;
         }
 
+        /* TestFlight Section */
+        .testflight-section {
+            text-align: center;
+            padding: 80px 20px 100px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testflight-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .testflight-description {
+            font-size: 1.15rem;
+            color: var(--gray-text);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .testflight-btn {
+            display: inline-block;
+            padding: 18px 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .testflight-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
         /* Screenshot Section */
         .screenshot-section {
             text-align: center;
@@ -279,6 +321,17 @@
             <h3 class="feature-title">Fokus-Design</h3>
             <p class="feature-description">Minimalistisch und schnell. Nichts lenkt dich vom Wesentlichen ab – deinem Training.</p>
         </div>
+    </section>
+
+    <!-- TestFlight Section -->
+    <section class="testflight-section">
+        <h2 class="testflight-title">Jetzt Beta-Tester werden!</h2>
+        <p class="testflight-description">
+            Sei einer der Ersten, die GymBo ausprobieren. Installiere die Beta-Version über TestFlight und gib uns dein Feedback, um die App noch besser zu machen.
+        </p>
+        <a href="https://testflight.apple.com/join/nNuPf4RH" class="testflight-btn" target="_blank" rel="noopener">
+            🚀 Mit TestFlight testen
+        </a>
     </section>
 
     <script>
