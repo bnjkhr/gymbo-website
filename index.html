@@ -1,372 +1,570 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GymBo - Dein entspannter Trainingsbegleiter</title>
-    <style>
-        :root {
-            --primary-color: #6366F1;
-            --secondary-color: #8B5CF6;
-            --accent-color: #EC4899;
-            --dark-bg: #0F172A;
-            --card-bg: #1E293B;
-            --light-text: #F1F5F9;
-            --gray-text: #94A3B8;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GymBo - Dein entspannter Trainingsbegleiter</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --primary-color: #000000;
+                --secondary-color: #333333;
+                --accent-color: #666666;
+                --dark-bg: #ffffff;
+                --card-bg: #f8f9fa;
+                --light-text: #000000;
+                --gray-text: #666666;
+                --brand-gradient: linear-gradient(135deg, #000000, #333333);
+                --brand-hover: linear-gradient(135deg, #333333, #000000);
+            }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1f35 100%);
-            color: var(--light-text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+            body {
+                font-family: "Roboto", sans-serif;
+                background: var(--dark-bg);
+                color: var(--light-text);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 80px 20px 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+            /* Hero Section */
+            .hero {
+                text-align: center;
+                padding: 100px 20px 80px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
 
-        .logo {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-        }
-
-        .tagline {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-
-        .subtitle {
-            font-size: 1.25rem;
-            color: var(--gray-text);
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Subscribe Form */
-        .subscribe-section {
-            max-width: 500px;
-            margin: 0 auto 60px;
-            padding: 0 20px;
-        }
-
-        .subscribe-form {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-
-        .email-input {
-            flex-grow: 1;
-            padding: 16px 20px;
-            border: 2px solid #334155;
-            border-radius: 12px;
-            background-color: var(--card-bg);
-            color: var(--light-text);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .email-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-
-        .submit-btn {
-            padding: 16px 32px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-        }
-
-        #message {
-            text-align: center;
-            font-weight: 600;
-            min-height: 24px;
-        }
-
-        /* Features Section */
-        .features {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #334155;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .feature-description {
-            color: var(--gray-text);
-            font-size: 1.05rem;
-        }
-
-        /* TestFlight Section */
-        .testflight-section {
-            text-align: center;
-            padding: 80px 20px 100px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .testflight-title {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .testflight-description {
-            font-size: 1.15rem;
-            color: var(--gray-text);
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .testflight-btn {
-            display: inline-block;
-            padding: 18px 40px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .testflight-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-        }
-
-        /* Screenshot Section */
-        .screenshot-section {
-            text-align: center;
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .phone-mockup {
-            display: inline-block;
-            position: relative;
-            max-width: 350px;
-            margin: 0 auto;
-        }
-
-        .phone-frame {
-            position: relative;
-            border-radius: 40px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            border: 12px solid #1E293B;
-        }
-
-        .phone-frame img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* No Spam Notice */
-        .no-spam-notice {
-            color: var(--light-text);
-            font-size: 1.15rem;
-            font-weight: 500;
-            margin-top: 20px;
-            animation: shake 0.6s ease-in-out;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
             .logo {
-                font-size: 2.5rem;
+                font-size: 4rem;
+                font-weight: 800;
+                color: var(--primary-color);
+                margin-bottom: 24px;
+                letter-spacing: -0.02em;
             }
 
             .tagline {
-                font-size: 1.5rem;
+                font-size: 2.25rem;
+                font-weight: 700;
+                margin-bottom: 24px;
+                line-height: 1.2;
+                letter-spacing: -0.01em;
             }
 
             .subtitle {
-                font-size: 1.1rem;
+                font-size: 1.3rem;
+                color: var(--gray-text);
+                margin-bottom: 50px;
+                max-width: 720px;
+                margin-left: auto;
+                margin-right: auto;
+                line-height: 1.6;
+            }
+
+            /* Subscribe Form */
+            .subscribe-section {
+                max-width: 650px;
+                margin: 0 auto 60px;
+                padding: 0 20px;
             }
 
             .subscribe-form {
-                flex-direction: column;
+                display: flex;
+                gap: 16px;
+                margin-bottom: 15px;
+            }
+
+            .email-input {
+                flex: 1;
+                min-width: 0;
+                padding: 18px 24px;
+                border: 2px solid rgba(0, 0, 0, 0.1);
+                border-radius: 16px;
+                background: rgba(255, 255, 255, 0.8);
+                color: var(--light-text);
+                font-size: 1.05rem;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .email-input::placeholder {
+                color: var(--gray-text);
+                opacity: 0.7;
+            }
+
+            .email-input:focus {
+                outline: none;
+                border-color: var(--primary-color);
+                background: rgba(255, 255, 255, 0.95);
+                box-shadow:
+                    0 0 0 4px rgba(0, 0, 0, 0.05),
+                    0 8px 24px rgba(0, 0, 0, 0.1);
+                transform: translateY(-1px);
             }
 
             .submit-btn {
-                width: 100%;
+                padding: 18px 40px;
+                border: none;
+                border-radius: 16px;
+                background: var(--brand-gradient);
+                color: white;
+                font-size: 1.05rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                white-space: nowrap;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
             }
 
+            .submit-btn:hover {
+                background: var(--brand-hover);
+                transform: translateY(-3px);
+                box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+            }
+
+            .submit-btn:active {
+                transform: translateY(-1px);
+            }
+
+            #message {
+                text-align: center;
+                font-weight: 600;
+                min-height: 24px;
+            }
+
+            /* Features Section */
             .features {
-                grid-template-columns: 1fr;
+                max-width: 1100px;
+                margin: 80px auto;
+                padding: 0 20px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 32px;
             }
 
-            .no-spam-notice {
-                font-size: 1rem;
+            .feature-card {
+                background: var(--card-bg);
+                border-radius: 24px;
+                padding: 48px 36px;
+                text-align: center;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                position: relative;
+                overflow: hidden;
             }
-        }
-    </style>
-</head>
-<body>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1 class="logo">GymBo</h1>
-        <h2 class="tagline">Dein entspannter Trainingsbegleiter im Gym</h2>
-        <p class="subtitle">Schnell, smart und ohne Ablenkung. Weil deine Zeit fürs Training da ist, nicht für komplizierte Apps.</p>
+            .feature-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(0, 0, 0, 0.2),
+                    transparent
+                );
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
 
-        <div class="subscribe-section">
-            <form id="subscribeForm" class="subscribe-form">
-                <input type="email" id="email" class="email-input" placeholder="Deine E-Mail-Adresse" required>
-                <button type="submit" class="submit-btn">Benachrichtigt mich!</button>
-            </form>
-            <p id="message"></p>
-            <p class="no-spam-notice">Kein Spam, nur ein 👋🏼 wenn die App live ist!</p>
-        </div>
-    </section>
+            .feature-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
+                border-color: rgba(0, 0, 0, 0.1);
+            }
 
-    <!-- Screenshot Section -->
-    <section class="screenshot-section">
-        <div class="phone-mockup">
-            <div class="phone-frame">
-                <img src="screenshot.PNG" alt="GymBo App Screenshot">
-            </div>
-        </div>
-    </section>
+            .feature-card:hover::before {
+                opacity: 1;
+            }
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="feature-card">
-            <div class="feature-icon">📱</div>
-            <h3 class="feature-title">Native iOS Experience</h3>
-            <p class="feature-description">Mit dynamischen Widgets direkt auf deinem Home-Screen. Sieh deinen Fortschritt auf einen Blick.</p>
-        </div>
+            .feature-icon {
+                font-size: 3.5rem;
+                margin-bottom: 24px;
+                color: var(--primary-color);
+            }
 
-        <div class="feature-card">
-            <div class="feature-icon">🔒</div>
-            <h3 class="feature-title">100% Privat</h3>
-            <p class="feature-description">Kein Account, keine Cloud, keine Ablenkung. Deine Daten bleiben auf deinem iPhone.</p>
-        </div>
+            .feature-title {
+                font-size: 1.6rem;
+                font-weight: 700;
+                margin-bottom: 16px;
+                letter-spacing: -0.01em;
+            }
 
-        <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3 class="feature-title">Fokus-Design</h3>
-            <p class="feature-description">Minimalistisch und schnell. Nichts lenkt dich vom Wesentlichen ab – deinem Training.</p>
-        </div>
-    </section>
+            .feature-description {
+                color: var(--gray-text);
+                font-size: 1.1rem;
+                line-height: 1.7;
+            }
 
-    <!-- TestFlight Section -->
-    <section class="testflight-section">
-        <h2 class="testflight-title">Jetzt Beta-Tester werden!</h2>
-        <p class="testflight-description">
-            Sei einer der Ersten, die GymBo ausprobieren. Installiere die Beta-Version über TestFlight und gib uns dein Feedback, um die App noch besser zu machen.
-        </p>
-        <a href="https://testflight.apple.com/join/nNuPf4RH" class="testflight-btn" target="_blank" rel="noopener">
-            🚀 Mit TestFlight testen
-        </a>
-    </section>
+            /* TestFlight Section */
+            .testflight-section {
+                text-align: center;
+                padding: 100px 20px;
+                max-width: 800px;
+                margin: 0 auto;
+            }
 
-    <script>
-        document.getElementById('subscribeForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const messageElement = document.getElementById('message');
+            .testflight-title {
+                font-size: 2.25rem;
+                font-weight: 700;
+                margin-bottom: 24px;
+                color: var(--primary-color);
+                letter-spacing: -0.01em;
+            }
 
-            messageElement.textContent = 'Einen Moment...';
+            .testflight-description {
+                font-size: 1.25rem;
+                color: var(--gray-text);
+                margin-bottom: 40px;
+                line-height: 1.7;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
 
-            try {
-                const formData = new FormData();
-                formData.append('email', email);
+            .testflight-btn {
+                display: inline-block;
+                padding: 20px 48px;
+                border-radius: 16px;
+                background: var(--brand-gradient);
+                color: white;
+                font-size: 1.15rem;
+                font-weight: 700;
+                text-decoration: none;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+                position: relative;
+                overflow: hidden;
+            }
 
-                const response = await fetch('subscribe.php', {
-                    method: 'POST',
-                    body: formData
-                });
+            .testflight-btn::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent
+                );
+                transition: left 0.5s ease;
+            }
 
-                const data = await response.json();
+            .testflight-btn:hover::before {
+                left: 100%;
+            }
 
-                if (data.success) {
-                    messageElement.textContent = data.message;
-                    messageElement.style.color = 'var(--primary-color)';
-                    document.getElementById('subscribeForm').reset();
-                } else {
-                    messageElement.textContent = data.message;
-                    messageElement.style.color = '#ff6b6b';
+            .testflight-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+            }
+
+            .testflight-btn:active {
+                transform: translateY(-1px);
+            }
+
+            /* Screenshot Section */
+            .screenshot-section {
+                text-align: center;
+                padding: 80px 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .phone-mockup {
+                display: inline-block;
+                position: relative;
+                max-width: 380px;
+                margin: 0 auto;
+            }
+
+            .phone-frame {
+                position: relative;
+                border-radius: 48px;
+                overflow: hidden;
+                box-shadow:
+                    0 40px 80px rgba(0, 0, 0, 0.1),
+                    0 0 0 1px rgba(0, 0, 0, 0.05);
+                border: 14px solid #f0f0f0;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .phone-frame:hover {
+                transform: scale(1.02);
+                box-shadow:
+                    0 50px 100px rgba(0, 0, 0, 0.15),
+                    0 0 0 1px rgba(0, 0, 0, 0.1);
+            }
+
+            .phone-frame img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            /* Final CTA Section */
+            .final-cta {
+                text-align: center;
+                padding: 100px 20px 120px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 40px;
+                letter-spacing: -0.01em;
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .hero {
+                    padding: 60px 20px 50px;
                 }
-            } catch (error) {
-                messageElement.textContent = 'Ein Fehler ist aufgetreten. Bitte versuche es später erneut.';
-                messageElement.style.color = '#ff6b6b';
-            }
-        });
-    </script>
 
-</body>
+                .logo {
+                    font-size: 3rem;
+                }
+
+                .tagline {
+                    font-size: 1.75rem;
+                }
+
+                .subtitle {
+                    font-size: 1.15rem;
+                    margin-bottom: 40px;
+                }
+
+                .subscribe-form {
+                    flex-direction: column;
+                    gap: 12px;
+                }
+
+                .email-input {
+                    padding: 16px 20px;
+                }
+
+                .submit-btn {
+                    width: 100%;
+                    padding: 16px 32px;
+                }
+
+                .features {
+                    grid-template-columns: 1fr;
+                    gap: 24px;
+                    margin: 60px auto;
+                }
+
+                .feature-card {
+                    padding: 36px 28px;
+                }
+
+                .feature-icon {
+                    font-size: 3rem;
+                }
+
+                .feature-title {
+                    font-size: 1.4rem;
+                }
+
+                .feature-description {
+                    font-size: 1.05rem;
+                }
+
+                .testflight-section {
+                    padding: 80px 20px;
+                }
+
+                .testflight-title {
+                    font-size: 1.85rem;
+                }
+
+                .testflight-description {
+                    font-size: 1.1rem;
+                }
+
+                .testflight-btn {
+                    padding: 16px 36px;
+                    font-size: 1.05rem;
+                }
+
+                .screenshot-section {
+                    padding: 60px 20px;
+                }
+
+                .phone-mockup {
+                    max-width: 320px;
+                }
+
+                .final-cta {
+                    padding: 80px 20px 100px;
+                }
+
+                .cta-title {
+                    font-size: 1.75rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="logo">GymBo</h1>
+            <h2 class="tagline">Training tracken, ohne nachzudenken</h2>
+            <p class="subtitle">
+                Native iOS-App mit smarten Workout-Vorlagen, Live Activities und
+                Smart Coach. Alles offline, nichts kompliziert.
+            </p>
+
+            <div class="subscribe-section">
+                <form id="subscribeForm" class="subscribe-form">
+                    <input
+                        type="email"
+                        id="email"
+                        class="email-input"
+                        placeholder="Deine E-Mail-Adresse"
+                        required
+                    />
+                    <button type="submit" class="submit-btn">
+                        Benachrichtigt mich
+                    </button>
+                </form>
+                <p id="message"></p>
+            </div>
+        </section>
+
+        <!-- Screenshot Section -->
+        <section class="screenshot-section">
+            <div class="phone-mockup">
+                <div class="phone-frame">
+                    <img src="screenshot.PNG" alt="GymBo App Screenshot" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">Smart Coach</h3>
+                <p class="feature-description">
+                    Personalisierte Trainingstipps, die auf deinen Fortschritt
+                    achten. Keine generischen Ratschläge.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Live Activities</h3>
+                <p class="feature-description">
+                    Dein Workout im Dynamic Island. Rest-Timer, Herzfrequenz und
+                    Fortschritt direkt sichtbar.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">100% Offline</h3>
+                <p class="feature-description">
+                    Kein Account, keine Cloud. Deine Daten bleiben auf deinem
+                    iPhone.
+                </p>
+            </div>
+        </section>
+
+        <!-- TestFlight Section -->
+        <section class="testflight-section">
+            <h2 class="testflight-title">Jetzt Beta testen</h2>
+            <p class="testflight-description">
+                GymBo ist noch in der Beta. Teste die App jetzt über TestFlight
+                und hilf mit, sie besser zu machen.
+            </p>
+            <a
+                href="https://testflight.apple.com/join/nNuPf4RH"
+                class="testflight-btn"
+                target="_blank"
+                rel="noopener"
+            >
+                TestFlight öffnen
+            </a>
+        </section>
+
+        <!-- Second CTA Section -->
+        <section class="final-cta">
+            <h2 class="cta-title">Noch keine Lust auf Beta?</h2>
+
+            <div class="subscribe-section">
+                <form id="subscribeForm2" class="subscribe-form">
+                    <input
+                        type="email"
+                        id="email2"
+                        class="email-input"
+                        placeholder="Deine E-Mail-Adresse"
+                        required
+                    />
+                    <button type="submit" class="submit-btn">
+                        Benachrichtigt mich
+                    </button>
+                </form>
+                <p id="message2"></p>
+            </div>
+        </section>
+
+        <script>
+            async function handleSubscribe(formId, emailId, messageId) {
+                const form = document.getElementById(formId);
+                if (!form) return;
+
+                form.addEventListener("submit", async function (event) {
+                    event.preventDefault();
+                    const email = document.getElementById(emailId).value;
+                    const messageElement = document.getElementById(messageId);
+
+                    messageElement.textContent = "Einen Moment...";
+
+                    try {
+                        const formData = new FormData();
+                        formData.append("email", email);
+
+                        const response = await fetch("subscribe.php", {
+                            method: "POST",
+                            body: formData,
+                        });
+
+                        const data = await response.json();
+
+                        if (data.success) {
+                            messageElement.textContent =
+                                "✓ Perfekt, du bist dabei";
+                            messageElement.style.color = "#10B981";
+                            form.reset();
+                        } else {
+                            messageElement.textContent = data.message;
+                            messageElement.style.color = "#ff6b6b";
+                        }
+                    } catch (error) {
+                        messageElement.textContent =
+                            "Fehler. Bitte nochmal versuchen.";
+                        messageElement.style.color = "#ff6b6b";
+                    }
+                });
+            }
+
+            handleSubscribe("subscribeForm", "email", "message");
+            handleSubscribe("subscribeForm2", "email2", "message2");
+        </script>
+    </body>
 </html>
