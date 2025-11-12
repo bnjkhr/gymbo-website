@@ -8,16 +8,43 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <style>
+            /* Animation Keyframes */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+
+            /* Animation Classes */
+            .fade-in-up {
+                animation: fadeInUp 0.8s ease-out;
+            }
+
+            .float {
+                animation: float 3s ease-in-out infinite;
+            }
             :root {
                 --primary-color: #000000;
-                --secondary-color: #333333;
-                --accent-color: #666666;
+                --secondary-color: #1a1a1a;
+                --accent-color: #ff6b35;
                 --dark-bg: #ffffff;
                 --card-bg: #f8f9fa;
                 --light-text: #000000;
                 --gray-text: #666666;
-                --brand-gradient: linear-gradient(135deg, #000000, #333333);
-                --brand-hover: linear-gradient(135deg, #333333, #000000);
+                --brand-gradient: linear-gradient(135deg, #000000, #ff6b35);
+                --brand-hover: linear-gradient(135deg, #ff6b35, #000000);
+                --success-color: #10B981;
+                --error-color: #ff6b6b;
             }
 
             * {
@@ -37,9 +64,22 @@
             /* Hero Section */
             .hero {
                 text-align: center;
-                padding: 100px 20px 80px;
+                padding: 120px 20px 100px;
                 max-width: 1200px;
                 margin: 0 auto;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.03) 0%, transparent 70%);
+                pointer-events: none;
             }
 
             .logo {
@@ -48,24 +88,49 @@
                 color: var(--primary-color);
                 margin-bottom: 24px;
                 letter-spacing: -0.02em;
+                position: relative;
+                display: inline-block;
+            }
+
+            .logo::after {
+                content: "";
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: var(--brand-gradient);
+                border-radius: 2px;
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.3s ease;
+            }
+
+            .hero:hover .logo::after {
+                transform: scaleX(1);
             }
 
             .tagline {
-                font-size: 2.25rem;
-                font-weight: 700;
+                font-size: 3.5rem;
+                font-weight: 800;
                 margin-bottom: 24px;
-                line-height: 1.2;
-                letter-spacing: -0.01em;
+                line-height: 1.1;
+                letter-spacing: -0.02em;
+                background: var(--brand-gradient);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
             }
 
             .subtitle {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
                 color: var(--gray-text);
                 margin-bottom: 50px;
                 max-width: 720px;
                 margin-left: auto;
                 margin-right: auto;
-                line-height: 1.6;
+                line-height: 1.7;
+                font-weight: 400;
             }
 
             /* Subscribe Form */
@@ -109,17 +174,39 @@
             }
 
             .submit-btn {
-                padding: 18px 40px;
+                padding: 20px 48px;
                 border: none;
                 border-radius: 16px;
                 background: var(--brand-gradient);
                 color: white;
-                font-size: 1.05rem;
-                font-weight: 600;
+                font-size: 1.1rem;
+                font-weight: 700;
                 cursor: pointer;
                 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 white-space: nowrap;
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 8px 24px rgba(255, 107, 53, 0.3);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .submit-btn::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent
+                );
+                transition: left 0.5s ease;
+            }
+
+            .submit-btn:hover::before {
+                left: 100%;
             }
 
             .submit-btn:hover {
@@ -140,12 +227,12 @@
 
             /* Features Section */
             .features {
-                max-width: 1100px;
-                margin: 80px auto;
+                max-width: 1200px;
+                margin: 100px auto;
                 padding: 0 20px;
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: 32px;
+                grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+                gap: 40px;
             }
 
             .feature-card {
@@ -157,6 +244,7 @@
                 border: 1px solid rgba(0, 0, 0, 0.05);
                 position: relative;
                 overflow: hidden;
+                backdrop-filter: blur(10px);
             }
 
             .feature-card::before {
@@ -189,15 +277,16 @@
             .feature-icon {
                 font-size: 3.5rem;
                 margin-bottom: 24px;
-                color: var(--primary-color);
+                background: var(--brand-gradient);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                display: inline-block;
             }
 
-            .feature-title {
-                font-size: 1.6rem;
-                font-weight: 700;
-                margin-bottom: 16px;
-                letter-spacing: -0.01em;
-            }
+                .feature-title {
+                    font-size: 1.4rem;
+                }
 
             .feature-description {
                 color: var(--gray-text);
@@ -208,17 +297,35 @@
             /* TestFlight Section */
             .testflight-section {
                 text-align: center;
-                padding: 100px 20px;
+                padding: 120px 20px;
                 max-width: 800px;
                 margin: 0 auto;
+                background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .testflight-section::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(circle at 70% 30%, rgba(255, 107, 53, 0.05) 0%, transparent 60%);
+                pointer-events: none;
             }
 
             .testflight-title {
-                font-size: 2.25rem;
-                font-weight: 700;
+                font-size: 2.5rem;
+                font-weight: 800;
                 margin-bottom: 24px;
                 color: var(--primary-color);
-                letter-spacing: -0.01em;
+                letter-spacing: -0.02em;
+                background: var(--brand-gradient);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
             }
 
             .testflight-description {
@@ -299,6 +406,7 @@
                     0 0 0 1px rgba(0, 0, 0, 0.05);
                 border: 14px solid #f0f0f0;
                 transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                animation: float 6s ease-in-out infinite;
             }
 
             .phone-frame:hover {
@@ -314,37 +422,152 @@
                 display: block;
             }
 
+            /* Why Different Section */
+            .why-different {
+                padding: 100px 20px;
+                background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .why-different-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .why-different-title {
+                font-size: 2.75rem;
+                font-weight: 800;
+                margin-bottom: 60px;
+                color: var(--primary-color);
+                letter-spacing: -0.02em;
+                background: var(--brand-gradient);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .why-different-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 40px;
+                margin-top: 60px;
+                max-width: 1000px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .why-item {
+                text-align: center;
+                padding: 32px 24px;
+                border-radius: 20px;
+                background: rgba(255, 255, 255, 0.7);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+            }
+
+            .why-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+                background: rgba(255, 255, 255, 0.9);
+            }
+
+            .why-icon {
+                font-size: 3rem;
+                margin-bottom: 20px;
+                display: inline-block;
+            }
+
+            .why-item h3 {
+                font-size: 1.4rem;
+                font-weight: 700;
+                margin-bottom: 16px;
+                color: var(--primary-color);
+            }
+
+            .why-item p {
+                color: var(--gray-text);
+                font-size: 1.05rem;
+                line-height: 1.6;
+            }
+
             /* Final CTA Section */
             .final-cta {
                 text-align: center;
-                padding: 100px 20px 120px;
+                padding: 120px 20px 140px;
                 max-width: 1200px;
                 margin: 0 auto;
+                background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+                color: white;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .final-cta .cta-title {
+                color: white;
+                background: linear-gradient(135deg, #ffffff, #cccccc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .final-cta .cta-subtitle {
+                color: #cccccc;
+            }
+
+            .final-cta .email-input {
+                background: rgba(255, 255, 255, 0.1);
+                border: 2px solid rgba(255, 255, 255, 0.2);
+                color: white;
+            }
+
+            .final-cta .email-input::placeholder {
+                color: rgba(255, 255, 255, 0.6);
+            }
+
+            .final-cta .email-input:focus {
+                border-color: var(--accent-color);
+                background: rgba(255, 255, 255, 0.15);
+                box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
             }
 
             .cta-title {
-                font-size: 2rem;
-                font-weight: 700;
+                font-size: 2.25rem;
+                font-weight: 800;
+                margin-bottom: 16px;
+                letter-spacing: -0.02em;
+                color: var(--primary-color);
+            }
+
+            .cta-subtitle {
+                font-size: 1.2rem;
+                color: var(--gray-text);
                 margin-bottom: 40px;
-                letter-spacing: -0.01em;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+                line-height: 1.6;
             }
 
             /* Responsive */
             @media (max-width: 768px) {
                 .hero {
-                    padding: 60px 20px 50px;
+                    padding: 80px 20px 60px;
                 }
 
                 .logo {
-                    font-size: 3rem;
+                    font-size: 2.5rem;
                 }
 
                 .tagline {
-                    font-size: 1.75rem;
+                    font-size: 2rem;
+                    margin-bottom: 20px;
                 }
 
                 .subtitle {
-                    font-size: 1.15rem;
+                    font-size: 1.1rem;
                     margin-bottom: 40px;
                 }
 
@@ -355,17 +578,51 @@
 
                 .email-input {
                     padding: 16px 20px;
+                    font-size: 1rem;
                 }
 
                 .submit-btn {
                     width: 100%;
                     padding: 16px 32px;
+                    font-size: 1rem;
+                }
+
+                .why-different {
+                    padding: 60px 20px;
+                }
+
+                .why-different-title {
+                    font-size: 2rem;
+                    margin-bottom: 40px;
+                }
+
+                .why-different-grid {
+                    grid-template-columns: 1fr;
+                    gap: 24px;
+                    max-width: 400px;
+                }
+
+                .why-item {
+                    padding: 24px 20px;
+                }
+
+                .why-icon {
+                    font-size: 2.5rem;
+                }
+
+                .why-item h3 {
+                    font-size: 1.2rem;
+                }
+
+                .why-item p {
+                    font-size: 1rem;
                 }
 
                 .features {
                     grid-template-columns: 1fr;
                     gap: 24px;
                     margin: 60px auto;
+                    max-width: 400px; /* Begrenzt für bessere Lesbarkeit */
                 }
 
                 .feature-card {
@@ -376,45 +633,87 @@
                     font-size: 3rem;
                 }
 
-                .feature-title {
-                    font-size: 1.4rem;
-                }
+            .feature-title {
+                font-size: 1.6rem;
+                font-weight: 700;
+                margin-bottom: 16px;
+                letter-spacing: -0.01em;
+                line-height: 1.3;
+            }
 
                 .feature-description {
-                    font-size: 1.05rem;
+                    font-size: 1rem;
                 }
 
                 .testflight-section {
-                    padding: 80px 20px;
+                    padding: 60px 20px;
                 }
 
                 .testflight-title {
-                    font-size: 1.85rem;
+                    font-size: 1.75rem;
                 }
 
                 .testflight-description {
-                    font-size: 1.1rem;
+                    font-size: 1rem;
                 }
 
                 .testflight-btn {
                     padding: 16px 36px;
-                    font-size: 1.05rem;
+                    font-size: 1rem;
                 }
 
                 .screenshot-section {
-                    padding: 60px 20px;
+                    padding: 40px 20px;
                 }
 
                 .phone-mockup {
-                    max-width: 320px;
+                    max-width: 280px;
                 }
 
                 .final-cta {
-                    padding: 80px 20px 100px;
+                    padding: 60px 20px 80px;
                 }
 
                 .cta-title {
+                    font-size: 1.5rem;
+                }
+
+                .cta-subtitle {
+                    font-size: 1rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .hero {
+                    padding: 60px 15px 40px;
+                }
+
+                .logo {
+                    font-size: 2rem;
+                }
+
+                .tagline {
                     font-size: 1.75rem;
+                }
+
+                .subtitle {
+                    font-size: 1rem;
+                }
+
+                .why-different-title {
+                    font-size: 1.75rem;
+                }
+
+                .testflight-title {
+                    font-size: 1.5rem;
+                }
+
+                .cta-title {
+                    font-size: 1.3rem;
+                }
+
+                .phone-mockup {
+                    max-width: 240px;
                 }
             }
         </style>
@@ -423,10 +722,11 @@
         <!-- Hero Section -->
         <section class="hero">
             <h1 class="logo">GymBo</h1>
-            <h2 class="tagline">Training tracken, ohne nachzudenken</h2>
+            <h2 class="tagline">Dein Workout. Dein Fortschritt. Kein Stress.</h2>
             <p class="subtitle">
-                Native iOS-App mit smarten Workout-Vorlagen, Live Activities und
-                Smart Coach. Alles offline, nichts kompliziert.
+                Die einzige Fitness-App, die sich an dich anpasst - nicht umgekehrt. 
+                Mit Supersets, Circuit-Training und intelligenten Fortschrittsempfehlungen, 
+                die wirklich funktionieren.
             </p>
 
             <div class="subscribe-section">
@@ -455,14 +755,56 @@
             </div>
         </section>
 
+        <!-- Why GymBo Different Section -->
+        <section class="why-different">
+            <div class="why-different-container">
+                <h2 class="why-different-title">Warum GymBo anders ist</h2>
+                <div class="why-different-grid">
+                    <div class="why-item">
+                        <div class="why-icon">🎯</div>
+                        <h3>Focus aufs Wesentliche</h3>
+                        <p>Tracken statt Scrollen. Keine sozialen Netzwerke, keine Ablenkung. Nur du und dein Training.</p>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-icon">⚡</div>
+                        <h3>Made für Performance</h3>
+                        <p>Entwickelt von jemandem, der versteht was Training bedeutet. Jede Funktion hat einen echten Nutzen.</p>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-icon">🛡️</div>
+                        <h3>Privacy First</h3>
+                        <p>Deine Trainingsdaten bleiben auf deinem iPhone. Keine Cloud, keine Tracker, keine kompromisse.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Features Section -->
         <section class="features">
             <div class="feature-card">
-                <div class="feature-icon">🧠</div>
-                <h3 class="feature-title">Smart Coach</h3>
+                <div class="feature-icon">🔥</div>
+                <h3 class="feature-title">Superset & Circuit Training</h3>
                 <p class="feature-description">
-                    Personalisierte Trainingstipps, die auf deinen Fortschritt
-                    achten. Keine generischen Ratschläge.
+                    Wechsle nahtlos zwischen Übungen. Ob A1→A2 Supersets oder komplette 
+                    Station-Rotationen - dein Training bleibt im Flow.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">Intelligente Fortschrittsempfehlungen</h3>
+                <p class="feature-description">
+                    Kein raten mehr. GymBo analysiert deine Leistung und schlägt 
+                    automatisch die nächsten Gewichte und Wiederholungen vor.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">↔️</div>
+                <h3 class="feature-title">Exercise Reordering</h3>
+                <p class="feature-description">
+                    Stell deine Übungen einfach per Drag & Drop um. Für dieses Training 
+                    oder dauerhaft in deinem Workout-Template.
                 </p>
             </div>
 
@@ -476,21 +818,30 @@
             </div>
 
             <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Blitzschnelle Bedienung</h3>
+                <p class="feature-description">
+                    One-Tap Set-Completion, Auto-Finish Übungen, sofortige Updates. 
+                    Keine Wartezeiten, keine Animationen, die dich bremsen.
+                </p>
+            </div>
+
+            <div class="feature-card">
                 <div class="feature-icon">🔒</div>
-                <h3 class="feature-title">100% Offline</h3>
+                <h3 class="feature-title">100% Offline & Privat</h3>
                 <p class="feature-description">
                     Kein Account, keine Cloud. Deine Daten bleiben auf deinem
-                    iPhone.
+                    iPhone. Keine Tracker, keine Werbung, keine Ablenkung.
                 </p>
             </div>
         </section>
 
         <!-- TestFlight Section -->
         <section class="testflight-section">
-            <h2 class="testflight-title">Jetzt Beta testen</h2>
+            <h2 class="testflight-title">Sei dabei, wenn GymBo zur besten Fitness-App wird</h2>
             <p class="testflight-description">
-                GymBo ist noch in der Beta. Teste die App jetzt über TestFlight
-                und hilf mit, sie besser zu machen.
+                Teste jetzt die neuesten Features und beeinflusse die Entwicklung. 
+                Als Beta-Tester bekommst du exklusiven Zugang zu neuen Funktionen bevor sie veröffentlicht werden.
             </p>
             <a
                 href="https://testflight.apple.com/join/nNuPf4RH"
@@ -498,13 +849,17 @@
                 target="_blank"
                 rel="noopener"
             >
-                TestFlight öffnen
+                Jetzt Beta testen
             </a>
         </section>
 
         <!-- Second CTA Section -->
         <section class="final-cta">
-            <h2 class="cta-title">Noch keine Lust auf Beta?</h2>
+            <h2 class="cta-title">Willst du wissen, wann GymBo im App Store erscheint?</h2>
+            <p class="cta-subtitle">
+                Wir benachrichtigen dich, sobald die finale Version verfügbar ist. 
+                Kein Spam, versprochen.
+            </p>
 
             <div class="subscribe-section">
                 <form id="subscribeForm2" class="subscribe-form">
@@ -516,7 +871,7 @@
                         required
                     />
                     <button type="submit" class="submit-btn">
-                        Benachrichtigt mich
+                        Infomieren wenn's soweit ist
                     </button>
                 </form>
                 <p id="message2"></p>
@@ -524,6 +879,28 @@
         </section>
 
         <script>
+            // Scroll Animation Observer
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements
+            document.addEventListener('DOMContentLoaded', () => {
+                const elementsToAnimate = document.querySelectorAll('.feature-card, .why-item, .testflight-section, .final-cta');
+                elementsToAnimate.forEach(el => observer.observe(el));
+            });
+
+            // Smooth scroll for better UX
+            document.documentElement.style.scrollBehavior = 'smooth';
             async function handleSubscribe(formId, emailId, messageId) {
                 const form = document.getElementById(formId);
                 if (!form) return;
