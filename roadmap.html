@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GymBo - Feature Roadmap</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+        <style>
+            :root {
+                --primary-color: #000000;
+                --secondary-color: #1a1a1a;
+                --dark-bg: #ffffff;
+                --card-bg: #f5f5f5;
+                --light-text: #000000;
+                --gray-text: #333333;
+                --brand-gradient: linear-gradient(135deg, #000000, #333333);
+                --glass-bg: rgba(255, 255, 255, 0.7);
+                --glass-border: rgba(0, 0, 0, 0.05);
+            }
+
+            [data-theme="dark"] {
+                --primary-color: #ffffff;
+                --secondary-color: #f0f0f0;
+                --dark-bg: #121212;
+                --card-bg: #1e1e1e;
+                --light-text: #ffffff;
+                --gray-text: #cccccc;
+                --brand-gradient: linear-gradient(135deg, #ffffff, #e0e0e0);
+                --glass-bg: rgba(255, 255, 255, 0.05);
+                --glass-border: rgba(255, 255, 255, 0.1);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Roboto", sans-serif;
+                background: var(--dark-bg);
+                color: var(--light-text);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            /* Header */
+            .main-header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                padding: 15px 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                transition: all 0.3s ease;
+            }
+
+            [data-theme="dark"] .main-header {
+                background: rgba(255, 255, 255, 0.9);
+                border-color: rgba(0, 0, 0, 0.1);
+            }
+
+            .header-left {
+                display: flex;
+                align-items: center;
+                gap: 40px;
+            }
+
+            .header-logo {
+                font-weight: 800;
+                font-size: 1.5rem;
+                color: #ffffff;
+                text-decoration: none;
+                letter-spacing: -0.02em;
+            }
+
+            [data-theme="dark"] .header-logo {
+                color: #000000;
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 24px;
+                align-items: center;
+            }
+
+            .nav-link {
+                color: rgba(255, 255, 255, 0.8);
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 0.95rem;
+                transition: color 0.2s ease;
+            }
+
+            [data-theme="dark"] .nav-link {
+                color: rgba(0, 0, 0, 0.8);
+            }
+
+            .nav-link:hover {
+                color: #ffffff;
+            }
+
+            [data-theme="dark"] .nav-link:hover {
+                color: #000000;
+            }
+
+            .header-right {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .nav-btn-download {
+                background: white;
+                color: black;
+                padding: 10px 20px;
+                border-radius: 12px;
+                font-weight: 600;
+                font-size: 0.9rem;
+                text-decoration: none;
+                transition: transform 0.2s, box-shadow 0.2s;
+            }
+
+            [data-theme="dark"] .nav-btn-download {
+                background: black;
+                color: white;
+            }
+
+            .nav-btn-download:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(255,255,255,0.15);
+            }
+
+            [data-theme="dark"] .nav-btn-download:hover {
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            }
+
+            .header-theme-toggle {
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 1.2rem;
+                padding: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #ffffff;
+                transition: transform 0.3s;
+            }
+
+            [data-theme="dark"] .header-theme-toggle {
+                color: #000000;
+            }
+
+            /* Hero */
+            .roadmap-hero {
+                text-align: center;
+                padding: 140px 20px 60px;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .roadmap-title {
+                font-size: 3.5rem;
+                font-weight: 800;
+                margin-bottom: 20px;
+                background: var(--brand-gradient);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: var(--primary-color);
+                letter-spacing: -0.02em;
+            }
+
+            .roadmap-subtitle {
+                font-size: 1.2rem;
+                color: var(--gray-text);
+                line-height: 1.6;
+            }
+
+            /* Timeline / Grid */
+            .roadmap-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 30px;
+                max-width: 1200px;
+                margin: 0 auto 100px;
+                padding: 0 20px;
+            }
+
+            .roadmap-card {
+                background: var(--glass-bg);
+                border: 1px solid var(--glass-border);
+                border-radius: 24px;
+                padding: 40px;
+                position: relative;
+                overflow: hidden;
+                backdrop-filter: blur(20px);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .roadmap-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            }
+
+            .status-badge {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                padding: 6px 12px;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+
+            .status-soon {
+                background: rgba(255, 165, 0, 0.1);
+                color: orange;
+                border: 1px solid rgba(255, 165, 0, 0.2);
+            }
+
+            .status-dev {
+                background: rgba(0, 122, 255, 0.1);
+                color: #007aff;
+                border: 1px solid rgba(0, 122, 255, 0.2);
+            }
+
+            .card-icon {
+                font-size: 2.5rem;
+                margin-bottom: 24px;
+                color: var(--primary-color);
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin-bottom: 12px;
+                color: var(--primary-color);
+            }
+
+            .card-desc {
+                color: var(--gray-text);
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            /* Footer */
+            .footer {
+                text-align: center;
+                padding: 40px 20px;
+                border-top: 1px solid var(--glass-border);
+                color: var(--gray-text);
+                font-size: 0.9rem;
+            }
+
+            @media (max-width: 768px) {
+                .nav-links {
+                    display: none;
+                }
+                .main-header {
+                    padding: 15px 20px;
+                }
+                .roadmap-title {
+                    font-size: 2.5rem;
+                }
+                .roadmap-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-left">
+                <a href="index.html" class="header-logo">GymBo</a>
+                <nav class="nav-links">
+                    <a href="index.html#features" class="nav-link">Funktionen</a>
+                    <a href="roadmap.html" class="nav-link">Feature-Roadmap</a>
+                    <a href="https://benkohler.de" class="nav-link" target="_blank" rel="noopener">Meine Apps</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <a href="https://testflight.apple.com/join/nNuPf4RH" class="nav-btn-download" target="_blank" rel="noopener">Download</a>
+                <button class="header-theme-toggle" id="headerThemeToggle" aria-label="Dark/Light Mode wechseln">
+                    <span id="headerThemeIcon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Hero -->
+        <section class="roadmap-hero">
+            <h1 class="roadmap-title">Die Zukunft des Trainings</h1>
+            <p class="roadmap-subtitle">
+                GymBo wird ständig weiterentwickelt. Hier ist ein Einblick in die Features, 
+                an denen ich gerade arbeite oder die als Nächstes anstehen.
+            </p>
+        </section>
+
+        <!-- Feature Grid -->
+        <section class="roadmap-grid">
+            
+            <!-- Card 1: System Integration -->
+            <div class="roadmap-card">
+                <span class="status-badge status-dev">In Entwicklung</span>
+                <div class="card-icon">
+                    <i class="ph ph-iphone"></i>
+                </div>
+                <h3 class="card-title">iOS Deep Integration</h3>
+                <p class="card-desc">
+                    Volle Power für dein iPhone. Ich bringe <strong>Live Activities</strong> für den Sperrbildschirm, 
+                    <strong>Dynamic Island</strong> Support für das iPhone 14/15 Pro und interaktive 
+                    <strong>Homescreen Widgets</strong> für den schnellen Überblick.
+                </p>
+            </div>
+
+            <!-- Card 2: Analytics -->
+            <div class="roadmap-card">
+                <span class="status-badge status-soon">Geplant</span>
+                <div class="card-icon">
+                    <i class="ph ph-chart-polar"></i>
+                </div>
+                <h3 class="card-title">Deep Dive Analytics</h3>
+                <p class="card-desc">
+                    Verstehe dein Training noch besser. Mit der neuen <strong>Mesozyklus-Auswertung</strong> 
+                    und detaillierten Charts zum <strong>Volumen pro Muskelgruppe</strong> erkennst du 
+                    Trends, bevor sie zu Plateaus werden.
+                </p>
+            </div>
+
+            <!-- Card 3: Comparison -->
+            <div class="roadmap-card">
+                <span class="status-badge status-soon">Geplant</span>
+                <div class="card-icon">
+                    <i class="ph ph-scales"></i>
+                </div>
+                <h3 class="card-title">Übungsvergleich</h3>
+                <p class="card-desc">
+                    Bench Press vs. Dumbbell Press? Vergleiche die Progression mehrerer Übungen 
+                    direkt in einem Chart. Erkenne Korrelationen und optimiere deine Übungsauswahl 
+                    basierend auf harten Daten.
+                </p>
+            </div>
+
+            <!-- Card 4: Workout Builder -->
+            <div class="roadmap-card">
+                <span class="status-badge status-soon">Geplant</span>
+                <div class="card-icon">
+                    <i class="ph ph-sliders-horizontal"></i>
+                </div>
+                <h3 class="card-title">Smart Workout Builder</h3>
+                <p class="card-desc">
+                    Noch präziser planen. In der <strong>CreateWorkoutView</strong> kannst du künftig 
+                    das Zielgewicht für jeden Satz direkt vordefinieren. Perfekt für Wave-Loading 
+                    oder präzise RPE-Planung.
+                </p>
+            </div>
+
+        </section>
+
+        <footer class="footer">
+            © 2025 Ben Kohler. Alle Rechte vorbehalten.
+        </footer>
+
+        <script>
+            // Theme Init
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('headerThemeToggle'); 
+            const themeIcon = document.getElementById('headerThemeIcon');     
+            const html = document.documentElement;
+
+            updateThemeIcon(currentTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+
+            function updateThemeIcon(theme) {
+                themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+            }
+        </script>
+    </body>
+</html>
