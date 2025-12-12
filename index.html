@@ -6,7 +6,7 @@
         <title>GymBo - Dein entspannter Trainingsbegleiter</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
         <script src="https://unpkg.com/@phosphor-icons/web"></script>
         <style>
             /* Animation Keyframes */
@@ -98,7 +98,7 @@
             }
 
             body {
-                font-family: "Roboto", sans-serif;
+                font-family: "Inter", sans-serif;
                 background: var(--dark-bg);
                 color: var(--light-text);
                 line-height: 1.6;
@@ -178,6 +178,31 @@
                 gap: 20px;
             }
 
+            .mobile-hero-banner {
+                display: none;
+                margin-bottom: 40px;
+                background: #000000;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 12px;
+                font-weight: 600;
+                font-size: 0.9rem;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            [data-theme="dark"] .mobile-hero-banner {
+                background: #ffffff;
+                color: #000000;
+            }
+
+            @media (max-width: 768px) {
+                .mobile-hero-banner {
+                    display: block;
+                    width: fit-content;
+                    margin: 40px auto 40px auto;
+                }
+            }
+
             .nav-btn-download {
                 background: white;
                 color: black;
@@ -249,26 +274,25 @@
             }
 
             .release-banner {
-                position: absolute;
-                top: 140px;
-                right: 10%;
                 display: inline-block;
-                padding: 10px 24px;
-                border-radius: 50px;
-                background: linear-gradient(135deg, #FF6B00 0%, #FF4500 100%);
+                padding: 10px 20px;
+                border-radius: 12px;
+                background: #000000;
                 color: white;
-                font-size: 1rem;
-                font-weight: 700;
-                box-shadow: 0 10px 30px rgba(255, 69, 0, 0.4);
-                transform: rotate(3deg);
-                z-index: 10;
-                animation: fadeInUp 0.6s ease-out;
+                font-size: 0.9rem;
+                font-weight: 600;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
                 border: none;
+                white-space: nowrap;
+                height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             [data-theme="dark"] .release-banner {
-                background: linear-gradient(135deg, #FF6B00 0%, #FF4500 100%);
-                color: white;
+                background: #ffffff;
+                color: #000000;
                 border: none;
             }
 
@@ -278,22 +302,7 @@
 
             @media (max-width: 768px) {
                 .release-banner {
-                    position: relative;
-                    top: auto;
-                    right: auto;
-                    transform: none;
-                    margin-bottom: 20px;
-                    background: rgba(255, 255, 255, 0.5);
-                    color: var(--primary-color);
-                    border: 1px solid rgba(0, 0, 0, 0.05);
-                    backdrop-filter: blur(10px);
-                    -webkit-backdrop-filter: blur(10px);
-                }
-                
-                [data-theme="dark"] .release-banner {
-                    background: rgba(255, 255, 255, 0.08);
-                    color: white;
-                    border-color: rgba(255, 255, 255, 0.1);
+                    display: none;
                 }
             }
 
@@ -317,7 +326,7 @@
                 font-size: 0.95rem;
                 font-weight: 600;
                 margin-bottom: 32px;
-                border: 1px solid rgba(0, 0, 0, 0.08);
+                border: 2px solid var(--primary-color);
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
                 transition: transform 0.3s ease;
                 backdrop-filter: blur(10px);
@@ -325,20 +334,21 @@
 
             .hero-badge:hover {
                 transform: translateY(-2px);
-                border-color: var(--primary-color);
+                border-color: var(--gray-text);
             }
 
             [data-theme="dark"] .hero-badge {
-                border-color: rgba(255, 255, 255, 0.15);
+                border-color: var(--primary-color);
                 background: rgba(255, 255, 255, 0.05);
             }
 
             .logo {
+                font-family: "Inter", sans-serif;
                 font-size: 4rem;
-                font-weight: 800;
+                font-weight: 900;
                 color: var(--primary-color);
                 margin-bottom: 24px;
-                letter-spacing: -0.02em;
+                letter-spacing: -0.04em;
                 position: relative;
                 display: inline-block;
             }
@@ -362,14 +372,15 @@
             }
 
             .tagline {
-                font-size: 4.5rem;
+                font-family: "Inter", sans-serif;
+                font-size: 4rem;
                 font-weight: 800;
                 margin-bottom: 24px;
-                line-height: 1.05;
+                line-height: 1.1;
                 letter-spacing: -0.03em;
-                background: var(--brand-gradient);
-                -webkit-background-clip: text;
-                background-clip: text;
+                background: none;
+                -webkit-background-clip: unset;
+                background-clip: unset;
                 color: var(--primary-color);
             }
 
@@ -498,19 +509,39 @@
             }
 
             /* Features Section */
-            .features {
-                max-width: 1000px; /* Breite etwas reduziert für besseres 2-Spalten-Layout */
+            .features-section {
+                max-width: 1000px;
                 margin: 120px auto;
                 padding: 0 20px;
+            }
+
+            .features-title {
+                font-family: "Inter", sans-serif;
+                font-size: 2.5rem;
+                font-weight: 800;
+                margin-bottom: 60px;
+                color: var(--primary-color);
+                letter-spacing: -0.03em;
+                text-align: center;
+            }
+
+            .features-grid {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr); /* Erzwingt 2 Spalten */
                 gap: 30px;
             }
 
             @media (max-width: 768px) {
-                .features {
-                    grid-template-columns: 1fr; /* 1 Spalte auf Mobile */
+                .features-section {
                     max-width: 500px;
+                    margin: 60px auto;
+                }
+                .features-grid {
+                    grid-template-columns: 1fr; /* 1 Spalte auf Mobile */
+                }
+                .features-title {
+                    font-size: 2rem;
+                    margin-bottom: 40px;
                 }
             }
 
@@ -579,10 +610,11 @@
             }
 
             .feature-title {
-                font-size: 1.5rem;
+                font-family: "Inter", sans-serif;
+                font-size: 1.4rem;
                 font-weight: 700;
                 margin-bottom: 16px;
-                letter-spacing: -0.01em;
+                letter-spacing: -0.02em;
                 color: var(--primary-color);
             }
 
@@ -616,11 +648,12 @@
             }
 
             .testflight-title {
-                font-size: 2.5rem;
+                font-family: "Inter", sans-serif;
+                font-size: 2.25rem;
                 font-weight: 800;
                 margin-bottom: 24px;
                 color: var(--primary-color);
-                letter-spacing: -0.02em;
+                letter-spacing: -0.03em;
             }
 
             .testflight-description {
@@ -696,19 +729,16 @@
                 position: relative;
                 border-radius: 48px;
                 overflow: hidden;
-                box-shadow:
-                    0 40px 80px rgba(0, 0, 0, 0.1),
-                    0 0 0 1px rgba(0, 0, 0, 0.05);
-                border: 14px solid #f0f0f0;
+                box-shadow: none !important;
+                border: none !important;
+                background: transparent !important;
                 transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 animation: float 6s ease-in-out infinite;
             }
 
             .phone-frame:hover {
                 transform: scale(1.02);
-                box-shadow:
-                    0 50px 100px rgba(0, 0, 0, 0.15),
-                    0 0 0 1px rgba(0, 0, 0, 0.1);
+                box-shadow: none !important;
             }
 
             .phone-frame img {
@@ -771,11 +801,12 @@
             }
 
             .why-different-title {
-                font-size: 2.75rem;
+                font-family: "Inter", sans-serif;
+                font-size: 2.5rem;
                 font-weight: 800;
                 margin-bottom: 60px;
                 color: var(--primary-color);
-                letter-spacing: -0.02em;
+                letter-spacing: -0.03em;
             }
 
             .why-different-grid {
@@ -811,6 +842,7 @@
                 color: #333333;
             }
 
+
             .why-item:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
@@ -830,6 +862,14 @@
 
             .why-icon i, .feature-icon-wrapper i {
                 vertical-align: middle;
+            }
+
+            /* Force black icons in Why section for Dark Mode */
+            [data-theme="dark"] .why-item .why-icon,
+            [data-theme="dark"] .why-item .why-icon i,
+            [data-theme="dark"] .why-item .why-icon svg {
+                color: #000000 !important;
+                fill: #000000 !important;
             }
 
             .why-item h3 {
@@ -881,11 +921,16 @@
                 box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
             }
 
+            .final-cta .subscribe-section {
+                max-width: 800px;
+            }
+
             .cta-title {
-                font-size: 2.25rem;
+                font-family: "Inter", sans-serif;
+                font-size: 2rem;
                 font-weight: 800;
                 margin-bottom: 16px;
-                letter-spacing: -0.02em;
+                letter-spacing: -0.03em;
                 color: var(--primary-color);
             }
 
@@ -1006,13 +1051,6 @@
                     font-size: 1rem;
                 }
 
-                .features {
-                    grid-template-columns: 1fr;
-                    gap: 24px;
-                    margin: 60px auto;
-                    max-width: 400px; /* Begrenzt für bessere Lesbarkeit */
-                }
-
                 .feature-card {
                     padding: 36px 28px;
                 }
@@ -1121,6 +1159,211 @@
                     max-width: 240px;
                 }
             }
+
+            /* Mobile Menu Styles */
+            .mobile-menu-toggle {
+                display: none;
+                background: none;
+                border: none;
+                color: #ffffff; /* Default for dark header */
+                font-size: 2rem;
+                cursor: pointer;
+                padding: 5px;
+                z-index: 2001; /* Ensure above header if needed, though button is inside header */
+            }
+
+            [data-theme="dark"] .mobile-menu-toggle {
+                color: #000000; /* For light header in dark mode */
+            }
+
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--dark-bg);
+                z-index: 2000;
+                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                display: flex;
+                flex-direction: column;
+                padding: 20px 30px;
+                overflow-y: auto;
+            }
+
+            .mobile-menu.active {
+                right: 0;
+            }
+
+            .mobile-menu-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 60px;
+                padding-top: 10px;
+            }
+
+            .mobile-menu-close {
+                background: none;
+                border: none;
+                color: var(--light-text);
+                font-size: 2rem;
+                cursor: pointer;
+                padding: 5px;
+            }
+
+            .mobile-nav-links {
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+                margin-bottom: auto;
+            }
+
+            .mobile-nav-link {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: var(--light-text);
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+
+            .mobile-nav-link:hover {
+                color: var(--primary-color);
+            }
+
+            .mobile-menu-footer {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                margin-top: 60px;
+                padding-bottom: 40px;
+            }
+
+            .mobile-banner {
+                display: flex !important; /* Force display */
+                width: 100%;
+                justify-content: center;
+                margin: 0;
+            }
+
+            .mobile-download {
+                text-align: center;
+                padding: 18px;
+                font-size: 1.1rem;
+            }
+
+            .mobile-theme-toggle {
+                width: 100%;
+                background: rgba(0,0,0,0.05);
+                border-radius: 12px;
+                padding: 18px 24px;
+                display: flex;
+                justify-content: space-between;
+                color: var(--light-text);
+                font-size: 1.1rem;
+                font-weight: 600;
+                border: 1px solid rgba(0,0,0,0.1);
+            }
+            
+            [data-theme="dark"] .mobile-theme-toggle {
+                background: rgba(255,255,255,0.05);
+                color: var(--light-text);
+                border-color: rgba(255,255,255,0.1);
+            }
+
+            /* New Button Styles */
+            .hero-buttons {
+                display: flex;
+                gap: 16px;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-bottom: 20px;
+            }
+
+            .app-store-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 12px;
+                background: var(--brand-gradient);
+                color: white;
+                padding: 16px 32px;
+                border-radius: 16px;
+                font-weight: 700;
+                font-size: 1.1rem;
+                text-decoration: none;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            }
+
+            .app-store-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+                background: var(--brand-hover);
+                color: white;
+            }
+
+            .app-store-btn i {
+                font-size: 1.5rem;
+            }
+
+            .beta-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                background: transparent;
+                color: var(--primary-color);
+                padding: 16px 32px;
+                border-radius: 16px;
+                font-weight: 600;
+                font-size: 1.1rem;
+                text-decoration: none;
+                border: 2px solid rgba(0,0,0,0.1);
+                transition: all 0.3s ease;
+            }
+
+            [data-theme="dark"] .beta-btn {
+                color: white;
+                border-color: rgba(255,255,255,0.2);
+            }
+
+            .beta-btn:hover {
+                background: rgba(0,0,0,0.05);
+                border-color: var(--primary-color);
+                transform: translateY(-2px);
+                color: var(--primary-color);
+            }
+
+            [data-theme="dark"] .beta-btn:hover {
+                background: rgba(255,255,255,0.1);
+                color: white;
+            }
+
+            /* Mobile adjustments for buttons */
+            @media (max-width: 480px) {
+                .hero-buttons {
+                    flex-direction: column;
+                    gap: 12px;
+                }
+                .app-store-btn, .beta-btn {
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .mobile-menu-toggle {
+                    display: block;
+                }
+                .header-right {
+                    display: none;
+                }
+                .header-left {
+                    flex: 1; /* Allow logo to stay left */
+                }
+                .main-header {
+                    justify-content: space-between; /* Ensure logo and burger are spread */
+                }
+            }
         </style>
     </head>
     <body>
@@ -1135,10 +1378,35 @@
                 </nav>
             </div>
             <div class="header-right">
-                <a href="https://testflight.apple.com/join/nNuPf4RH" class="nav-btn-download" target="_blank" rel="noopener">Download</a>
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="nav-btn-download" target="_blank" rel="noopener">Laden im App Store</a>
                 <button class="header-theme-toggle" id="headerThemeToggle" aria-label="Dark/Light Mode wechseln">
                     <span id="headerThemeIcon">🌙</span>
                 </button>
+            </div>
+            
+            <button class="mobile-menu-toggle" aria-label="Menü öffnen">
+                <i class="ph ph-list"></i>
+            </button>
+
+            <div class="mobile-menu">
+                <div class="mobile-menu-header">
+                    <span class="header-logo" style="color: var(--primary-color);">GymBo</span>
+                    <button class="mobile-menu-close" aria-label="Menü schließen">
+                        <i class="ph ph-x"></i>
+                    </button>
+                </div>
+                <nav class="mobile-nav-links">
+                    <a href="#features" class="mobile-nav-link">Funktionen</a>
+                    <a href="roadmap.html" class="mobile-nav-link">Feature-Roadmap</a>
+                    <a href="https://benkohler.de" class="mobile-nav-link" target="_blank" rel="noopener">Meine Apps</a>
+                </nav>
+                <div class="mobile-menu-footer">
+                    <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="nav-btn-download mobile-download" target="_blank" rel="noopener">Laden im App Store</a>
+                    <button class="header-theme-toggle mobile-theme-toggle" id="mobileThemeToggle">
+                        <span>Design wechseln</span>
+                        <span id="mobileThemeIconBtn">🌙</span>
+                    </button>
+                </div>
             </div>
         </header>
 
@@ -1149,9 +1417,6 @@
 
         <!-- Hero Section -->
         <section class="hero">
-            <div class="release-banner">
-                Erscheint im Dezember
-            </div>
             <h1 class="logo">GymBo</h1>
             <h2 class="tagline">High-End Training.<br>Ganz ohne Abo.</h2>
             <div class="hero-badge">Einmal zahlen. Immer nutzen.</div>
@@ -1160,20 +1425,15 @@
                 Eine faire Einmalzahlung für dein lebenslanges Training.
             </p>
 
-            <div class="subscribe-section">
-                <form id="subscribeForm" class="subscribe-form">
-                    <input
-                        type="email"
-                        id="email"
-                        class="email-input"
-                        placeholder="Deine E-Mail-Adresse"
-                        required
-                    />
-                    <button type="submit" class="submit-btn">
-                        Benachrichtigt mich
-                    </button>
-                </form>
-                <p id="message"></p>
+            <div class="hero-buttons">
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="app-store-btn">
+                    <i class="ph ph-app-store-logo"></i>
+                    Laden im App Store
+                </a>
+                <a href="https://testflight.apple.com/join/nNuPf4RH" class="beta-btn" target="_blank" rel="noopener">
+                    <i class="ph ph-flask"></i>
+                    Beta testen
+                </a>
             </div>
         </section>
 
@@ -1215,50 +1475,53 @@
         </section>
 
         <!-- Features Section -->
-        <section class="features" id="features">
-            <div class="feature-card">
-                <div class="feature-icon-wrapper"><i class="ph ph-arrows-left-right"></i></div>
-                <h3 class="feature-title">Superset & Circuit Training</h3>
-                <p class="feature-description">
-                    Wechsle nahtlos zwischen Übungen. Ob A1→A2 Supersets oder komplette 
-                    Station-Rotationen - dein Training bleibt im Flow.
-                </p>
-            </div>
+        <section class="features-section" id="features">
+            <h2 class="features-title">Funktionen</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper"><i class="ph ph-arrows-left-right"></i></div>
+                    <h3 class="feature-title">Superset & Circuit Training</h3>
+                    <p class="feature-description">
+                        Wechsle nahtlos zwischen Übungen. Ob A1→A2 Supersets oder komplette 
+                        Station-Rotationen - dein Training bleibt im Flow.
+                    </p>
+                </div>
 
-            <div class="feature-card">
-                <div class="feature-icon-wrapper"><i class="ph ph-trend-up"></i></div>
-                <h3 class="feature-title">Intelligente Fortschrittsempfehlungen</h3>
-                <p class="feature-description">
-                    Kein raten mehr. GymBo analysiert deine Leistung und schlägt 
-                    automatisch die nächsten Gewichte und Wiederholungen vor.
-                </p>
-            </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper"><i class="ph ph-trend-up"></i></div>
+                    <h3 class="feature-title">Intelligente Fortschrittsempfehlungen</h3>
+                    <p class="feature-description">
+                        Kein raten mehr. GymBo analysiert deine Leistung und schlägt 
+                        automatisch die nächsten Gewichte und Wiederholungen vor.
+                    </p>
+                </div>
 
-            <div class="feature-card">
-                <div class="feature-icon-wrapper"><i class="ph ph-scales"></i></div>
-                <h3 class="feature-title">Unilaterale Übungen & Insights</h3>
-                <p class="feature-description">
-                    Tracke jede Seite einzeln. GymBo analysiert deine Kraftwerte und zeigt dir 
-                    Ungleichgewichte zwischen links und rechts direkt an.
-                </p>
-            </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper"><i class="ph ph-scales"></i></div>
+                    <h3 class="feature-title">Unilaterale Übungen & Insights</h3>
+                    <p class="feature-description">
+                        Tracke jede Seite einzeln. GymBo analysiert deine Kraftwerte und zeigt dir 
+                        Ungleichgewichte zwischen links und rechts direkt an.
+                    </p>
+                </div>
 
-            <div class="feature-card">
-                <div class="feature-icon-wrapper"><i class="ph ph-lock-key"></i></div>
-                <h3 class="feature-title">100% Offline & Privat</h3>
-                <p class="feature-description">
-                    Kein Account, keine Cloud. Deine Daten bleiben auf deinem
-                    iPhone. Keine Tracker, keine Werbung, keine Ablenkung.
-                </p>
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper"><i class="ph ph-lock-key"></i></div>
+                    <h3 class="feature-title">100% Offline & Privat</h3>
+                    <p class="feature-description">
+                        Kein Account, keine Cloud. Deine Daten bleiben auf deinem
+                        iPhone. Keine Tracker, keine Werbung, keine Ablenkung.
+                    </p>
+                </div>
             </div>
         </section>
 
         <!-- TestFlight Section -->
         <section class="testflight-section">
-            <h2 class="testflight-title">Sei dabei, wenn GymBo zur besten Fitness-App wird</h2>
+            <h2 class="testflight-title">Teste neue Features vorab</h2>
             <p class="testflight-description">
-                Teste jetzt die neuesten Features und beeinflusse die Entwicklung. 
-                Als Beta-Tester bekommst du exklusiven Zugang zu neuen Funktionen, bevor sie veröffentlicht werden.
+                Du willst die neuesten Funktionen schon vor allen anderen ausprobieren? 
+                Als Beta-Tester bekommst du exklusiven Zugang zu Entwicklungs-Versionen und hilfst GymBo noch besser zu machen.
             </p>
             <a
                 href="https://testflight.apple.com/join/nNuPf4RH"
@@ -1272,26 +1535,17 @@
 
         <!-- Second CTA Section -->
         <section class="final-cta">
-            <h2 class="cta-title">Willst du wissen, wann GymBo im App Store erscheint?</h2>
+            <h2 class="cta-title">Bereit für dein bestes Training?</h2>
             <p class="cta-subtitle">
-                Ich benachrichtige dich, sobald die finale Version verfügbar ist. 
-                Kein Spam, versprochen.
+                Hol dir GymBo jetzt im App Store und starte durch. 
+                Einmal zahlen, für immer trainieren.
             </p>
 
-            <div class="subscribe-section">
-                <form id="subscribeForm2" class="subscribe-form">
-                    <input
-                        type="email"
-                        id="email2"
-                        class="email-input"
-                        placeholder="Deine E-Mail-Adresse"
-                        required
-                    />
-                    <button type="submit" class="submit-btn">
-                        Informiere mich, wenn's soweit ist
-                    </button>
-                </form>
-                <p id="message2"></p>
+            <div style="display: flex; justify-content: center; margin-top: 30px;">
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="app-store-btn" style="background: white; color: black;">
+                    <i class="ph ph-app-store-logo" style="color: black;"></i>
+                    Laden im App Store
+                </a>
             </div>
         </section>
 
@@ -1329,47 +1583,15 @@
 
             // Smooth scroll for better UX
             document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Subscribe logic removed as app is live
+            /*
             async function handleSubscribe(formId, emailId, messageId) {
-                const form = document.getElementById(formId);
-                if (!form) return;
-
-                form.addEventListener("submit", async function (event) {
-                    event.preventDefault();
-                    const email = document.getElementById(emailId).value;
-                    const messageElement = document.getElementById(messageId);
-
-                    messageElement.textContent = "Einen Moment...";
-
-                    try {
-                        const formData = new FormData();
-                        formData.append("email", email);
-
-                        const response = await fetch("subscribe.php", {
-                            method: "POST",
-                            body: formData,
-                        });
-
-                        const data = await response.json();
-
-                        if (data.success) {
-                            messageElement.textContent =
-                                "✓ Perfekt, du bist dabei";
-                            messageElement.style.color = "#000000";
-                            form.reset();
-                        } else {
-                            messageElement.textContent = data.message;
-                            messageElement.style.color = "#000000";
-                        }
-                    } catch (error) {
-                        messageElement.textContent =
-                            "Fehler. Bitte nochmal versuchen.";
-                        messageElement.style.color = "#000000";
-                    }
-                });
+                // ... legacy code ...
             }
-
             handleSubscribe("subscribeForm", "email", "message");
             handleSubscribe("subscribeForm2", "email2", "message2");
+            */
 
             // Theme toggle functionality
             const themeToggle = document.getElementById('headerThemeToggle'); // Changed to header toggle
@@ -1391,7 +1613,10 @@
             });
 
             function updateThemeIcon(theme) {
-                themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+                const icon = theme === 'light' ? '🌙' : '☀️';
+                if (themeIcon) themeIcon.textContent = icon;
+                const mobileIcon = document.getElementById('mobileThemeIconBtn');
+                if (mobileIcon) mobileIcon.textContent = icon;
             }
 
             // Screenshot toggle functionality
@@ -1399,25 +1624,69 @@
             const darkModeBtn = document.getElementById('darkModeBtn');
             const screenshotImage = document.getElementById('screenshotImage');
 
-            lightModeBtn.addEventListener('click', () => {
+            function setScreenshotMode(mode) {
                 screenshotImage.style.opacity = '0';
                 setTimeout(() => {
-                    screenshotImage.src = 'screenshot_hell.png';
+                    const timestamp = new Date().getTime();
+                    if (mode === 'dark') {
+                        screenshotImage.src = `screenshot_dark.png?v=${timestamp}`;
+                        darkModeBtn.classList.add('active');
+                        lightModeBtn.classList.remove('active');
+                    } else {
+                        screenshotImage.src = `screenshot_hell.png?v=${timestamp}`;
+                        lightModeBtn.classList.add('active');
+                        darkModeBtn.classList.remove('active');
+                    }
                     screenshotImage.style.opacity = '1';
                 }, 150);
-                lightModeBtn.classList.add('active');
-                darkModeBtn.classList.remove('active');
+            }
+
+            lightModeBtn.addEventListener('click', () => setScreenshotMode('light'));
+            darkModeBtn.addEventListener('click', () => setScreenshotMode('dark'));
+
+            // Optional: Sync screenshot with main theme
+            /* 
+            themeToggle.addEventListener('click', () => {
+                // ... existing theme logic ...
+                const newTheme = ...;
+                setScreenshotMode(newTheme); 
+            });
+            */
+
+            // Mobile Menu Logic
+            const mobileMenuBtn = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            function toggleMenu() {
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            }
+
+            if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMenu);
+            if (mobileMenuClose) mobileMenuClose.addEventListener('click', toggleMenu);
+            
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
             });
 
-            darkModeBtn.addEventListener('click', () => {
-                screenshotImage.style.opacity = '0';
-                setTimeout(() => {
-                    screenshotImage.src = 'screenshot_dark.png';
-                    screenshotImage.style.opacity = '1';
-                }, 150);
-                darkModeBtn.classList.add('active');
-                lightModeBtn.classList.remove('active');
-            });
+            // Mobile Theme Toggle
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            if (mobileThemeToggle) {
+                mobileThemeToggle.addEventListener('click', () => {
+                    const currentTheme = html.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    html.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateThemeIcon(newTheme);
+                    // Sync with screenshot if needed
+                    if (typeof setScreenshotMode === 'function') {
+                        setScreenshotMode(newTheme);
+                    }
+                });
+            }
         </script>
     </body>
 </html>

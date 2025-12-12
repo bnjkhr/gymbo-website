@@ -6,7 +6,7 @@
         <title>GymBo - Feature Roadmap</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
         <script src="https://unpkg.com/@phosphor-icons/web"></script>
         <style>
             :root {
@@ -40,7 +40,7 @@
             }
 
             body {
-                font-family: "Roboto", sans-serif;
+                font-family: "Inter", sans-serif;
                 background: var(--dark-bg);
                 color: var(--light-text);
                 line-height: 1.6;
@@ -162,6 +162,35 @@
                 color: #000000;
             }
 
+            .release-banner {
+                display: inline-block;
+                padding: 10px 20px;
+                border-radius: 12px;
+                background: #000000;
+                color: white;
+                font-size: 0.9rem;
+                font-weight: 600;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                border: none;
+                white-space: nowrap;
+                height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            [data-theme="dark"] .release-banner {
+                background: #ffffff;
+                color: #000000;
+                border: none;
+            }
+
+            @media (max-width: 768px) {
+                .release-banner {
+                    display: none;
+                }
+            }
+
             /* Hero */
             .roadmap-hero {
                 text-align: center;
@@ -171,14 +200,11 @@
             }
 
             .roadmap-title {
-                font-size: 3.5rem;
+                font-size: 3rem;
                 font-weight: 800;
                 margin-bottom: 20px;
-                background: var(--brand-gradient);
-                -webkit-background-clip: text;
-                background-clip: text;
                 color: var(--primary-color);
-                letter-spacing: -0.02em;
+                letter-spacing: -0.03em;
             }
 
             .roadmap-subtitle {
@@ -187,12 +213,42 @@
                 line-height: 1.6;
             }
 
+            .voting-cta {
+                margin-top: 30px;
+                display: inline-block;
+                padding: 12px 24px;
+                background: var(--card-bg);
+                border: 1px solid rgba(0,0,0,0.1);
+                border-radius: 12px;
+                color: var(--primary-color);
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.2s ease;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            }
+
+            [data-theme="dark"] .voting-cta {
+                border-color: rgba(255,255,255,0.2);
+            }
+
+            .voting-cta:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+                border-color: var(--primary-color);
+            }
+
+            .voting-cta i {
+                margin-right: 8px;
+                vertical-align: middle;
+                font-size: 1.2em;
+            }
+
             /* Timeline / Grid */
             .roadmap-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
                 gap: 30px;
-                max-width: 1200px;
+                max-width: 1000px;
                 margin: 0 auto 100px;
                 padding: 0 20px;
             }
@@ -226,15 +282,27 @@
             }
 
             .status-soon {
-                background: rgba(255, 165, 0, 0.1);
-                color: orange;
-                border: 1px solid rgba(255, 165, 0, 0.2);
+                background: rgba(0, 0, 0, 0.05);
+                color: var(--gray-text);
+                border: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            [data-theme="dark"] .status-soon {
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--gray-text);
+                border: 1px solid rgba(255, 255, 255, 0.2);
             }
 
             .status-dev {
-                background: rgba(0, 122, 255, 0.1);
-                color: #007aff;
-                border: 1px solid rgba(0, 122, 255, 0.2);
+                background: #000000;
+                color: #ffffff;
+                border: 1px solid #000000;
+            }
+
+            [data-theme="dark"] .status-dev {
+                background: #ffffff;
+                color: #000000;
+                border: 1px solid #ffffff;
             }
 
             .card-icon {
@@ -293,7 +361,7 @@
                 </nav>
             </div>
             <div class="header-right">
-                <a href="https://testflight.apple.com/join/nNuPf4RH" class="nav-btn-download" target="_blank" rel="noopener">Download</a>
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="nav-btn-download" target="_blank" rel="noopener">Laden im App Store</a>
                 <button class="header-theme-toggle" id="headerThemeToggle" aria-label="Dark/Light Mode wechseln">
                     <span id="headerThemeIcon">🌙</span>
                 </button>
@@ -307,6 +375,10 @@
                 GymBo wird ständig weiterentwickelt. Hier ist ein Einblick in die Features, 
                 an denen ich gerade arbeite oder die als Nächstes anstehen.
             </p>
+            <a href="https://voting-tool-seven.vercel.app/" class="voting-cta" target="_blank" rel="noopener">
+                <i class="ph ph-thumbs-up"></i>
+                Features vorschlagen & voten
+            </a>
         </section>
 
         <!-- Feature Grid -->
@@ -316,7 +388,7 @@
             <div class="roadmap-card">
                 <span class="status-badge status-dev">In Entwicklung</span>
                 <div class="card-icon">
-                    <i class="ph ph-iphone"></i>
+                    <i class="ph ph-device-mobile"></i>
                 </div>
                 <h3 class="card-title">iOS Deep Integration</h3>
                 <p class="card-desc">
