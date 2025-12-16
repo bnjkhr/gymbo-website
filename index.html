@@ -6,7 +6,7 @@
         <title>GymBo - Dein entspannter Trainingsbegleiter</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
         <script src="https://unpkg.com/@phosphor-icons/web"></script>
         <style>
             /* Animation Keyframes */
@@ -98,11 +98,12 @@
             }
 
             body {
-                font-family: "Inter", sans-serif;
+                font-family: "Manrope", sans-serif;
                 background: var(--dark-bg);
                 color: var(--light-text);
                 line-height: 1.6;
                 overflow-x: hidden;
+                letter-spacing: -0.04em;
             }
 
             /* Header */
@@ -343,7 +344,7 @@
             }
 
             .logo {
-                font-family: "Inter", sans-serif;
+                font-family: "Manrope", sans-serif;
                 font-size: 4rem;
                 font-weight: 900;
                 color: var(--primary-color);
@@ -372,12 +373,12 @@
             }
 
             .tagline {
-                font-family: "Inter", sans-serif;
+                font-family: "Manrope", sans-serif;
                 font-size: 4rem;
                 font-weight: 800;
                 margin-bottom: 24px;
                 line-height: 1.1;
-                letter-spacing: -0.03em;
+                letter-spacing: -0.04em;
                 background: none;
                 -webkit-background-clip: unset;
                 background-clip: unset;
@@ -516,12 +517,12 @@
             }
 
             .features-title {
-                font-family: "Inter", sans-serif;
+                font-family: "Manrope", sans-serif;
                 font-size: 2.5rem;
                 font-weight: 800;
                 margin-bottom: 60px;
                 color: var(--primary-color);
-                letter-spacing: -0.03em;
+                letter-spacing: -0.04em;
                 text-align: center;
             }
 
@@ -610,7 +611,7 @@
             }
 
             .feature-title {
-                font-family: "Inter", sans-serif;
+                font-family: "Manrope", sans-serif;
                 font-size: 1.4rem;
                 font-weight: 700;
                 margin-bottom: 16px;
@@ -648,12 +649,12 @@
             }
 
             .testflight-title {
-                font-family: "Inter", sans-serif;
+                font-family: "Manrope", sans-serif;
                 font-size: 2.25rem;
                 font-weight: 800;
                 margin-bottom: 24px;
                 color: var(--primary-color);
-                letter-spacing: -0.03em;
+                letter-spacing: -0.04em;
             }
 
             .testflight-description {
@@ -801,12 +802,12 @@
             }
 
             .why-different-title {
-                font-family: "Inter", sans-serif;
+                font-family: "Manrope", sans-serif;
                 font-size: 2.5rem;
                 font-weight: 800;
                 margin-bottom: 60px;
                 color: var(--primary-color);
-                letter-spacing: -0.03em;
+                letter-spacing: -0.04em;
             }
 
             .why-different-grid {
@@ -926,11 +927,11 @@
             }
 
             .cta-title {
-                font-family: "Inter", sans-serif;
+                font-family: "Manrope", sans-serif;
                 font-size: 2rem;
                 font-weight: 800;
                 margin-bottom: 16px;
-                letter-spacing: -0.03em;
+                letter-spacing: -0.04em;
                 color: var(--primary-color);
             }
 
@@ -1587,7 +1588,7 @@
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
+                    if (entry.isManropesecting) {
                         entry.target.classList.add('fade-in-up');
                     }
                 });
