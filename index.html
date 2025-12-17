@@ -131,6 +131,40 @@
                 background: var(--accent-soft);
             }
 
+            /* Language Switcher */
+            .lang-switcher {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                padding: 4px;
+                background: var(--accent-soft);
+                border-radius: 8px;
+                border: 1px solid var(--border);
+            }
+
+            .lang-btn {
+                padding: 6px 10px;
+                border: none;
+                background: transparent;
+                color: var(--text-secondary);
+                font-size: 0.8rem;
+                font-weight: 600;
+                cursor: pointer;
+                border-radius: 6px;
+                transition: all 0.2s;
+                text-decoration: none;
+            }
+
+            .lang-btn:hover {
+                color: var(--text);
+            }
+
+            .lang-btn.active {
+                background: var(--bg-card);
+                color: var(--text);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
             .mobile-menu-btn {
                 display: none;
                 background: none;
@@ -669,6 +703,10 @@
                 <a href="https://benkohler.de" class="nav-link" target="_blank" rel="noopener">Mehr Apps</a>
             </nav>
             <div class="header-actions">
+                <div class="lang-switcher">
+                    <a href="index.html" class="lang-btn active">DE</a>
+                    <a href="en/index.html" class="lang-btn">EN</a>
+                </div>
                 <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-download" target="_blank" rel="noopener">App Store</a>
                 <button class="btn-theme" id="themeToggle" aria-label="Theme wechseln">
                     <span id="themeIcon">🌙</span>
@@ -693,6 +731,10 @@
                 <a href="https://benkohler.de" class="mobile-nav-link" target="_blank">Mehr Apps</a>
             </nav>
             <div class="mobile-menu-footer">
+                <div class="lang-switcher" style="justify-content: center; margin-bottom: 8px;">
+                    <a href="index.html" class="lang-btn active">DE</a>
+                    <a href="en/index.html" class="lang-btn">EN</a>
+                </div>
                 <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary" target="_blank" rel="noopener">
                     <i class="ph ph-app-store-logo"></i>
                     App Store
