@@ -318,29 +318,93 @@
                 pointer-events: none;
             }
 
+            .hero-badges {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+                margin-bottom: 32px;
+                max-width: 700px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
             .hero-badge {
                 display: inline-block;
-                padding: 10px 24px;
-                background: var(--card-bg);
+                padding: 10px 20px;
+                background: rgba(0, 0, 0, 0.03);
                 color: var(--primary-color);
                 border-radius: 50px;
                 font-size: 0.95rem;
                 font-weight: 600;
-                margin-bottom: 32px;
-                border: 2px solid var(--primary-color);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-                transition: transform 0.3s ease;
+                border: 1.5px solid rgba(0, 0, 0, 0.15);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+                transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
                 backdrop-filter: blur(10px);
+                white-space: nowrap;
             }
 
             .hero-badge:hover {
                 transform: translateY(-2px);
-                border-color: var(--gray-text);
+                border-color: rgba(0, 0, 0, 0.25);
+            }
+
+            .hero-badge.active {
+                background: linear-gradient(135deg, rgba(90, 110, 60, 0.15) 0%, rgba(90, 110, 60, 0.06) 100%);
+                border-color: rgba(90, 110, 60, 0.5);
+                box-shadow: 0 4px 16px rgba(90, 110, 60, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+                transform: scale(1.05);
             }
 
             [data-theme="dark"] .hero-badge {
-                border-color: var(--primary-color);
                 background: rgba(255, 255, 255, 0.05);
+                border-color: rgba(255, 255, 255, 0.15);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            [data-theme="dark"] .hero-badge:hover {
+                border-color: rgba(255, 255, 255, 0.25);
+            }
+
+            [data-theme="dark"] .hero-badge.active {
+                background: linear-gradient(135deg, rgba(120, 140, 80, 0.2) 0%, rgba(120, 140, 80, 0.08) 100%);
+                border-color: rgba(120, 140, 80, 0.6);
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            }
+
+            .hero-rotator {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 50px;
+                margin-bottom: 32px;
+            }
+
+            .rotator-text {
+                display: inline-block;
+                padding: 12px 28px;
+                background: linear-gradient(135deg, rgba(90, 110, 60, 0.08) 0%, rgba(90, 110, 60, 0.03) 100%);
+                color: var(--primary-color);
+                border-radius: 50px;
+                font-size: 1.1rem;
+                font-weight: 600;
+                border: 1.5px solid rgba(90, 110, 60, 0.4);
+                box-shadow: 0 2px 12px rgba(90, 110, 60, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+                backdrop-filter: blur(10px);
+                opacity: 0;
+                transform: translateY(10px);
+                transition: opacity 0.4s ease, transform 0.4s ease;
+            }
+
+            .rotator-text.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            [data-theme="dark"] .rotator-text {
+                background: linear-gradient(135deg, rgba(120, 140, 80, 0.15) 0%, rgba(120, 140, 80, 0.05) 100%);
+                border-color: rgba(120, 140, 80, 0.45);
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
             }
 
             .logo {
@@ -1000,9 +1064,14 @@
                     margin-bottom: 40px;
                 }
 
+                .hero-badges {
+                    gap: 8px;
+                    max-width: 100%;
+                }
+
                 .hero-badge {
                     font-size: 0.85rem;
-                    padding: 8px 16px;
+                    padding: 8px 14px;
                 }
 
                 .subscribe-form {
@@ -1420,7 +1489,15 @@
         <section class="hero">
             <h1 class="logo">GymBo</h1>
             <h2 class="tagline">High-End Training.<br>Ganz ohne Abo.</h2>
-            <div class="hero-badge">Einmal zahlen. Immer nutzen.</div>
+            <div class="hero-badges">
+                <div class="hero-badge">Einmalkauf</div>
+                <div class="hero-badge">Intelligente Progression</div>
+                <div class="hero-badge">Unbegrenzte Workouts</div>
+                <div class="hero-badge">Großer Übungskatalog</div>
+                <div class="hero-badge">Hevy & Strong Import</div>
+                <div class="hero-badge">Export & Import</div>
+                <div class="hero-badge">Backup & Sharing</div>
+            </div>
             <p class="subtitle">
                 Genieße den vollen Funktionsumfang wie bei teuren Abo-Apps: Intelligente Progression, Daten-Export & Import und unbegrenzte Workouts. 
                 Eine faire Einmalzahlung für dein lebenslanges Training.
@@ -1602,7 +1679,30 @@
 
             // Smooth scroll for better UX
             document.documentElement.style.scrollBehavior = 'smooth';
-            
+
+            // Hero Badge Highlight Rotator
+            const heroBadges = document.querySelectorAll('.hero-badge');
+            let activeIndex = 0;
+
+            function rotateBadgeHighlight() {
+                if (heroBadges.length === 0) return;
+
+                // Remove active from current
+                heroBadges[activeIndex].classList.remove('active');
+
+                // Move to next
+                activeIndex = (activeIndex + 1) % heroBadges.length;
+
+                // Add active to new
+                heroBadges[activeIndex].classList.add('active');
+            }
+
+            // Start badge rotation
+            if (heroBadges.length > 0) {
+                heroBadges[0].classList.add('active');
+                setInterval(rotateBadgeHighlight, 2000);
+            }
+
             // Subscribe logic removed as app is live
             /*
             async function handleSubscribe(formId, emailId, messageId) {
