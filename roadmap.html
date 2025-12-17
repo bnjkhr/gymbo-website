@@ -10,27 +10,27 @@
         <script src="https://unpkg.com/@phosphor-icons/web"></script>
         <style>
             :root {
-                --primary-color: #000000;
-                --secondary-color: #1a1a1a;
-                --dark-bg: #ffffff;
-                --card-bg: #f5f5f5;
-                --light-text: #000000;
-                --gray-text: #333333;
-                --brand-gradient: linear-gradient(135deg, #000000, #333333);
-                --glass-bg: rgba(255, 255, 255, 0.7);
-                --glass-border: rgba(0, 0, 0, 0.05);
+                --bg: #fafafa;
+                --bg-card: #ffffff;
+                --bg-card-hover: #f5f5f5;
+                --text: #0a0a0a;
+                --text-secondary: #525252;
+                --border: rgba(0, 0, 0, 0.08);
+                --border-hover: rgba(0, 0, 0, 0.15);
+                --accent: #0a0a0a;
+                --accent-soft: rgba(0, 0, 0, 0.05);
             }
 
             [data-theme="dark"] {
-                --primary-color: #ffffff;
-                --secondary-color: #f0f0f0;
-                --dark-bg: #121212;
-                --card-bg: #1e1e1e;
-                --light-text: #ffffff;
-                --gray-text: #cccccc;
-                --brand-gradient: linear-gradient(135deg, #ffffff, #e0e0e0);
-                --glass-bg: rgba(255, 255, 255, 0.05);
-                --glass-border: rgba(255, 255, 255, 0.1);
+                --bg: #0a0a0a;
+                --bg-card: #141414;
+                --bg-card-hover: #1a1a1a;
+                --text: #fafafa;
+                --text-secondary: #a3a3a3;
+                --border: rgba(255, 255, 255, 0.08);
+                --border-hover: rgba(255, 255, 255, 0.15);
+                --accent: #fafafa;
+                --accent-soft: rgba(255, 255, 255, 0.05);
             }
 
             * {
@@ -40,437 +40,707 @@
             }
 
             body {
-                font-family: "Manrope", sans-serif;
-                background: var(--dark-bg);
-                color: var(--light-text);
-                line-height: 1.6;
+                font-family: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.5;
+                letter-spacing: -0.02em;
                 overflow-x: hidden;
-                letter-spacing: -0.04em;
             }
 
             /* Header */
-            .main-header {
+            .header {
                 position: fixed;
                 top: 0;
                 left: 0;
                 right: 0;
-                z-index: 1000;
-                padding: 15px 30px;
+                z-index: 100;
+                padding: 16px 24px;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                background: rgba(0, 0, 0, 0.9);
+                background: rgba(250, 250, 250, 0.8);
                 backdrop-filter: blur(20px);
                 -webkit-backdrop-filter: blur(20px);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                transition: all 0.3s ease;
+                border-bottom: 1px solid var(--border);
             }
 
-            [data-theme="dark"] .main-header {
-                background: rgba(255, 255, 255, 0.9);
-                border-color: rgba(0, 0, 0, 0.1);
-            }
-
-            .header-left {
-                display: flex;
-                align-items: center;
-                gap: 40px;
+            [data-theme="dark"] .header {
+                background: rgba(10, 10, 10, 0.8);
             }
 
             .header-logo {
                 font-weight: 800;
-                font-size: 1.5rem;
-                color: #ffffff;
+                font-size: 1.25rem;
+                color: var(--text);
                 text-decoration: none;
-                letter-spacing: -0.02em;
+                letter-spacing: -0.03em;
             }
 
-            [data-theme="dark"] .header-logo {
-                color: #000000;
-            }
-
-            .nav-links {
+            .header-nav {
                 display: flex;
-                gap: 24px;
                 align-items: center;
+                gap: 32px;
             }
 
             .nav-link {
-                color: rgba(255, 255, 255, 0.8);
+                color: var(--text-secondary);
                 text-decoration: none;
+                font-size: 0.9rem;
                 font-weight: 500;
-                font-size: 0.95rem;
-                transition: color 0.2s ease;
+                transition: color 0.2s;
             }
 
-            [data-theme="dark"] .nav-link {
-                color: rgba(0, 0, 0, 0.8);
+            .nav-link:hover,
+            .nav-link.active {
+                color: var(--text);
             }
 
-            .nav-link:hover {
-                color: #ffffff;
-            }
-
-            [data-theme="dark"] .nav-link:hover {
-                color: #000000;
-            }
-
-            .header-right {
+            .header-actions {
                 display: flex;
                 align-items: center;
-                gap: 20px;
+                gap: 12px;
             }
 
-            .nav-btn-download {
-                background: white;
-                color: black;
+            .btn-download {
+                background: var(--text);
+                color: var(--bg);
                 padding: 10px 20px;
-                border-radius: 12px;
+                border-radius: 100px;
                 font-weight: 600;
-                font-size: 0.9rem;
+                font-size: 0.875rem;
                 text-decoration: none;
-                transition: transform 0.2s, box-shadow 0.2s;
+                transition: all 0.2s;
             }
 
-            [data-theme="dark"] .nav-btn-download {
-                background: black;
-                color: white;
+            .btn-download:hover {
+                transform: scale(1.02);
+                opacity: 0.9;
             }
 
-            .nav-btn-download:hover {
-                transform: translateY(-1px);
-                box-shadow: 0 4px 12px rgba(255,255,255,0.15);
-            }
-
-            [data-theme="dark"] .nav-btn-download:hover {
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            }
-
-            .header-theme-toggle {
+            .btn-theme {
                 background: none;
                 border: none;
                 cursor: pointer;
-                font-size: 1.2rem;
-                padding: 5px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #ffffff;
-                transition: transform 0.3s;
+                font-size: 1.1rem;
+                padding: 8px;
+                border-radius: 8px;
+                transition: background 0.2s;
             }
 
-            [data-theme="dark"] .header-theme-toggle {
-                color: #000000;
+            .btn-theme:hover {
+                background: var(--accent-soft);
             }
 
-            .release-banner {
-                display: inline-block;
-                padding: 10px 20px;
-                border-radius: 12px;
-                background: #000000;
-                color: white;
-                font-size: 0.9rem;
-                font-weight: 600;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            .mobile-menu-btn {
+                display: none;
+                background: none;
                 border: none;
-                white-space: nowrap;
-                height: 44px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                cursor: pointer;
+                font-size: 1.5rem;
+                color: var(--text);
             }
 
-            [data-theme="dark"] .release-banner {
-                background: #ffffff;
-                color: #000000;
-                border: none;
-            }
-
-            @media (max-width: 768px) {
-                .release-banner {
-                    display: none;
-                }
+            /* Main */
+            .main {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 100px 24px 60px;
             }
 
             /* Hero */
-            .roadmap-hero {
+            .hero {
                 text-align: center;
-                padding: 140px 20px 60px;
-                max-width: 800px;
-                margin: 0 auto;
+                padding: 60px 0 80px;
             }
 
-            .roadmap-title {
-                font-size: 3rem;
+            .hero-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 16px;
+                background: var(--accent-soft);
+                border-radius: 100px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: var(--text);
+                margin-bottom: 24px;
+                border: 1px solid var(--border);
+            }
+
+            .hero h1 {
+                font-size: clamp(2.5rem, 6vw, 4rem);
                 font-weight: 800;
-                margin-bottom: 20px;
-                color: var(--primary-color);
                 letter-spacing: -0.04em;
+                line-height: 1.1;
+                margin-bottom: 20px;
             }
 
-            .roadmap-subtitle {
-                font-size: 1.2rem;
-                color: var(--gray-text);
+            .hero-subtitle {
+                font-size: clamp(1rem, 2vw, 1.2rem);
+                color: var(--text-secondary);
+                max-width: 550px;
+                margin: 0 auto 32px;
                 line-height: 1.6;
             }
 
-            .voting-cta {
-                margin-top: 30px;
-                display: inline-block;
-                padding: 12px 24px;
-                background: var(--card-bg);
-                border: 1px solid rgba(0,0,0,0.1);
+            .btn-vote {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                background: var(--text);
+                color: var(--bg);
+                padding: 14px 24px;
                 border-radius: 12px;
-                color: var(--primary-color);
-                text-decoration: none;
                 font-weight: 600;
-                transition: all 0.2s ease;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                font-size: 0.95rem;
+                text-decoration: none;
+                transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
-            [data-theme="dark"] .voting-cta {
-                border-color: rgba(255,255,255,0.2);
-            }
-
-            .voting-cta:hover {
+            .btn-vote:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-                border-color: var(--primary-color);
+                box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
             }
 
-            .voting-cta i {
-                margin-right: 8px;
-                vertical-align: middle;
-                font-size: 1.2em;
+            .btn-vote i {
+                font-size: 1.2rem;
             }
 
-            /* Timeline / Grid */
-            .roadmap-grid {
+            /* Bento Grid */
+            .bento {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
-                max-width: 1000px;
-                margin: 0 auto 100px;
-                padding: 0 20px;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+                margin-bottom: 60px;
             }
 
-            .roadmap-card {
-                background: var(--glass-bg);
-                border: 1px solid var(--glass-border);
+            .bento-card {
+                background: var(--bg-card);
                 border-radius: 24px;
-                padding: 40px;
+                padding: 32px;
+                border: 1px solid var(--border);
+                transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
                 position: relative;
                 overflow: hidden;
-                backdrop-filter: blur(20px);
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
             }
 
-            .roadmap-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            .bento-card:hover {
+                transform: translateY(-4px);
+                border-color: var(--border-hover);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
             }
 
-            .status-badge {
-                position: absolute;
-                top: 20px;
-                right: 20px;
+            [data-theme="dark"] .bento-card:hover {
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            }
+
+            /* Card Sizes */
+            .bento-wide {
+                grid-column: span 2;
+            }
+
+            .bento-full {
+                grid-column: span 3;
+            }
+
+            /* Status Badge */
+            .status {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
                 padding: 6px 12px;
-                border-radius: 20px;
-                font-size: 0.75rem;
+                border-radius: 100px;
+                font-size: 0.7rem;
                 font-weight: 700;
                 text-transform: uppercase;
-                letter-spacing: 0.05em;
-            }
-
-            .status-soon {
-                background: rgba(0, 0, 0, 0.05);
-                color: var(--gray-text);
-                border: 1px solid rgba(0, 0, 0, 0.1);
-            }
-
-            [data-theme="dark"] .status-soon {
-                background: rgba(255, 255, 255, 0.1);
-                color: var(--gray-text);
-                border: 1px solid rgba(255, 255, 255, 0.2);
+                letter-spacing: 0.03em;
+                margin-bottom: 20px;
             }
 
             .status-dev {
-                background: #000000;
-                color: #ffffff;
-                border: 1px solid #000000;
+                background: var(--text);
+                color: var(--bg);
             }
 
-            [data-theme="dark"] .status-dev {
-                background: #ffffff;
-                color: #000000;
-                border: 1px solid #ffffff;
+            .status-planned {
+                background: var(--accent-soft);
+                color: var(--text-secondary);
+                border: 1px solid var(--border);
             }
 
+            .status i {
+                font-size: 0.8rem;
+            }
+
+            /* Card Content */
             .card-icon {
-                font-size: 2.5rem;
-                margin-bottom: 24px;
-                color: var(--primary-color);
+                width: 52px;
+                height: 52px;
+                border-radius: 16px;
+                background: var(--accent-soft);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+                color: var(--text);
+                transition: transform 0.3s, background 0.3s;
+            }
+
+            .bento-card:hover .card-icon {
+                transform: scale(1.1) rotate(-5deg);
+                background: var(--border);
             }
 
             .card-title {
-                font-size: 1.5rem;
+                font-size: 1.35rem;
                 font-weight: 700;
                 margin-bottom: 12px;
-                color: var(--primary-color);
+                letter-spacing: -0.02em;
             }
 
             .card-desc {
-                color: var(--gray-text);
-                font-size: 1rem;
-                line-height: 1.6;
+                color: var(--text-secondary);
+                font-size: 0.95rem;
+                line-height: 1.65;
+            }
+
+            .card-desc strong {
+                color: var(--text);
+                font-weight: 600;
+            }
+
+            /* Highlight Card */
+            .bento-highlight {
+                background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
+                color: #fff;
+            }
+
+            [data-theme="dark"] .bento-highlight {
+                background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
+                color: #0a0a0a;
+            }
+
+            .bento-highlight .card-icon {
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff;
+            }
+
+            [data-theme="dark"] .bento-highlight .card-icon {
+                background: rgba(0, 0, 0, 0.08);
+                color: #0a0a0a;
+            }
+
+            .bento-highlight .card-desc {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            [data-theme="dark"] .bento-highlight .card-desc {
+                color: rgba(0, 0, 0, 0.6);
+            }
+
+            .bento-highlight .card-desc strong {
+                color: #fff;
+            }
+
+            [data-theme="dark"] .bento-highlight .card-desc strong {
+                color: #0a0a0a;
+            }
+
+            .bento-highlight .status-dev {
+                background: rgba(255, 255, 255, 0.15);
+                color: #fff;
+            }
+
+            [data-theme="dark"] .bento-highlight .status-dev {
+                background: rgba(0, 0, 0, 0.1);
+                color: #0a0a0a;
+            }
+
+            /* Feature Tags */
+            .feature-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-top: 20px;
+            }
+
+            .feature-tag {
+                padding: 6px 12px;
+                background: var(--accent-soft);
+                border-radius: 8px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: var(--text);
+                border: 1px solid var(--border);
+            }
+
+            .bento-highlight .feature-tag {
+                background: rgba(255, 255, 255, 0.1);
+                border-color: rgba(255, 255, 255, 0.15);
+                color: #fff;
+            }
+
+            [data-theme="dark"] .bento-highlight .feature-tag {
+                background: rgba(0, 0, 0, 0.08);
+                border-color: rgba(0, 0, 0, 0.1);
+                color: #0a0a0a;
             }
 
             /* Footer */
             .footer {
+                padding: 40px 24px;
                 text-align: center;
-                padding: 40px 20px;
-                border-top: 1px solid var(--glass-border);
-                color: var(--gray-text);
+                border-top: 1px solid var(--border);
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 32px;
+                margin-bottom: 16px;
+            }
+
+            .footer-link {
+                color: var(--text-secondary);
+                text-decoration: none;
                 font-size: 0.9rem;
+                transition: color 0.2s;
+            }
+
+            .footer-link:hover {
+                color: var(--text);
+            }
+
+            .footer-copy {
+                color: var(--text-secondary);
+                font-size: 0.85rem;
+                opacity: 0.7;
+            }
+
+            /* Mobile Menu */
+            .mobile-menu {
+                position: fixed;
+                inset: 0;
+                background: var(--bg);
+                z-index: 200;
+                padding: 24px;
+                display: flex;
+                flex-direction: column;
+                transform: translateX(100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .mobile-menu.active {
+                transform: translateX(0);
+            }
+
+            .mobile-menu-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 48px;
+            }
+
+            .mobile-menu-close {
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--text);
+            }
+
+            .mobile-nav {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .mobile-nav-link {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--text);
+                text-decoration: none;
+            }
+
+            .mobile-menu-footer {
+                margin-top: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            /* Animations */
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .animate-in {
+                animation: fadeUp 0.6s ease-out forwards;
+            }
+
+            .delay-1 { animation-delay: 0.1s; }
+            .delay-2 { animation-delay: 0.2s; }
+            .delay-3 { animation-delay: 0.3s; }
+            .delay-4 { animation-delay: 0.4s; }
+
+            /* Responsive */
+            @media (max-width: 1024px) {
+                .bento {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .bento-full {
+                    grid-column: span 2;
+                }
             }
 
             @media (max-width: 768px) {
-                .nav-links {
+                .header-nav {
                     display: none;
                 }
-                .main-header {
-                    padding: 15px 20px;
+
+                .btn-download {
+                    display: none;
                 }
-                .roadmap-title {
-                    font-size: 2.5rem;
+
+                .mobile-menu-btn {
+                    display: block;
                 }
-                .roadmap-grid {
+
+                .hero {
+                    padding: 40px 0 60px;
+                }
+
+                .bento {
                     grid-template-columns: 1fr;
+                    gap: 12px;
+                }
+
+                .bento-wide,
+                .bento-full {
+                    grid-column: span 1;
+                }
+
+                .bento-card {
+                    padding: 24px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .main {
+                    padding: 80px 16px 40px;
                 }
             }
         </style>
     </head>
     <body>
         <!-- Header -->
-        <header class="main-header">
-            <div class="header-left">
-                <a href="index.html" class="header-logo">GymBo</a>
-                <nav class="nav-links">
-                    <a href="index.html#features" class="nav-link">Funktionen</a>
-                    <a href="roadmap.html" class="nav-link">Feature-Roadmap</a>
-                    <a href="https://benkohler.de" class="nav-link" target="_blank" rel="noopener">Meine Apps</a>
-                </nav>
-            </div>
-            <div class="header-right">
-                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="nav-btn-download" target="_blank" rel="noopener">Laden im App Store</a>
-                <button class="header-theme-toggle" id="headerThemeToggle" aria-label="Dark/Light Mode wechseln">
-                    <span id="headerThemeIcon">🌙</span>
+        <header class="header">
+            <a href="index.html" class="header-logo">GymBo</a>
+            <nav class="header-nav">
+                <a href="index.html#features" class="nav-link">Funktionen</a>
+                <a href="roadmap.html" class="nav-link active">Roadmap</a>
+                <a href="https://benkohler.de" class="nav-link" target="_blank" rel="noopener">Mehr Apps</a>
+            </nav>
+            <div class="header-actions">
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-download" target="_blank" rel="noopener">App Store</a>
+                <button class="btn-theme" id="themeToggle" aria-label="Theme wechseln">
+                    <span id="themeIcon">🌙</span>
                 </button>
             </div>
+            <button class="mobile-menu-btn" aria-label="Menü öffnen">
+                <i class="ph ph-list"></i>
+            </button>
         </header>
 
-        <!-- Hero -->
-        <section class="roadmap-hero">
-            <h1 class="roadmap-title">Die Zukunft des Trainings</h1>
-            <p class="roadmap-subtitle">
-                GymBo wird ständig weiterentwickelt. Hier ist ein Einblick in die Features, 
-                an denen ich gerade arbeite oder die als Nächstes anstehen.
-            </p>
-            <a href="https://voting-tool-seven.vercel.app/" class="voting-cta" target="_blank" rel="noopener">
-                <i class="ph ph-thumbs-up"></i>
-                Features vorschlagen & voten
-            </a>
-        </section>
-
-        <!-- Feature Grid -->
-        <section class="roadmap-grid">
-            
-            <!-- Card 1: System Integration -->
-            <div class="roadmap-card">
-                <span class="status-badge status-dev">In Entwicklung</span>
-                <div class="card-icon">
-                    <i class="ph ph-device-mobile"></i>
-                </div>
-                <h3 class="card-title">iOS Deep Integration</h3>
-                <p class="card-desc">
-                    Volle Power für dein iPhone. Ich bringe <strong>Live Activities</strong> für den Sperrbildschirm, 
-                    <strong>Dynamic Island</strong> Support für das iPhone 14/15 Pro und interaktive 
-                    <strong>Homescreen Widgets</strong> für den schnellen Überblick.
-                </p>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-header">
+                <span class="header-logo">GymBo</span>
+                <button class="mobile-menu-close" aria-label="Menü schließen">
+                    <i class="ph ph-x"></i>
+                </button>
             </div>
-
-            <!-- Card 2: Analytics -->
-            <div class="roadmap-card">
-                <span class="status-badge status-soon">Geplant</span>
-                <div class="card-icon">
-                    <i class="ph ph-chart-polar"></i>
-                </div>
-                <h3 class="card-title">Deep Dive Analytics</h3>
-                <p class="card-desc">
-                    Verstehe dein Training noch besser. Mit der neuen <strong>Mesozyklus-Auswertung</strong> 
-                    und detaillierten Charts zum <strong>Volumen pro Muskelgruppe</strong> erkennst du 
-                    Trends, bevor sie zu Plateaus werden.
-                </p>
+            <nav class="mobile-nav">
+                <a href="index.html#features" class="mobile-nav-link">Funktionen</a>
+                <a href="roadmap.html" class="mobile-nav-link">Roadmap</a>
+                <a href="https://benkohler.de" class="mobile-nav-link" target="_blank">Mehr Apps</a>
+            </nav>
+            <div class="mobile-menu-footer">
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-vote" target="_blank" rel="noopener">
+                    <i class="ph ph-app-store-logo"></i>
+                    App Store
+                </a>
             </div>
+        </div>
 
-            <!-- Card 3: Comparison -->
-            <div class="roadmap-card">
-                <span class="status-badge status-soon">Geplant</span>
-                <div class="card-icon">
-                    <i class="ph ph-scales"></i>
+        <main class="main">
+            <!-- Hero -->
+            <section class="hero animate-in">
+                <div class="hero-badge">
+                    <i class="ph ph-rocket-launch"></i>
+                    Ständig in Entwicklung
                 </div>
-                <h3 class="card-title">Übungsvergleich</h3>
-                <p class="card-desc">
-                    Bench Press vs. Dumbbell Press? Vergleiche die Progression mehrerer Übungen 
-                    direkt in einem Chart. Erkenne Korrelationen und optimiere deine Übungsauswahl 
-                    basierend auf harten Daten.
+                <h1>Was kommt als Nächstes?</h1>
+                <p class="hero-subtitle">
+                    GymBo wird aktiv weiterentwickelt. Hier siehst du, woran ich gerade arbeite und was als Nächstes ansteht.
                 </p>
-            </div>
+                <a href="https://voting-tool-seven.vercel.app/" class="btn-vote" target="_blank" rel="noopener">
+                    <i class="ph ph-thumbs-up"></i>
+                    Features vorschlagen & voten
+                </a>
+            </section>
 
-            <!-- Card 4: Workout Builder -->
-            <div class="roadmap-card">
-                <span class="status-badge status-soon">Geplant</span>
-                <div class="card-icon">
-                    <i class="ph ph-sliders-horizontal"></i>
+            <!-- Bento Grid -->
+            <section class="bento">
+                <!-- iOS Deep Integration - Highlight -->
+                <div class="bento-card bento-wide bento-highlight animate-in delay-1">
+                    <span class="status status-dev">
+                        <i class="ph ph-code"></i>
+                        In Entwicklung
+                    </span>
+                    <div class="card-icon">
+                        <i class="ph ph-device-mobile"></i>
+                    </div>
+                    <h3 class="card-title">iOS Deep Integration</h3>
+                    <p class="card-desc">
+                        Volle Power für dein iPhone. <strong>Live Activities</strong> für den Sperrbildschirm,
+                        <strong>Dynamic Island</strong> Support und interaktive <strong>Homescreen Widgets</strong>
+                        für den schnellen Überblick.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="feature-tag">Live Activities</span>
+                        <span class="feature-tag">Dynamic Island</span>
+                        <span class="feature-tag">Widgets</span>
+                    </div>
                 </div>
-                <h3 class="card-title">Smart Workout Builder</h3>
-                <p class="card-desc">
-                    Noch präziser planen. In der <strong>CreateWorkoutView</strong> kannst du künftig 
-                    das Zielgewicht für jeden Satz direkt vordefinieren. Perfekt für Wave-Loading 
-                    oder präzise RPE-Planung.
-                </p>
-            </div>
 
-        </section>
+                <!-- Analytics -->
+                <div class="bento-card animate-in delay-2">
+                    <span class="status status-planned">
+                        <i class="ph ph-calendar-blank"></i>
+                        Geplant
+                    </span>
+                    <div class="card-icon">
+                        <i class="ph ph-chart-polar"></i>
+                    </div>
+                    <h3 class="card-title">Deep Analytics</h3>
+                    <p class="card-desc">
+                        <strong>Mesozyklus-Auswertung</strong> und detaillierte Charts zum
+                        <strong>Volumen pro Muskelgruppe</strong>. Erkenne Trends, bevor sie zu Plateaus werden.
+                    </p>
+                </div>
 
+                <!-- Exercise Comparison -->
+                <div class="bento-card animate-in delay-3">
+                    <span class="status status-planned">
+                        <i class="ph ph-calendar-blank"></i>
+                        Geplant
+                    </span>
+                    <div class="card-icon">
+                        <i class="ph ph-git-compare"></i>
+                    </div>
+                    <h3 class="card-title">Übungsvergleich</h3>
+                    <p class="card-desc">
+                        Bench Press vs. Dumbbell Press? Vergleiche die Progression mehrerer Übungen
+                        direkt in einem Chart.
+                    </p>
+                </div>
+
+                <!-- Workout Builder -->
+                <div class="bento-card animate-in delay-4">
+                    <span class="status status-planned">
+                        <i class="ph ph-calendar-blank"></i>
+                        Geplant
+                    </span>
+                    <div class="card-icon">
+                        <i class="ph ph-sliders-horizontal"></i>
+                    </div>
+                    <h3 class="card-title">Smart Workout Builder</h3>
+                    <p class="card-desc">
+                        Zielgewicht für jeden Satz vordefinieren. Perfekt für <strong>Wave-Loading</strong>
+                        oder präzise <strong>RPE-Planung</strong>.
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
         <footer class="footer">
-            © 2025 Ben Kohler. Alle Rechte vorbehalten.
+            <div class="footer-links">
+                <a href="https://benkohler.de/impressum.html" class="footer-link" target="_blank" rel="noopener">Impressum</a>
+                <a href="https://benkohler.de/datenschutz.html" class="footer-link" target="_blank" rel="noopener">Datenschutz</a>
+            </div>
+            <p class="footer-copy">© 2025 Ben Kohler</p>
         </footer>
 
         <script>
-            // Theme Init
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', currentTheme);
-
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('headerThemeToggle'); 
-            const themeIcon = document.getElementById('headerThemeIcon');     
+            // Theme Toggle
             const html = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
 
-            updateThemeIcon(currentTheme);
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            html.setAttribute('data-theme', savedTheme);
+            updateTheme(savedTheme);
 
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = html.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                
-                html.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                updateThemeIcon(newTheme);
-            });
-
-            function updateThemeIcon(theme) {
+            function updateTheme(theme) {
                 themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
             }
+
+            function toggleTheme() {
+                const current = html.getAttribute('data-theme');
+                const next = current === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+                updateTheme(next);
+            }
+
+            themeToggle.addEventListener('click', toggleTheme);
+
+            // Mobile Menu
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            function toggleMenu() {
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+            mobileMenuClose.addEventListener('click', toggleMenu);
+            mobileNavLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+            // Scroll Animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-in').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(el);
+            });
+
+            // Smooth scroll
+            document.documentElement.style.scrollBehavior = 'smooth';
         </script>
     </body>
 </html>

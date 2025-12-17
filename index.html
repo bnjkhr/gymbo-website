@@ -9,57 +9,28 @@
         <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
         <script src="https://unpkg.com/@phosphor-icons/web"></script>
         <style>
-            /* Animation Keyframes */
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-
-            @keyframes float {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-10px); }
-            }
-
-            /* Animation Classes */
-            .fade-in-up {
-                animation: fadeInUp 0.8s ease-out;
-            }
-
-            .float {
-                animation: float 3s ease-in-out infinite;
-            }
             :root {
-                --primary-color: #000000;
-                --secondary-color: #1a1a1a;
-                --accent-color: #000000;
-                --dark-bg: #ffffff;
-                --card-bg: #f5f5f5;
-                --light-text: #000000;
-                --gray-text: #333333;
-                --brand-gradient: linear-gradient(135deg, #000000, #000000);
-                --brand-hover: linear-gradient(135deg, #000000, #000000);
-                --success-color: #000000;
-                --error-color: #000000;
+                --bg: #fafafa;
+                --bg-card: #ffffff;
+                --bg-card-hover: #f5f5f5;
+                --text: #0a0a0a;
+                --text-secondary: #525252;
+                --border: rgba(0, 0, 0, 0.08);
+                --border-hover: rgba(0, 0, 0, 0.15);
+                --accent: #0a0a0a;
+                --accent-soft: rgba(0, 0, 0, 0.05);
             }
 
             [data-theme="dark"] {
-                --primary-color: #ffffff;
-                --secondary-color: #f0f0f0;
-                --accent-color: #ffffff;
-                --dark-bg: #121212;
-                --card-bg: #1e1e1e;
-                --light-text: #ffffff;
-                --gray-text: #cccccc;
-                --brand-gradient: linear-gradient(135deg, #ffffff, #e0e0e0);
-                --brand-hover: linear-gradient(135deg, #f0f0f0, #d0d0d0);
-                --success-color: #4caf50;
-                --error-color: #f44336;
+                --bg: #0a0a0a;
+                --bg-card: #141414;
+                --bg-card-hover: #1a1a1a;
+                --text: #fafafa;
+                --text-secondary: #a3a3a3;
+                --border: rgba(255, 255, 255, 0.08);
+                --border-hover: rgba(255, 255, 255, 0.15);
+                --accent: #fafafa;
+                --accent-soft: rgba(255, 255, 255, 0.05);
             }
 
             * {
@@ -68,1582 +39,791 @@
                 box-sizing: border-box;
             }
 
-            /* Theme Toggle Button */
-            .theme-toggle {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 1000;
-                background: var(--card-bg);
-                border: 2px solid rgba(0, 0, 0, 0.1);
-                border-radius: 50%;
-                width: 50px;
-                height: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                font-size: 1.2rem;
-            }
-
-            .theme-toggle:hover {
-                transform: scale(1.1);
-                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            }
-
-            [data-theme="dark"] .theme-toggle {
-                border-color: rgba(255, 255, 255, 0.2);
-            }
-
             body {
-                font-family: "Manrope", sans-serif;
-                background: var(--dark-bg);
-                color: var(--light-text);
-                line-height: 1.6;
+                font-family: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.5;
+                letter-spacing: -0.02em;
                 overflow-x: hidden;
-                letter-spacing: -0.04em;
             }
 
             /* Header */
-            .main-header {
+            .header {
                 position: fixed;
                 top: 0;
                 left: 0;
                 right: 0;
-                z-index: 1000;
-                padding: 15px 30px;
+                z-index: 100;
+                padding: 16px 24px;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                background: rgba(0, 0, 0, 0.9);
+                background: rgba(250, 250, 250, 0.8);
                 backdrop-filter: blur(20px);
                 -webkit-backdrop-filter: blur(20px);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                transition: all 0.3s ease;
+                border-bottom: 1px solid var(--border);
             }
 
-            [data-theme="dark"] .main-header {
-                background: rgba(255, 255, 255, 0.9);
-                border-color: rgba(0, 0, 0, 0.1);
-            }
-
-            .header-left {
-                display: flex;
-                align-items: center;
-                gap: 40px;
+            [data-theme="dark"] .header {
+                background: rgba(10, 10, 10, 0.8);
             }
 
             .header-logo {
                 font-weight: 800;
-                font-size: 1.5rem;
-                color: #ffffff;
+                font-size: 1.25rem;
+                color: var(--text);
                 text-decoration: none;
-                letter-spacing: -0.02em;
+                letter-spacing: -0.03em;
             }
 
-            [data-theme="dark"] .header-logo {
-                color: #000000;
-            }
-
-            .nav-links {
+            .header-nav {
                 display: flex;
-                gap: 24px;
                 align-items: center;
+                gap: 32px;
             }
 
             .nav-link {
-                color: rgba(255, 255, 255, 0.8);
+                color: var(--text-secondary);
                 text-decoration: none;
+                font-size: 0.9rem;
                 font-weight: 500;
-                font-size: 0.95rem;
-                transition: color 0.2s ease;
-            }
-
-            [data-theme="dark"] .nav-link {
-                color: rgba(0, 0, 0, 0.8);
+                transition: color 0.2s;
             }
 
             .nav-link:hover {
-                color: #ffffff;
+                color: var(--text);
             }
 
-            [data-theme="dark"] .nav-link:hover {
-                color: #000000;
-            }
-
-            .header-right {
+            .header-actions {
                 display: flex;
                 align-items: center;
-                gap: 20px;
+                gap: 12px;
             }
 
-            .mobile-hero-banner {
-                display: none;
-                margin-bottom: 40px;
-                background: #000000;
-                color: white;
+            .btn-download {
+                background: var(--text);
+                color: var(--bg);
                 padding: 10px 20px;
-                border-radius: 12px;
+                border-radius: 100px;
                 font-weight: 600;
-                font-size: 0.9rem;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            }
-
-            [data-theme="dark"] .mobile-hero-banner {
-                background: #ffffff;
-                color: #000000;
-            }
-
-            @media (max-width: 768px) {
-                .mobile-hero-banner {
-                    display: block;
-                    width: fit-content;
-                    margin: 40px auto 40px auto;
-                }
-            }
-
-            .nav-btn-download {
-                background: white;
-                color: black;
-                padding: 10px 20px;
-                border-radius: 12px;
-                font-weight: 600;
-                font-size: 0.9rem;
+                font-size: 0.875rem;
                 text-decoration: none;
-                transition: transform 0.2s, box-shadow 0.2s;
+                transition: all 0.2s;
             }
 
-            [data-theme="dark"] .nav-btn-download {
-                background: black;
-                color: white;
-            }
-
-            .nav-btn-download:hover {
-                transform: translateY(-1px);
-                box-shadow: 0 4px 12px rgba(255,255,255,0.15);
-            }
-
-            [data-theme="dark"] .nav-btn-download:hover {
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            }
-
-            .header-theme-toggle {
-                background: none;
-                border: none;
-                cursor: pointer;
-                font-size: 1.2rem;
-                padding: 5px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #ffffff;
-                transition: transform 0.3s;
-            }
-
-            [data-theme="dark"] .header-theme-toggle {
-                color: #000000;
-            }
-
-            .header-theme-toggle:hover {
-                transform: rotate(15deg);
-            }
-
-            /* Hide original fixed toggle */
-            .theme-toggle {
-                display: none;
-            }
-
-            @media (max-width: 768px) {
-                .nav-links {
-                    display: none; /* Mobile Menu vereinfacht: Links ausblenden */
-                }
-                .main-header {
-                    padding: 15px 20px;
-                }
-            }
-
-            /* Hero Section */
-            .hero {
-                text-align: center;
-                padding: 120px 20px 100px;
-                max-width: 1200px;
-                margin: 0 auto;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .release-banner {
-                display: inline-block;
-                padding: 10px 20px;
-                border-radius: 12px;
-                background: #000000;
-                color: white;
-                font-size: 0.9rem;
-                font-weight: 600;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                border: none;
-                white-space: nowrap;
-                height: 44px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            [data-theme="dark"] .release-banner {
-                background: #ffffff;
-                color: #000000;
-                border: none;
-            }
-
-            .release-banner span {
-                display: none; /* Remove old span style if any */
-            }
-
-            @media (max-width: 768px) {
-                .release-banner {
-                    display: none;
-                }
-            }
-
-            .hero::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.02) 0%, transparent 70%);
-                pointer-events: none;
-            }
-
-            .hero-badges {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-                margin-bottom: 32px;
-                max-width: 700px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .hero-badge {
-                display: inline-block;
-                padding: 10px 20px;
-                background: rgba(0, 0, 0, 0.03);
-                color: var(--primary-color);
-                border-radius: 50px;
-                font-size: 0.95rem;
-                font-weight: 600;
-                border: 1.5px solid rgba(0, 0, 0, 0.15);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-                transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-                backdrop-filter: blur(10px);
-                white-space: nowrap;
-            }
-
-            .hero-badge:hover {
-                transform: translateY(-2px);
-                border-color: rgba(0, 0, 0, 0.25);
-            }
-
-            .hero-badge.active {
-                background: linear-gradient(135deg, rgba(90, 110, 60, 0.15) 0%, rgba(90, 110, 60, 0.06) 100%);
-                border-color: rgba(90, 110, 60, 0.5);
-                box-shadow: 0 4px 16px rgba(90, 110, 60, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-                transform: scale(1.05);
-            }
-
-            [data-theme="dark"] .hero-badge {
-                background: rgba(255, 255, 255, 0.05);
-                border-color: rgba(255, 255, 255, 0.15);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            }
-
-            [data-theme="dark"] .hero-badge:hover {
-                border-color: rgba(255, 255, 255, 0.25);
-            }
-
-            [data-theme="dark"] .hero-badge.active {
-                background: linear-gradient(135deg, rgba(120, 140, 80, 0.2) 0%, rgba(120, 140, 80, 0.08) 100%);
-                border-color: rgba(120, 140, 80, 0.6);
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            }
-
-            .hero-rotator {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 50px;
-                margin-bottom: 32px;
-            }
-
-            .rotator-text {
-                display: inline-block;
-                padding: 12px 28px;
-                background: linear-gradient(135deg, rgba(90, 110, 60, 0.08) 0%, rgba(90, 110, 60, 0.03) 100%);
-                color: var(--primary-color);
-                border-radius: 50px;
-                font-size: 1.1rem;
-                font-weight: 600;
-                border: 1.5px solid rgba(90, 110, 60, 0.4);
-                box-shadow: 0 2px 12px rgba(90, 110, 60, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-                backdrop-filter: blur(10px);
-                opacity: 0;
-                transform: translateY(10px);
-                transition: opacity 0.4s ease, transform 0.4s ease;
-            }
-
-            .rotator-text.visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            [data-theme="dark"] .rotator-text {
-                background: linear-gradient(135deg, rgba(120, 140, 80, 0.15) 0%, rgba(120, 140, 80, 0.05) 100%);
-                border-color: rgba(120, 140, 80, 0.45);
-                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            }
-
-            .logo {
-                font-family: "Manrope", sans-serif;
-                font-size: 4rem;
-                font-weight: 900;
-                color: var(--primary-color);
-                margin-bottom: 24px;
-                letter-spacing: -0.04em;
-                position: relative;
-                display: inline-block;
-            }
-
-            .logo::after {
-                content: "";
-                position: absolute;
-                bottom: -5px;
-                left: 0;
-                width: 100%;
-                height: 4px;
-                background: var(--brand-gradient);
-                border-radius: 2px;
-                transform: scaleX(0);
-                transform-origin: left;
-                transition: transform 0.3s ease;
-            }
-
-            .hero:hover .logo::after {
-                transform: scaleX(1);
-            }
-
-            .tagline {
-                font-family: "Manrope", sans-serif;
-                font-size: 4rem;
-                font-weight: 800;
-                margin-bottom: 24px;
-                line-height: 1.1;
-                letter-spacing: -0.04em;
-                background: none;
-                -webkit-background-clip: unset;
-                background-clip: unset;
-                color: var(--primary-color);
-            }
-
-            .subtitle {
-                font-size: 1.5rem;
-                color: var(--gray-text);
-                margin-bottom: 50px;
-                max-width: 800px;
-                margin-left: auto;
-                margin-right: auto;
-                line-height: 1.6;
-                font-weight: 400;
-            }
-
-            /* Subscribe Form */
-            .subscribe-section {
-                max-width: 650px;
-                margin: 0 auto 60px;
-                padding: 0 20px;
-            }
-
-            .subscribe-form {
-                display: flex;
-                gap: 16px;
-                margin-bottom: 15px;
-            }
-
-            .email-input {
-                flex: 1;
-                min-width: 0;
-                padding: 18px 24px;
-                border: 2px solid rgba(0, 0, 0, 0.1);
-                border-radius: 16px;
-                background: rgba(255, 255, 255, 0.8);
-                color: var(--light-text);
-                font-size: 1.05rem;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-
-            [data-theme="dark"] .email-input {
-                background: rgba(30, 30, 30, 0.8);
-                border-color: rgba(255, 255, 255, 0.1);
-            }
-
-            [data-theme="dark"] .submit-btn {
-                background: linear-gradient(135deg, #ffffff, #e0e0e0);
-                color: #000000;
-            }
-
-            [data-theme="dark"] .testflight-btn {
-                background: linear-gradient(135deg, #ffffff, #e0e0e0);
-                color: #000000;
-            }
-
-            [data-theme="dark"] .toggle-btn.active {
-                background: linear-gradient(135deg, #ffffff, #e0e0e0);
-                color: #000000;
-                border-color: #ffffff;
-            }
-
-            .email-input::placeholder {
-                color: var(--gray-text);
-                opacity: 0.7;
-            }
-
-            .email-input:focus {
-                outline: none;
-                border-color: var(--primary-color);
-                background: rgba(255, 255, 255, 0.95);
-                box-shadow:
-                    0 0 0 4px rgba(0, 0, 0, 0.05),
-                    0 8px 24px rgba(0, 0, 0, 0.1);
-                transform: translateY(-1px);
-            }
-
-            .submit-btn {
-                padding: 20px 48px;
-                border: none;
-                border-radius: 16px;
-                background: var(--brand-gradient);
-                color: white;
-                font-size: 1.1rem;
-                font-weight: 700;
-                cursor: pointer;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                white-space: nowrap;
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-                position: relative;
-                overflow: hidden;
-            }
-
-            .submit-btn::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.2),
-                    transparent
-                );
-                transition: left 0.5s ease;
-            }
-
-            .submit-btn:hover::before {
-                left: 100%;
-            }
-
-            .submit-btn:hover {
-                background: var(--brand-hover);
-                transform: translateY(-3px);
-                box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-            }
-
-            .submit-btn:active {
-                transform: translateY(-1px);
-            }
-
-            #message {
-                text-align: center;
-                font-weight: 600;
-                min-height: 24px;
-            }
-
-            /* Features Section */
-            .features-section {
-                max-width: 1000px;
-                margin: 120px auto;
-                padding: 0 20px;
-            }
-
-            .features-title {
-                font-family: "Manrope", sans-serif;
-                font-size: 2.5rem;
-                font-weight: 800;
-                margin-bottom: 60px;
-                color: var(--primary-color);
-                letter-spacing: -0.04em;
-                text-align: center;
-            }
-
-            .features-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr); /* Erzwingt 2 Spalten */
-                gap: 30px;
-            }
-
-            @media (max-width: 768px) {
-                .features-section {
-                    max-width: 500px;
-                    margin: 60px auto;
-                }
-                .features-grid {
-                    grid-template-columns: 1fr; /* 1 Spalte auf Mobile */
-                }
-                .features-title {
-                    font-size: 2rem;
-                    margin-bottom: 40px;
-                }
-            }
-
-            .feature-card {
-                background: rgba(255, 255, 255, 0.5);
-                border-radius: 32px;
-                padding: 50px 40px;
-                text-align: left; /* Modernere Ausrichtung */
-                transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-                border: 1px solid rgba(0, 0, 0, 0.04);
-                position: relative;
-                overflow: hidden;
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                box-shadow: 
-                    0 4px 20px rgba(0,0,0,0.02),
-                    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-            }
-
-            [data-theme="dark"] .feature-card {
-                background: rgba(255, 255, 255, 0.03);
-                border-color: rgba(255, 255, 255, 0.08);
-                box-shadow: 
-                    0 4px 20px rgba(0,0,0,0.2),
-                    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-            }
-
-            .feature-card:hover {
-                transform: translateY(-8px) scale(1.01);
-                box-shadow: 
-                    0 30px 60px rgba(0, 0, 0, 0.08),
-                    0 0 0 1px rgba(0, 0, 0, 0.08) inset;
-                background: rgba(255, 255, 255, 0.8);
-            }
-
-            [data-theme="dark"] .feature-card:hover {
-                background: rgba(255, 255, 255, 0.06);
-                box-shadow: 
-                    0 30px 60px rgba(0, 0, 0, 0.4),
-                    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-                border-color: rgba(255, 255, 255, 0.15);
-            }
-
-            .feature-icon-wrapper {
-                width: 64px;
-                height: 64px;
-                border-radius: 20px;
-                background: var(--card-bg);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 32px;
-                font-size: 2rem;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-                border: 1px solid rgba(0,0,0,0.05);
-                transition: transform 0.4s ease;
-            }
-
-            [data-theme="dark"] .feature-icon-wrapper {
-                background: rgba(255, 255, 255, 0.05);
-                border-color: rgba(255, 255, 255, 0.1);
-            }
-
-            .feature-card:hover .feature-icon-wrapper {
-                transform: scale(1.1) rotate(-5deg);
-            }
-
-            .feature-title {
-                font-family: "Manrope", sans-serif;
-                font-size: 1.4rem;
-                font-weight: 700;
-                margin-bottom: 16px;
-                letter-spacing: -0.02em;
-                color: var(--primary-color);
-            }
-
-            .feature-description {
-                color: var(--gray-text);
-                font-size: 1.1rem;
-                line-height: 1.6;
+            .btn-download:hover {
+                transform: scale(1.02);
                 opacity: 0.9;
             }
 
-            /* TestFlight Section */
-            .testflight-section {
-                text-align: center;
-                padding: 120px 20px;
-                max-width: 1200px;
+            .btn-theme {
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 1.1rem;
+                padding: 8px;
+                border-radius: 8px;
+                transition: background 0.2s;
+            }
+
+            .btn-theme:hover {
+                background: var(--accent-soft);
+            }
+
+            .mobile-menu-btn {
+                display: none;
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 1.5rem;
+                color: var(--text);
+            }
+
+            /* Main Container */
+            .main {
+                max-width: 1400px;
                 margin: 0 auto;
-                background: linear-gradient(135deg, var(--card-bg) 0%, var(--dark-bg) 100%);
-                position: relative;
-                overflow: hidden;
+                padding: 100px 24px 60px;
             }
 
-            .testflight-section::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: radial-gradient(circle at 70% 30%, rgba(0, 0, 0, 0.02) 0%, transparent 60%);
-                pointer-events: none;
+            /* Hero - Compact & Bold */
+            .hero {
+                text-align: center;
+                padding: 60px 0 80px;
             }
 
-            .testflight-title {
-                font-family: "Manrope", sans-serif;
-                font-size: 2.25rem;
-                font-weight: 800;
+            .hero-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 16px;
+                background: var(--accent-soft);
+                border-radius: 100px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: var(--text);
                 margin-bottom: 24px;
-                color: var(--primary-color);
+                border: 1px solid var(--border);
+            }
+
+            .hero-badge i {
+                font-size: 1rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(3rem, 8vw, 5.5rem);
+                font-weight: 800;
                 letter-spacing: -0.04em;
+                line-height: 1;
+                margin-bottom: 20px;
             }
 
-            .testflight-description {
-                font-size: 1.25rem;
-                color: var(--gray-text);
-                margin-bottom: 40px;
-                line-height: 1.7;
-                max-width: 600px;
-                margin-left: auto;
-                margin-right: auto;
+            .hero-subtitle {
+                font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+                color: var(--text-secondary);
+                max-width: 500px;
+                margin: 0 auto 40px;
+                line-height: 1.6;
             }
 
-            .testflight-btn {
-                display: inline-block;
-                padding: 20px 48px;
-                border-radius: 16px;
-                background: var(--brand-gradient);
-                color: white;
-                font-size: 1.15rem;
-                font-weight: 700;
-                text-decoration: none;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-                position: relative;
-                overflow: hidden;
-            }
-
-            .testflight-btn::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.2),
-                    transparent
-                );
-                transition: left 0.5s ease;
-            }
-
-            .testflight-btn:hover::before {
-                left: 100%;
-            }
-
-            .testflight-btn:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-            }
-
-            .testflight-btn:active {
-                transform: translateY(-1px);
-            }
-
-            /* Screenshot Section */
-            .screenshot-section {
-                text-align: center;
-                padding: 80px 20px;
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-
-            .phone-mockup {
-                display: inline-block;
-                position: relative;
-                max-width: 380px;
-                margin: 0 auto;
-            }
-
-            .phone-frame {
-                position: relative;
-                border-radius: 48px;
-                overflow: hidden;
-                box-shadow: none !important;
-                border: none !important;
-                background: transparent !important;
-                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                animation: float 6s ease-in-out infinite;
-            }
-
-            .phone-frame:hover {
-                transform: scale(1.02);
-                box-shadow: none !important;
-            }
-
-            .phone-frame img {
-                width: 100%;
-                height: auto;
-                display: block;
-                transition: opacity 0.3s ease;
-            }
-
-            .screenshot-toggle {
-                margin-top: 30px;
+            .hero-cta {
                 display: flex;
                 gap: 12px;
                 justify-content: center;
+                flex-wrap: wrap;
             }
 
-            .toggle-btn {
-                padding: 12px 24px;
-                border: 2px solid rgba(0, 0, 0, 0.1);
-                border-radius: 12px;
-                background: rgba(255, 255, 255, 0.8);
-                color: var(--gray-text);
-                font-size: 0.95rem;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                backdrop-filter: blur(10px);
-            }
-
-            [data-theme="dark"] .toggle-btn {
-                background: rgba(30, 30, 30, 0.8);
-                border-color: rgba(255, 255, 255, 0.1);
-            }
-
-            .toggle-btn:hover {
-                border-color: var(--primary-color);
-                background: rgba(255, 255, 255, 0.95);
-                transform: translateY(-2px);
-            }
-
-            .toggle-btn.active {
-                background: var(--brand-gradient);
-                color: white;
-                border-color: var(--primary-color);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            }
-
-            /* Why Different Section */
-            .why-different {
-                padding: 100px 20px;
-                background: linear-gradient(135deg, var(--card-bg) 0%, var(--dark-bg) 100%);
-                position: relative;
-                overflow: hidden;
-            }
-
-            .why-different-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                text-align: center;
-            }
-
-            .why-different-title {
-                font-family: "Manrope", sans-serif;
-                font-size: 2.5rem;
-                font-weight: 800;
-                margin-bottom: 60px;
-                color: var(--primary-color);
-                letter-spacing: -0.04em;
-            }
-
-            .why-different-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 40px;
-                margin-top: 60px;
-                max-width: 1000px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .why-item {
-                text-align: center;
-                padding: 32px 24px;
-                border-radius: 20px;
-                background: rgba(255, 255, 255, 0.7);
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(0, 0, 0, 0.05);
-                transition: all 0.3s ease;
-            }
-
-            [data-theme="dark"] .why-item {
-                background: rgba(255, 255, 255, 0.95);
-                color: #000000;
-            }
-
-            [data-theme="dark"] .why-item h3 {
-                color: #000000;
-            }
-
-            [data-theme="dark"] .why-item p {
-                color: #333333;
-            }
-
-
-            .why-item:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-                background: rgba(255, 255, 255, 0.9);
-            }
-
-            [data-theme="dark"] .why-item:hover {
-                background: rgba(255, 255, 255, 1);
-            }
-
-            .why-icon {
-                font-size: 3rem;
-                margin-bottom: 20px;
-                display: inline-block;
-                color: var(--primary-color);
-            }
-
-            .why-icon i, .feature-icon-wrapper i {
-                vertical-align: middle;
-            }
-
-            /* Force black icons in Why section for Dark Mode */
-            [data-theme="dark"] .why-item .why-icon,
-            [data-theme="dark"] .why-item .why-icon i,
-            [data-theme="dark"] .why-item .why-icon svg {
-                color: #000000 !important;
-                fill: #000000 !important;
-            }
-
-            .why-item h3 {
-                font-size: 1.4rem;
+            .btn-primary {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                background: var(--text);
+                color: var(--bg);
+                padding: 16px 28px;
+                border-radius: 14px;
                 font-weight: 700;
-                margin-bottom: 16px;
-                color: var(--primary-color);
+                font-size: 1rem;
+                text-decoration: none;
+                transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                border: none;
             }
 
-            .why-item p {
-                color: var(--gray-text);
-                font-size: 1.05rem;
-                line-height: 1.6;
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             }
 
-            /* Final CTA Section */
-            .final-cta {
-                text-align: center;
-                padding: 120px 20px 140px;
-                max-width: 1200px;
-                margin: 0 auto;
-                background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-                color: white;
+            .btn-primary i {
+                font-size: 1.3rem;
+            }
+
+            .btn-secondary {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                background: transparent;
+                color: var(--text);
+                padding: 16px 28px;
+                border-radius: 14px;
+                font-weight: 600;
+                font-size: 1rem;
+                text-decoration: none;
+                border: 1.5px solid var(--border);
+                transition: all 0.25s;
+            }
+
+            .btn-secondary:hover {
+                background: var(--accent-soft);
+                border-color: var(--border-hover);
+            }
+
+            /* Bento Grid */
+            .bento {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 16px;
+                margin-bottom: 100px;
+            }
+
+            .bento-card {
+                background: var(--bg-card);
+                border-radius: 24px;
+                padding: 32px;
+                border: 1px solid var(--border);
+                transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
                 position: relative;
                 overflow: hidden;
             }
 
-            .final-cta .cta-title {
-                color: white;
+            .bento-card:hover {
+                transform: translateY(-4px);
+                border-color: var(--border-hover);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
             }
 
-            .final-cta .cta-subtitle {
-                color: #cccccc;
+            [data-theme="dark"] .bento-card:hover {
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             }
 
-            .final-cta .email-input {
-                background: rgba(255, 255, 255, 0.1);
-                border: 2px solid rgba(255, 255, 255, 0.2);
-                color: white;
+            /* Card Sizes */
+            .bento-hero {
+                grid-column: span 2;
+                grid-row: span 2;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 40px;
+                background: linear-gradient(135deg, var(--bg-card) 0%, var(--accent-soft) 100%);
             }
 
-            .final-cta .email-input::placeholder {
-                color: rgba(255, 255, 255, 0.6);
+            .bento-hero .phone-mockup {
+                max-width: 280px;
+                filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.15));
+                transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
-            .final-cta .email-input:focus {
-                border-color: white;
-                background: rgba(255, 255, 255, 0.15);
-                box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+            .bento-hero:hover .phone-mockup {
+                transform: scale(1.03) translateY(-8px);
             }
 
-            .final-cta .subscribe-section {
-                max-width: 800px;
+            .bento-hero .phone-mockup img {
+                width: 100%;
+                border-radius: 32px;
             }
 
-            .cta-title {
-                font-family: "Manrope", sans-serif;
-                font-size: 2rem;
-                font-weight: 800;
-                margin-bottom: 16px;
-                letter-spacing: -0.04em;
-                color: var(--primary-color);
+            .bento-wide {
+                grid-column: span 2;
             }
 
-            .cta-subtitle {
-                font-size: 1.2rem;
-                color: var(--gray-text);
-                margin-bottom: 40px;
-                max-width: 600px;
-                margin-left: auto;
-                margin-right: auto;
+            .bento-tall {
+                grid-row: span 2;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* Card Content */
+            .card-icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 14px;
+                background: var(--accent-soft);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.4rem;
+                margin-bottom: 20px;
+                color: var(--text);
+                transition: transform 0.3s, background 0.3s;
+            }
+
+            .bento-card:hover .card-icon {
+                transform: scale(1.1) rotate(-5deg);
+                background: var(--border);
+            }
+
+            .card-title {
+                font-size: 1.25rem;
+                font-weight: 700;
+                margin-bottom: 10px;
+                letter-spacing: -0.02em;
+            }
+
+            .card-desc {
+                color: var(--text-secondary);
+                font-size: 0.95rem;
                 line-height: 1.6;
+            }
+
+            /* Special Feature Card - Progress */
+            .bento-progress {
+                background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
+                color: #fff;
+            }
+
+            [data-theme="dark"] .bento-progress {
+                background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
+                color: #0a0a0a;
+            }
+
+            .bento-progress .card-icon {
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff;
+            }
+
+            [data-theme="dark"] .bento-progress .card-icon {
+                background: rgba(0, 0, 0, 0.08);
+                color: #0a0a0a;
+            }
+
+            .bento-progress .card-desc {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            [data-theme="dark"] .bento-progress .card-desc {
+                color: rgba(0, 0, 0, 0.6);
+            }
+
+            /* Stats Card */
+            .bento-stats {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .stat-number {
+                font-size: 3.5rem;
+                font-weight: 800;
+                letter-spacing: -0.04em;
+                line-height: 1;
+                margin-bottom: 8px;
+            }
+
+            .stat-label {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+
+            /* Privacy Card */
+            .bento-privacy {
+                background: linear-gradient(145deg, var(--bg-card) 0%, var(--accent-soft) 100%);
+            }
+
+            .privacy-icons {
+                display: flex;
+                gap: 12px;
+                margin-top: 20px;
+            }
+
+            .privacy-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+                background: var(--accent-soft);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.1rem;
+                color: var(--text-secondary);
+            }
+
+            /* Import Card Visual */
+            .import-logos {
+                display: flex;
+                gap: 16px;
+                margin-top: 24px;
+            }
+
+            .import-logo {
+                padding: 12px 20px;
+                background: var(--accent-soft);
+                border-radius: 12px;
+                font-weight: 700;
+                font-size: 0.9rem;
+                color: var(--text);
+                border: 1px solid var(--border);
+            }
+
+            /* Quote/Testimonial Style Card */
+            .bento-quote {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .quote-text {
+                font-size: 1.5rem;
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                line-height: 1.4;
+                margin-bottom: 16px;
+            }
+
+            .quote-author {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+
+            /* CTA Section */
+            .cta-section {
+                text-align: center;
+                padding: 80px 40px;
+                background: var(--bg-card);
+                border-radius: 32px;
+                border: 1px solid var(--border);
+                margin-bottom: 60px;
+            }
+
+            .cta-section h2 {
+                font-size: clamp(2rem, 5vw, 3rem);
+                font-weight: 800;
+                letter-spacing: -0.03em;
+                margin-bottom: 16px;
+            }
+
+            .cta-section p {
+                color: var(--text-secondary);
+                font-size: 1.1rem;
+                max-width: 450px;
+                margin: 0 auto 32px;
             }
 
             /* Footer */
             .footer {
-                background: var(--card-bg);
-                padding: 40px 20px;
+                padding: 40px 24px;
                 text-align: center;
-                border-top: 1px solid rgba(0, 0, 0, 0.05);
+                border-top: 1px solid var(--border);
             }
 
             .footer-links {
                 display: flex;
                 justify-content: center;
-                gap: 30px;
-                margin-bottom: 20px;
-                flex-wrap: wrap;
+                gap: 32px;
+                margin-bottom: 16px;
             }
 
             .footer-link {
-                color: var(--gray-text);
+                color: var(--text-secondary);
                 text-decoration: none;
-                font-size: 0.95rem;
-                transition: color 0.3s ease;
-                font-weight: 500;
+                font-size: 0.9rem;
+                transition: color 0.2s;
             }
 
             .footer-link:hover {
-                color: var(--primary-color);
+                color: var(--text);
             }
 
-            .footer-copyright {
-                color: var(--gray-text);
+            .footer-copy {
+                color: var(--text-secondary);
                 font-size: 0.85rem;
                 opacity: 0.7;
             }
 
-            /* Responsive */
-            @media (max-width: 768px) {
-                .hero {
-                    padding: 80px 20px 60px;
-                }
-
-                .logo {
-                    font-size: 2.5rem;
-                }
-
-                .tagline {
-                    font-size: 2.8rem;
-                    margin-bottom: 20px;
-                    line-height: 1.1;
-                }
-
-                .subtitle {
-                    font-size: 1.2rem;
-                    margin-bottom: 40px;
-                }
-
-                .hero-badges {
-                    gap: 8px;
-                    max-width: 100%;
-                }
-
-                .hero-badge {
-                    font-size: 0.85rem;
-                    padding: 8px 14px;
-                }
-
-                .subscribe-form {
-                    flex-direction: column;
-                    gap: 12px;
-                }
-
-                .email-input {
-                    padding: 16px 20px;
-                    font-size: 1rem;
-                }
-
-                .submit-btn {
-                    width: 100%;
-                    padding: 16px 32px;
-                    font-size: 1rem;
-                }
-
-                .why-different {
-                    padding: 60px 20px;
-                }
-
-                .why-different-title {
-                    font-size: 2rem;
-                    margin-bottom: 40px;
-                }
-
-                .why-different-grid {
-                    grid-template-columns: 1fr;
-                    gap: 24px;
-                    max-width: 400px;
-                }
-
-                .why-item {
-                    padding: 24px 20px;
-                }
-
-                .why-icon {
-                    font-size: 2.5rem;
-                }
-
-                .why-item h3 {
-                    font-size: 1.2rem;
-                }
-
-                .why-item p {
-                    font-size: 1rem;
-                }
-
-                .feature-card {
-                    padding: 36px 28px;
-                }
-
-                .feature-icon {
-                    font-size: 3rem;
-                }
-
-            .feature-title {
-                font-size: 1.6rem;
-                font-weight: 700;
-                margin-bottom: 16px;
-                letter-spacing: -0.01em;
-                line-height: 1.3;
-            }
-
-                .feature-description {
-                    font-size: 1rem;
-                }
-
-                .testflight-section {
-                    padding: 60px 20px;
-                }
-
-                .testflight-title {
-                    font-size: 1.75rem;
-                }
-
-                .testflight-description {
-                    font-size: 1rem;
-                }
-
-                .testflight-btn {
-                    padding: 16px 36px;
-                    font-size: 1rem;
-                }
-
-                .screenshot-section {
-                    padding: 40px 20px;
-                }
-
-                .phone-mockup {
-                    max-width: 280px;
-                }
-
-                .final-cta {
-                    padding: 60px 20px 80px;
-                }
-
-                .cta-title {
-                    font-size: 1.5rem;
-                }
-
-                .cta-subtitle {
-                    font-size: 1rem;
-                }
-
-                .phone-mockup {
-                    max-width: 240px;
-                }
-
-                .footer {
-                    padding: 30px 20px;
-                }
-
-                .footer-links {
-                    gap: 20px;
-                }
-
-                .footer-link {
-                    font-size: 0.9rem;
-                }
-            }
-            }
-
-            @media (max-width: 480px) {
-                .hero {
-                    padding: 60px 15px 40px;
-                }
-
-                .logo {
-                    font-size: 2rem;
-                }
-
-                .tagline {
-                    font-size: 2.2rem;
-                }
-
-                .subtitle {
-                    font-size: 1.1rem;
-                }
-
-                .why-different-title {
-                    font-size: 1.75rem;
-                }
-
-                .testflight-title {
-                    font-size: 1.5rem;
-                }
-
-                .cta-title {
-                    font-size: 1.3rem;
-                }
-
-                .phone-mockup {
-                    max-width: 240px;
-                }
-            }
-
-            /* Mobile Menu Styles */
-            .mobile-menu-toggle {
-                display: none;
-                background: none;
-                border: none;
-                color: #ffffff; /* Default for dark header */
-                font-size: 2rem;
-                cursor: pointer;
-                padding: 5px;
-                z-index: 2001; /* Ensure above header if needed, though button is inside header */
-            }
-
-            [data-theme="dark"] .mobile-menu-toggle {
-                color: #000000; /* For light header in dark mode */
-            }
-
+            /* Mobile Menu */
             .mobile-menu {
                 position: fixed;
-                top: 0;
-                right: -100%;
-                width: 100%;
-                height: 100vh;
-                background: var(--dark-bg);
-                z-index: 2000;
-                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                inset: 0;
+                background: var(--bg);
+                z-index: 200;
+                padding: 24px;
                 display: flex;
                 flex-direction: column;
-                padding: 20px 30px;
-                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
             .mobile-menu.active {
-                right: 0;
+                transform: translateX(0);
             }
 
             .mobile-menu-header {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                margin-bottom: 60px;
-                padding-top: 10px;
+                margin-bottom: 48px;
             }
 
             .mobile-menu-close {
                 background: none;
                 border: none;
-                color: var(--light-text);
-                font-size: 2rem;
+                font-size: 1.5rem;
                 cursor: pointer;
-                padding: 5px;
+                color: var(--text);
             }
 
-            .mobile-nav-links {
-                display: flex;
-                flex-direction: column;
-                gap: 32px;
-                margin-bottom: auto;
-            }
-
-            .mobile-nav-link {
-                font-size: 1.8rem;
-                font-weight: 700;
-                color: var(--light-text);
-                text-decoration: none;
-                transition: color 0.2s;
-            }
-
-            .mobile-nav-link:hover {
-                color: var(--primary-color);
-            }
-
-            .mobile-menu-footer {
+            .mobile-nav {
                 display: flex;
                 flex-direction: column;
                 gap: 24px;
-                margin-top: 60px;
-                padding-bottom: 40px;
             }
 
-            .mobile-banner {
-                display: flex !important; /* Force display */
-                width: 100%;
-                justify-content: center;
-                margin: 0;
-            }
-
-            .mobile-download {
-                text-align: center;
-                padding: 18px;
-                font-size: 1.1rem;
-            }
-
-            .mobile-theme-toggle {
-                width: 100%;
-                background: rgba(0,0,0,0.05);
-                border-radius: 12px;
-                padding: 18px 24px;
-                display: flex;
-                justify-content: space-between;
-                color: var(--light-text);
-                font-size: 1.1rem;
-                font-weight: 600;
-                border: 1px solid rgba(0,0,0,0.1);
-            }
-            
-            [data-theme="dark"] .mobile-theme-toggle {
-                background: rgba(255,255,255,0.05);
-                color: var(--light-text);
-                border-color: rgba(255,255,255,0.1);
-            }
-
-            /* New Button Styles */
-            .hero-buttons {
-                display: flex;
-                gap: 16px;
-                justify-content: center;
-                flex-wrap: wrap;
-                margin-bottom: 20px;
-            }
-
-            .app-store-btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 12px;
-                background: var(--brand-gradient);
-                color: white;
-                padding: 16px 32px;
-                border-radius: 16px;
-                font-weight: 700;
-                font-size: 1.1rem;
-                text-decoration: none;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            }
-
-            .app-store-btn:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-                background: var(--brand-hover);
-                color: white;
-            }
-
-            .app-store-btn i {
+            .mobile-nav-link {
                 font-size: 1.5rem;
-            }
-
-            .beta-btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 10px;
-                background: transparent;
-                color: var(--primary-color);
-                padding: 16px 32px;
-                border-radius: 16px;
-                font-weight: 600;
-                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--text);
                 text-decoration: none;
-                border: 2px solid rgba(0,0,0,0.1);
-                transition: all 0.3s ease;
             }
 
-            [data-theme="dark"] .beta-btn {
-                color: white;
-                border-color: rgba(255,255,255,0.2);
+            .mobile-menu-footer {
+                margin-top: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
             }
 
-            .beta-btn:hover {
-                background: rgba(0,0,0,0.05);
-                border-color: var(--primary-color);
-                transform: translateY(-2px);
-                color: var(--primary-color);
-            }
-
-            [data-theme="dark"] .beta-btn:hover {
-                background: rgba(255,255,255,0.1);
-                color: white;
-            }
-
-            /* Mobile adjustments for buttons */
-            @media (max-width: 480px) {
-                .hero-buttons {
-                    flex-direction: column;
-                    gap: 12px;
+            /* Animations */
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
                 }
-                .app-store-btn, .beta-btn {
-                    width: 100%;
-                    justify-content: center;
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .animate-in {
+                animation: fadeUp 0.6s ease-out forwards;
+            }
+
+            .delay-1 { animation-delay: 0.1s; }
+            .delay-2 { animation-delay: 0.2s; }
+            .delay-3 { animation-delay: 0.3s; }
+            .delay-4 { animation-delay: 0.4s; }
+
+            /* Responsive */
+            @media (max-width: 1024px) {
+                .bento {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .bento-hero {
+                    grid-column: span 2;
+                    grid-row: span 1;
+                    padding: 32px;
+                }
+
+                .bento-hero .phone-mockup {
+                    max-width: 200px;
                 }
             }
 
             @media (max-width: 768px) {
-                .mobile-menu-toggle {
-                    display: block;
-                }
-                .header-right {
+                .header-nav {
                     display: none;
                 }
-                .header-left {
-                    flex: 1; /* Allow logo to stay left */
+
+                .btn-download {
+                    display: none;
                 }
-                .main-header {
-                    justify-content: space-between; /* Ensure logo and burger are spread */
+
+                .mobile-menu-btn {
+                    display: block;
+                }
+
+                .hero {
+                    padding: 40px 0 60px;
+                }
+
+                .hero h1 {
+                    font-size: 2.75rem;
+                }
+
+                .bento {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                }
+
+                .bento-hero,
+                .bento-wide,
+                .bento-tall {
+                    grid-column: span 1;
+                    grid-row: span 1;
+                }
+
+                .bento-card {
+                    padding: 24px;
+                }
+
+                .stat-number {
+                    font-size: 2.5rem;
+                }
+
+                .cta-section {
+                    padding: 48px 24px;
+                    border-radius: 24px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .main {
+                    padding: 80px 16px 40px;
+                }
+
+                .hero h1 {
+                    font-size: 2.25rem;
+                }
+
+                .hero-cta {
+                    flex-direction: column;
+                }
+
+                .btn-primary,
+                .btn-secondary {
+                    width: 100%;
+                    justify-content: center;
                 }
             }
         </style>
     </head>
     <body>
         <!-- Header -->
-        <header class="main-header">
-            <div class="header-left">
-                <a href="#" class="header-logo">GymBo</a>
-                <nav class="nav-links">
-                    <a href="#features" class="nav-link">Funktionen</a>
-                    <a href="roadmap.html" class="nav-link">Feature-Roadmap</a>
-                    <a href="https://benkohler.de" class="nav-link" target="_blank" rel="noopener">Meine Apps</a>
-                </nav>
-            </div>
-            <div class="header-right">
-                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="nav-btn-download" target="_blank" rel="noopener">Laden im App Store</a>
-                <button class="header-theme-toggle" id="headerThemeToggle" aria-label="Dark/Light Mode wechseln">
-                    <span id="headerThemeIcon">🌙</span>
+        <header class="header">
+            <a href="#" class="header-logo">GymBo</a>
+            <nav class="header-nav">
+                <a href="#features" class="nav-link">Funktionen</a>
+                <a href="roadmap.html" class="nav-link">Roadmap</a>
+                <a href="https://benkohler.de" class="nav-link" target="_blank" rel="noopener">Mehr Apps</a>
+            </nav>
+            <div class="header-actions">
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-download" target="_blank" rel="noopener">App Store</a>
+                <button class="btn-theme" id="themeToggle" aria-label="Theme wechseln">
+                    <span id="themeIcon">🌙</span>
                 </button>
             </div>
-            
-            <button class="mobile-menu-toggle" aria-label="Menü öffnen">
+            <button class="mobile-menu-btn" aria-label="Menü öffnen">
                 <i class="ph ph-list"></i>
             </button>
-
-            <div class="mobile-menu">
-                <div class="mobile-menu-header">
-                    <span class="header-logo" style="color: var(--primary-color);">GymBo</span>
-                    <button class="mobile-menu-close" aria-label="Menü schließen">
-                        <i class="ph ph-x"></i>
-                    </button>
-                </div>
-                <nav class="mobile-nav-links">
-                    <a href="#features" class="mobile-nav-link">Funktionen</a>
-                    <a href="roadmap.html" class="mobile-nav-link">Feature-Roadmap</a>
-                    <a href="https://benkohler.de" class="mobile-nav-link" target="_blank" rel="noopener">Meine Apps</a>
-                </nav>
-                <div class="mobile-menu-footer">
-                    <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="nav-btn-download mobile-download" target="_blank" rel="noopener">Laden im App Store</a>
-                    <button class="header-theme-toggle mobile-theme-toggle" id="mobileThemeToggle">
-                        <span>Design wechseln</span>
-                        <span id="mobileThemeIconBtn">🌙</span>
-                    </button>
-                </div>
-            </div>
         </header>
 
-        <!-- Theme Toggle Button (Hidden via CSS) -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Dark/Light Mode wechseln" style="display: none;">
-            <span id="themeIcon">🌙</span>
-        </button>
-
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1 class="logo">GymBo</h1>
-            <h2 class="tagline">High-End Training.<br>Ganz ohne Abo.</h2>
-            <div class="hero-badges">
-                <div class="hero-badge">Einmalkauf</div>
-                <div class="hero-badge">Intelligente Progression</div>
-                <div class="hero-badge">Unbegrenzte Workouts</div>
-                <div class="hero-badge">Großer Übungskatalog</div>
-                <div class="hero-badge">Hevy & Strong Import</div>
-                <div class="hero-badge">Export & Import</div>
-                <div class="hero-badge">Backup & Sharing</div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-header">
+                <span class="header-logo">GymBo</span>
+                <button class="mobile-menu-close" aria-label="Menü schließen">
+                    <i class="ph ph-x"></i>
+                </button>
             </div>
-            <p class="subtitle">
-                Genieße den vollen Funktionsumfang wie bei teuren Abo-Apps: Intelligente Progression, Daten-Export & Import und unbegrenzte Workouts. 
-                Eine faire Einmalzahlung für dein lebenslanges Training.
-            </p>
-
-            <div class="hero-buttons">
-                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="app-store-btn">
+            <nav class="mobile-nav">
+                <a href="#features" class="mobile-nav-link">Funktionen</a>
+                <a href="roadmap.html" class="mobile-nav-link">Roadmap</a>
+                <a href="https://benkohler.de" class="mobile-nav-link" target="_blank">Mehr Apps</a>
+            </nav>
+            <div class="mobile-menu-footer">
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary" target="_blank" rel="noopener">
                     <i class="ph ph-app-store-logo"></i>
-                    Laden im App Store
+                    App Store
                 </a>
-                <a href="https://testflight.apple.com/join/nNuPf4RH" class="beta-btn" target="_blank" rel="noopener">
-                    <i class="ph ph-flask"></i>
-                    Beta testen
-                </a>
+                <button class="btn-secondary" id="mobileThemeToggle">
+                    <span id="mobileThemeText">Dark Mode</span>
+                </button>
             </div>
-        </section>
+        </div>
 
-        <!-- Screenshot Section -->
-        <section class="screenshot-section">
-            <div class="phone-mockup">
-                <div class="phone-frame">
-                    <img id="screenshotImage" src="screenshot_hell.png" alt="GymBo App Screenshot" />
+        <main class="main">
+            <!-- Hero -->
+            <section class="hero animate-in">
+                <div class="hero-badge">
+                    <i class="ph ph-seal-check"></i>
+                    Einmalig 6,99 € · Kein Abo
                 </div>
-                <div class="screenshot-toggle">
-                    <button id="lightModeBtn" class="toggle-btn active">Light Mode</button>
-                    <button id="darkModeBtn" class="toggle-btn">Dark Mode</button>
+                <h1>Training.<br>Ohne Bullshit.</h1>
+                <p class="hero-subtitle">
+                    High-End Features für dein Training. Eine faire Einmalzahlung. Keine Tracker, keine Cloud, keine Kompromisse.
+                </p>
+                <div class="hero-cta">
+                    <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary" target="_blank" rel="noopener">
+                        <i class="ph ph-app-store-logo"></i>
+                        Im App Store laden
+                    </a>
+                    <a href="https://testflight.apple.com/join/nNuPf4RH" class="btn-secondary" target="_blank" rel="noopener">
+                        <i class="ph ph-flask"></i>
+                        Beta testen
+                    </a>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Why GymBo Different Section -->
-        <section class="why-different">
-            <div class="why-different-container">
-                <h2 class="why-different-title">Warum GymBo anders ist</h2>
-                <div class="why-different-grid">
-                    <div class="why-item">
-                        <div class="why-icon"><i class="ph ph-crosshair"></i></div>
-                        <h3>Focus aufs Wesentliche</h3>
-                        <p>Tracken statt Scrollen. Keine sozialen Netzwerke, keine Ablenkung. Nur du und dein Training.</p>
-                    </div>
-                    <div class="why-item">
-                        <div class="why-icon"><i class="ph ph-lightning"></i></div>
-                        <h3>Made für Performance</h3>
-                        <p>Entwickelt von jemandem, der versteht was Training bedeutet. Jede Funktion hat einen echten Nutzen.</p>
-                    </div>
-                    <div class="why-item">
-                        <div class="why-icon"><i class="ph ph-shield-check"></i></div>
-                        <h3>Privacy First</h3>
-                        <p>Deine Trainingsdaten bleiben auf deinem iPhone. Keine Cloud, keine Tracker, keine Kompromisse.</p>
+            <!-- Bento Grid -->
+            <section class="bento" id="features">
+                <!-- Hero Card with Phone -->
+                <div class="bento-card bento-hero animate-in delay-1">
+                    <div class="phone-mockup">
+                        <img id="screenshotImg" src="screenshot_hell.png" alt="GymBo App">
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Features Section -->
-        <section class="features-section" id="features">
-            <h2 class="features-title">Funktionen</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon-wrapper"><i class="ph ph-arrows-left-right"></i></div>
-                    <h3 class="feature-title">Superset & Circuit Training</h3>
-                    <p class="feature-description">
-                        Wechsle nahtlos zwischen Übungen. Ob A1→A2 Supersets oder komplette 
-                        Station-Rotationen - dein Training bleibt im Flow.
+                <!-- Progression Feature -->
+                <div class="bento-card bento-progress animate-in delay-2">
+                    <div class="card-icon">
+                        <i class="ph ph-trend-up"></i>
+                    </div>
+                    <h3 class="card-title">Intelligente Progression</h3>
+                    <p class="card-desc">
+                        GymBo analysiert deine Leistung und schlägt automatisch Gewichte und Wiederholungen vor. Kein Raten mehr.
                     </p>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon-wrapper"><i class="ph ph-trend-up"></i></div>
-                    <h3 class="feature-title">Intelligente Fortschrittsempfehlungen</h3>
-                    <p class="feature-description">
-                        Kein raten mehr. GymBo analysiert deine Leistung und schlägt 
-                        automatisch die nächsten Gewichte und Wiederholungen vor.
-                    </p>
+                <!-- Stats Card -->
+                <div class="bento-card bento-stats animate-in delay-3">
+                    <div>
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Unbegrenzte Workouts</div>
+                    </div>
+                    <p class="card-desc" style="margin-top: auto;">Keine künstlichen Limits. Trainiere so viel du willst.</p>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon-wrapper"><i class="ph ph-scales"></i></div>
-                    <h3 class="feature-title">Unilaterale Übungen & Insights</h3>
-                    <p class="feature-description">
-                        Tracke jede Seite einzeln. GymBo analysiert deine Kraftwerte und zeigt dir 
-                        Ungleichgewichte zwischen links und rechts direkt an.
-                    </p>
+                <!-- Supersets -->
+                <div class="bento-card animate-in delay-4">
+                    <div class="card-icon">
+                        <i class="ph ph-arrows-left-right"></i>
+                    </div>
+                    <h3 class="card-title">Supersätze & Circuits</h3>
+                    <p class="card-desc">Nahtlos zwischen Übungen wechseln. Dein Training bleibt im Flow.</p>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon-wrapper"><i class="ph ph-lock-key"></i></div>
-                    <h3 class="feature-title">100% Offline & Privat</h3>
-                    <p class="feature-description">
-                        Kein Account, keine Cloud. Deine Daten bleiben auf deinem
-                        iPhone. Keine Tracker, keine Werbung, keine Ablenkung.
+                <!-- Privacy -->
+                <div class="bento-card bento-wide bento-privacy animate-in delay-1">
+                    <div class="card-icon">
+                        <i class="ph ph-shield-check"></i>
+                    </div>
+                    <h3 class="card-title">100% Offline & Privat</h3>
+                    <p class="card-desc">
+                        Kein Account, keine Cloud, keine Tracker. Deine Daten bleiben auf deinem iPhone. Punkt.
                     </p>
+                    <div class="privacy-icons">
+                        <div class="privacy-icon"><i class="ph ph-wifi-slash"></i></div>
+                        <div class="privacy-icon"><i class="ph ph-eye-slash"></i></div>
+                        <div class="privacy-icon"><i class="ph ph-lock-key"></i></div>
+                    </div>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon-wrapper"><i class="ph ph-download-simple"></i></div>
-                    <h3 class="feature-title">Import von Hevy & Strong</h3>
-                    <p class="feature-description">
-                        Wechsel zu GymBo ohne Datenverlust. Importiere deine Workouts und
-                        komplette Trainingshistorie. Fehlende Übungen werden automatisch angelegt.
+                <!-- Import -->
+                <div class="bento-card bento-wide animate-in delay-2">
+                    <div class="card-icon">
+                        <i class="ph ph-download-simple"></i>
+                    </div>
+                    <h3 class="card-title">Wechsel ohne Datenverlust</h3>
+                    <p class="card-desc">
+                        Importiere deine komplette Trainingshistorie. Fehlende Übungen werden automatisch angelegt.
                     </p>
+                    <div class="import-logos">
+                        <span class="import-logo">Hevy</span>
+                        <span class="import-logo">Strong</span>
+                    </div>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon-wrapper"><i class="ph ph-share-network"></i></div>
-                    <h3 class="feature-title">Export, Sharing & Backup</h3>
-                    <p class="feature-description">
-                        Teile deine Workouts mit Freunden, exportiere deine Daten jederzeit
-                        oder erstelle lokale Backups. Deine Daten gehören dir.
-                    </p>
+                <!-- Unilateral -->
+                <div class="bento-card animate-in delay-3">
+                    <div class="card-icon">
+                        <i class="ph ph-scales"></i>
+                    </div>
+                    <h3 class="card-title">Links/Rechts Tracking</h3>
+                    <p class="card-desc">Tracke jede Seite einzeln. Erkenne Dysbalancen sofort.</p>
                 </div>
-            </div>
-        </section>
 
-        <!-- TestFlight Section -->
-        <section class="testflight-section">
-            <h2 class="testflight-title">Teste neue Features vorab</h2>
-            <p class="testflight-description">
-                Du willst die neuesten Funktionen schon vor allen anderen ausprobieren? 
-                Als Beta-Tester bekommst du exklusiven Zugang zu Entwicklungs-Versionen und hilfst GymBo noch besser zu machen.
-            </p>
-            <a
-                href="https://testflight.apple.com/join/nNuPf4RH"
-                class="testflight-btn"
-                target="_blank"
-                rel="noopener"
-            >
-                Jetzt Beta testen
-            </a>
-        </section>
+                <!-- Export -->
+                <div class="bento-card animate-in delay-4">
+                    <div class="card-icon">
+                        <i class="ph ph-share-network"></i>
+                    </div>
+                    <h3 class="card-title">Export & Backup</h3>
+                    <p class="card-desc">Deine Daten gehören dir. Exportiere, teile oder sichere sie jederzeit.</p>
+                </div>
+            </section>
 
-        <!-- Second CTA Section -->
-        <section class="final-cta">
-            <h2 class="cta-title">Bereit für dein bestes Training?</h2>
-            <p class="cta-subtitle">
-                Hol dir GymBo jetzt im App Store und starte durch. 
-                Einmal zahlen, für immer trainieren.
-            </p>
-
-            <div style="display: flex; justify-content: center; margin-top: 30px;">
-                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="app-store-btn" style="background: white; color: black;">
-                    <i class="ph ph-app-store-logo" style="color: black;"></i>
-                    Laden im App Store
+            <!-- CTA -->
+            <section class="cta-section animate-in">
+                <h2>Bereit?</h2>
+                <p>Einmalig 6,99 € – für immer trainieren. Keine versteckten Kosten.</p>
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary" target="_blank" rel="noopener">
+                    <i class="ph ph-app-store-logo"></i>
+                    Jetzt im App Store
                 </a>
-            </div>
-        </section>
+            </section>
+        </main>
 
         <!-- Footer -->
         <footer class="footer">
@@ -1651,130 +831,42 @@
                 <a href="https://benkohler.de/impressum.html" class="footer-link" target="_blank" rel="noopener">Impressum</a>
                 <a href="https://benkohler.de/datenschutz.html" class="footer-link" target="_blank" rel="noopener">Datenschutz</a>
             </div>
-            <div class="footer-copyright">
-                © 2025 Ben Kohler. Alle Rechte vorbehalten.
-            </div>
+            <p class="footer-copy">© 2025 Ben Kohler</p>
         </footer>
 
         <script>
-            // Scroll Animation Observer
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isManropesecting) {
-                        entry.target.classList.add('fade-in-up');
-                    }
-                });
-            }, observerOptions);
-
-            // Observe elements
-            document.addEventListener('DOMContentLoaded', () => {
-                const elementsToAnimate = document.querySelectorAll('.feature-card, .why-item, .testflight-section, .final-cta');
-                elementsToAnimate.forEach(el => observer.observe(el));
-            });
-
-            // Smooth scroll for better UX
-            document.documentElement.style.scrollBehavior = 'smooth';
-
-            // Hero Badge Highlight Rotator
-            const heroBadges = document.querySelectorAll('.hero-badge');
-            let activeIndex = 0;
-
-            function rotateBadgeHighlight() {
-                if (heroBadges.length === 0) return;
-
-                // Remove active from current
-                heroBadges[activeIndex].classList.remove('active');
-
-                // Move to next
-                activeIndex = (activeIndex + 1) % heroBadges.length;
-
-                // Add active to new
-                heroBadges[activeIndex].classList.add('active');
-            }
-
-            // Start badge rotation
-            if (heroBadges.length > 0) {
-                heroBadges[0].classList.add('active');
-                setInterval(rotateBadgeHighlight, 2000);
-            }
-
-            // Subscribe logic removed as app is live
-            /*
-            async function handleSubscribe(formId, emailId, messageId) {
-                // ... legacy code ...
-            }
-            handleSubscribe("subscribeForm", "email", "message");
-            handleSubscribe("subscribeForm2", "email2", "message2");
-            */
-
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('headerThemeToggle'); // Changed to header toggle
-            const themeIcon = document.getElementById('headerThemeIcon');     // Changed to header icon
+            // Theme Toggle
             const html = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            const mobileThemeText = document.getElementById('mobileThemeText');
+            const screenshotImg = document.getElementById('screenshotImg');
 
-            // Check for saved theme preference or default to light mode
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            html.setAttribute('data-theme', currentTheme);
-            updateThemeIcon(currentTheme);
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            html.setAttribute('data-theme', savedTheme);
+            updateTheme(savedTheme);
 
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = html.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                
-                html.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                updateThemeIcon(newTheme);
-            });
-
-            function updateThemeIcon(theme) {
-                const icon = theme === 'light' ? '🌙' : '☀️';
-                if (themeIcon) themeIcon.textContent = icon;
-                const mobileIcon = document.getElementById('mobileThemeIconBtn');
-                if (mobileIcon) mobileIcon.textContent = icon;
+            function updateTheme(theme) {
+                themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+                mobileThemeText.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
+                screenshotImg.src = theme === 'light' ? 'screenshot_hell.png' : 'screenshot_dark.png';
             }
 
-            // Screenshot toggle functionality
-            const lightModeBtn = document.getElementById('lightModeBtn');
-            const darkModeBtn = document.getElementById('darkModeBtn');
-            const screenshotImage = document.getElementById('screenshotImage');
-
-            function setScreenshotMode(mode) {
-                screenshotImage.style.opacity = '0';
-                setTimeout(() => {
-                    const timestamp = new Date().getTime();
-                    if (mode === 'dark') {
-                        screenshotImage.src = `screenshot_dark.png?v=${timestamp}`;
-                        darkModeBtn.classList.add('active');
-                        lightModeBtn.classList.remove('active');
-                    } else {
-                        screenshotImage.src = `screenshot_hell.png?v=${timestamp}`;
-                        lightModeBtn.classList.add('active');
-                        darkModeBtn.classList.remove('active');
-                    }
-                    screenshotImage.style.opacity = '1';
-                }, 150);
+            function toggleTheme() {
+                const current = html.getAttribute('data-theme');
+                const next = current === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+                updateTheme(next);
             }
 
-            lightModeBtn.addEventListener('click', () => setScreenshotMode('light'));
-            darkModeBtn.addEventListener('click', () => setScreenshotMode('dark'));
+            themeToggle.addEventListener('click', toggleTheme);
+            mobileThemeToggle.addEventListener('click', toggleTheme);
 
-            // Optional: Sync screenshot with main theme
-            /* 
-            themeToggle.addEventListener('click', () => {
-                // ... existing theme logic ...
-                const newTheme = ...;
-                setScreenshotMode(newTheme); 
-            });
-            */
-
-            // Mobile Menu Logic
-            const mobileMenuBtn = document.querySelector('.mobile-menu-toggle');
-            const mobileMenu = document.querySelector('.mobile-menu');
+            // Mobile Menu
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const mobileMenuClose = document.querySelector('.mobile-menu-close');
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
@@ -1783,29 +875,29 @@
                 document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
             }
 
-            if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMenu);
-            if (mobileMenuClose) mobileMenuClose.addEventListener('click', toggleMenu);
-            
-            mobileNavLinks.forEach(link => {
-                link.addEventListener('click', toggleMenu);
-            });
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+            mobileMenuClose.addEventListener('click', toggleMenu);
+            mobileNavLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-            // Mobile Theme Toggle
-            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
-            if (mobileThemeToggle) {
-                mobileThemeToggle.addEventListener('click', () => {
-                    const currentTheme = html.getAttribute('data-theme');
-                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                    
-                    html.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
-                    updateThemeIcon(newTheme);
-                    // Sync with screenshot if needed
-                    if (typeof setScreenshotMode === 'function') {
-                        setScreenshotMode(newTheme);
+            // Scroll Animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
                     }
                 });
-            }
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-in').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(el);
+            });
+
+            // Smooth scroll
+            document.documentElement.style.scrollBehavior = 'smooth';
         </script>
     </body>
 </html>
