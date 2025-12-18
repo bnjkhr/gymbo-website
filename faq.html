@@ -1,0 +1,1130 @@
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FAQ - GymBo</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+        <style>
+            :root {
+                --bg: #fafafa;
+                --bg-card: #ffffff;
+                --bg-card-hover: #f5f5f5;
+                --text: #0a0a0a;
+                --text-secondary: #525252;
+                --border: rgba(0, 0, 0, 0.08);
+                --border-hover: rgba(0, 0, 0, 0.15);
+                --accent: #0a0a0a;
+                --accent-soft: rgba(0, 0, 0, 0.05);
+            }
+
+            [data-theme="dark"] {
+                --bg: #0a0a0a;
+                --bg-card: #141414;
+                --bg-card-hover: #1a1a1a;
+                --text: #fafafa;
+                --text-secondary: #a3a3a3;
+                --border: rgba(255, 255, 255, 0.08);
+                --border-hover: rgba(255, 255, 255, 0.15);
+                --accent: #fafafa;
+                --accent-soft: rgba(255, 255, 255, 0.05);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.5;
+                letter-spacing: -0.02em;
+                overflow-x: hidden;
+            }
+
+            /* Header */
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                padding: 16px 24px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(250, 250, 250, 0.8);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--border);
+            }
+
+            [data-theme="dark"] .header {
+                background: rgba(10, 10, 10, 0.8);
+            }
+
+            .header-logo {
+                font-weight: 800;
+                font-size: 1.25rem;
+                color: var(--text);
+                text-decoration: none;
+                letter-spacing: -0.03em;
+            }
+
+            .header-nav {
+                display: flex;
+                align-items: center;
+                gap: 32px;
+            }
+
+            .nav-link {
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 500;
+                transition: color 0.2s;
+            }
+
+            .nav-link:hover,
+            .nav-link.active {
+                color: var(--text);
+            }
+
+            .header-actions {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .btn-download {
+                background: var(--text);
+                color: var(--bg);
+                padding: 10px 20px;
+                border-radius: 100px;
+                font-weight: 600;
+                font-size: 0.875rem;
+                text-decoration: none;
+                transition: all 0.2s;
+            }
+
+            .btn-download:hover {
+                transform: scale(1.02);
+                opacity: 0.9;
+            }
+
+            .btn-theme {
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 1.1rem;
+                padding: 8px;
+                border-radius: 8px;
+                transition: background 0.2s;
+            }
+
+            .btn-theme:hover {
+                background: var(--accent-soft);
+            }
+
+            /* Language Switcher */
+            .lang-switcher {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                padding: 4px;
+                background: var(--accent-soft);
+                border-radius: 8px;
+                border: 1px solid var(--border);
+            }
+
+            .lang-btn {
+                padding: 6px 10px;
+                border: none;
+                background: transparent;
+                color: var(--text-secondary);
+                font-size: 0.8rem;
+                font-weight: 600;
+                cursor: pointer;
+                border-radius: 6px;
+                transition: all 0.2s;
+                text-decoration: none;
+            }
+
+            .lang-btn:hover {
+                color: var(--text);
+            }
+
+            .lang-btn.active {
+                background: var(--bg-card);
+                color: var(--text);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .mobile-menu-btn {
+                display: none;
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 1.5rem;
+                color: var(--text);
+            }
+
+            /* Main Container */
+            .main {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 120px 24px 60px;
+            }
+
+            /* Page Header */
+            .page-header {
+                text-align: center;
+                margin-bottom: 60px;
+            }
+
+            .page-header h1 {
+                font-size: clamp(2.5rem, 6vw, 4rem);
+                font-weight: 800;
+                letter-spacing: -0.04em;
+                line-height: 1.1;
+                margin-bottom: 16px;
+            }
+
+            .page-header p {
+                font-size: 1.1rem;
+                color: var(--text-secondary);
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            /* FAQ Section */
+            .faq-section {
+                margin-bottom: 48px;
+            }
+
+            .faq-section-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                margin-bottom: 20px;
+                padding-bottom: 12px;
+                border-bottom: 2px solid var(--border);
+            }
+
+            /* Accordion */
+            .accordion {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .accordion-item {
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .accordion-item:hover {
+                border-color: var(--border-hover);
+            }
+
+            .accordion-header {
+                width: 100%;
+                padding: 20px 24px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 16px;
+                text-align: left;
+                font-family: inherit;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--text);
+                transition: background 0.2s;
+            }
+
+            .accordion-header:hover {
+                background: var(--accent-soft);
+            }
+
+            .accordion-icon {
+                font-size: 1.25rem;
+                transition: transform 0.3s ease;
+                flex-shrink: 0;
+            }
+
+            .accordion-item.active .accordion-icon {
+                transform: rotate(180deg);
+            }
+
+            .accordion-content {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .accordion-body {
+                padding: 12px 24px 20px;
+                color: var(--text-secondary);
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            .accordion-body p {
+                margin-bottom: 12px;
+            }
+
+            .accordion-body p:last-child {
+                margin-bottom: 0;
+            }
+
+            .accordion-body ul {
+                margin: 12px 0;
+                padding-left: 20px;
+            }
+
+            .accordion-body li {
+                margin-bottom: 6px;
+            }
+
+            .accordion-body table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 12px 0;
+                font-size: 0.9rem;
+            }
+
+            .accordion-body th,
+            .accordion-body td {
+                padding: 10px 12px;
+                text-align: left;
+                border: 1px solid var(--border);
+            }
+
+            .accordion-body th {
+                background: var(--accent-soft);
+                font-weight: 600;
+                color: var(--text);
+            }
+
+            /* CTA Section */
+            .cta-section {
+                text-align: center;
+                padding: 60px 40px;
+                background: var(--bg-card);
+                border-radius: 32px;
+                border: 1px solid var(--border);
+                margin-top: 60px;
+            }
+
+            .cta-section h2 {
+                font-size: clamp(1.5rem, 4vw, 2rem);
+                font-weight: 800;
+                letter-spacing: -0.03em;
+                margin-bottom: 12px;
+            }
+
+            .cta-section p {
+                color: var(--text-secondary);
+                font-size: 1rem;
+                max-width: 400px;
+                margin: 0 auto 24px;
+            }
+
+            .btn-primary {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                background: var(--text);
+                color: var(--bg);
+                padding: 14px 24px;
+                border-radius: 14px;
+                font-weight: 700;
+                font-size: 0.95rem;
+                text-decoration: none;
+                transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                border: none;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            }
+
+            .btn-primary i {
+                font-size: 1.2rem;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 40px 24px;
+                text-align: center;
+                border-top: 1px solid var(--border);
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 32px;
+                margin-bottom: 16px;
+            }
+
+            .footer-link {
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: color 0.2s;
+            }
+
+            .footer-link:hover {
+                color: var(--text);
+            }
+
+            .footer-copy {
+                color: var(--text-secondary);
+                font-size: 0.85rem;
+                opacity: 0.7;
+            }
+
+            /* Mobile Menu */
+            .mobile-menu {
+                position: fixed;
+                inset: 0;
+                background: var(--bg);
+                z-index: 200;
+                padding: 24px;
+                display: flex;
+                flex-direction: column;
+                transform: translateX(100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .mobile-menu.active {
+                transform: translateX(0);
+            }
+
+            .mobile-menu-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 48px;
+            }
+
+            .mobile-menu-close {
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--text);
+            }
+
+            .mobile-nav {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .mobile-nav-link {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--text);
+                text-decoration: none;
+            }
+
+            .mobile-menu-footer {
+                margin-top: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            /* Animations */
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .animate-in {
+                animation: fadeUp 0.6s ease-out forwards;
+            }
+
+            .delay-1 { animation-delay: 0.1s; }
+            .delay-2 { animation-delay: 0.2s; }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .header-nav {
+                    display: none;
+                }
+
+                .btn-download {
+                    display: none;
+                }
+
+                .mobile-menu-btn {
+                    display: block;
+                }
+
+                .main {
+                    padding: 100px 16px 40px;
+                }
+
+                .page-header {
+                    margin-bottom: 40px;
+                }
+
+                .accordion-header {
+                    padding: 16px 20px;
+                    font-size: 0.95rem;
+                }
+
+                .accordion-body {
+                    padding: 0 20px 16px;
+                }
+
+                .cta-section {
+                    padding: 40px 24px;
+                    border-radius: 24px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="header">
+            <a href="index.html" class="header-logo">GymBo</a>
+            <nav class="header-nav">
+                <a href="index.html#features" class="nav-link">Funktionen</a>
+                <a href="faq.html" class="nav-link active">FAQ</a>
+                <a href="roadmap.html" class="nav-link">Roadmap</a>
+                <a href="https://benkohler.de" class="nav-link" target="_blank" rel="noopener">Mehr Apps</a>
+            </nav>
+            <div class="header-actions">
+                <div class="lang-switcher">
+                    <a href="faq.html" class="lang-btn active">DE</a>
+                    <a href="en/faq.html" class="lang-btn">EN</a>
+                </div>
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-download" target="_blank" rel="noopener">App Store</a>
+                <button class="btn-theme" id="themeToggle" aria-label="Theme wechseln">
+                    <span id="themeIcon">🌙</span>
+                </button>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Menü öffnen">
+                <i class="ph ph-list"></i>
+            </button>
+        </header>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-header">
+                <span class="header-logo">GymBo</span>
+                <button class="mobile-menu-close" aria-label="Menü schließen">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <a href="index.html#features" class="mobile-nav-link">Funktionen</a>
+                <a href="faq.html" class="mobile-nav-link">FAQ</a>
+                <a href="roadmap.html" class="mobile-nav-link">Roadmap</a>
+                <a href="https://benkohler.de" class="mobile-nav-link" target="_blank">Mehr Apps</a>
+            </nav>
+            <div class="mobile-menu-footer">
+                <div class="lang-switcher" style="justify-content: center; margin-bottom: 8px;">
+                    <a href="faq.html" class="lang-btn active">DE</a>
+                    <a href="en/faq.html" class="lang-btn">EN</a>
+                </div>
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary" target="_blank" rel="noopener">
+                    <i class="ph ph-app-store-logo"></i>
+                    App Store
+                </a>
+                <button class="btn-secondary" id="mobileThemeToggle" style="display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--text); padding: 16px 28px; border-radius: 14px; font-weight: 600; font-size: 1rem; border: 1.5px solid var(--border);">
+                    <span id="mobileThemeText">Dark Mode</span>
+                </button>
+            </div>
+        </div>
+
+        <main class="main">
+            <!-- Page Header -->
+            <section class="page-header animate-in">
+                <h1>FAQ</h1>
+                <p>Häufig gestellte Fragen zu GymBo</p>
+            </section>
+
+            <!-- Allgemeine Fragen -->
+            <section class="faq-section animate-in delay-1">
+                <h2 class="faq-section-title">Allgemeine Fragen</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Was ist GymBo?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>GymBo ist eine Fitness-App für iOS, die dir hilft, deine Workouts professionell zu tracken und zu optimieren. Mit intelligenten Progressionsvorschlägen, verschiedenen Trainingsmethoden (Standard, Superset, Circuit) und über 190 vorinstallierten Übungen ist GymBo der perfekte Begleiter für dein Training.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Für wen ist GymBo geeignet?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>GymBo richtet sich an alle Fitness-Level – von Anfängern bis zu Fortgeschrittenen. Die App passt sich deinem Erfahrungsstand an und bietet personalisierte Empfehlungen basierend auf deinen Zielen (Fitness, Abnehmen oder Muskelaufbau).</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Auf welchen Geräten läuft GymBo?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>GymBo ist für iPhone mit iOS 17 oder neuer verfügbar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Funktionen & Features -->
+            <section class="faq-section animate-in delay-2">
+                <h2 class="faq-section-title">Funktionen & Features</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Welche Trainingsmethoden unterstützt GymBo?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>GymBo unterstützt drei Trainingsmethoden:</p>
+                                <ul>
+                                    <li><strong>Standard-Training:</strong> Klassisches sequentielles Training mit einzelnen Übungen</li>
+                                    <li><strong>Superset-Training:</strong> Zwei Übungen werden abwechselnd ohne Pause ausgeführt (A1→A2)</li>
+                                    <li><strong>Circuit-Training:</strong> Mehrere Stationen werden nacheinander in Runden absolviert</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Was ist der Workout Wizard?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Der Workout Wizard ist ein intelligenter Assistent, der dir basierend auf deinen Präferenzen passende Übungen empfiehlt und ein komplettes Workout zusammenstellt. Du wählst:</p>
+                                <ul>
+                                    <li>Ziel-Muskelgruppen</li>
+                                    <li>Verfügbares Equipment</li>
+                                    <li>Gewünschte Trainingsdauer</li>
+                                    <li>Schwierigkeitsgrad</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Wie viele Übungen sind in GymBo enthalten?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>GymBo enthält über 190 vorinstallierte Übungen für alle Muskelgruppen. Zusätzlich kannst du eigene Übungen erstellen und speichern.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Was sind Progressionsvorschläge?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>GymBo analysiert deine Trainingshistorie und schlägt dir intelligent vor, wann du das Gewicht oder die Wiederholungen steigern solltest. Die Auto-Progression nutzt drei Strategien in Prioritätsreihenfolge:</p>
+
+                                <p><strong>1. Deload Detection (Sicherheit zuerst)</strong></p>
+                                <p>Bei 3 aufeinanderfolgenden nicht geschafften Workouts oder 2 gescheiterten Workouts mit sinkender Performance empfiehlt GymBo -10% Gewicht für Regeneration.</p>
+
+                                <p><strong>2. Lineare Gewichtsprogression (Standard)</strong></p>
+                                <p>Wenn die letzten 2 Workouts mit gleichem Gewicht vollständig geschafft wurden und keine Fehlversuche in den letzten 3 Workouts vorliegen:</p>
+                                <table>
+                                    <tr>
+                                        <th>Equipment</th>
+                                        <th>Anfänger</th>
+                                        <th>Fortgeschritten</th>
+                                        <th>Profi</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Langhantel</td>
+                                        <td>+5 kg</td>
+                                        <td>+2.5 kg</td>
+                                        <td>+1.25 kg</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kurzhantel</td>
+                                        <td>+2 kg</td>
+                                        <td>+2 kg</td>
+                                        <td>+2 kg</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maschine</td>
+                                        <td>+5 kg</td>
+                                        <td>+5 kg</td>
+                                        <td>+5 kg</td>
+                                    </tr>
+                                </table>
+
+                                <p><strong>3. Rep-Progression (für Muskelaufbau)</strong></p>
+                                <p>Bei Fitnessziel Muskelaufbau: Wenn gleiches Gewicht seit 3+ Workouts erfolgreich genutzt wird und unter 15 Wiederholungen liegt, empfiehlt GymBo +2 Reps.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Unterstützt GymBo unilaterale Übungen?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Ja! GymBo unterstützt einseitige Übungen (z.B. einarmiges Rudern) und trackt linke und rechte Seite separat.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Kann ich Aufwärmsätze hinzufügen?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Ja, GymBo berechnet automatisch sinnvolle Aufwärmsätze basierend auf deinem Arbeitsgewicht und bietet dir verschiedene Aufwärm-Strategien an.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Kann ich Notizen zu Übungen hinzufügen?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Ja! Du kannst während des Trainings Notizen zu jeder Übung hinzufügen, um wichtige Hinweise für zukünftige Workouts festzuhalten.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tracking & Statistiken -->
+            <section class="faq-section animate-in delay-2">
+                <h2 class="faq-section-title">Tracking & Statistiken</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Welche Statistiken zeigt GymBo an?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>GymBo bietet umfangreiche Statistiken:</p>
+                                <ul>
+                                    <li>Persönliche Rekorde (höchstes Gewicht, beste Wiederholungen)</li>
+                                    <li>Gewichtsprogression über Zeit</li>
+                                    <li>Trainingsvolumen-Charts</li>
+                                    <li>Trainingsstreak und aktivste Tage</li>
+                                    <li>Bevorzugte Trainingszeiten</li>
+                                    <li>Top-Übungen nach Häufigkeit</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Kann ich meine Körpermaße tracken?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Ja, GymBo erfasst umfangreiche Körperdaten:</p>
+                                <ul>
+                                    <li>Gewicht, Größe und BMI</li>
+                                    <li>Körperfettanteil und Muskelmasse</li>
+                                    <li>Umfangsmessungen (Arme, Brust, Taille, Hüfte, Beine)</li>
+                                    <li>Erholungsmetriken (HRV, Ruhepuls, Schlaf)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Wird mein Training mit Apple Health synchronisiert?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Ja! GymBo integriert sich vollständig mit Apple Health/Fitness:</p>
+                                <ul>
+                                    <li>Körperdaten werden automatisch synchronisiert</li>
+                                    <li>Workouts können zu Apple Health exportiert werden</li>
+                                    <li>Schritte, Kalorien und Gesundheitsmetriken werden importiert</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workouts & Training -->
+            <section class="faq-section animate-in delay-2">
+                <h2 class="faq-section-title">Workouts & Training</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Wie starte ich ein Workout?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Du kannst Workouts auf mehrere Arten starten:</p>
+                                <ul>
+                                    <li>Über die Home-Ansicht mit deinen Favoriten</li>
+                                    <li>Über Quick Actions (langes Drücken auf das App-Icon)</li>
+                                    <li>Durch Erstellen eines neuen Workouts mit dem Workout Wizard</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Kann ich Workouts während des Trainings anpassen?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Ja! Während eines aktiven Workouts kannst du:</p>
+                                <ul>
+                                    <li>Sätze hinzufügen oder löschen</li>
+                                    <li>Gewicht und Wiederholungen ändern</li>
+                                    <li>Übungen per Drag & Drop neu anordnen</li>
+                                    <li>Notizen zu Übungen hinzufügen</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Was passiert, wenn die App während des Trainings geschlossen wird?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>GymBo speichert deinen Trainingsfortschritt automatisch. Beim erneuten Öffnen wird deine Session genau dort fortgesetzt, wo du aufgehört hast.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Kann ich die Pausenzeit anpassen?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Ja! Die Standard-Pausenzeit beträgt 90 Sekunden und kann angepasst werden:</p>
+                                <table>
+                                    <tr>
+                                        <th>Erfahrungsstufe</th>
+                                        <th>Pausenzeit</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Anfänger</td>
+                                        <td>60 Sekunden</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fortgeschrittene</td>
+                                        <td>90 Sekunden</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Profis</td>
+                                        <td>120 Sekunden</td>
+                                    </tr>
+                                </table>
+                                <p>Du kannst die Zeit auch während des Trainings um ±15 Sekunden anpassen oder den Timer überspringen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Daten & Backup -->
+            <section class="faq-section animate-in delay-2">
+                <h2 class="faq-section-title">Daten & Backup</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Kann ich meine Daten sichern?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Ja! GymBo bietet umfangreiche Backup-Funktionen:</p>
+                                <ul>
+                                    <li>Manuelle Backups erstellen und exportieren</li>
+                                    <li>Backups über AirDrop oder die Dateien-App teilen</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Kann ich Daten aus anderen Apps importieren?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Ja, GymBo unterstützt den Import von:</p>
+                                <ul>
+                                    <li>Hevy (CSV-Format)</li>
+                                    <li>Strong (CSV-Format)</li>
+                                </ul>
+                                <p>Deine Trainingshistorie und Übungen werden automatisch übernommen.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Gehen meine Daten verloren, wenn ich das Handy wechsle?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Nein! Mit der Backup-Funktion kannst du deine kompletten Daten sichern und auf einem neuen Gerät wiederherstellen. Du kannst dabei wählen, ob die Daten zusammengeführt oder ersetzt werden sollen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Personalisierung -->
+            <section class="faq-section animate-in delay-2">
+                <h2 class="faq-section-title">Personalisierung</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Welche Einstellungen kann ich anpassen?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>GymBo bietet vielfältige Einstellungsmöglichkeiten:</p>
+                                <table>
+                                    <tr>
+                                        <th>Einstellung</th>
+                                        <th>Optionen</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Design</td>
+                                        <td>Hell, Dunkel oder System-Theme</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Benachrichtigungen</td>
+                                        <td>Ein/Aus</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Haptisches Feedback</td>
+                                        <td>Ein/Aus</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Display aktiv halten</td>
+                                        <td>Ein/Aus</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Progressionsvorschläge</td>
+                                        <td>Automatisch oder Manuell</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Kann ich Workouts in Ordnern organisieren?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Ja! Du kannst eigene Ordner erstellen und deine Workouts übersichtlich strukturieren. Zusätzlich kannst du Favoriten markieren für schnellen Zugriff.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>In welchen Sprachen ist GymBo verfügbar?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>GymBo ist vollständig auf Deutsch und Englisch verfügbar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social & Teilen -->
+            <section class="faq-section animate-in delay-2">
+                <h2 class="faq-section-title">Social & Teilen</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Kann ich meine Workouts teilen?</span>
+                            <i class="ph ph-caret-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Ja! Nach Abschluss eines Workouts kannst du ein individuelles Bild mit deinen Trainingsstatistiken generieren und direkt auf Instagram, Facebook oder anderen Plattformen teilen.</p>
+                                <p>Das generierte Bild zeigt:</p>
+                                <ul>
+                                    <li>Workout-Name und Dauer</li>
+                                    <li>Trainingsvolumen</li>
+                                    <li>Absolvierte Übungen und Sätze</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="cta-section animate-in">
+                <h2>Noch Fragen?</h2>
+                <p>Probier GymBo einfach aus – einmalig 6,99 €, kein Abo.</p>
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary" target="_blank" rel="noopener">
+                    <i class="ph ph-app-store-logo"></i>
+                    Jetzt im App Store
+                </a>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="https://benkohler.de/impressum.html" class="footer-link" target="_blank" rel="noopener">Impressum</a>
+                <a href="https://benkohler.de/datenschutz.html" class="footer-link" target="_blank" rel="noopener">Datenschutz</a>
+            </div>
+            <p class="footer-copy">© 2025 Ben Kohler</p>
+        </footer>
+
+        <script>
+            // Theme Toggle
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            const mobileThemeText = document.getElementById('mobileThemeText');
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            html.setAttribute('data-theme', savedTheme);
+            updateTheme(savedTheme);
+
+            function updateTheme(theme) {
+                themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+                mobileThemeText.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
+            }
+
+            function toggleTheme() {
+                const current = html.getAttribute('data-theme');
+                const next = current === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+                updateTheme(next);
+            }
+
+            themeToggle.addEventListener('click', toggleTheme);
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+
+            // Mobile Menu
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            function toggleMenu() {
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+            mobileMenuClose.addEventListener('click', toggleMenu);
+            mobileNavLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+            // Accordion
+            document.querySelectorAll('.accordion-header').forEach(button => {
+                button.addEventListener('click', () => {
+                    const item = button.parentElement;
+                    const content = button.nextElementSibling;
+                    const isActive = item.classList.contains('active');
+
+                    // Close all other items in the same accordion
+                    const accordion = item.parentElement;
+                    accordion.querySelectorAll('.accordion-item').forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.accordion-content').style.maxHeight = null;
+                        }
+                    });
+
+                    // Toggle current item
+                    if (isActive) {
+                        item.classList.remove('active');
+                        content.style.maxHeight = null;
+                    } else {
+                        item.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
+                });
+            });
+
+            // Scroll Animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-in').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(el);
+            });
+
+            // Smooth scroll
+            document.documentElement.style.scrollBehavior = 'smooth';
+        </script>
+    </body>
+</html>
