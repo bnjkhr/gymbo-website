@@ -69,12 +69,25 @@
                 background: rgba(10, 10, 10, 0.8);
             }
 
+            .header-left {
+                display: flex;
+                align-items: center;
+                gap: 32px;
+            }
+
             .header-logo {
-                font-weight: 800;
-                font-size: 1.25rem;
+                font-size: 1.5rem;
                 color: var(--text);
                 text-decoration: none;
                 letter-spacing: -0.03em;
+            }
+
+            .header-logo .logo-gym {
+                font-weight: 800;
+            }
+
+            .header-logo .logo-bo {
+                font-weight: 400;
             }
 
             .header-nav {
@@ -86,7 +99,7 @@
             .nav-link {
                 color: var(--text-secondary);
                 text-decoration: none;
-                font-size: 0.9rem;
+                font-size: 1.25rem;
                 font-weight: 500;
                 transition: color 0.2s;
             }
@@ -579,13 +592,15 @@
     <body>
         <!-- Header -->
         <header class="header">
-            <a href="index.html" class="header-logo">GymBo</a>
-            <nav class="header-nav">
-                <a href="index.html#features" class="nav-link">Features</a>
-                <a href="faq.html" class="nav-link">FAQ</a>
-                <a href="roadmap.html" class="nav-link active">Roadmap</a>
-                <a href="https://benkohler.de" class="nav-link" target="_blank" rel="noopener">More Apps</a>
-            </nav>
+            <div class="header-left">
+                <a href="index.html" class="header-logo"><span class="logo-gym">Gym</span><span class="logo-bo">Bo</span></a>
+                <nav class="header-nav">
+                    <a href="index.html#features" class="nav-link">Features</a>
+                    <a href="faq.html" class="nav-link">FAQ</a>
+                    <a href="roadmap.html" class="nav-link active">Roadmap</a>
+                    <a href="https://benkohler.de" class="nav-link" target="_blank" rel="noopener">More Apps</a>
+                </nav>
+            </div>
             <div class="header-actions">
                 <div class="lang-switcher">
                     <a href="../roadmap.html" class="lang-btn">DE</a>
@@ -604,7 +619,7 @@
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
             <div class="mobile-menu-header">
-                <span class="header-logo">GymBo</span>
+                <span class="header-logo"><span class="logo-gym">Gym</span><span class="logo-bo">Bo</span></span>
                 <button class="mobile-menu-close" aria-label="Close menu">
                     <i class="ph ph-x"></i>
                 </button>
