@@ -318,6 +318,98 @@
                 color: var(--text);
             }
 
+            /* Search */
+            .search-container {
+                max-width: 500px;
+                margin: 24px auto 0;
+                position: relative;
+            }
+
+            .search-input {
+                width: 100%;
+                padding: 14px 20px 14px 48px;
+                font-size: 1rem;
+                font-family: inherit;
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                color: var(--text);
+                outline: none;
+                transition: all 0.2s;
+            }
+
+            .search-input:focus {
+                border-color: var(--border-hover);
+                box-shadow: 0 0 0 3px var(--accent-soft);
+            }
+
+            .search-input::placeholder {
+                color: var(--text-secondary);
+            }
+
+            .search-icon {
+                position: absolute;
+                left: 18px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--text-secondary);
+                font-size: 1.1rem;
+                pointer-events: none;
+            }
+
+            .search-clear {
+                position: absolute;
+                right: 14px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: var(--accent-soft);
+                border: none;
+                color: var(--text-secondary);
+                font-size: 1rem;
+                cursor: pointer;
+                padding: 4px 8px;
+                border-radius: 6px;
+                display: none;
+                transition: all 0.2s;
+            }
+
+            .search-clear:hover {
+                background: var(--border);
+                color: var(--text);
+            }
+
+            .search-clear.visible {
+                display: block;
+            }
+
+            .no-results {
+                text-align: center;
+                padding: 40px 20px;
+                color: var(--text-secondary);
+                display: none;
+            }
+
+            .no-results.visible {
+                display: block;
+            }
+
+            .faq-section.hidden {
+                display: none;
+            }
+
+            .accordion-item.hidden {
+                display: none;
+            }
+
+            .highlight {
+                background: rgba(255, 200, 0, 0.3);
+                border-radius: 2px;
+            }
+
+            [data-theme="dark"] .highlight {
+                background: rgba(255, 200, 0, 0.25);
+            }
+
             /* CTA Section */
             .cta-section {
                 text-align: center;
@@ -565,7 +657,19 @@
             <section class="page-header animate-in">
                 <h1>FAQ</h1>
                 <p>Frequently asked questions about GymBo</p>
+                <div class="search-container">
+                    <i class="ph ph-magnifying-glass search-icon"></i>
+                    <input type="text" class="search-input" id="faqSearch" placeholder="Search FAQ..." autocomplete="off">
+                    <button class="search-clear" id="searchClear" aria-label="Clear search">
+                        <i class="ph ph-x"></i>
+                    </button>
+                </div>
             </section>
+
+            <div class="no-results" id="noResults">
+                <i class="ph ph-magnifying-glass" style="font-size: 2rem; margin-bottom: 12px; display: block;"></i>
+                <p>No results found</p>
+            </div>
 
             <!-- General Questions -->
             <section class="faq-section animate-in delay-1">
@@ -1104,6 +1208,88 @@
                         content.style.maxHeight = content.scrollHeight + 'px';
                     }
                 });
+            });
+
+            // FAQ Search
+            const searchInput = document.getElementById('faqSearch');
+            const searchClear = document.getElementById('searchClear');
+            const noResults = document.getElementById('noResults');
+            const faqSections = document.querySelectorAll('.faq-section');
+            const accordionItems = document.querySelectorAll('.accordion-item');
+
+            // Store original content
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header span');
+                const body = item.querySelector('.accordion-body');
+                item.dataset.originalHeader = header.innerHTML;
+                item.dataset.originalBody = body.innerHTML;
+            });
+
+            function highlightText(text, query) {
+                if (!query) return text;
+                const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                return text.replace(regex, '<span class="highlight">$1</span>');
+            }
+
+            function searchFAQ(query) {
+                const searchTerm = query.toLowerCase().trim();
+                let hasResults = false;
+
+                // Reset highlights first
+                accordionItems.forEach(item => {
+                    const header = item.querySelector('.accordion-header span');
+                    const body = item.querySelector('.accordion-body');
+                    header.innerHTML = item.dataset.originalHeader;
+                    body.innerHTML = item.dataset.originalBody;
+                });
+
+                if (!searchTerm) {
+                    // Show all
+                    faqSections.forEach(section => section.classList.remove('hidden'));
+                    accordionItems.forEach(item => item.classList.remove('hidden'));
+                    noResults.classList.remove('visible');
+                    searchClear.classList.remove('visible');
+                    return;
+                }
+
+                searchClear.classList.add('visible');
+
+                accordionItems.forEach(item => {
+                    const header = item.querySelector('.accordion-header span');
+                    const body = item.querySelector('.accordion-body');
+                    const headerText = item.dataset.originalHeader.toLowerCase();
+                    const bodyText = item.dataset.originalBody.toLowerCase();
+
+                    if (headerText.includes(searchTerm) || bodyText.includes(searchTerm)) {
+                        item.classList.remove('hidden');
+                        hasResults = true;
+                        // Apply highlighting
+                        header.innerHTML = highlightText(item.dataset.originalHeader, query);
+                        body.innerHTML = highlightText(item.dataset.originalBody, query);
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+
+                // Hide empty sections
+                faqSections.forEach(section => {
+                    const visibleItems = section.querySelectorAll('.accordion-item:not(.hidden)');
+                    if (visibleItems.length === 0) {
+                        section.classList.add('hidden');
+                    } else {
+                        section.classList.remove('hidden');
+                    }
+                });
+
+                noResults.classList.toggle('visible', !hasResults);
+            }
+
+            searchInput.addEventListener('input', (e) => searchFAQ(e.target.value));
+
+            searchClear.addEventListener('click', () => {
+                searchInput.value = '';
+                searchFAQ('');
+                searchInput.focus();
             });
 
             // Scroll Animations
