@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>GymBo - Feature Roadmap</title>
+        <title>Manifest - GymBo</title>
+        <meta name="description" content="Deine App. Deine Regeln. Einmal zahlen, für immer trainieren. Kein Abo. Niemals.">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -188,251 +189,237 @@
                 color: var(--text);
             }
 
-            /* Main */
+            /* Main Container */
             .main {
-                max-width: 1200px;
+                max-width: 720px;
                 margin: 0 auto;
-                padding: 100px 24px 60px;
+                padding: 120px 24px 60px;
             }
 
-            /* Hero */
-            .hero {
+            /* Page Header */
+            .page-header {
                 text-align: center;
-                padding: 60px 0 80px;
+                margin-bottom: 60px;
             }
 
-            .hero-badge {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                padding: 8px 16px;
-                background: var(--accent-soft);
-                border-radius: 100px;
-                font-size: 0.8rem;
-                font-weight: 600;
-                color: var(--text);
-                margin-bottom: 24px;
-                border: 1px solid var(--border);
-            }
-
-            .hero h1 {
+            .page-header h1 {
                 font-size: clamp(2.5rem, 6vw, 4rem);
                 font-weight: 800;
                 letter-spacing: -0.04em;
                 line-height: 1.1;
+                margin-bottom: 16px;
+            }
+
+            .page-header p {
+                font-size: 1.25rem;
+                color: var(--text-secondary);
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            /* Content Sections */
+            .content-section {
+                margin-bottom: 48px;
+            }
+
+            .content-section h2 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                margin-bottom: 16px;
+                color: var(--text);
+            }
+
+            .content-section p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                color: var(--text-secondary);
+                margin-bottom: 16px;
+            }
+
+            .content-section p:last-child {
+                margin-bottom: 0;
+            }
+
+            .content-section strong {
+                color: var(--text);
+                font-weight: 600;
+            }
+
+            /* Steps List */
+            .steps-list {
+                list-style: none;
+                counter-reset: steps;
+            }
+
+            .steps-list li {
+                counter-increment: steps;
+                padding: 20px 24px;
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                margin-bottom: 12px;
+                position: relative;
+                padding-left: 72px;
+            }
+
+            .steps-list li::before {
+                content: counter(steps);
+                position: absolute;
+                left: 24px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 32px;
+                height: 32px;
+                background: var(--text);
+                color: var(--bg);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                font-size: 0.9rem;
+            }
+
+            .steps-list li strong {
+                display: block;
+                font-size: 1.1rem;
+                color: var(--text);
+                margin-bottom: 4px;
+            }
+
+            .steps-list li span {
+                color: var(--text-secondary);
+                font-size: 0.95rem;
+            }
+
+            /* Promise Box */
+            .promise-box {
+                background: var(--bg-card);
+                border: 2px solid var(--text);
+                border-radius: 24px;
+                padding: 40px;
+                text-align: center;
+                margin: 48px 0;
+            }
+
+            .promise-box h2 {
+                font-size: 1.75rem;
+                font-weight: 800;
                 margin-bottom: 20px;
             }
 
-            .hero-subtitle {
-                font-size: clamp(1rem, 2vw, 1.2rem);
+            .promise-box p {
+                font-size: 1.1rem;
                 color: var(--text-secondary);
-                max-width: 550px;
-                margin: 0 auto 32px;
+                margin-bottom: 12px;
+            }
+
+            .promise-box .price {
+                font-size: 2rem;
+                font-weight: 800;
+                color: var(--text);
+                margin: 24px 0;
+            }
+
+            /* CTA Links */
+            .cta-links {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-top: 32px;
+            }
+
+            .cta-link {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 16px 20px;
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                text-decoration: none;
+                color: var(--text);
+                font-weight: 600;
+                transition: all 0.2s;
+            }
+
+            .cta-link:hover {
+                border-color: var(--border-hover);
+                background: var(--bg-card-hover);
+            }
+
+            .cta-link i {
+                font-size: 1.25rem;
+            }
+
+            .cta-link span {
+                color: var(--text-secondary);
+                font-weight: 400;
+                margin-left: auto;
+            }
+
+            /* Closing Statement */
+            .closing {
+                text-align: center;
+                margin-top: 60px;
+                padding-top: 40px;
+                border-top: 1px solid var(--border);
+            }
+
+            .closing p {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--text);
                 line-height: 1.6;
             }
 
-            .btn-vote {
+            /* CTA Section */
+            .cta-section {
+                text-align: center;
+                padding: 60px 40px;
+                background: var(--bg-card);
+                border-radius: 32px;
+                border: 1px solid var(--border);
+                margin-top: 60px;
+            }
+
+            .cta-section h2 {
+                font-size: clamp(1.5rem, 4vw, 2rem);
+                font-weight: 800;
+                letter-spacing: -0.03em;
+                margin-bottom: 12px;
+            }
+
+            .cta-section p {
+                color: var(--text-secondary);
+                font-size: 1rem;
+                max-width: 400px;
+                margin: 0 auto 24px;
+            }
+
+            .btn-primary {
                 display: inline-flex;
                 align-items: center;
                 gap: 10px;
                 background: var(--text);
                 color: var(--bg);
                 padding: 14px 24px;
-                border-radius: 12px;
-                font-weight: 600;
+                border-radius: 14px;
+                font-weight: 700;
                 font-size: 0.95rem;
                 text-decoration: none;
                 transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                border: none;
             }
 
-            .btn-vote:hover {
+            .btn-primary:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             }
 
-            .btn-vote i {
+            .btn-primary i {
                 font-size: 1.2rem;
-            }
-
-            /* Bento Grid */
-            .bento {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 16px;
-                margin-bottom: 60px;
-            }
-
-            .bento-card {
-                background: var(--bg-card);
-                border-radius: 24px;
-                padding: 32px;
-                border: 1px solid var(--border);
-                transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-                position: relative;
-                overflow: hidden;
-            }
-
-            .bento-card:hover {
-                transform: translateY(-4px);
-                border-color: var(--border-hover);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            }
-
-            [data-theme="dark"] .bento-card:hover {
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            }
-
-            /* Card Sizes */
-            .bento-wide {
-                grid-column: span 2;
-            }
-
-            .bento-full {
-                grid-column: span 3;
-            }
-
-            /* Status Badge */
-            .status {
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-                padding: 6px 12px;
-                border-radius: 100px;
-                font-size: 0.7rem;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 0.03em;
-                margin-bottom: 20px;
-            }
-
-            .status-dev {
-                background: var(--text);
-                color: var(--bg);
-            }
-
-            .status-planned {
-                background: var(--accent-soft);
-                color: var(--text-secondary);
-                border: 1px solid var(--border);
-            }
-
-            .status i {
-                font-size: 0.8rem;
-            }
-
-            /* Card Content */
-            .card-icon {
-                width: 52px;
-                height: 52px;
-                border-radius: 16px;
-                background: var(--accent-soft);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.5rem;
-                margin-bottom: 20px;
-                color: var(--text);
-                transition: transform 0.3s, background 0.3s;
-            }
-
-            .bento-card:hover .card-icon {
-                transform: scale(1.1) rotate(-5deg);
-                background: var(--border);
-            }
-
-            .card-title {
-                font-size: 1.35rem;
-                font-weight: 700;
-                margin-bottom: 12px;
-                letter-spacing: -0.02em;
-            }
-
-            .card-desc {
-                color: var(--text-secondary);
-                font-size: 0.95rem;
-                line-height: 1.65;
-            }
-
-            .card-desc strong {
-                color: var(--text);
-                font-weight: 600;
-            }
-
-            /* Highlight Card */
-            .bento-highlight {
-                background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
-                color: #fff;
-            }
-
-            [data-theme="dark"] .bento-highlight {
-                background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
-                color: #0a0a0a;
-            }
-
-            .bento-highlight .card-icon {
-                background: rgba(255, 255, 255, 0.1);
-                color: #fff;
-            }
-
-            [data-theme="dark"] .bento-highlight .card-icon {
-                background: rgba(0, 0, 0, 0.08);
-                color: #0a0a0a;
-            }
-
-            .bento-highlight .card-desc {
-                color: rgba(255, 255, 255, 0.7);
-            }
-
-            [data-theme="dark"] .bento-highlight .card-desc {
-                color: rgba(0, 0, 0, 0.6);
-            }
-
-            .bento-highlight .card-desc strong {
-                color: #fff;
-            }
-
-            [data-theme="dark"] .bento-highlight .card-desc strong {
-                color: #0a0a0a;
-            }
-
-            .bento-highlight .status-dev {
-                background: rgba(255, 255, 255, 0.15);
-                color: #fff;
-            }
-
-            [data-theme="dark"] .bento-highlight .status-dev {
-                background: rgba(0, 0, 0, 0.1);
-                color: #0a0a0a;
-            }
-
-            /* Feature Tags */
-            .feature-tags {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 8px;
-                margin-top: 20px;
-            }
-
-            .feature-tag {
-                padding: 6px 12px;
-                background: var(--accent-soft);
-                border-radius: 8px;
-                font-size: 0.8rem;
-                font-weight: 600;
-                color: var(--text);
-                border: 1px solid var(--border);
-            }
-
-            .bento-highlight .feature-tag {
-                background: rgba(255, 255, 255, 0.1);
-                border-color: rgba(255, 255, 255, 0.15);
-                color: #fff;
-            }
-
-            [data-theme="dark"] .bento-highlight .feature-tag {
-                background: rgba(0, 0, 0, 0.08);
-                border-color: rgba(0, 0, 0, 0.1);
-                color: #0a0a0a;
             }
 
             /* Footer */
@@ -537,19 +524,8 @@
             .delay-1 { animation-delay: 0.1s; }
             .delay-2 { animation-delay: 0.2s; }
             .delay-3 { animation-delay: 0.3s; }
-            .delay-4 { animation-delay: 0.4s; }
 
             /* Responsive */
-            @media (max-width: 1024px) {
-                .bento {
-                    grid-template-columns: repeat(2, 1fr);
-                }
-
-                .bento-full {
-                    grid-column: span 2;
-                }
-            }
-
             @media (max-width: 768px) {
                 .header-nav {
                     display: none;
@@ -563,28 +539,25 @@
                     display: block;
                 }
 
-                .hero {
-                    padding: 40px 0 60px;
-                }
-
-                .bento {
-                    grid-template-columns: 1fr;
-                    gap: 12px;
-                }
-
-                .bento-wide,
-                .bento-full {
-                    grid-column: span 1;
-                }
-
-                .bento-card {
-                    padding: 24px;
-                }
-            }
-
-            @media (max-width: 480px) {
                 .main {
-                    padding: 80px 16px 40px;
+                    padding: 100px 16px 40px;
+                }
+
+                .page-header {
+                    margin-bottom: 40px;
+                }
+
+                .promise-box {
+                    padding: 32px 24px;
+                }
+
+                .steps-list li {
+                    padding-left: 64px;
+                }
+
+                .cta-section {
+                    padding: 40px 24px;
+                    border-radius: 24px;
                 }
             }
         </style>
@@ -595,24 +568,24 @@
             <div class="header-left">
                 <a href="index.html" class="header-logo"><span class="logo-gym">Gym</span><span class="logo-bo">Bo</span></a>
                 <nav class="header-nav">
-                    <a href="index.html#features" class="nav-link">Features</a>
-                    <a href="manifest.html" class="nav-link">Manifest</a>
+                    <a href="index.html#features" class="nav-link">Funktionen</a>
+                    <a href="manifest.html" class="nav-link active">Manifest</a>
                     <a href="faq.html" class="nav-link">FAQ</a>
-                    <a href="roadmap.html" class="nav-link active">Roadmap</a>
-                    <a href="https://benkohler.de" class="nav-link" target="_blank" rel="noopener">More Apps</a>
+                    <a href="roadmap.html" class="nav-link">Roadmap</a>
+                    <a href="https://benkohler.de" class="nav-link" target="_blank" rel="noopener">Mehr Apps</a>
                 </nav>
             </div>
             <div class="header-actions">
                 <div class="lang-switcher">
-                    <a href="../roadmap.html" class="lang-btn">DE</a>
-                    <a href="roadmap.html" class="lang-btn active">EN</a>
+                    <a href="manifest.html" class="lang-btn active">DE</a>
+                    <a href="en/manifest.html" class="lang-btn">EN</a>
                 </div>
                 <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-download" target="_blank" rel="noopener">App Store</a>
-                <button class="btn-theme" id="themeToggle" aria-label="Toggle theme">
+                <button class="btn-theme" id="themeToggle" aria-label="Theme wechseln">
                     <span id="themeIcon">🌙</span>
                 </button>
             </div>
-            <button class="mobile-menu-btn" aria-label="Open menu">
+            <button class="mobile-menu-btn" aria-label="Menü öffnen">
                 <i class="ph ph-list"></i>
             </button>
         </header>
@@ -621,125 +594,124 @@
         <div class="mobile-menu" id="mobileMenu">
             <div class="mobile-menu-header">
                 <span class="header-logo"><span class="logo-gym">Gym</span><span class="logo-bo">Bo</span></span>
-                <button class="mobile-menu-close" aria-label="Close menu">
+                <button class="mobile-menu-close" aria-label="Menü schließen">
                     <i class="ph ph-x"></i>
                 </button>
             </div>
             <nav class="mobile-nav">
-                <a href="index.html#features" class="mobile-nav-link">Features</a>
+                <a href="index.html#features" class="mobile-nav-link">Funktionen</a>
                 <a href="manifest.html" class="mobile-nav-link">Manifest</a>
                 <a href="faq.html" class="mobile-nav-link">FAQ</a>
                 <a href="roadmap.html" class="mobile-nav-link">Roadmap</a>
-                <a href="https://benkohler.de" class="mobile-nav-link" target="_blank">More Apps</a>
+                <a href="https://benkohler.de" class="mobile-nav-link" target="_blank">Mehr Apps</a>
             </nav>
             <div class="mobile-menu-footer">
                 <div class="lang-switcher" style="justify-content: center; margin-bottom: 8px;">
-                    <a href="../roadmap.html" class="lang-btn">DE</a>
-                    <a href="roadmap.html" class="lang-btn active">EN</a>
+                    <a href="manifest.html" class="lang-btn active">DE</a>
+                    <a href="en/manifest.html" class="lang-btn">EN</a>
                 </div>
-                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-vote" target="_blank" rel="noopener">
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary" target="_blank" rel="noopener">
                     <i class="ph ph-app-store-logo"></i>
                     App Store
                 </a>
+                <button class="btn-secondary" id="mobileThemeToggle" style="display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--text); padding: 16px 28px; border-radius: 14px; font-weight: 600; font-size: 1rem; border: 1.5px solid var(--border);">
+                    <span id="mobileThemeText">Dark Mode</span>
+                </button>
             </div>
         </div>
 
         <main class="main">
-            <!-- Hero -->
-            <section class="hero animate-in">
-                <div class="hero-badge">
-                    <i class="ph ph-rocket-launch"></i>
-                    Constantly Evolving
-                </div>
-                <h1>What's Coming Next?</h1>
-                <p class="hero-subtitle">
-                    GymBo is actively being developed. Here you can see what I'm currently working on and what's coming up next.
-                </p>
-                <a href="https://voting-tool-seven.vercel.app/" class="btn-vote" target="_blank" rel="noopener">
-                    <i class="ph ph-thumbs-up"></i>
-                    Suggest & Vote on Features
-                </a>
+            <!-- Page Header -->
+            <section class="page-header animate-in">
+                <h1>Deine App.<br>Deine Regeln.</h1>
+                <p>GymBo ist anders. Nicht weil ich das behaupte – sondern weil du es entscheidest.</p>
             </section>
 
-            <!-- Bento Grid -->
-            <section class="bento">
-                <!-- iOS Deep Integration - Highlight -->
-                <div class="bento-card bento-wide bento-highlight animate-in delay-1">
-                    <span class="status status-dev">
-                        <i class="ph ph-code"></i>
-                        In Development
-                    </span>
-                    <div class="card-icon">
-                        <i class="ph ph-device-mobile"></i>
-                    </div>
-                    <h3 class="card-title">iOS Deep Integration</h3>
-                    <p class="card-desc">
-                        Full power for your iPhone. <strong>Live Activities</strong> for the lock screen,
-                        <strong>Dynamic Island</strong> support and interactive <strong>Home Screen Widgets</strong>
-                        for a quick overview.
-                    </p>
-                    <div class="feature-tags">
-                        <span class="feature-tag">Live Activities</span>
-                        <span class="feature-tag">Dynamic Island</span>
-                        <span class="feature-tag">Widgets</span>
-                    </div>
-                </div>
+            <!-- Why other apps suck -->
+            <section class="content-section animate-in delay-1">
+                <h2>Warum die meisten Fitness-Apps nerven</h2>
+                <p>Du kennst das: Eine App startet vielversprechend. Dann kommen die Abo-Popups. Die "Premium-Features". Die künstlichen Limits. Plötzlich zahlst du 60, 80, 100 Euro im Jahr – für eine App, die du beim Training nutzt.</p>
+                <p><strong>GymBo macht Schluss damit.</strong> Einmal zahlen, für immer trainieren. Keine Tricks, keine versteckten Kosten, kein "aber nach 30 Tagen...". Das ist ein Versprechen.</p>
+            </section>
 
-                <!-- Analytics -->
-                <div class="bento-card animate-in delay-2">
-                    <span class="status status-planned">
-                        <i class="ph ph-calendar-blank"></i>
-                        Planned
-                    </span>
-                    <div class="card-icon">
-                        <i class="ph ph-chart-polar"></i>
-                    </div>
-                    <h3 class="card-title">Deep Analytics</h3>
-                    <p class="card-desc">
-                        <strong>Mesocycle analysis</strong> and detailed charts for
-                        <strong>volume per muscle group</strong>. Spot trends before they become plateaus.
-                    </p>
-                </div>
+            <!-- The real difference -->
+            <section class="content-section animate-in delay-2">
+                <h2>Aber das ist nicht alles.</h2>
+                <p>Der eigentliche Unterschied? <strong>Du bestimmst, wohin GymBo geht.</strong></p>
+                <p>Ich bin Ben, ein Entwickler, der diese App aus Frust über genau diese Abo-Hölle gebaut hat. Aber ich weiß auch: Ich kann nicht alles wissen. Du trainierst anders als ich. Du brauchst Features, an die ich nie gedacht hätte.</p>
+                <p>Deshalb baue ich GymBo nicht alleine. <strong>Ich baue GymBo mit dir.</strong></p>
+            </section>
 
-                <!-- Exercise Comparison -->
-                <div class="bento-card animate-in delay-3">
-                    <span class="status status-planned">
-                        <i class="ph ph-calendar-blank"></i>
-                        Planned
-                    </span>
-                    <div class="card-icon">
-                        <i class="ph ph-git-compare"></i>
-                    </div>
-                    <h3 class="card-title">Exercise Comparison</h3>
-                    <p class="card-desc">
-                        Bench Press vs. Dumbbell Press? Compare the progression of multiple exercises
-                        directly in one chart.
-                    </p>
-                </div>
+            <!-- How it works -->
+            <section class="content-section animate-in delay-3">
+                <h2>So funktioniert's</h2>
+                <ol class="steps-list">
+                    <li>
+                        <strong>Du hast eine Idee?</strong>
+                        <span>Geh auf das Voting-Tool und reich deinen Vorschlag ein. Egal ob kleine Verbesserung oder verrücktes Feature – alles ist willkommen.</span>
+                    </li>
+                    <li>
+                        <strong>Die Community stimmt ab</strong>
+                        <span>Andere User sehen deinen Vorschlag und können dafür voten. Je mehr Stimmen, desto höher die Priorität.</span>
+                    </li>
+                    <li>
+                        <strong>Ich baue, was ihr wollt</strong>
+                        <span>Die Features mit den meisten Votes kommen als nächstes in die App. So einfach.</span>
+                    </li>
+                </ol>
+            </section>
 
-                <!-- Workout Builder -->
-                <div class="bento-card animate-in delay-4">
-                    <span class="status status-planned">
-                        <i class="ph ph-calendar-blank"></i>
-                        Planned
-                    </span>
-                    <div class="card-icon">
-                        <i class="ph ph-sliders-horizontal"></i>
-                    </div>
-                    <h3 class="card-title">Smart Workout Builder</h3>
-                    <p class="card-desc">
-                        Pre-define target weight for each set. Perfect for <strong>wave loading</strong>
-                        or precise <strong>RPE planning</strong>.
-                    </p>
+            <!-- Transparency -->
+            <section class="content-section animate-in">
+                <h2>Was bisher passiert ist</h2>
+                <p>Die Roadmap von GymBo ist keine geheime Sache hinter verschlossenen Türen. Schau dir an, was geplant ist, was gerade entwickelt wird und was die Community bereits vorgeschlagen hat.</p>
+                <p><strong>Transparenz ist kein Marketing-Buzzword hier. Es ist, wie ich arbeite.</strong></p>
+            </section>
+
+            <!-- Promise Box -->
+            <div class="promise-box animate-in">
+                <h2>Kein Abo. Niemals.</h2>
+                <p>Lass mich das ganz klar sagen: <strong>GymBo wird niemals ein Abo haben.</strong></p>
+                <p>Nicht "erstmal nicht". Nicht "außer wenn...". Niemals.</p>
+                <div class="price">Einmalig 6,99 €</div>
+                <p>Dafür bekommst du alle Features. Alle Updates. Alle Community-Features, die ich mit euch zusammen baue. Für immer.</p>
+                <p>Warum? Weil ich glaube, dass eine gute App fair sein sollte. Und weil ich selbst keine Lust mehr auf Abo-Fallen habe.</p>
+            </div>
+
+            <!-- CTAs -->
+            <section class="content-section animate-in">
+                <h2>Mach mit</h2>
+                <p>GymBo ist erst der Anfang. Je mehr Leute mitmachen, desto besser wird die App für alle.</p>
+                <div class="cta-links">
+                    <a href="https://votingtool.benkohler.de" class="cta-link" target="_blank" rel="noopener">
+                        <i class="ph ph-megaphone"></i>
+                        Zum Voting-Tool
+                        <span>Bring deine Ideen ein</span>
+                    </a>
+                    <a href="roadmap.html" class="cta-link">
+                        <i class="ph ph-map-trifold"></i>
+                        Zur Roadmap
+                        <span>Sieh, was kommt</span>
+                    </a>
+                    <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="cta-link" target="_blank" rel="noopener">
+                        <i class="ph ph-app-store-logo"></i>
+                        Im App Store laden
+                        <span>Werde Teil der Community</span>
+                    </a>
                 </div>
             </section>
+
+            <!-- Closing -->
+            <div class="closing animate-in">
+                <p>Training ohne Bullshit.<br>Features ohne Grenzen.<br>Eine App, die dir gehört.</p>
+            </div>
         </main>
 
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-links">
-                <a href="https://benkohler.de/impressum.html" class="footer-link" target="_blank" rel="noopener">Imprint</a>
-                <a href="https://benkohler.de/datenschutz.html" class="footer-link" target="_blank" rel="noopener">Privacy</a>
+                <a href="https://benkohler.de/impressum.html" class="footer-link" target="_blank" rel="noopener">Impressum</a>
+                <a href="https://benkohler.de/datenschutz.html" class="footer-link" target="_blank" rel="noopener">Datenschutz</a>
             </div>
             <p class="footer-copy">© 2025 Ben Kohler</p>
         </footer>
@@ -749,6 +721,8 @@
             const html = document.documentElement;
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            const mobileThemeText = document.getElementById('mobileThemeText');
 
             const savedTheme = localStorage.getItem('theme') || 'light';
             html.setAttribute('data-theme', savedTheme);
@@ -756,6 +730,7 @@
 
             function updateTheme(theme) {
                 themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+                mobileThemeText.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
             }
 
             function toggleTheme() {
@@ -767,6 +742,7 @@
             }
 
             themeToggle.addEventListener('click', toggleTheme);
+            mobileThemeToggle.addEventListener('click', toggleTheme);
 
             // Mobile Menu
             const mobileMenu = document.getElementById('mobileMenu');
