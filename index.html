@@ -1163,8 +1163,8 @@
             <section class="cta-section animate-in" id="testflight">
                 <h2>Version 3.0 Early Access</h2>
                 <p>Sei dabei bei den Neuerungen. Erhalte einen Testflight-Platz für die kommende Version.</p>
-                <form id="subscribeForm" class="subscribe-form">
-                    <input type="email" id="emailInput" placeholder="deine@email.com" required>
+                <form id="subscribeForm" class="subscribe-form" action="https://formspree.io/f/mnjjqwqv" method="POST">
+                    <input type="email" id="emailInput" name="email" placeholder="deine@email.com" required>
                     <button type="submit" class="btn-primary">
                         <i class="ph ph-paper-plane-right"></i>
                         Eintragen
@@ -1243,7 +1243,7 @@
                 observer.observe(el);
             });
 
-            // Subscribe Form
+            // Subscribe Form (Formspree)
             const subscribeForm = document.getElementById('subscribeForm');
             const emailInput = document.getElementById('emailInput');
             const subscribeMessage = document.getElementById('subscribeMessage');
@@ -1259,24 +1259,27 @@
                 submitBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Senden...';
 
                 try {
-                    const response = await fetch('subscribe.php', {
+                    const formData = new FormData();
+                    formData.append('email', email);
+
+                    const response = await fetch(subscribeForm.action, {
                         method: 'POST',
+                        body: formData,
                         headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `email=${encodeURIComponent(email)}`
+                            'Accept': 'application/json'
+                        }
                     });
 
                     const result = await response.json();
 
                     subscribeMessage.className = 'subscribe-message';
-                    if (result.success) {
+                    if (response.ok) {
                         subscribeMessage.classList.add('success');
-                        subscribeMessage.textContent = result.message;
+                        subscribeMessage.textContent = 'Super! Wir haben dich eingetragen.';
                         emailInput.value = '';
                     } else {
                         subscribeMessage.classList.add('error');
-                        subscribeMessage.textContent = result.message;
+                        subscribeMessage.textContent = result.errors?.[0]?.message || 'Fehler beim Eintragen.';
                     }
                 } catch (error) {
                     subscribeMessage.className = 'subscribe-message error';
