@@ -267,19 +267,21 @@
                 border-radius: 24px;
                 padding: 32px;
                 border: 1px solid var(--border);
-                transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 position: relative;
                 overflow: hidden;
+                will-change: transform;
+                contain: layout style paint;
             }
 
             .bento-card:hover {
                 transform: translateY(-4px);
                 border-color: var(--border-hover);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
             }
 
             [data-theme="dark"] .bento-card:hover {
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
             }
 
             /* Card Sizes */
@@ -530,8 +532,14 @@
                 }
             }
 
-            .animate-in {
-                animation: fadeUp 0.6s ease-out forwards;
+            .animate-initial {
+                opacity: 0;
+                transform: translateY(20px);
+                will-change: opacity, transform;
+            }
+
+            .animate-in.visible {
+                animation: fadeUp 0.5s ease-out forwards;
             }
 
             .delay-1 { animation-delay: 0.1s; }
@@ -732,6 +740,23 @@
                         oder präzise <strong>RPE-Planung</strong>.
                     </p>
                 </div>
+
+                <!-- Pausen Timer Puls Kontrolle -->
+                <div class="bento-card animate-in delay-1">
+                    <span class="status status-dev">
+                        <i class="ph ph-code"></i>
+                        In Entwicklung
+                    </span>
+                    <div class="card-icon">
+                        <i class="ph ph-heartbeat"></i>
+                    </div>
+                    <h3 class="card-title">Pausen Timer Puls Kontrolle</h3>
+                    <p class="card-desc">
+                        Definiere eine <strong>Herzfrequenz-Schwelle</strong> für deine Pausen.
+                        Ist dein Puls nach 60 Sekunden wieder unter den Schwellenwert, obwohl 180 Sekunden eingestellt sind,
+                        geht der Timer automatisch weiter. Effizientes Training statt Zeitverschwendung.
+                    </p>
+                </div>
             </section>
         </main>
 
@@ -783,25 +808,23 @@
             mobileMenuClose.addEventListener('click', toggleMenu);
             mobileNavLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-            // Scroll Animations
+            // Scroll Animations - optimized
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
             document.querySelectorAll('.animate-in').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                el.classList.add('animate-initial');
                 observer.observe(el);
             });
 
-            // Smooth scroll
-            document.documentElement.style.scrollBehavior = 'smooth';
+            // Smooth scroll - disabled for better performance
+            // document.documentElement.style.scrollBehavior = 'smooth';
         </script>
     </body>
 </html>

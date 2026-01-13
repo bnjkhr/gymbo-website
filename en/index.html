@@ -206,13 +206,13 @@
                 align-items: center;
                 gap: 8px;
                 padding: 8px 16px;
-                background: var(--accent-soft);
+                background: #FF6B35;
                 border-radius: 100px;
                 font-size: 0.8rem;
                 font-weight: 600;
-                color: var(--text);
-                margin-bottom: 24px;
-                border: 1px solid var(--border);
+                color: #fff;
+                margin-bottom: 4px;
+                border: 1px solid #FF6B35;
             }
 
             .hero-badge i {
@@ -220,7 +220,7 @@
             }
 
             .hero-manifest-link {
-                display: inline-block;
+                display: block;
                 color: var(--text-secondary);
                 text-decoration: none;
                 font-size: 0.9rem;
@@ -313,19 +313,21 @@
                 border-radius: 24px;
                 padding: 32px;
                 border: 1px solid var(--border);
-                transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 position: relative;
                 overflow: hidden;
+                will-change: transform;
+                contain: layout style paint;
             }
 
             .bento-card:hover {
                 transform: translateY(-4px);
                 border-color: var(--border-hover);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
             }
 
             [data-theme="dark"] .bento-card:hover {
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
             }
 
             /* Card Sizes */
@@ -342,17 +344,20 @@
 
             .bento-hero .phone-mockup {
                 max-width: 280px;
-                filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.15));
-                transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                will-change: transform;
+                backface-visibility: hidden;
             }
 
             .bento-hero:hover .phone-mockup {
-                transform: scale(1.03) translateY(-8px);
+                transform: scale(1.02) translateY(-6px);
             }
 
             .bento-hero .phone-mockup img {
                 width: 100%;
                 border-radius: 32px;
+                display: block;
             }
 
             .bento-wide {
@@ -398,6 +403,18 @@
                 line-height: 1.6;
             }
 
+            .badge-coming-soon {
+                display: inline-block;
+                padding: 4px 12px;
+                background: var(--accent-soft);
+                border-radius: 20px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                color: var(--text);
+                margin-top: 12px;
+                border: 1px solid var(--border);
+            }
+
             /* Special Feature Card - Progress */
             .bento-progress {
                 background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
@@ -427,11 +444,51 @@
                 color: rgba(0, 0, 0, 0.6);
             }
 
+            /* Special Feature Card - Apple Watch */
+            .bento-watch {
+                background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
+                color: #fff;
+            }
+
+            [data-theme="dark"] .bento-watch {
+                background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
+                color: #0a0a0a;
+            }
+
+            .bento-watch .card-icon {
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff;
+            }
+
+            [data-theme="dark"] .bento-watch .card-icon {
+                background: rgba(0, 0, 0, 0.08);
+                color: #0a0a0a;
+            }
+
+            .bento-watch .card-desc {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            [data-theme="dark"] .bento-watch .card-desc {
+                color: rgba(0, 0, 0, 0.6);
+            }
+
+            .bento-watch .badge-coming-soon {
+                background: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.2);
+                color: #fff;
+            }
+
+            [data-theme="dark"] .bento-watch .badge-coming-soon {
+                background: rgba(0, 0, 0, 0.1);
+                border-color: rgba(0, 0, 0, 0.15);
+                color: #0a0a0a;
+            }
+
             /* Stats Card */
             .bento-stats {
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
             }
 
             .stat-number {
@@ -443,9 +500,10 @@
             }
 
             .stat-label {
-                color: var(--text-secondary);
-                font-size: 0.9rem;
-                font-weight: 500;
+                color: var(--text);
+                font-size: 1.25rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
             }
 
             /* Privacy Card */
@@ -627,8 +685,14 @@
                 }
             }
 
-            .animate-in {
-                animation: fadeUp 0.6s ease-out forwards;
+            .animate-initial {
+                opacity: 0;
+                transform: translateY(20px);
+                will-change: opacity, transform;
+            }
+
+            .animate-in.visible {
+                animation: fadeUp 0.5s ease-out forwards;
             }
 
             .delay-1 { animation-delay: 0.1s; }
@@ -804,7 +868,7 @@
                 <!-- Hero Card with Phone -->
                 <div class="bento-card bento-hero animate-in delay-1">
                     <div class="phone-mockup">
-                        <img id="screenshotImg" src="../screenshot_hell.png" alt="GymBo App">
+                        <img id="screenshotImg" src="../screenshot_hell.png" alt="GymBo App" loading="lazy" decoding="async">
                     </div>
                 </div>
 
@@ -825,7 +889,7 @@
                         <div class="stat-number">∞</div>
                         <div class="stat-label">Unlimited Workouts</div>
                     </div>
-                    <p class="card-desc" style="margin-top: auto;">No artificial limits. Train as much as you want.</p>
+                    <p class="card-desc">No artificial limits. Train as much as you want.</p>
                 </div>
 
                 <!-- Supersets -->
@@ -884,6 +948,63 @@
                     </div>
                     <h3 class="card-title">Export & Backup</h3>
                     <p class="card-desc">Your data belongs to you. Export, share, or back it up anytime.</p>
+                </div>
+
+                <!-- Apple Watch App -->
+                <div class="bento-card bento-wide bento-watch animate-in delay-1">
+                    <div class="card-icon">
+                        <i class="ph ph-watch"></i>
+                    </div>
+                    <h3 class="card-title">Apple Watch App</h3>
+                    <p class="card-desc">Standalone and Companion. Track your workout directly on your wrist.</p>
+                    <span class="badge-coming-soon">coming soon</span>
+                </div>
+
+                <!-- Split Workouts -->
+                <div class="bento-card animate-in delay-2">
+                    <div class="card-icon">
+                        <i class="ph ph-scissors"></i>
+                    </div>
+                    <h3 class="card-title">Split Workouts</h3>
+                    <p class="card-desc">Break long workouts into multiple sessions. GymBo is as flexible as you are.</p>
+                </div>
+
+                <!-- Combine Training Types -->
+                <div class="bento-card animate-in delay-3">
+                    <div class="card-icon">
+                        <i class="ph ph-git-merge"></i>
+                    </div>
+                    <h3 class="card-title">Combine Training Types</h3>
+                    <p class="card-desc">Mix strength and cardio in one workout. Everything is possible.</p>
+                </div>
+
+                <!-- Challenges -->
+                <div class="bento-card animate-in delay-4">
+                    <div class="card-icon">
+                        <i class="ph ph-trophy"></i>
+                    </div>
+                    <h3 class="card-title">Challenges</h3>
+                    <p class="card-desc">Join challenges and set new goals for yourself.</p>
+                </div>
+
+                <!-- Achievements -->
+                <div class="bento-card animate-in delay-1">
+                    <div class="card-icon">
+                        <i class="ph ph-medal"></i>
+                    </div>
+                    <h3 class="card-title">Achievements</h3>
+                    <p class="card-desc">Celebrate your successes. Collect all badges.</p>
+                </div>
+
+                <!-- Star Workouts -->
+                <div class="bento-card bento-wide animate-in delay-2">
+                    <div class="card-icon">
+                        <i class="ph ph-star"></i>
+                    </div>
+                    <h3 class="card-title">Celebrity Workout Templates</h3>
+                    <p class="card-desc">
+                        From Alan Ritchson (Reacher), Arnold Schwarzenegger, Chris Hemsworth and more. Train like your idols.
+                    </p>
                 </div>
             </section>
 
@@ -952,25 +1073,23 @@
             mobileMenuClose.addEventListener('click', toggleMenu);
             mobileNavLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-            // Scroll Animations
+            // Scroll Animations - optimized with passive and unobserve
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
             document.querySelectorAll('.animate-in').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                el.classList.add('animate-initial');
                 observer.observe(el);
             });
 
-            // Smooth scroll
-            document.documentElement.style.scrollBehavior = 'smooth';
+            // Smooth scroll - disabled for better performance
+            // document.documentElement.style.scrollBehavior = 'smooth';
         </script>
     </body>
 </html>

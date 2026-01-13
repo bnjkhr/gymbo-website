@@ -517,8 +517,14 @@
                 }
             }
 
-            .animate-in {
-                animation: fadeUp 0.6s ease-out forwards;
+            .animate-initial {
+                opacity: 0;
+                transform: translateY(20px);
+                will-change: opacity, transform;
+            }
+
+            .animate-in.visible {
+                animation: fadeUp 0.5s ease-out forwards;
             }
 
             .delay-1 { animation-delay: 0.1s; }
@@ -759,25 +765,23 @@
             mobileMenuClose.addEventListener('click', toggleMenu);
             mobileNavLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-            // Scroll Animations
+            // Scroll Animations - optimized
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
             document.querySelectorAll('.animate-in').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                el.classList.add('animate-initial');
                 observer.observe(el);
             });
 
-            // Smooth scroll
-            document.documentElement.style.scrollBehavior = 'smooth';
+            // Smooth scroll - disabled for better performance
+            // document.documentElement.style.scrollBehavior = 'smooth';
         </script>
     </body>
 </html>
