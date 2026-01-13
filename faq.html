@@ -17,8 +17,9 @@
                 --text-secondary: #525252;
                 --border: rgba(0, 0, 0, 0.08);
                 --border-hover: rgba(0, 0, 0, 0.15);
-                --accent: #0a0a0a;
-                --accent-soft: rgba(0, 0, 0, 0.05);
+                --accent: #4ade80;
+                --accent-soft: #F0FCE6;
+                --accent-glow: rgba(240, 252, 230, 0.6);
             }
 
             [data-theme="dark"] {
@@ -29,8 +30,8 @@
                 --text-secondary: #a3a3a3;
                 --border: rgba(255, 255, 255, 0.08);
                 --border-hover: rgba(255, 255, 255, 0.15);
-                --accent: #fafafa;
-                --accent-soft: rgba(255, 255, 255, 0.05);
+                --accent: #4ade80;
+                --accent-soft: rgba(240, 252, 230, 0.15);
             }
 
             * {
@@ -88,6 +89,7 @@
 
             .header-logo .logo-bo {
                 font-weight: 400;
+                color: var(--accent);
             }
 
             .header-nav {
@@ -99,7 +101,7 @@
             .nav-link {
                 color: var(--text-secondary);
                 text-decoration: none;
-                font-size: 1.25rem;
+                font-size: 1rem;
                 font-weight: 500;
                 transition: color 0.2s;
             }
@@ -116,19 +118,20 @@
             }
 
             .btn-download {
-                background: var(--text);
-                color: var(--bg);
+                background: var(--accent);
+                color: #fff;
                 padding: 10px 20px;
                 border-radius: 100px;
                 font-weight: 600;
                 font-size: 0.875rem;
                 text-decoration: none;
                 transition: all 0.2s;
+                box-shadow: 0 4px 12px var(--accent-glow);
             }
 
             .btn-download:hover {
-                transform: scale(1.02);
-                opacity: 0.9;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px var(--accent-glow);
             }
 
             .btn-theme {
@@ -227,7 +230,7 @@
                 letter-spacing: -0.02em;
                 margin-bottom: 20px;
                 padding-bottom: 12px;
-                border-bottom: 2px solid var(--border);
+                border-bottom: 2px solid var(--accent);
             }
 
             /* Accordion */
@@ -246,7 +249,7 @@
             }
 
             .accordion-item:hover {
-                border-color: var(--border-hover);
+                border-color: var(--accent);
             }
 
             .accordion-header {
@@ -352,8 +355,8 @@
             }
 
             .search-input:focus {
-                border-color: var(--border-hover);
-                box-shadow: 0 0 0 3px var(--accent-soft);
+                border-color: var(--accent);
+                box-shadow: 0 0 0 4px var(--accent-soft);
             }
 
             .search-input::placeholder {
@@ -451,8 +454,8 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 10px;
-                background: var(--text);
-                color: var(--bg);
+                background: linear-gradient(135deg, var(--accent) 0%, #22c55e 100%);
+                color: #fff;
                 padding: 14px 24px;
                 border-radius: 14px;
                 font-weight: 700;
@@ -460,11 +463,12 @@
                 text-decoration: none;
                 transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
                 border: none;
+                box-shadow: 0 8px 30px var(--accent-glow);
             }
 
             .btn-primary:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 16px 40px var(--accent-glow);
             }
 
             .btn-primary i {
@@ -493,7 +497,7 @@
             }
 
             .footer-link:hover {
-                color: var(--text);
+                color: var(--accent);
             }
 
             .footer-copy {

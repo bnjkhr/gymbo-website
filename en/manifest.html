@@ -18,8 +18,9 @@
                 --text-secondary: #525252;
                 --border: rgba(0, 0, 0, 0.08);
                 --border-hover: rgba(0, 0, 0, 0.15);
-                --accent: #0a0a0a;
-                --accent-soft: rgba(0, 0, 0, 0.05);
+                --accent: #4ade80;
+                --accent-soft: #F0FCE6;
+                --accent-glow: rgba(240, 252, 230, 0.6);
             }
 
             [data-theme="dark"] {
@@ -30,8 +31,8 @@
                 --text-secondary: #a3a3a3;
                 --border: rgba(255, 255, 255, 0.08);
                 --border-hover: rgba(255, 255, 255, 0.15);
-                --accent: #fafafa;
-                --accent-soft: rgba(255, 255, 255, 0.05);
+                --accent: #4ade80;
+                --accent-soft: rgba(240, 252, 230, 0.15);
             }
 
             * {
@@ -89,6 +90,7 @@
 
             .header-logo .logo-bo {
                 font-weight: 400;
+                color: var(--accent);
             }
 
             .header-nav {
@@ -100,7 +102,7 @@
             .nav-link {
                 color: var(--text-secondary);
                 text-decoration: none;
-                font-size: 1.25rem;
+                font-size: 1rem;
                 font-weight: 500;
                 transition: color 0.2s;
             }
@@ -117,19 +119,20 @@
             }
 
             .btn-download {
-                background: var(--text);
-                color: var(--bg);
+                background: var(--accent);
+                color: #fff;
                 padding: 10px 20px;
                 border-radius: 100px;
                 font-weight: 600;
                 font-size: 0.875rem;
                 text-decoration: none;
                 transition: all 0.2s;
+                box-shadow: 0 4px 12px var(--accent-glow);
             }
 
             .btn-download:hover {
-                transform: scale(1.02);
-                opacity: 0.9;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px var(--accent-glow);
             }
 
             .btn-theme {
@@ -271,8 +274,8 @@
                 transform: translateY(-50%);
                 width: 32px;
                 height: 32px;
-                background: var(--text);
-                color: var(--bg);
+                background: var(--accent);
+                color: #fff;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -295,8 +298,8 @@
 
             /* Promise Box */
             .promise-box {
-                background: var(--bg-card);
-                border: 2px solid var(--text);
+                background: linear-gradient(145deg, var(--bg-card) 0%, var(--accent-soft) 100%);
+                border: 2px solid var(--accent);
                 border-radius: 24px;
                 padding: 40px;
                 text-align: center;
@@ -318,7 +321,7 @@
             .promise-box .price {
                 font-size: 2rem;
                 font-weight: 800;
-                color: var(--text);
+                color: var(--accent);
                 margin: 24px 0;
             }
 
@@ -345,8 +348,8 @@
             }
 
             .cta-link:hover {
-                border-color: var(--border-hover);
-                background: var(--bg-card-hover);
+                border-color: var(--accent);
+                background: var(--accent-soft);
             }
 
             .cta-link i {
@@ -402,8 +405,8 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 10px;
-                background: var(--text);
-                color: var(--bg);
+                background: linear-gradient(135deg, var(--accent) 0%, #22c55e 100%);
+                color: #fff;
                 padding: 14px 24px;
                 border-radius: 14px;
                 font-weight: 700;
@@ -411,11 +414,12 @@
                 text-decoration: none;
                 transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
                 border: none;
+                box-shadow: 0 8px 30px var(--accent-glow);
             }
 
             .btn-primary:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 16px 40px var(--accent-glow);
             }
 
             .btn-primary i {
@@ -444,7 +448,7 @@
             }
 
             .footer-link:hover {
-                color: var(--text);
+                color: var(--accent);
             }
 
             .footer-copy {

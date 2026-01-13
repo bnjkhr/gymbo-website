@@ -17,8 +17,13 @@
                 --text-secondary: #525252;
                 --border: rgba(0, 0, 0, 0.08);
                 --border-hover: rgba(0, 0, 0, 0.15);
-                --accent: #0a0a0a;
-                --accent-soft: rgba(0, 0, 0, 0.05);
+                --accent: #F0FCE6;
+                --accent-soft: #F0FCE6;
+                --accent-dark: #4ade80;
+                --accent-darker: #22c55e;
+                --accent-mint: #86EFAC;
+                --accent-mint-dark: #6BD99B;
+                --accent-glow: rgba(240, 252, 230, 0.8);
             }
 
             [data-theme="dark"] {
@@ -29,8 +34,13 @@
                 --text-secondary: #a3a3a3;
                 --border: rgba(255, 255, 255, 0.08);
                 --border-hover: rgba(255, 255, 255, 0.15);
-                --accent: #fafafa;
-                --accent-soft: rgba(255, 255, 255, 0.05);
+                --accent: #F0FCE6;
+                --accent-soft: rgba(240, 252, 230, 0.15);
+                --accent-dark: #4ade80;
+                --accent-darker: #22c55e;
+                --accent-mint: #86EFAC;
+                --accent-mint-dark: #6BD99B;
+                --accent-glow: rgba(240, 252, 230, 0.3);
             }
 
             * {
@@ -48,6 +58,18 @@
                 overflow-x: hidden;
             }
 
+            /* Animated Background Gradient */
+            .bg-gradient {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 100vh;
+                background: radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-soft) 0%, transparent 50%);
+                pointer-events: none;
+                z-index: 0;
+            }
+
             /* Header */
             .header {
                 position: fixed;
@@ -59,14 +81,14 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                background: rgba(250, 250, 250, 0.8);
+                background: rgba(250, 250, 250, 0.7);
                 backdrop-filter: blur(20px);
                 -webkit-backdrop-filter: blur(20px);
                 border-bottom: 1px solid var(--border);
             }
 
             [data-theme="dark"] .header {
-                background: rgba(10, 10, 10, 0.8);
+                background: rgba(10, 10, 10, 0.7);
             }
 
             .header-left {
@@ -88,6 +110,7 @@
 
             .header-logo .logo-bo {
                 font-weight: 400;
+                color: var(--accent-dark);
             }
 
             .header-nav {
@@ -99,7 +122,7 @@
             .nav-link {
                 color: var(--text-secondary);
                 text-decoration: none;
-                font-size: 1.25rem;
+                font-size: 1rem;
                 font-weight: 500;
                 transition: color 0.2s;
             }
@@ -116,19 +139,20 @@
             }
 
             .btn-download {
-                background: var(--text);
-                color: var(--bg);
+                background: var(--accent);
+                color: #fff;
                 padding: 10px 20px;
                 border-radius: 100px;
                 font-weight: 600;
                 font-size: 0.875rem;
                 text-decoration: none;
                 transition: all 0.2s;
+                box-shadow: 0 4px 12px var(--accent-glow);
             }
 
             .btn-download:hover {
-                transform: scale(1.02);
-                opacity: 0.9;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px var(--accent-glow);
             }
 
             .btn-theme {
@@ -139,6 +163,7 @@
                 padding: 8px;
                 border-radius: 8px;
                 transition: background 0.2s;
+                color: var(--text);
             }
 
             .btn-theme:hover {
@@ -193,26 +218,28 @@
                 max-width: 1400px;
                 margin: 0 auto;
                 padding: 100px 24px 60px;
+                position: relative;
+                z-index: 1;
             }
 
-            /* Hero - Compact & Bold */
+            /* Hero Section - Modern & Bold */
             .hero {
                 text-align: center;
-                padding: 60px 0 80px;
+                padding: 80px 0 60px;
             }
 
             .hero-badge {
                 display: inline-flex;
                 align-items: center;
                 gap: 8px;
-                padding: 8px 16px;
-                background: #FF6B35;
+                padding: 10px 20px;
+                background: linear-gradient(135deg, var(--accent) 0%, var(--accent-darker) 100%);
                 border-radius: 100px;
-                font-size: 0.8rem;
+                font-size: 0.85rem;
                 font-weight: 600;
                 color: #fff;
-                margin-bottom: 4px;
-                border: 1px solid #FF6B35;
+                margin-bottom: 8px;
+                box-shadow: 0 4px 20px var(--accent-glow);
             }
 
             .hero-badge i {
@@ -225,33 +252,44 @@
                 text-decoration: none;
                 font-size: 0.9rem;
                 font-weight: 500;
-                margin-bottom: 20px;
+                margin-bottom: 24px;
                 transition: color 0.2s;
             }
 
             .hero-manifest-link:hover {
-                color: var(--text);
+                color: var(--accent);
             }
 
             .hero h1 {
-                font-size: clamp(3rem, 8vw, 5.5rem);
+                font-size: clamp(3.5rem, 10vw, 6rem);
                 font-weight: 800;
-                letter-spacing: -0.04em;
-                line-height: 1;
-                margin-bottom: 20px;
+                letter-spacing: -0.05em;
+                line-height: 0.95;
+                margin-bottom: 24px;
+                background: linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .hero h1 .highlight {
+                background: linear-gradient(135deg, var(--accent) 0%, var(--accent-darker) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
             }
 
             .hero-subtitle {
-                font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+                font-size: clamp(1.1rem, 2.5vw, 1.4rem);
                 color: var(--text-secondary);
-                max-width: 500px;
+                max-width: 550px;
                 margin: 0 auto 40px;
                 line-height: 1.6;
             }
 
             .hero-cta {
                 display: flex;
-                gap: 12px;
+                gap: 16px;
                 justify-content: center;
                 flex-wrap: wrap;
             }
@@ -260,20 +298,21 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 10px;
-                background: var(--text);
-                color: var(--bg);
-                padding: 16px 28px;
-                border-radius: 14px;
+                background: linear-gradient(135deg, var(--accent) 0%, var(--accent-darker) 100%);
+                color: #fff;
+                padding: 18px 32px;
+                border-radius: 16px;
                 font-weight: 700;
                 font-size: 1rem;
                 text-decoration: none;
-                transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 border: none;
+                box-shadow: 0 8px 30px var(--accent-glow);
             }
 
             .btn-primary:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 16px 40px var(--accent-glow);
             }
 
             .btn-primary i {
@@ -284,20 +323,116 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 10px;
-                background: transparent;
+                background: var(--bg-card);
                 color: var(--text);
-                padding: 16px 28px;
-                border-radius: 14px;
+                padding: 18px 32px;
+                border-radius: 16px;
                 font-weight: 600;
                 font-size: 1rem;
                 text-decoration: none;
                 border: 1.5px solid var(--border);
-                transition: all 0.25s;
+                transition: all 0.3s;
             }
 
             .btn-secondary:hover {
                 background: var(--accent-soft);
-                border-color: var(--border-hover);
+                border-color: var(--accent);
+                transform: translateY(-2px);
+            }
+
+            /* Screenshot Showcase Section */
+            .screenshot-showcase {
+                padding: 60px 0 100px;
+                overflow: hidden;
+            }
+
+            .screenshot-showcase h2 {
+                text-align: center;
+                font-size: clamp(2rem, 5vw, 3rem);
+                font-weight: 800;
+                letter-spacing: -0.03em;
+                margin-bottom: 16px;
+            }
+
+            .screenshot-showcase .section-subtitle {
+                text-align: center;
+                color: var(--text-secondary);
+                font-size: 1.1rem;
+                margin-bottom: 50px;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            /* Screenshot Carousel */
+            .screenshot-carousel {
+                display: flex;
+                gap: 24px;
+                padding: 20px 0;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                padding-left: calc(50% - 180px);
+                padding-right: calc(50% - 180px);
+            }
+
+            .screenshot-carousel::-webkit-scrollbar {
+                display: none;
+            }
+
+            .screenshot-item {
+                flex: 0 0 auto;
+                width: 360px;
+                scroll-snap-align: center;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s;
+            }
+
+            .screenshot-item img {
+                width: 100%;
+                border-radius: 24px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+                transition: transform 0.4s, box-shadow 0.4s;
+            }
+
+            [data-theme="dark"] .screenshot-item img {
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            }
+
+            .screenshot-item:hover img {
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+            }
+
+            [data-theme="dark"] .screenshot-item:hover img {
+                box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            }
+
+            /* Carousel Navigation */
+            .carousel-nav {
+                display: flex;
+                justify-content: center;
+                gap: 12px;
+                margin-top: 32px;
+            }
+
+            .carousel-dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: var(--border);
+                border: none;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .carousel-dot.active {
+                background: var(--accent);
+                transform: scale(1.2);
+            }
+
+            .carousel-dot:hover {
+                background: var(--accent);
             }
 
             /* Bento Grid */
@@ -313,53 +448,22 @@
                 border-radius: 24px;
                 padding: 32px;
                 border: 1px solid var(--border);
-                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s, box-shadow 0.3s;
                 position: relative;
                 overflow: hidden;
-                will-change: transform;
-                contain: layout style paint;
             }
 
             .bento-card:hover {
                 transform: translateY(-4px);
-                border-color: var(--border-hover);
-                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+                border-color: var(--accent);
+                box-shadow: 0 16px 40px rgba(34, 197, 94, 0.1);
             }
 
             [data-theme="dark"] .bento-card:hover {
-                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 16px 40px rgba(34, 197, 94, 0.15);
             }
 
             /* Card Sizes */
-            .bento-hero {
-                grid-column: span 2;
-                grid-row: span 2;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                padding: 40px;
-                background: linear-gradient(135deg, var(--bg-card) 0%, var(--accent-soft) 100%);
-            }
-
-            .bento-hero .phone-mockup {
-                max-width: 280px;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                will-change: transform;
-                backface-visibility: hidden;
-            }
-
-            .bento-hero:hover .phone-mockup {
-                transform: scale(1.02) translateY(-6px);
-            }
-
-            .bento-hero .phone-mockup img {
-                width: 100%;
-                border-radius: 32px;
-                display: block;
-            }
-
             .bento-wide {
                 grid-column: span 2;
             }
@@ -372,22 +476,22 @@
 
             /* Card Content */
             .card-icon {
-                width: 48px;
-                height: 48px;
-                border-radius: 14px;
-                background: var(--accent-soft);
+                width: 52px;
+                height: 52px;
+                border-radius: 16px;
+                background: linear-gradient(135deg, var(--accent-soft) 0%, transparent 100%);
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 1.4rem;
+                font-size: 1.5rem;
                 margin-bottom: 20px;
-                color: var(--text);
+                color: var(--accent);
                 transition: transform 0.3s, background 0.3s;
             }
 
             .bento-card:hover .card-icon {
                 transform: scale(1.1) rotate(-5deg);
-                background: var(--border);
+                background: var(--accent-soft);
             }
 
             .card-title {
@@ -405,43 +509,33 @@
 
             .badge-coming-soon {
                 display: inline-block;
-                padding: 4px 12px;
+                padding: 6px 14px;
                 background: var(--accent-soft);
                 border-radius: 20px;
                 font-size: 0.75rem;
                 font-weight: 600;
-                color: var(--text);
+                color: var(--accent);
                 margin-top: 12px;
-                border: 1px solid var(--border);
+                border: 1px solid var(--accent);
             }
 
             /* Special Feature Card - Progress */
             .bento-progress {
-                background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
+                background: linear-gradient(145deg, var(--accent) 0%, var(--accent-darker) 100%);
                 color: #fff;
-            }
-
-            [data-theme="dark"] .bento-progress {
-                background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
-                color: #0a0a0a;
             }
 
             .bento-progress .card-icon {
-                background: rgba(255, 255, 255, 0.1);
+                background: rgba(255, 255, 255, 0.2);
                 color: #fff;
             }
 
-            [data-theme="dark"] .bento-progress .card-icon {
-                background: rgba(0, 0, 0, 0.08);
-                color: #0a0a0a;
-            }
-
             .bento-progress .card-desc {
-                color: rgba(255, 255, 255, 0.7);
+                color: rgba(255, 255, 255, 0.85);
             }
 
-            [data-theme="dark"] .bento-progress .card-desc {
-                color: rgba(0, 0, 0, 0.6);
+            .bento-progress:hover {
+                border-color: transparent;
             }
 
             /* Special Feature Card - Apple Watch */
@@ -475,13 +569,13 @@
 
             .bento-watch .badge-coming-soon {
                 background: rgba(255, 255, 255, 0.15);
-                border-color: rgba(255, 255, 255, 0.2);
+                border-color: rgba(255, 255, 255, 0.3);
                 color: #fff;
             }
 
             [data-theme="dark"] .bento-watch .badge-coming-soon {
                 background: rgba(0, 0, 0, 0.1);
-                border-color: rgba(0, 0, 0, 0.15);
+                border-color: rgba(0, 0, 0, 0.2);
                 color: #0a0a0a;
             }
 
@@ -497,6 +591,10 @@
                 letter-spacing: -0.04em;
                 line-height: 1;
                 margin-bottom: 8px;
+                background: linear-gradient(135deg, var(--accent) 0%, var(--accent-darker) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
             }
 
             .stat-label {
@@ -518,15 +616,16 @@
             }
 
             .privacy-icon {
-                width: 40px;
-                height: 40px;
-                border-radius: 10px;
-                background: var(--accent-soft);
+                width: 44px;
+                height: 44px;
+                border-radius: 12px;
+                background: var(--bg-card);
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 1.1rem;
-                color: var(--text-secondary);
+                font-size: 1.2rem;
+                color: var(--accent);
+                border: 1px solid var(--border);
             }
 
             /* Import Card Visual */
@@ -542,38 +641,32 @@
                 border-radius: 12px;
                 font-weight: 700;
                 font-size: 0.9rem;
-                color: var(--text);
+                color: var(--accent-darker);
                 border: 1px solid var(--border);
-            }
-
-            /* Quote/Testimonial Style Card */
-            .bento-quote {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-
-            .quote-text {
-                font-size: 1.5rem;
-                font-weight: 600;
-                letter-spacing: -0.02em;
-                line-height: 1.4;
-                margin-bottom: 16px;
-            }
-
-            .quote-author {
-                color: var(--text-secondary);
-                font-size: 0.9rem;
             }
 
             /* CTA Section */
             .cta-section {
                 text-align: center;
                 padding: 80px 40px;
-                background: var(--bg-card);
+                background: linear-gradient(145deg, var(--bg-card) 0%, var(--accent-soft) 100%);
                 border-radius: 32px;
                 border: 1px solid var(--border);
                 margin-bottom: 60px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .cta-section::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, var(--accent-soft) 0%, transparent 50%);
+                opacity: 0.5;
+                pointer-events: none;
             }
 
             .cta-section h2 {
@@ -581,6 +674,7 @@
                 font-weight: 800;
                 letter-spacing: -0.03em;
                 margin-bottom: 16px;
+                position: relative;
             }
 
             .cta-section p {
@@ -588,6 +682,118 @@
                 font-size: 1.1rem;
                 max-width: 450px;
                 margin: 0 auto 32px;
+                position: relative;
+            }
+
+            /* Subscribe Form */
+            .subscribe-form {
+                display: flex;
+                gap: 12px;
+                justify-content: center;
+                max-width: 450px;
+                margin: 0 auto;
+                flex-wrap: wrap;
+                position: relative;
+            }
+
+            #emailInput {
+                flex: 1;
+                min-width: 200px;
+                padding: 16px 24px;
+                border: 2px solid var(--border);
+                border-radius: 14px;
+                font-size: 1rem;
+                font-family: inherit;
+                background: var(--bg);
+                color: var(--text);
+                transition: all 0.2s;
+            }
+
+            #emailInput:focus {
+                outline: none;
+                border-color: var(--accent);
+                box-shadow: 0 0 0 4px var(--accent-soft);
+            }
+
+            #emailInput::placeholder {
+                color: var(--text-secondary);
+            }
+
+            .subscribe-message {
+                margin-top: 20px;
+                padding: 12px 20px;
+                border-radius: 10px;
+                font-size: 0.95rem;
+                font-weight: 500;
+                display: none;
+            }
+
+            .subscribe-message.success {
+                display: block;
+                background: rgba(34, 197, 94, 0.1);
+                color: #22c55e;
+                border: 1px solid rgba(34, 197, 94, 0.2);
+            }
+
+            .subscribe-message.error {
+                display: block;
+                background: rgba(239, 68, 68, 0.1);
+                color: #ef4444;
+                border: 1px solid rgba(239, 68, 68, 0.2);
+            }
+
+            /* Version Banner */
+            .version-banner {
+                background: linear-gradient(135deg, #FDBA74 0%, #FB923C 100%);
+                padding: 16px 24px;
+                margin-bottom: 24px;
+                border-radius: 16px;
+                box-shadow: 0 8px 30px var(--accent-glow);
+            }
+
+            .version-banner-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+
+            .version-badge {
+                background: rgba(255, 255, 255, 0.25);
+                color: #fff;
+                padding: 6px 14px;
+                border-radius: 100px;
+                font-size: 0.75rem;
+                font-weight: 700;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+            }
+
+            .version-text {
+                color: #fff;
+                font-size: 1.1rem;
+                font-weight: 600;
+                letter-spacing: -0.01em;
+            }
+
+            .version-link {
+                color: #fff;
+                background: rgba(0, 0, 0, 0.2);
+                padding: 8px 18px;
+                border-radius: 100px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.2s;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+            }
+
+            .version-link:hover {
+                background: rgba(0, 0, 0, 0.3);
+                transform: translateY(-1px);
             }
 
             /* Footer */
@@ -612,7 +818,7 @@
             }
 
             .footer-link:hover {
-                color: var(--text);
+                color: var(--accent);
             }
 
             .footer-copy {
@@ -677,7 +883,7 @@
             @keyframes fadeUp {
                 from {
                     opacity: 0;
-                    transform: translateY(20px);
+                    transform: translateY(30px);
                 }
                 to {
                     opacity: 1;
@@ -687,12 +893,11 @@
 
             .animate-initial {
                 opacity: 0;
-                transform: translateY(20px);
-                will-change: opacity, transform;
+                transform: translateY(30px);
             }
 
             .animate-in.visible {
-                animation: fadeUp 0.5s ease-out forwards;
+                animation: fadeUp 0.6s ease-out forwards;
             }
 
             .delay-1 { animation-delay: 0.1s; }
@@ -706,14 +911,13 @@
                     grid-template-columns: repeat(2, 1fr);
                 }
 
-                .bento-hero {
-                    grid-column: span 2;
-                    grid-row: span 1;
-                    padding: 32px;
+                .screenshot-item {
+                    width: 300px;
                 }
 
-                .bento-hero .phone-mockup {
-                    max-width: 200px;
+                .screenshot-carousel {
+                    padding-left: calc(50% - 150px);
+                    padding-right: calc(50% - 150px);
                 }
             }
 
@@ -731,7 +935,7 @@
                 }
 
                 .hero {
-                    padding: 40px 0 60px;
+                    padding: 60px 0 40px;
                 }
 
                 .hero h1 {
@@ -743,7 +947,6 @@
                     gap: 12px;
                 }
 
-                .bento-hero,
                 .bento-wide,
                 .bento-tall {
                     grid-column: span 1;
@@ -761,6 +964,16 @@
                 .cta-section {
                     padding: 48px 24px;
                     border-radius: 24px;
+                }
+
+                .screenshot-item {
+                    width: 280px;
+                }
+
+                .screenshot-carousel {
+                    padding-left: calc(50% - 140px);
+                    padding-right: calc(50% - 140px);
+                    gap: 16px;
                 }
             }
 
@@ -782,20 +995,54 @@
                     width: 100%;
                     justify-content: center;
                 }
+
+                .version-banner-content {
+                    flex-direction: column;
+                    gap: 12px;
+                    text-align: center;
+                }
+
+                .version-text {
+                    font-size: 1rem;
+                }
+
+                .subscribe-form {
+                    flex-direction: column;
+                }
+
+                #emailInput {
+                    width: 100%;
+                }
+
+                .subscribe-form button {
+                    width: 100%;
+                }
+
+                .screenshot-item {
+                    width: 260px;
+                }
+
+                .screenshot-carousel {
+                    padding-left: calc(50% - 130px);
+                    padding-right: calc(50% - 130px);
+                }
             }
         </style>
     </head>
     <body>
+        <!-- Background Gradient -->
+        <div class="bg-gradient"></div>
+
         <!-- Header -->
         <header class="header">
             <div class="header-left">
                 <a href="#" class="header-logo"><span class="logo-gym">Gym</span><span class="logo-bo">Bo</span></a>
                 <nav class="header-nav">
                     <a href="#features" class="nav-link">Features</a>
+                    <a href="#screenshots" class="nav-link">Screenshots</a>
                     <a href="manifest.html" class="nav-link">Manifest</a>
                     <a href="faq.html" class="nav-link">FAQ</a>
                     <a href="roadmap.html" class="nav-link">Roadmap</a>
-                    <a href="https://benkohler.de" class="nav-link" target="_blank" rel="noopener">More Apps</a>
                 </nav>
             </div>
             <div class="header-actions">
@@ -805,7 +1052,7 @@
                 </div>
                 <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-download" target="_blank" rel="noopener">App Store</a>
                 <button class="btn-theme" id="themeToggle" aria-label="Toggle theme">
-                    <span id="themeIcon">🌙</span>
+                    <i class="ph ph-moon" id="themeIcon"></i>
                 </button>
             </div>
             <button class="mobile-menu-btn" aria-label="Open menu">
@@ -823,10 +1070,10 @@
             </div>
             <nav class="mobile-nav">
                 <a href="#features" class="mobile-nav-link">Features</a>
+                <a href="#screenshots" class="mobile-nav-link">Screenshots</a>
                 <a href="manifest.html" class="mobile-nav-link">Manifest</a>
                 <a href="faq.html" class="mobile-nav-link">FAQ</a>
                 <a href="roadmap.html" class="mobile-nav-link">Roadmap</a>
-                <a href="https://benkohler.de" class="mobile-nav-link" target="_blank">More Apps</a>
             </nav>
             <div class="mobile-menu-footer">
                 <div class="lang-switcher" style="justify-content: center; margin-bottom: 8px;">
@@ -838,20 +1085,30 @@
                     App Store
                 </a>
                 <button class="btn-secondary" id="mobileThemeToggle">
+                    <i class="ph ph-moon"></i>
                     <span id="mobileThemeText">Dark Mode</span>
                 </button>
             </div>
         </div>
 
         <main class="main">
+            <!-- Version Banner -->
+            <section class="version-banner animate-in">
+                <div class="version-banner-content">
+                    <span class="version-badge">New</span>
+                    <span class="version-text">Version 3.0 coming soon - Testflight spots limited!</span>
+                    <a href="#testflight" class="version-link">Secure yours now</a>
+                </div>
+            </section>
+
             <!-- Hero -->
             <section class="hero animate-in">
                 <div class="hero-badge">
                     <i class="ph ph-seal-check"></i>
-                    One-time $6.99 · No Subscription
+                    One-time $6.99 - No Subscription
                 </div>
-                <a href="manifest.html" class="hero-manifest-link">Why no subscription? That's my promise →</a>
-                <h1>Training.<br>No Bullshit.</h1>
+                <a href="manifest.html" class="hero-manifest-link">Why no subscription? That's my promise</a>
+                <h1>Training.<br><span class="highlight">No Bullshit.</span></h1>
                 <p class="hero-subtitle">
                     High-end features for your workouts. One fair payment. No trackers, no cloud, no compromises.
                 </p>
@@ -860,20 +1117,53 @@
                         <i class="ph ph-app-store-logo"></i>
                         Download on App Store
                     </a>
+                    <a href="#screenshots" class="btn-secondary">
+                        <i class="ph ph-images"></i>
+                        View Screenshots
+                    </a>
+                </div>
+            </section>
+
+            <!-- Screenshot Showcase -->
+            <section class="screenshot-showcase animate-in" id="screenshots">
+                <h2>See GymBo in Action</h2>
+                <p class="section-subtitle">Scroll through the app and discover all features</p>
+                
+                <div class="screenshot-carousel" id="screenshotCarousel">
+                    <div class="screenshot-item">
+                        <img src="../screenshots/de-1-Introduction.png" alt="GymBo Home - Easy Tracking" loading="lazy">
+                    </div>
+                    <div class="screenshot-item">
+                        <img src="../screenshots/de-2-Feature-A.png" alt="GymBo Workout Tracking" loading="lazy">
+                    </div>
+                    <div class="screenshot-item">
+                        <img src="../screenshots/de-3-Feature-B.png" alt="GymBo Insights and Statistics" loading="lazy">
+                    </div>
+                    <div class="screenshot-item">
+                        <img src="../screenshots/de-4-Screenshot-4.png" alt="GymBo Profile" loading="lazy">
+                    </div>
+                    <div class="screenshot-item">
+                        <img src="../screenshots/de-5-Screenshot-5.png" alt="GymBo Settings" loading="lazy">
+                    </div>
+                    <div class="screenshot-item">
+                        <img src="../screenshots/de-6-Screenshot-6.png" alt="GymBo Exercises" loading="lazy">
+                    </div>
+                </div>
+                
+                <div class="carousel-nav">
+                    <button class="carousel-dot active" data-index="0"></button>
+                    <button class="carousel-dot" data-index="1"></button>
+                    <button class="carousel-dot" data-index="2"></button>
+                    <button class="carousel-dot" data-index="3"></button>
+                    <button class="carousel-dot" data-index="4"></button>
+                    <button class="carousel-dot" data-index="5"></button>
                 </div>
             </section>
 
             <!-- Bento Grid -->
             <section class="bento" id="features">
-                <!-- Hero Card with Phone -->
-                <div class="bento-card bento-hero animate-in delay-1">
-                    <div class="phone-mockup">
-                        <img id="screenshotImg" src="../screenshot_hell.png" alt="GymBo App" loading="lazy" decoding="async">
-                    </div>
-                </div>
-
                 <!-- Progression Feature -->
-                <div class="bento-card bento-progress animate-in delay-2">
+                <div class="bento-card bento-progress animate-in delay-1">
                     <div class="card-icon">
                         <i class="ph ph-trend-up"></i>
                     </div>
@@ -884,21 +1174,31 @@
                 </div>
 
                 <!-- Stats Card -->
-                <div class="bento-card bento-stats animate-in delay-3">
+                <div class="bento-card bento-stats animate-in delay-2">
                     <div>
-                        <div class="stat-number">∞</div>
-                        <div class="stat-label">Unlimited Workouts</div>
+                        <div class="stat-number">217+</div>
+                        <div class="stat-label">Exercises included</div>
                     </div>
-                    <p class="card-desc">No artificial limits. Train as much as you want.</p>
+                    <p class="card-desc">From chest to cardio - everything included.</p>
                 </div>
 
                 <!-- Supersets -->
-                <div class="bento-card animate-in delay-4">
+                <div class="bento-card animate-in delay-3">
                     <div class="card-icon">
                         <i class="ph ph-arrows-left-right"></i>
                     </div>
                     <h3 class="card-title">Supersets & Circuits</h3>
                     <p class="card-desc">Seamlessly switch between exercises. Keep your training in flow.</p>
+                </div>
+
+                <!-- Apple Watch App -->
+                <div class="bento-card bento-watch animate-in delay-4">
+                    <div class="card-icon">
+                        <i class="ph ph-watch"></i>
+                    </div>
+                    <h3 class="card-title">Apple Watch App</h3>
+                    <p class="card-desc">Standalone and Companion. Track your workout directly on your wrist.</p>
+                    <span class="badge-coming-soon">coming soon</span>
                 </div>
 
                 <!-- Privacy -->
@@ -950,18 +1250,8 @@
                     <p class="card-desc">Your data belongs to you. Export, share, or back it up anytime.</p>
                 </div>
 
-                <!-- Apple Watch App -->
-                <div class="bento-card bento-wide bento-watch animate-in delay-1">
-                    <div class="card-icon">
-                        <i class="ph ph-watch"></i>
-                    </div>
-                    <h3 class="card-title">Apple Watch App</h3>
-                    <p class="card-desc">Standalone and Companion. Track your workout directly on your wrist.</p>
-                    <span class="badge-coming-soon">coming soon</span>
-                </div>
-
                 <!-- Split Workouts -->
-                <div class="bento-card animate-in delay-2">
+                <div class="bento-card animate-in delay-1">
                     <div class="card-icon">
                         <i class="ph ph-scissors"></i>
                     </div>
@@ -970,7 +1260,7 @@
                 </div>
 
                 <!-- Combine Training Types -->
-                <div class="bento-card animate-in delay-3">
+                <div class="bento-card animate-in delay-2">
                     <div class="card-icon">
                         <i class="ph ph-git-merge"></i>
                     </div>
@@ -979,7 +1269,7 @@
                 </div>
 
                 <!-- Challenges -->
-                <div class="bento-card animate-in delay-4">
+                <div class="bento-card animate-in delay-3">
                     <div class="card-icon">
                         <i class="ph ph-trophy"></i>
                     </div>
@@ -988,7 +1278,7 @@
                 </div>
 
                 <!-- Achievements -->
-                <div class="bento-card animate-in delay-1">
+                <div class="bento-card animate-in delay-4">
                     <div class="card-icon">
                         <i class="ph ph-medal"></i>
                     </div>
@@ -997,7 +1287,7 @@
                 </div>
 
                 <!-- Star Workouts -->
-                <div class="bento-card bento-wide animate-in delay-2">
+                <div class="bento-card bento-wide animate-in delay-1">
                     <div class="card-icon">
                         <i class="ph ph-star"></i>
                     </div>
@@ -1011,11 +1301,25 @@
             <!-- CTA -->
             <section class="cta-section animate-in">
                 <h2>Ready?</h2>
-                <p>One-time $6.99 – train forever. No hidden costs.</p>
+                <p>One-time $6.99 - train forever. No hidden costs.</p>
                 <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary" target="_blank" rel="noopener">
                     <i class="ph ph-app-store-logo"></i>
                     Get it on App Store
                 </a>
+            </section>
+
+            <!-- Testflight Subscribe Form -->
+            <section class="cta-section animate-in" id="testflight">
+                <h2>Version 3.0 Early Access</h2>
+                <p>Be part of the new features. Get a Testflight spot for the upcoming version.</p>
+                <form id="subscribeForm" class="subscribe-form" action="https://formspree.io/f/mnjjqwqv" method="POST">
+                    <input type="email" id="emailInput" name="email" placeholder="your@email.com" required>
+                    <button type="submit" class="btn-primary">
+                        <i class="ph ph-paper-plane-right"></i>
+                        Sign Up
+                    </button>
+                </form>
+                <div id="subscribeMessage" class="subscribe-message"></div>
             </section>
         </main>
 
@@ -1024,8 +1328,9 @@
             <div class="footer-links">
                 <a href="https://benkohler.de/impressum.html" class="footer-link" target="_blank" rel="noopener">Imprint</a>
                 <a href="https://benkohler.de/datenschutz.html" class="footer-link" target="_blank" rel="noopener">Privacy</a>
+                <a href="https://benkohler.de" class="footer-link" target="_blank" rel="noopener">More Apps</a>
             </div>
-            <p class="footer-copy">© 2025 Ben Kohler</p>
+            <p class="footer-copy">2025 Ben Kohler</p>
         </footer>
 
         <script>
@@ -1035,16 +1340,19 @@
             const themeIcon = document.getElementById('themeIcon');
             const mobileThemeToggle = document.getElementById('mobileThemeToggle');
             const mobileThemeText = document.getElementById('mobileThemeText');
-            const screenshotImg = document.getElementById('screenshotImg');
 
             const savedTheme = localStorage.getItem('theme') || 'light';
             html.setAttribute('data-theme', savedTheme);
             updateTheme(savedTheme);
 
             function updateTheme(theme) {
-                themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
-                mobileThemeText.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
-                screenshotImg.src = theme === 'light' ? '../screenshot_hell.png' : '../screenshot_dark.png';
+                if (theme === 'light') {
+                    themeIcon.className = 'ph ph-moon';
+                    mobileThemeText.textContent = 'Dark Mode';
+                } else {
+                    themeIcon.className = 'ph ph-sun';
+                    mobileThemeText.textContent = 'Light Mode';
+                }
             }
 
             function toggleTheme() {
@@ -1073,7 +1381,47 @@
             mobileMenuClose.addEventListener('click', toggleMenu);
             mobileNavLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-            // Scroll Animations - optimized with passive and unobserve
+            // Screenshot Carousel
+            const carousel = document.getElementById('screenshotCarousel');
+            const dots = document.querySelectorAll('.carousel-dot');
+            let currentSlide = 0;
+
+            function updateCarousel(index) {
+                const items = carousel.querySelectorAll('.screenshot-item');
+                const itemWidth = items[0].offsetWidth + 24;
+                const scrollPosition = index * itemWidth;
+                
+                carousel.scrollTo({
+                    left: scrollPosition,
+                    behavior: 'smooth'
+                });
+                
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                
+                currentSlide = index;
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => updateCarousel(index));
+            });
+
+            carousel.addEventListener('scroll', () => {
+                const items = carousel.querySelectorAll('.screenshot-item');
+                const itemWidth = items[0].offsetWidth + 24;
+                const scrollPosition = carousel.scrollLeft;
+                const newIndex = Math.round(scrollPosition / itemWidth);
+                
+                if (newIndex !== currentSlide && newIndex >= 0 && newIndex < dots.length) {
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === newIndex);
+                    });
+                    currentSlide = newIndex;
+                }
+            });
+
+            // Scroll Animations
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1088,8 +1436,63 @@
                 observer.observe(el);
             });
 
-            // Smooth scroll - disabled for better performance
-            // document.documentElement.style.scrollBehavior = 'smooth';
+            // Subscribe Form
+            const subscribeForm = document.getElementById('subscribeForm');
+            const emailInput = document.getElementById('emailInput');
+            const subscribeMessage = document.getElementById('subscribeMessage');
+
+            subscribeForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const email = emailInput.value.trim();
+                if (!email) return;
+
+                const submitBtn = subscribeForm.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Sending...';
+
+                try {
+                    const formData = new FormData();
+                    formData.append('email', email);
+
+                    const response = await fetch(subscribeForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    const result = await response.json();
+
+                    subscribeMessage.className = 'subscribe-message';
+                    if (response.ok) {
+                        subscribeMessage.classList.add('success');
+                        subscribeMessage.textContent = 'Awesome! We have added you to the list.';
+                        emailInput.value = '';
+                    } else {
+                        subscribeMessage.classList.add('error');
+                        subscribeMessage.textContent = result.errors?.[0]?.message || 'Error signing up.';
+                    }
+                } catch (error) {
+                    subscribeMessage.className = 'subscribe-message error';
+                    subscribeMessage.textContent = 'Connection error. Please try again later.';
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="ph ph-paper-plane-right"></i> Sign Up';
+                }
+            });
+
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
         </script>
     </body>
 </html>
