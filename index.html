@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" data-theme="dark">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -1064,58 +1064,65 @@
                 }
             }
 
-            /* Version Banner */
+            /* Version Banner - Subtle Floating Pill */
             .version-banner {
-                background: linear-gradient(135deg, var(--accent) 0%, var(--accent-darker) 100%);
-                padding: 16px 24px;
-                margin-bottom: 24px;
-                border-radius: 16px;
-                box-shadow: 0 8px 30px var(--accent-glow);
+                display: flex;
+                justify-content: center;
+                padding: 0;
+                margin-bottom: 0;
             }
 
             .version-banner-content {
-                max-width: 1200px;
-                margin: 0 auto;
-                display: flex;
+                display: inline-flex;
                 align-items: center;
-                justify-content: center;
-                gap: 16px;
-                flex-wrap: wrap;
+                gap: 12px;
+                padding: 10px 12px 10px 16px;
+                background: var(--bg-surface);
+                border: 1px solid var(--border);
+                border-radius: 100px;
+                font-size: 0.875rem;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                margin-bottom: 32px;
+            }
+
+            .version-banner-content:hover {
+                border-color: var(--accent);
+                background: var(--bg-elevated);
             }
 
             .version-badge {
-                background: rgba(0, 0, 0, 0.2);
+                background: var(--accent);
                 color: #000;
-                padding: 6px 14px;
+                padding: 4px 10px;
                 border-radius: 100px;
-                font-size: 0.75rem;
+                font-size: 0.7rem;
                 font-weight: 700;
-                letter-spacing: 0.05em;
+                letter-spacing: 0.03em;
                 text-transform: uppercase;
             }
 
             .version-text {
-                color: #000;
-                font-size: 1.1rem;
-                font-weight: 600;
-                letter-spacing: -0.01em;
+                color: var(--text-secondary);
+                font-weight: 500;
             }
 
             .version-link {
-                color: #000;
-                background: rgba(0, 0, 0, 0.15);
-                padding: 8px 18px;
-                border-radius: 100px;
-                font-size: 0.9rem;
+                color: var(--accent);
                 font-weight: 600;
                 text-decoration: none;
-                transition: all 0.2s;
-                border: 1px solid rgba(0, 0, 0, 0.2);
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                transition: gap 0.2s;
             }
 
             .version-link:hover {
-                background: rgba(0, 0, 0, 0.25);
-                transform: translateY(-1px);
+                gap: 8px;
+            }
+
+            .version-link::after {
+                content: '→';
             }
 
             /* Footer - Minimal Single Line */
@@ -1410,13 +1417,13 @@
                 }
 
                 .version-banner-content {
-                    flex-direction: column;
-                    gap: 12px;
-                    text-align: center;
+                    font-size: 0.8rem;
+                    padding: 8px 10px 8px 12px;
+                    gap: 8px;
                 }
 
                 .version-text {
-                    font-size: 1rem;
+                    display: none;
                 }
 
                 .subscribe-form {
@@ -1503,22 +1510,15 @@
         </div>
 
         <main class="main">
-            <!-- Version Banner -->
-            <section class="version-banner animate-in">
-                <div class="version-banner-content">
-                    <span class="version-badge">Neu</span>
-                    <span class="version-text">Version 3.0 kommt bald - Testflight-Platze limitiert!</span>
-                    <a href="#testflight" class="version-link">Jetzt sichern</a>
-                </div>
-            </section>
-
             <!-- Hero -->
             <section class="hero">
                 <div class="hero-content animate-in">
-                    <div class="hero-badge">
-                        <i class="ph ph-seal-check"></i>
-                        Einmalig 6,99 € — Kein Abo
-                    </div>
+                    <!-- Version Announcement Pill -->
+                    <a href="#testflight" class="version-banner-content">
+                        <span class="version-badge">v3.0</span>
+                        <span class="version-text">Early Access verfügbar</span>
+                        <span class="version-link">Sichern</span>
+                    </a>
                     <h1>Training.<br><span class="highlight">Ohne Bullshit.</span></h1>
                     <p class="hero-subtitle">
                         High-End Features. Eine faire Einmalzahlung.<br>Keine Tracker, keine Cloud, keine Kompromisse.
@@ -1537,17 +1537,17 @@
 
                 <!-- Floating Devices -->
                 <div class="hero-devices">
-                    <div class="hero-device hero-device-left" data-speed="0.6">
+                    <div class="hero-device hero-device-left" data-speed="0.15">
                         <div class="device-frame">
                             <img src="screenshots/de-2-Feature-A.png" alt="GymBo Workout Tracking">
                         </div>
                     </div>
-                    <div class="hero-device hero-device-center" data-speed="0.3">
+                    <div class="hero-device hero-device-center" data-speed="0.08">
                         <div class="device-frame">
                             <img src="screenshots/de-1-Introduction.png" alt="GymBo Home">
                         </div>
                     </div>
-                    <div class="hero-device hero-device-right" data-speed="0.6">
+                    <div class="hero-device hero-device-right" data-speed="0.15">
                         <div class="device-frame">
                             <img src="screenshots/de-3-Feature-B.png" alt="GymBo Insights">
                         </div>
