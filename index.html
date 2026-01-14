@@ -426,101 +426,6 @@
                 opacity: 0.9;
             }
 
-            /* Screenshot Showcase Section */
-            .screenshot-showcase {
-                padding: 60px 0 100px;
-                overflow: hidden;
-            }
-
-            .screenshot-showcase h2 {
-                text-align: center;
-                font-size: clamp(2rem, 5vw, 3rem);
-                font-weight: 800;
-                letter-spacing: -0.03em;
-                margin-bottom: 16px;
-            }
-
-            .screenshot-showcase .section-subtitle {
-                text-align: center;
-                color: var(--text-secondary);
-                font-size: 1.1rem;
-                margin-bottom: 50px;
-                max-width: 500px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            /* Screenshot Carousel */
-            .screenshot-carousel {
-                display: flex;
-                gap: 24px;
-                padding: 20px 0;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                scrollbar-width: none;
-                -ms-overflow-style: none;
-                padding-left: calc(50% - 180px);
-                padding-right: calc(50% - 180px);
-            }
-
-            .screenshot-carousel::-webkit-scrollbar {
-                display: none;
-            }
-
-            .screenshot-item {
-                flex: 0 0 auto;
-                width: 360px;
-                scroll-snap-align: center;
-                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s;
-            }
-
-            .screenshot-item img {
-                width: 100%;
-                border-radius: 24px;
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-                transition: transform 0.4s, box-shadow 0.4s;
-            }
-
-            [data-theme="dark"] .screenshot-item img {
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            }
-
-            .screenshot-item:hover img {
-                transform: translateY(-8px) scale(1.02);
-                box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
-            }
-
-            [data-theme="dark"] .screenshot-item:hover img {
-                box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-            }
-
-            /* Carousel Navigation */
-            .carousel-nav {
-                display: flex;
-                justify-content: center;
-                gap: 12px;
-                margin-top: 32px;
-            }
-
-            .carousel-dot {
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background: var(--border);
-                border: none;
-                cursor: pointer;
-                transition: all 0.3s;
-            }
-
-            .carousel-dot.active {
-                background: var(--accent-dark);
-                transform: scale(1.2);
-            }
-
-            .carousel-dot:hover {
-                background: var(--accent-dark);
-            }
-
             /* Features Section - Asymmetric Layout */
             .features-section {
                 padding: 100px 0;
@@ -1019,101 +924,144 @@
                 border: 1px solid var(--border);
             }
 
-            /* CTA Section */
-            .cta-section {
+            /* Final CTA Section - Minimal & Bold */
+            .final-cta {
                 text-align: center;
-                padding: 80px 40px;
-                background: linear-gradient(145deg, var(--bg-card) 0%, var(--accent-soft) 100%);
-                border-radius: 32px;
-                border: 1px solid var(--border);
-                margin-bottom: 60px;
+                padding: 120px 24px;
                 position: relative;
-                overflow: hidden;
             }
 
-            .cta-section::before {
-                content: '';
-                position: absolute;
-                top: -50%;
-                left: -50%;
-                width: 200%;
-                height: 200%;
-                background: radial-gradient(circle, var(--accent-soft) 0%, transparent 50%);
-                opacity: 0.5;
-                pointer-events: none;
+            .final-cta h2 {
+                font-size: clamp(4rem, 12vw, 8rem);
+                font-weight: 900;
+                letter-spacing: -0.04em;
+                margin-bottom: 24px;
+                line-height: 1;
             }
 
-            .cta-section h2 {
-                font-size: clamp(2rem, 5vw, 3rem);
+            .final-cta .price {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: var(--text-secondary);
+                margin-bottom: 40px;
+            }
+
+            .final-cta .price strong {
+                color: var(--accent);
+                font-weight: 700;
+            }
+
+            .final-cta .trust-line {
+                margin-top: 24px;
+                font-size: 0.9rem;
+                color: var(--text-muted);
+            }
+
+            /* Testflight Section - Sleek */
+            .testflight-section {
+                text-align: center;
+                padding: 80px 24px;
+                border-top: 1px solid var(--border);
+            }
+
+            .testflight-section h3 {
+                font-size: clamp(1.5rem, 4vw, 2.5rem);
                 font-weight: 800;
-                letter-spacing: -0.03em;
-                margin-bottom: 16px;
-                position: relative;
+                letter-spacing: -0.02em;
+                margin-bottom: 12px;
             }
 
-            .cta-section p {
+            .testflight-section p {
                 color: var(--text-secondary);
                 font-size: 1.1rem;
-                max-width: 450px;
-                margin: 0 auto 32px;
-                position: relative;
+                margin-bottom: 32px;
             }
 
-            /* Subscribe Form */
+            /* Subscribe Form - Inline */
             .subscribe-form {
                 display: flex;
-                gap: 12px;
+                gap: 0;
                 justify-content: center;
-                max-width: 450px;
+                max-width: 420px;
                 margin: 0 auto;
-                flex-wrap: wrap;
-                position: relative;
+                background: var(--bg-surface);
+                border-radius: 14px;
+                border: 1px solid var(--border);
+                overflow: hidden;
+                transition: border-color 0.2s;
+            }
+
+            .subscribe-form:focus-within {
+                border-color: var(--accent);
             }
 
             #emailInput {
                 flex: 1;
-                min-width: 200px;
-                padding: 16px 24px;
-                border: 2px solid var(--border);
-                border-radius: 14px;
+                min-width: 0;
+                padding: 16px 20px;
+                border: none;
                 font-size: 1rem;
                 font-family: inherit;
-                background: var(--bg);
+                background: transparent;
                 color: var(--text);
-                transition: all 0.2s;
             }
 
             #emailInput:focus {
                 outline: none;
-                border-color: var(--accent);
-                box-shadow: 0 0 0 4px var(--accent-soft);
             }
 
             #emailInput::placeholder {
-                color: var(--text-secondary);
+                color: var(--text-muted);
+            }
+
+            .subscribe-form .btn-primary {
+                border-radius: 0;
+                padding: 16px 24px;
+                font-size: 0.95rem;
             }
 
             .subscribe-message {
-                margin-top: 20px;
+                margin-top: 16px;
                 padding: 12px 20px;
                 border-radius: 10px;
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 font-weight: 500;
                 display: none;
             }
 
             .subscribe-message.success {
-                display: block;
-                background: rgba(34, 197, 94, 0.1);
-                color: #22c55e;
-                border: 1px solid rgba(34, 197, 94, 0.2);
+                display: inline-block;
+                background: rgba(245, 158, 11, 0.1);
+                color: var(--accent);
+                border: 1px solid var(--accent-soft);
             }
 
             .subscribe-message.error {
-                display: block;
+                display: inline-block;
                 background: rgba(239, 68, 68, 0.1);
                 color: #ef4444;
                 border: 1px solid rgba(239, 68, 68, 0.2);
+            }
+
+            @media (max-width: 480px) {
+                .subscribe-form {
+                    flex-direction: column;
+                    background: transparent;
+                    border: none;
+                    gap: 12px;
+                }
+
+                #emailInput {
+                    background: var(--bg-surface);
+                    border: 1px solid var(--border);
+                    border-radius: 14px;
+                    padding: 16px 20px;
+                }
+
+                .subscribe-form .btn-primary {
+                    border-radius: 14px;
+                    width: 100%;
+                }
             }
 
             /* Version Banner */
@@ -1170,24 +1118,43 @@
                 transform: translateY(-1px);
             }
 
-            /* Footer */
+            /* Footer - Minimal Single Line */
             .footer {
-                padding: 40px 24px;
-                text-align: center;
+                padding: 32px 24px;
                 border-top: 1px solid var(--border);
+            }
+
+            .footer-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .footer-logo {
+                font-size: 1.25rem;
+                font-weight: 800;
+                color: var(--text);
+                text-decoration: none;
+            }
+
+            .footer-logo .logo-bo {
+                color: var(--accent);
             }
 
             .footer-links {
                 display: flex;
-                justify-content: center;
-                gap: 32px;
-                margin-bottom: 16px;
+                align-items: center;
+                gap: 24px;
             }
 
             .footer-link {
-                color: var(--text-secondary);
+                color: var(--text-muted);
                 text-decoration: none;
-                font-size: 0.9rem;
+                font-size: 0.875rem;
                 transition: color 0.2s;
             }
 
@@ -1196,9 +1163,8 @@
             }
 
             .footer-copy {
-                color: var(--text-secondary);
-                font-size: 0.85rem;
-                opacity: 0.7;
+                color: var(--text-muted);
+                font-size: 0.8rem;
             }
 
             /* Mobile Menu */
@@ -1377,19 +1343,29 @@
                     font-size: 2.5rem;
                 }
 
-                .cta-section {
-                    padding: 48px 24px;
-                    border-radius: 24px;
+                .final-cta {
+                    padding: 80px 24px;
                 }
 
-                .screenshot-item {
-                    width: 280px;
+                .final-cta h2 {
+                    font-size: 4rem;
                 }
 
-                .screenshot-carousel {
-                    padding-left: calc(50% - 140px);
-                    padding-right: calc(50% - 140px);
-                    gap: 16px;
+                .footer-content {
+                    flex-direction: column;
+                    text-align: center;
+                }
+
+                .footer-links {
+                    order: 1;
+                }
+
+                .footer-logo {
+                    order: 0;
+                }
+
+                .footer-copy {
+                    order: 2;
                 }
             }
 
@@ -1475,8 +1451,7 @@
             <div class="header-left">
                 <a href="#" class="header-logo"><span class="logo-gym">Gym</span><span class="logo-bo">Bo</span></a>
                 <nav class="header-nav">
-                    <a href="#features" class="nav-link">Funktionen</a>
-                    <a href="#screenshots" class="nav-link">Screenshots</a>
+                    <a href="#features" class="nav-link">Features</a>
                     <a href="manifest.html" class="nav-link">Manifest</a>
                     <a href="faq.html" class="nav-link">FAQ</a>
                     <a href="roadmap.html" class="nav-link">Roadmap</a>
@@ -1506,8 +1481,7 @@
                 </button>
             </div>
             <nav class="mobile-nav">
-                <a href="#features" class="mobile-nav-link">Funktionen</a>
-                <a href="#screenshots" class="mobile-nav-link">Screenshots</a>
+                <a href="#features" class="mobile-nav-link">Features</a>
                 <a href="manifest.html" class="mobile-nav-link">Manifest</a>
                 <a href="faq.html" class="mobile-nav-link">FAQ</a>
                 <a href="roadmap.html" class="mobile-nav-link">Roadmap</a>
@@ -1578,42 +1552,6 @@
                             <img src="screenshots/de-3-Feature-B.png" alt="GymBo Insights">
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Screenshot Showcase -->
-            <section class="screenshot-showcase animate-in" id="screenshots">
-                <h2>So sieht GymBo aus</h2>
-                <p class="section-subtitle">Scrolle durch die App und entdecke alle Features</p>
-                
-                <div class="screenshot-carousel" id="screenshotCarousel">
-                    <div class="screenshot-item">
-                        <img src="screenshots/de-1-Introduction.png" alt="GymBo Home - Tracking einfach gemacht" loading="lazy">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="screenshots/de-2-Feature-A.png" alt="GymBo Workout Tracking" loading="lazy">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="screenshots/de-3-Feature-B.png" alt="GymBo Insights und Statistiken" loading="lazy">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="screenshots/de-4-Screenshot-4.png" alt="GymBo Profil" loading="lazy">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="screenshots/de-5-Screenshot-5.png" alt="GymBo Einstellungen" loading="lazy">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="screenshots/de-6-Screenshot-6.png" alt="GymBo Ubungen" loading="lazy">
-                    </div>
-                </div>
-                
-                <div class="carousel-nav">
-                    <button class="carousel-dot active" data-index="0"></button>
-                    <button class="carousel-dot" data-index="1"></button>
-                    <button class="carousel-dot" data-index="2"></button>
-                    <button class="carousel-dot" data-index="3"></button>
-                    <button class="carousel-dot" data-index="4"></button>
-                    <button class="carousel-dot" data-index="5"></button>
                 </div>
             </section>
 
@@ -1754,20 +1692,21 @@
                 </div>
             </section>
 
-            <!-- CTA -->
-            <section class="cta-section animate-in">
+            <!-- Final CTA -->
+            <section class="final-cta animate-in">
                 <h2>Bereit?</h2>
-                <p>Einmalig 6,99 EUR - fur immer trainieren. Keine versteckten Kosten.</p>
+                <p class="price"><strong>6,99 €</strong> — einmalig, für immer</p>
                 <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary" target="_blank" rel="noopener">
                     <i class="ph ph-app-store-logo"></i>
-                    Jetzt im App Store
+                    Im App Store laden
                 </a>
+                <p class="trust-line">Kein Abo. Keine Tracker. Deine Daten.</p>
             </section>
 
-            <!-- Testflight Subscribe Form -->
-            <section class="cta-section animate-in" id="testflight">
-                <h2>Version 3.0 Early Access</h2>
-                <p>Sei dabei bei den Neuerungen. Erhalte einen Testflight-Platz fur die kommende Version.</p>
+            <!-- Testflight Section -->
+            <section class="testflight-section animate-in" id="testflight">
+                <h3>Version 3.0 Early Access</h3>
+                <p>Testflight-Plätze limitiert</p>
                 <form id="subscribeForm" class="subscribe-form" action="https://formspree.io/f/mnjjqwqv" method="POST">
                     <input type="email" id="emailInput" name="email" placeholder="deine@email.com" required>
                     <button type="submit" class="btn-primary">
@@ -1781,12 +1720,15 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <div class="footer-links">
-                <a href="https://benkohler.de/impressum.html" class="footer-link" target="_blank" rel="noopener">Impressum</a>
-                <a href="https://benkohler.de/datenschutz.html" class="footer-link" target="_blank" rel="noopener">Datenschutz</a>
-                <a href="https://benkohler.de" class="footer-link" target="_blank" rel="noopener">Mehr Apps</a>
+            <div class="footer-content">
+                <a href="#" class="footer-logo"><span>Gym</span><span class="logo-bo">Bo</span></a>
+                <div class="footer-links">
+                    <a href="https://benkohler.de/impressum.html" class="footer-link" target="_blank" rel="noopener">Impressum</a>
+                    <a href="https://benkohler.de/datenschutz.html" class="footer-link" target="_blank" rel="noopener">Datenschutz</a>
+                    <a href="manifest.html" class="footer-link">Manifest</a>
+                </div>
+                <p class="footer-copy">© 2025 Ben Kohler</p>
             </div>
-            <p class="footer-copy">2025 Ben Kohler</p>
         </footer>
 
         <script>
@@ -1837,47 +1779,6 @@
             mobileMenuBtn.addEventListener('click', toggleMenu);
             mobileMenuClose.addEventListener('click', toggleMenu);
             mobileNavLinks.forEach(link => link.addEventListener('click', toggleMenu));
-
-            // Screenshot Carousel
-            const carousel = document.getElementById('screenshotCarousel');
-            const dots = document.querySelectorAll('.carousel-dot');
-            let currentSlide = 0;
-
-            function updateCarousel(index) {
-                const items = carousel.querySelectorAll('.screenshot-item');
-                const itemWidth = items[0].offsetWidth + 24; // width + gap
-                const scrollPosition = index * itemWidth;
-                
-                carousel.scrollTo({
-                    left: scrollPosition,
-                    behavior: 'smooth'
-                });
-                
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === index);
-                });
-                
-                currentSlide = index;
-            }
-
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => updateCarousel(index));
-            });
-
-            // Update dots on scroll
-            carousel.addEventListener('scroll', () => {
-                const items = carousel.querySelectorAll('.screenshot-item');
-                const itemWidth = items[0].offsetWidth + 24;
-                const scrollPosition = carousel.scrollLeft;
-                const newIndex = Math.round(scrollPosition / itemWidth);
-                
-                if (newIndex !== currentSlide && newIndex >= 0 && newIndex < dots.length) {
-                    dots.forEach((dot, i) => {
-                        dot.classList.toggle('active', i === newIndex);
-                    });
-                    currentSlide = newIndex;
-                }
-            });
 
             // Scroll Animations with Stagger Effect
             const observer = new IntersectionObserver((entries) => {
