@@ -82,6 +82,31 @@
                 z-index: 1000;
             }
 
+            /* Cursor Glow Effect */
+            .cursor-glow {
+                position: fixed;
+                width: 600px;
+                height: 600px;
+                border-radius: 50%;
+                background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+                pointer-events: none;
+                z-index: 0;
+                opacity: 0.4;
+                transform: translate(-50%, -50%);
+                transition: opacity 0.3s ease;
+            }
+
+            .cursor-glow.hidden {
+                opacity: 0;
+            }
+
+            /* Disable on mobile */
+            @media (hover: none) {
+                .cursor-glow {
+                    display: none;
+                }
+            }
+
             /* Animated Background Gradient - Amber Glow */
             .bg-gradient {
                 position: fixed;
@@ -240,14 +265,23 @@
 
             /* Main Container */
             .main {
-                max-width: 1400px;
-                margin: 0 auto;
-                padding: 100px 24px 60px;
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
                 position: relative;
                 z-index: 1;
             }
 
-            /* Hero Section - Dark & Bold with Floating Devices */
+            .content-overlay .features-section,
+            .content-overlay .final-cta,
+            .content-overlay .testflight-section,
+            .content-overlay .type-statement {
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            /* Hero Section - Sticky with Content Overlay */
             .hero {
                 min-height: 100vh;
                 display: flex;
@@ -256,8 +290,33 @@
                 justify-content: flex-start;
                 text-align: center;
                 padding: 120px 0 0;
-                position: relative;
+                position: sticky;
+                top: 0;
+                z-index: 1;
                 overflow: hidden;
+            }
+
+            /* Content that scrolls over the hero */
+            .content-overlay {
+                position: relative;
+                z-index: 10;
+                background: var(--bg);
+                margin-top: -100px;
+                border-radius: 48px 48px 0 0;
+                box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.3);
+            }
+
+            .content-overlay::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60px;
+                height: 4px;
+                background: var(--border);
+                border-radius: 2px;
+                margin-top: 16px;
             }
 
             .hero-content {
@@ -428,7 +487,7 @@
 
             /* Features Section - Asymmetric Layout */
             .features-section {
-                padding: 100px 0;
+                padding: 140px 0 100px;
             }
 
             .features-section h2 {
@@ -922,6 +981,41 @@
                 font-size: 0.9rem;
                 color: var(--accent);
                 border: 1px solid var(--border);
+            }
+
+            /* Typography Statement Breaks */
+            .type-statement {
+                padding: 120px 24px;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .type-statement p {
+                font-size: clamp(2rem, 6vw, 4.5rem);
+                font-weight: 800;
+                letter-spacing: -0.03em;
+                line-height: 1.1;
+                max-width: 900px;
+                margin: 0 auto;
+                color: var(--text);
+            }
+
+            .type-statement .accent {
+                color: var(--accent);
+            }
+
+            .type-statement .muted {
+                color: var(--text-muted);
+            }
+
+            .type-statement-small {
+                padding: 80px 24px;
+            }
+
+            .type-statement-small p {
+                font-size: clamp(1.5rem, 4vw, 2.5rem);
+                color: var(--text-secondary);
             }
 
             /* Final CTA Section - Minimal & Bold */
@@ -1450,6 +1544,9 @@
         </style>
     </head>
     <body>
+        <!-- Cursor Glow -->
+        <div class="cursor-glow" id="cursorGlow"></div>
+
         <!-- Background Gradient -->
         <div class="bg-gradient"></div>
 
@@ -1555,6 +1652,9 @@
                 </div>
             </section>
 
+            <!-- Content Overlay - Scrolls over Hero -->
+            <div class="content-overlay">
+
             <!-- Features Section -->
             <section class="features-section" id="features">
                 <h2 class="animate-in">Was GymBo kann</h2>
@@ -1607,6 +1707,11 @@
                         <div class="privacy-icon"><i class="ph ph-eye-slash"></i></div>
                         <div class="privacy-icon"><i class="ph ph-lock-key"></i></div>
                     </div>
+                </div>
+
+                <!-- Typography Statement -->
+                <div class="type-statement animate-in">
+                    <p><span class="muted">Deine Daten.</span> <span class="muted">Dein Gerät.</span> <span class="accent">Punkt.</span></p>
                 </div>
 
                 <!-- Stats Highlight -->
@@ -1690,6 +1795,11 @@
                         <p>Trainiere wie Alan Ritchson, Arnold, Chris Hemsworth und mehr.</p>
                     </div>
                 </div>
+
+                <!-- Typography Statement before CTA -->
+                <div class="type-statement animate-in">
+                    <p><span class="accent">Einmal zahlen.</span> Für immer trainieren.</p>
+                </div>
             </section>
 
             <!-- Final CTA -->
@@ -1716,6 +1826,8 @@
                 </form>
                 <div id="subscribeMessage" class="subscribe-message"></div>
             </section>
+
+            </div><!-- End Content Overlay -->
         </main>
 
         <!-- Footer -->
@@ -1764,6 +1876,34 @@
 
             themeToggle.addEventListener('click', toggleTheme);
             mobileThemeToggle.addEventListener('click', toggleTheme);
+
+            // Cursor Glow Effect
+            const cursorGlow = document.getElementById('cursorGlow');
+            let mouseX = 0, mouseY = 0;
+            let glowX = 0, glowY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            document.addEventListener('mouseleave', () => {
+                cursorGlow.classList.add('hidden');
+            });
+
+            document.addEventListener('mouseenter', () => {
+                cursorGlow.classList.remove('hidden');
+            });
+
+            // Smooth follow with lerp
+            function animateGlow() {
+                glowX += (mouseX - glowX) * 0.1;
+                glowY += (mouseY - glowY) * 0.1;
+                cursorGlow.style.left = glowX + 'px';
+                cursorGlow.style.top = glowY + 'px';
+                requestAnimationFrame(animateGlow);
+            }
+            animateGlow();
 
             // Mobile Menu
             const mobileMenu = document.getElementById('mobileMenu');
