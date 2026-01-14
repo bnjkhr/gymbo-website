@@ -1,0 +1,11 @@
+# GymBo Website Robots.txt
+# https://gymbo.benkohler.de
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://gymbo.benkohler.de/sitemap.xml
+
+# Crawl-delay (optional, be nice to servers)
+Crawl-delay: 1

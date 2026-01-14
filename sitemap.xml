@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- German Pages -->
+  <url>
+    <loc>https://gymbo.benkohler.de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/"/>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://gymbo.benkohler.de/manifest.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/manifest.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/manifest.html"/>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://gymbo.benkohler.de/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/faq.html"/>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://gymbo.benkohler.de/roadmap.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/roadmap.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/roadmap.html"/>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- English Pages -->
+  <url>
+    <loc>https://gymbo.benkohler.de/en/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/"/>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://gymbo.benkohler.de/en/manifest.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/manifest.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/manifest.html"/>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://gymbo.benkohler.de/en/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/faq.html"/>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://gymbo.benkohler.de/en/roadmap.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/roadmap.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/roadmap.html"/>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
