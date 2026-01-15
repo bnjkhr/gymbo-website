@@ -9,10 +9,10 @@
             })();
         </script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>GymBo - Your Relaxed Training Companion | No Subscription Fitness App</title>
+        <title>GymBo 3.0 - Free Fitness App | Workout Tracker No Subscription</title>
 
         <!-- SEO Meta Tags -->
-        <meta name="description" content="GymBo is the fitness app without subscription. Pay once, train forever. Smart progression, 217+ exercises, Apple Watch support. 100% offline & private.">
+        <meta name="description" content="GymBo 3.0 - The free fitness app without subscription. Full workout tracking for free. Premium features like Apple Watch & Insights for just €6.99 one-time. 100% offline & private.">
         <meta name="keywords" content="Fitness App, Workout Tracker, Gym App, Training App, Apple Watch Fitness, Offline Fitness App, No Subscription Fitness">
         <meta name="author" content="Ben Kohler">
         <meta name="robots" content="index, follow">
@@ -28,8 +28,8 @@
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://gymbo.benkohler.de/en/">
-        <meta property="og:title" content="GymBo - No Subscription Fitness App">
-        <meta property="og:description" content="Pay once, train forever. Smart progression, 217+ exercises, Apple Watch support. 100% offline & private.">
+        <meta property="og:title" content="GymBo 3.0 - Free Fitness App">
+        <meta property="og:description" content="Version 3.0 now free! Full workout tracking for free. Premium features optional for €6.99 one-time. 100% offline & private.">
         <meta property="og:image" content="https://gymbo.benkohler.de/og-image.png">
         <meta property="og:locale" content="en_US">
         <meta property="og:locale:alternate" content="de_DE">
@@ -38,8 +38,8 @@
         <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:url" content="https://gymbo.benkohler.de/en/">
-        <meta name="twitter:title" content="GymBo - No Subscription Fitness App">
-        <meta name="twitter:description" content="Pay once, train forever. Smart progression, 217+ exercises, Apple Watch support. 100% offline & private.">
+        <meta name="twitter:title" content="GymBo 3.0 - Free Fitness App">
+        <meta name="twitter:description" content="Version 3.0 now free! Full workout tracking for free. Premium features optional for €6.99 one-time. 100% offline & private.">
         <meta name="twitter:image" content="https://gymbo.benkohler.de/og-image.png">
 
         <!-- Favicon -->
@@ -58,17 +58,26 @@
             "name": "GymBo",
             "operatingSystem": "iOS",
             "applicationCategory": "HealthApplication",
-            "offers": {
-                "@type": "Offer",
-                "price": "6.99",
-                "priceCurrency": "EUR"
-            },
+            "offers": [
+                {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "EUR",
+                    "name": "GymBo Free"
+                },
+                {
+                    "@type": "Offer",
+                    "price": "6.99",
+                    "priceCurrency": "EUR",
+                    "name": "GymBo Pro"
+                }
+            ],
             "aggregateRating": {
                 "@type": "AggregateRating",
                 "ratingValue": "5",
                 "ratingCount": "50"
             },
-            "description": "Fitness app without subscription. Pay once, train forever. Smart progression, 217+ exercises, Apple Watch support.",
+            "description": "Free fitness app. Version 3.0 free with full workout tracking. Premium features optional for €6.99 one-time.",
             "screenshot": "https://gymbo.benkohler.de/og-image.png",
             "softwareVersion": "3.0",
             "author": {
@@ -976,6 +985,112 @@
                 margin-top: 12px;
             }
 
+            /* New Pricing Structure - Two Column */
+            .price-grid-two {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
+            }
+
+            .price-card-badge {
+                display: inline-block;
+                background: var(--accent-soft);
+                color: var(--accent);
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                margin-bottom: 12px;
+            }
+
+            .price-card.highlighted .price-card-badge {
+                background: rgba(0, 0, 0, 0.15);
+                color: #000;
+            }
+
+            .price-card-free {
+                background: var(--bg-card);
+                border: 2px solid var(--accent-soft);
+            }
+
+            .price-features {
+                list-style: none;
+                text-align: left;
+                margin: 24px 0;
+                padding: 0;
+            }
+
+            .price-features li {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 8px 0;
+                font-size: 0.9rem;
+                color: var(--text-secondary);
+                border-bottom: 1px solid var(--border);
+            }
+
+            .price-features li:last-child {
+                border-bottom: none;
+            }
+
+            .price-features li i {
+                color: var(--accent);
+                font-size: 1.1rem;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+
+            .price-card.highlighted .price-features li {
+                color: rgba(0, 0, 0, 0.7);
+                border-color: rgba(0, 0, 0, 0.1);
+            }
+
+            .price-card.highlighted .price-features li i {
+                color: #000;
+            }
+
+            .price-card.highlighted .price-features li strong {
+                color: #000;
+            }
+
+            .price-btn {
+                width: 100%;
+                justify-content: center;
+                margin-top: auto;
+            }
+
+            .existing-users-notice {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                background: var(--bg-elevated);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                padding: 20px 24px;
+                margin-top: 40px;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .existing-users-notice i {
+                font-size: 2rem;
+                color: var(--accent);
+                flex-shrink: 0;
+            }
+
+            .existing-users-notice p {
+                font-size: 0.95rem;
+                color: var(--text-secondary);
+                margin: 0;
+            }
+
+            .existing-users-notice strong {
+                color: var(--text);
+            }
+
             @media (max-width: 900px) {
                 .price-grid {
                     grid-template-columns: repeat(2, 1fr);
@@ -985,11 +1100,25 @@
                     order: -1;
                     grid-column: span 2;
                 }
+
+                .price-grid-two {
+                    grid-template-columns: 1fr;
+                }
+
+                .price-grid-two .price-card.highlighted {
+                    order: 0;
+                    grid-column: span 1;
+                }
             }
 
             @media (max-width: 500px) {
                 .price-grid {
                     grid-template-columns: 1fr;
+                }
+
+                .existing-users-notice {
+                    flex-direction: column;
+                    text-align: center;
                 }
 
                 .price-card.highlighted {
@@ -2049,7 +2178,7 @@
                     </a>
                     <h1>Training.<br><span class="highlight">No Bullshit.</span></h1>
                     <p class="hero-subtitle">
-                        High-end features. One fair payment.<br>No trackers, no cloud, no compromises.
+                        <strong style="color: var(--accent);">Version 3.0 — Free.</strong><br>Premium features optional. No trackers, no cloud, no compromises.
                     </p>
                     <div class="hero-cta">
                         <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary" target="_blank" rel="noopener">
@@ -2314,47 +2443,63 @@
 
                 <!-- Typography Statement before CTA -->
                 <div class="type-statement animate-in">
-                    <p><span class="accent">Pay once.</span> Train forever.</p>
+                    <p><span class="accent">Start free.</span> Train without limits.</p>
                 </div>
 
                 <!-- Price Comparison -->
-                <div class="price-comparison animate-in">
-                    <h3>Fair Prices Instead of Subscription Trap</h3>
-                    <p class="price-comparison-subtitle">Do the math. After 2 months you're cheaper with us — forever.</p>
+                <div class="price-comparison animate-in" id="pricing">
+                    <h3>Version 3.0 — Now Free</h3>
+                    <p class="price-comparison-subtitle">Full workout tracking without paying. Premium features optional.</p>
 
-                    <div class="price-grid">
-                        <div class="price-card">
-                            <div class="price-card-name">Hevy Pro</div>
-                            <div class="price-card-type">Subscription</div>
-                            <div class="price-card-amount">€9.99</div>
-                            <div class="price-card-period">per month</div>
-                            <div class="price-card-yearly">= <strong>€119.88</strong> / year</div>
-                        </div>
-
-                        <div class="price-card">
-                            <div class="price-card-name">Strong Pro</div>
-                            <div class="price-card-type">Subscription</div>
-                            <div class="price-card-amount">€4.99</div>
-                            <div class="price-card-period">per month</div>
-                            <div class="price-card-yearly">= <strong>€59.88</strong> / year</div>
-                        </div>
-
-                        <div class="price-card">
-                            <div class="price-card-name">Alpha Progression</div>
-                            <div class="price-card-type">Subscription</div>
-                            <div class="price-card-amount">€12.99</div>
-                            <div class="price-card-period">per month</div>
-                            <div class="price-card-yearly">= <strong>€155.88</strong> / year</div>
+                    <div class="price-grid price-grid-two">
+                        <div class="price-card price-card-free">
+                            <div class="price-card-badge">Free</div>
+                            <div class="price-card-name">GymBo Free</div>
+                            <div class="price-card-amount">€0</div>
+                            <div class="price-card-period">free forever</div>
+                            <ul class="price-features">
+                                <li><i class="ph ph-check-circle"></i> Create & edit workouts</li>
+                                <li><i class="ph ph-check-circle"></i> All workout types (Standard, Superset, Circuit, Sectioned)</li>
+                                <li><i class="ph ph-check-circle"></i> Full workout tracking with sets, weights, reps</li>
+                                <li><i class="ph ph-check-circle"></i> Exercise library with 217+ exercises</li>
+                                <li><i class="ph ph-check-circle"></i> Create custom exercises (unlimited)</li>
+                                <li><i class="ph ph-check-circle"></i> Session history — view all sessions</li>
+                                <li><i class="ph ph-check-circle"></i> 2 workout folders</li>
+                                <li><i class="ph ph-check-circle"></i> Create custom equipment types</li>
+                            </ul>
+                            <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-secondary price-btn" target="_blank" rel="noopener">
+                                <i class="ph ph-app-store-logo"></i>
+                                Download Free
+                            </a>
                         </div>
 
                         <div class="price-card highlighted">
-                            <div class="price-card-name">GymBo</div>
-                            <div class="price-card-type">One-time</div>
+                            <div class="price-card-badge">One-time Purchase</div>
+                            <div class="price-card-name">GymBo Pro</div>
                             <div class="price-card-amount">€6.99</div>
                             <div class="price-card-period">one-time, forever</div>
-                            <div class="price-card-yearly">= <strong>€6.99</strong> / lifetime</div>
-                            <span class="price-card-save">Save up to €149 / year</span>
+                            <ul class="price-features">
+                                <li><i class="ph ph-check-circle"></i> <strong>Everything in Free, plus:</strong></li>
+                                <li><i class="ph ph-star"></i> Insights & Statistics (Volume, PRs, Trends)</li>
+                                <li><i class="ph ph-star"></i> Progression Suggestions — AI recommendations</li>
+                                <li><i class="ph ph-star"></i> Apple Watch App</li>
+                                <li><i class="ph ph-star"></i> Widgets (Quick Start, Streak, Weekly Overview)</li>
+                                <li><i class="ph ph-star"></i> Unlimited workout folders</li>
+                                <li><i class="ph ph-star"></i> Backup & Export</li>
+                                <li><i class="ph ph-star"></i> HealthKit Sync</li>
+                                <li><i class="ph ph-star"></i> Hevy/Strong Import</li>
+                            </ul>
+                            <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary price-btn" target="_blank" rel="noopener">
+                                <i class="ph ph-crown"></i>
+                                Unlock Pro in the App
+                            </a>
                         </div>
+                    </div>
+
+                    <!-- Existing Users Notice -->
+                    <div class="existing-users-notice animate-in">
+                        <i class="ph ph-heart"></i>
+                        <p><strong>Already purchased GymBo 2.0?</strong> You automatically get all Pro features — no need to pay again. Thank you for your support!</p>
                     </div>
                 </div>
             </section>
@@ -2362,10 +2507,10 @@
             <!-- Final CTA -->
             <section class="final-cta animate-in">
                 <h2>Ready?</h2>
-                <p class="price"><strong>€6.99</strong> — one-time, forever</p>
+                <p class="price"><strong>Start free</strong> — Pro optional for €6.99</p>
                 <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary" target="_blank" rel="noopener">
                     <i class="ph ph-app-store-logo"></i>
-                    Get on App Store
+                    Free on App Store
                 </a>
                 <p class="trust-line">No subscription. No trackers. Your data.</p>
             </section>

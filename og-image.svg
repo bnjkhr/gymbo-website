@@ -34,11 +34,11 @@
   <text x="100" y="370" font-family="Inter, -apple-system, sans-serif" font-size="72" font-weight="800" fill="url(#accentGrad)">Ohne Bullshit.</text>
 
   <!-- Subline -->
-  <text x="100" y="440" font-family="Inter, -apple-system, sans-serif" font-size="28" font-weight="500" fill="#A3A3A3">Einmal zahlen. Für immer trainieren.</text>
+  <text x="100" y="440" font-family="Inter, -apple-system, sans-serif" font-size="28" font-weight="500" fill="#A3A3A3">Version 3.0 — Jetzt kostenlos.</text>
 
   <!-- Price Badge -->
-  <rect x="100" y="480" width="180" height="50" rx="25" fill="url(#accentGrad)"/>
-  <text x="190" y="513" font-family="Inter, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#000000" text-anchor="middle">6,99 € einmalig</text>
+  <rect x="100" y="480" width="150" height="50" rx="25" fill="url(#accentGrad)"/>
+  <text x="175" y="513" font-family="Inter, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#000000" text-anchor="middle">Kostenlos</text>
 
   <!-- Features -->
   <text x="310" y="513" font-family="Inter, -apple-system, sans-serif" font-size="18" font-weight="500" fill="#737373">217+ Übungen · Apple Watch · 100% Offline</text>
