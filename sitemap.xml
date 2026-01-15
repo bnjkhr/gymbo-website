@@ -4,36 +4,36 @@
 
   <!-- German Pages -->
   <url>
-    <loc>https://gymbo.benkohler.de/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/"/>
+    <loc>https://gymbo.pro/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.pro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.pro/en/"/>
     <lastmod>2025-01-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://gymbo.benkohler.de/manifest.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/manifest.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/manifest.html"/>
+    <loc>https://gymbo.pro/manifest.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.pro/manifest.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.pro/en/manifest.html"/>
     <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://gymbo.benkohler.de/faq.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/faq.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/faq.html"/>
+    <loc>https://gymbo.pro/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.pro/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.pro/en/faq.html"/>
     <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://gymbo.benkohler.de/roadmap.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/roadmap.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/roadmap.html"/>
+    <loc>https://gymbo.pro/roadmap.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.pro/roadmap.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.pro/en/roadmap.html"/>
     <lastmod>2025-01-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -41,36 +41,36 @@
 
   <!-- English Pages -->
   <url>
-    <loc>https://gymbo.benkohler.de/en/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/"/>
+    <loc>https://gymbo.pro/en/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.pro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.pro/en/"/>
     <lastmod>2025-01-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://gymbo.benkohler.de/en/manifest.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/manifest.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/manifest.html"/>
+    <loc>https://gymbo.pro/en/manifest.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.pro/manifest.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.pro/en/manifest.html"/>
     <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://gymbo.benkohler.de/en/faq.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/faq.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/faq.html"/>
+    <loc>https://gymbo.pro/en/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.pro/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.pro/en/faq.html"/>
     <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://gymbo.benkohler.de/en/roadmap.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.benkohler.de/roadmap.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.benkohler.de/en/roadmap.html"/>
+    <loc>https://gymbo.pro/en/roadmap.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gymbo.pro/roadmap.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gymbo.pro/en/roadmap.html"/>
     <lastmod>2025-01-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
