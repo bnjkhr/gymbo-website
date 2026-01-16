@@ -4,15 +4,15 @@
   "framework": null,
   "headers": [
     {
-      "source": "/(.*).png",
+      "source": "/og-image.png",
       "headers": [
         { "key": "Content-Type", "value": "image/png" }
       ]
     },
     {
-      "source": "/(.*).svg",
+      "source": "/:path*.png",
       "headers": [
-        { "key": "Content-Type", "value": "image/svg+xml" }
+        { "key": "Content-Type", "value": "image/png" }
       ]
     }
   ]
