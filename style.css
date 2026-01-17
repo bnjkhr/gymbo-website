@@ -1,16 +1,20 @@
 :root {
-    /* Colors - Clean & Premium */
-    --primary: #F0FCE6; /* Pale Lime - The Brand Accent */
-    --primary-darker: #a3cc5a; /* Darker version for text on light backgrounds */
-    
+    /* Colors - Brand Palette */
+    --color-green: #4ADE80;  /* Akzentfarbe */
+    --color-purple: #A855F7; /* Akzentfarbe */
+    --color-amber: #F59E0B;  /* Primärfarbe */
+
+    --primary: #F59E0B; /* Amber - Primary Brand Color */
+    --primary-darker: #D97706; /* Darker amber for hover states */
+
     --bg-body: #ffffff;
     --bg-surface: #f5f5f7;
     --bg-card: #ffffff;
-    
+
     --text-main: #1d1d1f;
     --text-secondary: #86868b;
-    --text-on-primary: #000000; /* Essential for contrast on light primary color */
-    
+    --text-on-primary: #000000; /* For contrast on amber */
+
     --border: rgba(0, 0, 0, 0.08);
     --border-hover: rgba(0, 0, 0, 0.16);
     
@@ -223,7 +227,7 @@ p {
 
 .btn-brand:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(240, 252, 230, 0.4);
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
     opacity: 0.9;
 }
 
