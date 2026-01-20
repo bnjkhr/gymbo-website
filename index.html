@@ -1196,62 +1196,94 @@
                 margin-top: 8px;
             }
 
-            /* Secondary Features Grid */
-            .features-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
+            /* Feature Marquee */
+            .feature-marquee-container {
                 margin-bottom: 100px;
+                overflow: hidden;
+                -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+                mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
             }
 
-            .feature-card {
+            .feature-marquee {
+                display: flex;
+                gap: 12px;
+                padding: 8px 0;
+                width: max-content;
+                animation: marquee-scroll 40s linear infinite;
+            }
+
+            .feature-marquee.reverse {
+                animation: marquee-scroll-reverse 35s linear infinite;
+            }
+
+            .feature-marquee:hover {
+                animation-play-state: paused;
+            }
+
+            @keyframes marquee-scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+
+            @keyframes marquee-scroll-reverse {
+                0% { transform: translateX(-50%); }
+                100% { transform: translateX(0); }
+            }
+
+            .feature-pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 20px;
                 background: var(--bg-card);
-                border-radius: 20px;
-                padding: 28px;
                 border: 1px solid var(--border);
+                border-radius: 100px;
+                white-space: nowrap;
                 transition: all 0.3s ease;
+                cursor: default;
             }
 
-            .feature-card:hover {
-                transform: translateY(-4px);
+            .feature-pill:hover {
                 border-color: var(--accent);
-                box-shadow: 0 12px 30px var(--accent-glow);
+                background: var(--bg-elevated);
+                transform: scale(1.05);
             }
 
-            .feature-card .card-icon {
-                width: 48px;
-                height: 48px;
-                border-radius: 14px;
-                font-size: 1.25rem;
-                margin-bottom: 16px;
-            }
-
-            .feature-card h4 {
+            .feature-pill i {
                 font-size: 1.1rem;
-                font-weight: 700;
-                margin-bottom: 8px;
-                letter-spacing: -0.01em;
+                color: var(--accent);
             }
 
-            .feature-card p {
-                font-size: 0.9rem;
-                color: var(--text-secondary);
-                line-height: 1.5;
+            .feature-pill span {
+                font-size: 0.95rem;
+                font-weight: 600;
+                color: var(--text);
             }
 
-            /* Special card styles */
-            .feature-card-amber {
-                background: linear-gradient(145deg, var(--accent) 0%, var(--accent-darker) 100%);
+            .feature-pill.highlight {
+                background: linear-gradient(135deg, var(--accent) 0%, var(--accent-darker) 100%);
+                border-color: transparent;
             }
 
-            .feature-card-amber h4,
-            .feature-card-amber p {
+            .feature-pill.highlight i,
+            .feature-pill.highlight span {
                 color: #000;
             }
 
-            .feature-card-amber .card-icon {
-                background: rgba(0, 0, 0, 0.15);
-                color: #000;
+            .feature-pill.green {
+                border-color: var(--color-green);
+            }
+
+            .feature-pill.green i {
+                color: var(--color-green);
+            }
+
+            .feature-pill.purple {
+                border-color: var(--color-purple);
+            }
+
+            .feature-pill.purple i {
+                color: var(--color-purple);
             }
 
             /* Responsive Features */
@@ -1260,8 +1292,12 @@
                     gap: 40px;
                 }
 
-                .features-grid {
-                    grid-template-columns: repeat(2, 1fr);
+                .feature-marquee {
+                    animation-duration: 30s;
+                }
+
+                .feature-marquee.reverse {
+                    animation-duration: 25s;
                 }
             }
 
@@ -1294,10 +1330,6 @@
 
                 .feature-privacy {
                     margin-bottom: 80px;
-                }
-
-                .features-grid {
-                    grid-template-columns: 1fr;
                 }
 
                 .stats-highlight .stat-number {
@@ -2198,7 +2230,7 @@
                     </a>
                     <h1>Training.<br><span class="highlight">Ohne Bullshit.</span></h1>
                     <p class="hero-subtitle">
-                        <strong>Version 3.0 kommt bald — <span style="color: var(--color-green);">Kostenlos.</span></strong><br><span style="color: var(--color-purple);">Pro</span> für 6,99€. Keine Tracker, keine Cloud, keine Kompromisse.
+                        <strong>Version 3.0 kommt bald — <span style="color: var(--color-green);">Kostenlos.</span></strong><br><span style="color: var(--color-purple);">Pro</span> für 6,99€. Keine Tracker, keine Kompromisse.
                     </p>
                     <div class="hero-cta">
                         <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary" target="_blank" rel="noopener">
@@ -2281,7 +2313,7 @@
                         <i class="ph ph-shield-check"></i>
                     </div>
                     <h3>100% Offline & Privat</h3>
-                    <p>Kein Account. Keine Cloud. Keine Tracker. Deine Trainingsdaten bleiben auf deinem iPhone — Punkt. So wie es sein sollte.</p>
+                    <p>Kein Account. Keine Tracker. Deine Trainingsdaten bleiben auf deinem iPhone — iCloud Sync nur wenn du willst. So wie es sein sollte.</p>
                     <div class="privacy-icons-large">
                         <div class="privacy-icon"><i class="ph ph-wifi-slash"></i></div>
                         <div class="privacy-icon"><i class="ph ph-eye-slash"></i></div>
@@ -2370,78 +2402,41 @@
                     <p class="stat-desc">Von Brust bis Kardio — alles dabei, sofort einsatzbereit.</p>
                 </div>
 
-                <!-- Secondary Features Grid -->
-                <div class="features-grid">
-                    <div class="feature-card animate-in">
-                        <div class="card-icon">
-                            <i class="ph ph-arrows-left-right"></i>
-                        </div>
-                        <h4>Supersätze & Circuits</h4>
-                        <p>Nahtlos zwischen Übungen wechseln. Dein Training bleibt im Flow.</p>
+                <!-- Feature Marquee -->
+                <div class="feature-marquee-container">
+                    <!-- Row 1 - scrolls left -->
+                    <div class="feature-marquee">
+                        <div class="feature-pill"><i class="ph ph-arrows-left-right"></i><span>Supersätze & Circuits</span></div>
+                        <div class="feature-pill"><i class="ph ph-scales"></i><span>Links/Rechts Tracking</span></div>
+                        <div class="feature-pill"><i class="ph ph-share-network"></i><span>Export & Backup</span></div>
+                        <div class="feature-pill"><i class="ph ph-scissors"></i><span>Trainings splitten</span></div>
+                        <div class="feature-pill highlight"><i class="ph ph-star"></i><span>Star-Workout-Vorlagen</span></div>
+                        <div class="feature-pill"><i class="ph ph-git-merge"></i><span>Kraft & Cardio mixen</span></div>
+                        <!-- Duplicate for seamless loop -->
+                        <div class="feature-pill"><i class="ph ph-arrows-left-right"></i><span>Supersätze & Circuits</span></div>
+                        <div class="feature-pill"><i class="ph ph-scales"></i><span>Links/Rechts Tracking</span></div>
+                        <div class="feature-pill"><i class="ph ph-share-network"></i><span>Export & Backup</span></div>
+                        <div class="feature-pill"><i class="ph ph-scissors"></i><span>Trainings splitten</span></div>
+                        <div class="feature-pill highlight"><i class="ph ph-star"></i><span>Star-Workout-Vorlagen</span></div>
+                        <div class="feature-pill"><i class="ph ph-git-merge"></i><span>Kraft & Cardio mixen</span></div>
                     </div>
-
-                    <div class="feature-card animate-in">
-                        <div class="card-icon">
-                            <i class="ph ph-scales"></i>
-                        </div>
-                        <h4>Links/Rechts Tracking</h4>
-                        <p>Tracke jede Seite einzeln. Erkenne Dysbalancen sofort.</p>
-                    </div>
-
-                    <div class="feature-card animate-in">
-                        <div class="card-icon">
-                            <i class="ph ph-share-network"></i>
-                        </div>
-                        <h4>Export & Backup</h4>
-                        <p>Deine Daten gehören dir. Exportiere, teile oder sichere sie jederzeit.</p>
-                    </div>
-
-                    <div class="feature-card animate-in">
-                        <div class="card-icon">
-                            <i class="ph ph-scissors"></i>
-                        </div>
-                        <h4>Trainings splitten</h4>
-                        <p>Teile lange Workouts in mehrere Sessions auf.</p>
-                    </div>
-
-                    <div class="feature-card animate-in">
-                        <div class="card-icon">
-                            <i class="ph ph-git-merge"></i>
-                        </div>
-                        <h4>Kraft & Cardio mixen</h4>
-                        <p>Kombiniere verschiedene Trainingsarten in einem Workout.</p>
-                    </div>
-
-                    <div class="feature-card animate-in">
-                        <div class="card-icon">
-                            <i class="ph ph-download-simple"></i>
-                        </div>
-                        <h4>Import von Hevy & Strong</h4>
-                        <p>Wechsel ohne Datenverlust. Deine Historie kommt mit.</p>
-                    </div>
-
-                    <div class="feature-card animate-in">
-                        <div class="card-icon">
-                            <i class="ph ph-trophy"></i>
-                        </div>
-                        <h4>Challenges</h4>
-                        <p>Nimm an Herausforderungen teil und setze dir neue Ziele.</p>
-                    </div>
-
-                    <div class="feature-card animate-in">
-                        <div class="card-icon">
-                            <i class="ph ph-medal"></i>
-                        </div>
-                        <h4>Achievements</h4>
-                        <p>Feiere deine Erfolge. Hol dir alle Badges.</p>
-                    </div>
-
-                    <div class="feature-card feature-card-amber animate-in">
-                        <div class="card-icon">
-                            <i class="ph ph-star"></i>
-                        </div>
-                        <h4>Star-Workout-Vorlagen</h4>
-                        <p>Trainiere wie Alan Ritchson, Arnold, Chris Hemsworth und mehr.</p>
+                    <!-- Row 2 - scrolls right -->
+                    <div class="feature-marquee reverse">
+                        <div class="feature-pill"><i class="ph ph-download-simple"></i><span>Import von Hevy & Strong</span></div>
+                        <div class="feature-pill"><i class="ph ph-trophy"></i><span>Challenges</span></div>
+                        <div class="feature-pill"><i class="ph ph-medal"></i><span>Achievements</span></div>
+                        <div class="feature-pill green"><i class="ph ph-cloud"></i><span>iCloud Sync</span></div>
+                        <div class="feature-pill purple"><i class="ph ph-users"></i><span>Leaderboard & Freunde</span></div>
+                        <div class="feature-pill"><i class="ph ph-timer"></i><span>Pause-Timer</span></div>
+                        <div class="feature-pill"><i class="ph ph-note"></i><span>Notizen pro Satz</span></div>
+                        <!-- Duplicate for seamless loop -->
+                        <div class="feature-pill"><i class="ph ph-download-simple"></i><span>Import von Hevy & Strong</span></div>
+                        <div class="feature-pill"><i class="ph ph-trophy"></i><span>Challenges</span></div>
+                        <div class="feature-pill"><i class="ph ph-medal"></i><span>Achievements</span></div>
+                        <div class="feature-pill green"><i class="ph ph-cloud"></i><span>iCloud Sync</span></div>
+                        <div class="feature-pill purple"><i class="ph ph-users"></i><span>Leaderboard & Freunde</span></div>
+                        <div class="feature-pill"><i class="ph ph-timer"></i><span>Pause-Timer</span></div>
+                        <div class="feature-pill"><i class="ph ph-note"></i><span>Notizen pro Satz</span></div>
                     </div>
                 </div>
 
