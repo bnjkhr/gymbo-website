@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A0A0A"/>
+      <stop offset="100%" style="stop-color:#141414"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FBBF24"/>
+      <stop offset="100%" style="stop-color:#D97706"/>
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Ambient glow at top -->
+  <ellipse cx="600" cy="0" rx="600" ry="300" fill="url(#glowGrad)"/>
+
+  <!-- Subtle grid pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Logo: GymBo -->
+  <text x="100" y="120" font-family="Inter, -apple-system, sans-serif" font-size="48" font-weight="800" fill="#FFFFFF">Gym<tspan fill="url(#accentGrad)">Bo</tspan></text>
+
+  <!-- Main Headline -->
+  <text x="100" y="280" font-family="Inter, -apple-system, sans-serif" font-size="72" font-weight="800" fill="#FFFFFF">Training.</text>
+  <text x="100" y="370" font-family="Inter, -apple-system, sans-serif" font-size="72" font-weight="800" fill="url(#accentGrad)">No Bullshit.</text>
+
+  <!-- Subline -->
+  <text x="100" y="440" font-family="Inter, -apple-system, sans-serif" font-size="28" font-weight="500" fill="#A3A3A3">Version 3.0 coming soon — Free. Pro for $6.99.</text>
+
+  <!-- Price Badge -->
+  <rect x="100" y="480" width="170" height="50" rx="25" fill="url(#accentGrad)"/>
+  <text x="185" y="513" font-family="Inter, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#000000" text-anchor="middle">Coming Soon</text>
+
+  <!-- Features -->
+  <text x="310" y="513" font-family="Inter, -apple-system, sans-serif" font-size="18" font-weight="500" fill="#737373">217+ Exercises · Apple Watch · 100% Offline</text>
+
+  <!-- Phone Mockup (right side) -->
+  <g transform="translate(780, 80)">
+    <!-- Phone frame -->
+    <rect x="0" y="0" width="320" height="500" rx="40" fill="#1F1F1F" stroke="#333" stroke-width="2"/>
+    <!-- Screen -->
+    <rect x="10" y="10" width="300" height="480" rx="32" fill="#0A0A0A"/>
+
+    <!-- App UI mockup -->
+    <!-- Status bar -->
+    <text x="30" y="45" font-family="Inter, sans-serif" font-size="14" fill="#fff">9:41</text>
+    <circle cx="280" cy="40" r="8" fill="none" stroke="#fff" stroke-width="2"/>
+
+    <!-- Home text -->
+    <text x="30" y="90" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="#fff">Home</text>
+    <text x="30" y="115" font-family="Inter, sans-serif" font-size="14" fill="#666">Workouts</text>
+
+    <!-- Workout cards -->
+    <rect x="20" y="140" width="270" height="70" rx="16" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+    <text x="35" y="175" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#fff">Full-Body</text>
+    <text x="35" y="195" font-family="Inter, sans-serif" font-size="12" fill="#666">9 exercises</text>
+    <circle cx="260" cy="175" r="15" fill="url(#accentGrad)"/>
+    <path d="M255 175 L262 175 L258 180 Z" fill="#000"/>
+
+    <rect x="20" y="220" width="270" height="70" rx="16" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+    <text x="35" y="255" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#fff">Push Day</text>
+    <text x="35" y="275" font-family="Inter, sans-serif" font-size="12" fill="#666">6 exercises</text>
+    <circle cx="260" cy="255" r="15" fill="url(#accentGrad)"/>
+    <path d="M255 255 L262 255 L258 260 Z" fill="#000"/>
+
+    <rect x="20" y="300" width="270" height="70" rx="16" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+    <text x="35" y="335" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#fff">Pull Day</text>
+    <text x="35" y="355" font-family="Inter, sans-serif" font-size="12" fill="#666">5 exercises</text>
+    <circle cx="260" cy="335" r="15" fill="url(#accentGrad)"/>
+    <path d="M255 335 L262 335 L258 340 Z" fill="#000"/>
+
+    <!-- Star workouts label -->
+    <rect x="20" y="390" width="120" height="24" rx="12" fill="url(#accentGrad)"/>
+    <text x="35" y="407" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#000">STAR WORKOUTS</text>
+
+    <rect x="20" y="425" width="270" height="50" rx="12" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+    <text x="35" y="455" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#fff">Alan Ritchson - Reacher</text>
+  </g>
+
+  <!-- App Store badge hint -->
+  <text x="1100" y="600" font-family="Inter, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#525252" text-anchor="end">iOS App</text>
+</svg>
