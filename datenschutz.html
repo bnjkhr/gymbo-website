@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Datenschutz - GymBo | Datenschutzerkl&auml;rung</title>
+
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="Datenschutzerkl&auml;rung f&uuml;r die GymBo iOS-App und Website. Informationen zur Datenverarbeitung, deinen Rechten und unseren Datenschutzmassnahmen.">
+        <meta name="keywords" content="GymBo Datenschutz, Datenschutzerkl&auml;rung, DSGVO, Privacy Policy">
+        <meta name="author" content="Ben Kohler">
+        <meta name="robots" content="index, follow">
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://gymbo.pro/datenschutz.html">
+
+        <!-- Language Alternates -->
+        <link rel="alternate" hreflang="de" href="https://gymbo.pro/datenschutz.html">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://gymbo.pro/datenschutz.html">
+        <meta property="og:title" content="Datenschutzerkl&auml;rung - GymBo">
+        <meta property="og:description" content="Datenschutzerkl&auml;rung f&uuml;r die GymBo iOS-App und Website.">
+        <meta property="og:image" content="https://gymbo.pro/og-preview.png">
+        <meta property="og:locale" content="de_DE">
+        <meta property="og:site_name" content="GymBo">
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Datenschutzerkl&auml;rung - GymBo">
+        <meta name="twitter:description" content="Datenschutzerkl&auml;rung f&uuml;r die GymBo iOS-App und Website.">
+        <meta name="twitter:image" content="https://gymbo.pro/og-preview.png">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <meta name="theme-color" content="#F59E0B">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+        <style>
+            :root {
+                --bg: #0A0A0A;
+                --bg-surface: #141414;
+                --bg-elevated: #1F1F1F;
+                --bg-card: #141414;
+                --bg-card-hover: #1a1a1a;
+                /* Brand Colors */
+                --color-green: #4ADE80;
+                --color-purple: #A855F7;
+                --color-amber: #F59E0B;
+                --accent: #F59E0B;
+                --accent-light: #FBBF24;
+                --accent-darker: #D97706;
+                --accent-glow: rgba(245, 158, 11, 0.4);
+                --accent-soft: rgba(245, 158, 11, 0.15);
+                --text: #FFFFFF;
+                --text-secondary: #A3A3A3;
+                --text-muted: #737373;
+                --border: rgba(255, 255, 255, 0.1);
+                --border-hover: rgba(255, 255, 255, 0.2);
+            }
+
+            [data-theme="light"] {
+                --bg: #fafafa;
+                --bg-surface: #ffffff;
+                --bg-elevated: #ffffff;
+                --bg-card: #ffffff;
+                --bg-card-hover: #f5f5f5;
+                --text: #0a0a0a;
+                --text-secondary: #525252;
+                --text-muted: #737373;
+                --border: rgba(0, 0, 0, 0.08);
+                --border-hover: rgba(0, 0, 0, 0.15);
+                /* Brand Colors */
+                --color-green: #4ADE80;
+                --color-purple: #A855F7;
+                --color-amber: #F59E0B;
+                --accent: #F59E0B;
+                --accent-soft: rgba(245, 158, 11, 0.15);
+                --accent-glow: rgba(245, 158, 11, 0.3);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.5;
+                letter-spacing: -0.02em;
+                overflow-x: hidden;
+            }
+
+            /* Header */
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                padding: 16px 24px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(10, 10, 10, 0.8);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--border);
+            }
+
+            [data-theme="light"] .header {
+                background: rgba(250, 250, 250, 0.8);
+            }
+
+            .header-left {
+                display: flex;
+                align-items: center;
+                gap: 32px;
+            }
+
+            .header-logo {
+                font-size: 1.5rem;
+                color: var(--text);
+                text-decoration: none;
+                letter-spacing: -0.03em;
+            }
+
+            .header-logo .logo-gym {
+                font-weight: 800;
+            }
+
+            .header-logo .logo-bo {
+                font-weight: 800;
+                color: var(--accent);
+            }
+
+            .header-nav {
+                display: flex;
+                align-items: center;
+                gap: 32px;
+            }
+
+            .nav-link {
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 1rem;
+                font-weight: 500;
+                transition: color 0.2s;
+            }
+
+            .nav-link:hover,
+            .nav-link.active {
+                color: var(--text);
+            }
+
+            .header-actions {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .btn-download {
+                background: var(--accent);
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 100px;
+                font-weight: 600;
+                font-size: 0.875rem;
+                text-decoration: none;
+                transition: all 0.2s;
+                box-shadow: 0 4px 12px var(--accent-glow);
+            }
+
+            .btn-download:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px var(--accent-glow);
+            }
+
+            .btn-theme {
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 1.1rem;
+                padding: 8px;
+                border-radius: 8px;
+                transition: background 0.2s;
+            }
+
+            .btn-theme:hover {
+                background: var(--accent-soft);
+            }
+
+            /* Language Switcher */
+            .lang-switcher {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                padding: 4px;
+                background: var(--accent);
+                border-radius: 8px;
+                border: 1px solid var(--border);
+            }
+
+            .lang-btn {
+                padding: 6px 10px;
+                border: none;
+                background: transparent;
+                color: #000;
+                font-size: 0.8rem;
+                font-weight: 600;
+                cursor: pointer;
+                border-radius: 6px;
+                transition: all 0.2s;
+                text-decoration: none;
+            }
+
+            .lang-btn:hover {
+                color: var(--text);
+            }
+
+            .lang-btn.active {
+                background: var(--bg-card);
+                color: var(--text);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .mobile-menu-btn {
+                display: none;
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 1.5rem;
+                color: var(--text);
+            }
+
+            /* Main Container */
+            .main {
+                max-width: 720px;
+                margin: 0 auto;
+                padding: 120px 24px 60px;
+            }
+
+            /* Page Header */
+            .page-header {
+                text-align: center;
+                margin-bottom: 60px;
+            }
+
+            .page-header h1 {
+                font-size: clamp(2rem, 5vw, 3rem);
+                font-weight: 800;
+                letter-spacing: -0.04em;
+                line-height: 1.1;
+                margin-bottom: 16px;
+            }
+
+            .page-header p {
+                font-size: 1.1rem;
+                color: var(--text-secondary);
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .page-header .meta {
+                font-size: 0.9rem;
+                color: var(--text-muted);
+                margin-top: 8px;
+            }
+
+            /* Legal Content */
+            .legal-content {
+                font-size: 1rem;
+                line-height: 1.8;
+                color: var(--text-secondary);
+            }
+
+            .legal-content h2 {
+                font-size: 1.35rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                margin: 48px 0 16px;
+                color: var(--text);
+                padding-bottom: 8px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .legal-content h3 {
+                font-size: 1.1rem;
+                font-weight: 600;
+                margin: 32px 0 12px;
+                color: var(--text);
+            }
+
+            .legal-content h4 {
+                font-size: 1rem;
+                font-weight: 600;
+                margin: 24px 0 8px;
+                color: var(--text);
+            }
+
+            .legal-content p {
+                margin-bottom: 12px;
+            }
+
+            .legal-content strong {
+                color: var(--text);
+                font-weight: 600;
+            }
+
+            .legal-content ul,
+            .legal-content ol {
+                margin: 12px 0;
+                padding-left: 24px;
+            }
+
+            .legal-content li {
+                margin-bottom: 6px;
+            }
+
+            .legal-content a {
+                color: var(--accent);
+                text-decoration: none;
+                transition: opacity 0.2s;
+            }
+
+            .legal-content a:hover {
+                opacity: 0.8;
+            }
+
+            .legal-content table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 16px 0;
+                font-size: 0.9rem;
+            }
+
+            .legal-content th,
+            .legal-content td {
+                text-align: left;
+                padding: 10px 12px;
+                border: 1px solid var(--border);
+            }
+
+            .legal-content th {
+                background: var(--bg-card);
+                color: var(--text);
+                font-weight: 600;
+            }
+
+            .legal-content td {
+                color: var(--text-secondary);
+            }
+
+            .legal-content hr {
+                border: none;
+                border-top: 1px solid var(--border);
+                margin: 40px 0;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 40px 24px;
+                text-align: center;
+                border-top: 1px solid var(--border);
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 32px;
+                margin-bottom: 16px;
+            }
+
+            .footer-link {
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: color 0.2s;
+            }
+
+            .footer-link:hover {
+                color: var(--accent);
+            }
+
+            .footer-copy {
+                color: var(--text-secondary);
+                font-size: 0.85rem;
+                opacity: 0.7;
+            }
+
+            /* Mobile Menu */
+            .mobile-menu {
+                position: fixed;
+                inset: 0;
+                background: var(--bg);
+                z-index: 200;
+                padding: 24px;
+                display: flex;
+                flex-direction: column;
+                transform: translateX(100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .mobile-menu.active {
+                transform: translateX(0);
+            }
+
+            .mobile-menu-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 48px;
+            }
+
+            .mobile-menu-close {
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--text);
+            }
+
+            .mobile-nav {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .mobile-nav-link {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--text);
+                text-decoration: none;
+            }
+
+            .mobile-menu-footer {
+                margin-top: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .header-nav {
+                    display: none;
+                }
+
+                .btn-download {
+                    display: none;
+                }
+
+                .mobile-menu-btn {
+                    display: block;
+                }
+
+                .main {
+                    padding: 100px 16px 40px;
+                }
+
+                .page-header {
+                    margin-bottom: 40px;
+                }
+
+                .legal-content h2 {
+                    font-size: 1.2rem;
+                    margin: 36px 0 12px;
+                }
+
+                .legal-content table {
+                    font-size: 0.8rem;
+                    display: block;
+                    overflow-x: auto;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <a href="index.html" class="header-logo"><span class="logo-gym">Gym</span><span class="logo-bo">Bo</span></a>
+                <nav class="header-nav">
+                    <a href="index.html#features" class="nav-link">Funktionen</a>
+                    <a href="manifest.html" class="nav-link">Manifest</a>
+                    <a href="faq.html" class="nav-link">FAQ</a>
+                    <a href="roadmap.html" class="nav-link">Roadmap</a>
+                    <a href="https://benkohler.de" class="nav-link" target="_blank" rel="noopener">Mehr Apps</a>
+                </nav>
+            </div>
+            <div class="header-actions">
+                <div class="lang-switcher">
+                    <a href="datenschutz.html" class="lang-btn active">DE</a>
+                    <a href="datenschutz.html" class="lang-btn">EN</a>
+                </div>
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-download" target="_blank" rel="noopener">App Store</a>
+                <button class="btn-theme" id="themeToggle" aria-label="Theme wechseln">
+                    <span id="themeIcon"></span>
+                </button>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Men&uuml; &ouml;ffnen">
+                <i class="ph ph-list"></i>
+            </button>
+        </header>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-header">
+                <span class="header-logo"><span class="logo-gym">Gym</span><span class="logo-bo">Bo</span></span>
+                <button class="mobile-menu-close" aria-label="Men&uuml; schlie&szlig;en">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <a href="index.html#features" class="mobile-nav-link">Funktionen</a>
+                <a href="manifest.html" class="mobile-nav-link">Manifest</a>
+                <a href="faq.html" class="mobile-nav-link">FAQ</a>
+                <a href="roadmap.html" class="mobile-nav-link">Roadmap</a>
+                <a href="https://benkohler.de" class="mobile-nav-link" target="_blank">Mehr Apps</a>
+            </nav>
+            <div class="mobile-menu-footer">
+                <div class="lang-switcher" style="justify-content: center; margin-bottom: 8px;">
+                    <a href="datenschutz.html" class="lang-btn active">DE</a>
+                    <a href="datenschutz.html" class="lang-btn">EN</a>
+                </div>
+                <a href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" class="btn-primary" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--accent) 0%, #D97706 100%); color: #fff; padding: 14px 24px; border-radius: 14px; font-weight: 700; font-size: 0.95rem; text-decoration: none;">
+                    <i class="ph ph-app-store-logo"></i>
+                    App Store
+                </a>
+                <button class="btn-secondary" id="mobileThemeToggle" style="display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--text); padding: 16px 28px; border-radius: 14px; font-weight: 600; font-size: 1rem; border: 1.5px solid var(--border);">
+                    <span id="mobileThemeText">Dark Mode</span>
+                </button>
+            </div>
+        </div>
+
+        <main class="main">
+            <!-- Page Header -->
+            <section class="page-header">
+                <h1>Datenschutz&shy;erkl&auml;rung</h1>
+                <p>G&uuml;ltig f&uuml;r die GymBo iOS-App und die GymBo-Website</p>
+                <p class="meta">Stand: 27. Januar 2026</p>
+            </section>
+
+            <div class="legal-content">
+
+                <h2>1. Verantwortlicher</h2>
+                <p>Benjamin Kohler<br>
+                Auf dem Kreuz 32/1<br>
+                89073 Ulm</p>
+                <p>E-Mail: <a href="mailto:mail@benkohler.de">mail@benkohler.de</a></p>
+                <p>(nachfolgend &bdquo;wir&ldquo; oder &bdquo;uns&ldquo;)</p>
+
+                <hr>
+
+                <h2>2. &Uuml;bersicht</h2>
+                <p>Diese Datenschutzerkl&auml;rung informiert &uuml;ber die Art, den Umfang und den Zweck der Verarbeitung personenbezogener Daten bei Nutzung der GymBo iOS-App (nachfolgend &bdquo;App&ldquo;) sowie der GymBo-Website (nachfolgend &bdquo;Website&ldquo;). Wir nehmen den Schutz deiner Daten ernst und behandeln deine personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften, insbesondere der EU-Datenschutz-Grundverordnung (DSGVO).</p>
+                <p><strong>Wichtig:</strong> Die App enth&auml;lt keine Tracker, Werbe-SDKs oder Analyse-Tools von Drittanbietern. Alle Daten werden ausschliesslich &uuml;ber Apple-Dienste (iCloud, CloudKit, HealthKit) verarbeitet.</p>
+
+                <hr>
+
+                <h2>3. GymBo iOS-App</h2>
+
+                <h3>3.1 Welche Daten werden erhoben?</h3>
+
+                <h4>a) Profildaten (bei Einrichtung des Profils)</h4>
+                <ul>
+                    <li>Anzeigename / Benutzername</li>
+                    <li>Alter</li>
+                    <li>Geburtsdatum</li>
+                    <li>Biologisches Geschlecht</li>
+                    <li>K&ouml;rpergr&ouml;sse (cm)</li>
+                    <li>K&ouml;rpergewicht (kg)</li>
+                    <li>Erfahrungslevel (Anf&auml;nger, Fortgeschritten, Profi)</li>
+                    <li>Fitnessziel</li>
+                    <li>Profilbild (optional)</li>
+                    <li>Spindnummer (optional)</li>
+                </ul>
+
+                <h4>b) Trainings- und &Uuml;bungsdaten</h4>
+                <ul>
+                    <li>Trainingspl&auml;ne (Name, &Uuml;bungen, Struktur)</li>
+                    <li>&Uuml;bungen (Name, Beschreibung, Muskelgruppen, Ausr&uuml;stung)</li>
+                    <li>Trainingseinheiten (Datum, Dauer, Start-/Endzeit)</li>
+                    <li>S&auml;tze, Wiederholungen, Gewichte, Pausenzeiten</li>
+                    <li>Notizen zu &Uuml;bungen und Trainingseinheiten</li>
+                    <li>Pers&ouml;nliche Rekorde (Maximalgewicht, maximale Wiederholungen, gesch&auml;tzte 1RM)</li>
+                </ul>
+
+                <h4>c) K&ouml;rpermasse (optional)</h4>
+                <ul>
+                    <li>K&ouml;rperfettanteil</li>
+                    <li>Fettfreie Masse</li>
+                    <li>Viszerales Fett</li>
+                    <li>K&ouml;rperwasseranteil</li>
+                    <li>Umfangmessungen (Arme, Brust, Taille, H&uuml;fte, Oberschenkel, Waden, Nacken, Schultern)</li>
+                </ul>
+
+                <h4>d) Fortschrittsfotos (optional)</h4>
+                <ul>
+                    <li>Vom Nutzer hochgeladene Fotos</li>
+                    <li>Bildbeschreibungen</li>
+                    <li>Aufnahmedatum</li>
+                </ul>
+
+                <h4>e) Gamification-Daten</h4>
+                <ul>
+                    <li>Erfahrungspunkte (XP) und Level</li>
+                    <li>Abzeichen und Fortschritt</li>
+                    <li>Streak-Daten (Trainingsserien)</li>
+                    <li>T&auml;gliche Herausforderungen und deren Abschluss</li>
+                </ul>
+
+                <h4>f) Soziale Funktionen (optional, nur bei Nutzung)</h4>
+                <ul>
+                    <li>Benutzername und Anzeigename</li>
+                    <li>Freundescode (automatisch generiert)</li>
+                    <li>Freundschaftsbeziehungen</li>
+                    <li>Geteilte Trainingsbeitr&auml;ge mit Fotos</li>
+                    <li>Kommentare und Reaktionen auf Beitr&auml;ge</li>
+                    <li>Leaderboard-Eintr&auml;ge (Ranglisten nach Volumen, Streak, Trainings, XP)</li>
+                </ul>
+
+                <h4>g) Authentifizierung (optional, f&uuml;r soziale Funktionen)</h4>
+                <ul>
+                    <li>Apple-Benutzer-ID (&uuml;ber &bdquo;Mit Apple anmelden&ldquo;)</li>
+                    <li>Name und E-Mail-Adresse (nur wenn vom Nutzer freigegeben)</li>
+                </ul>
+
+                <h3>3.2 Apple Health (HealthKit)</h3>
+                <p>Die App kann auf Wunsch mit Apple Health verbunden werden. Diese Verbindung ist standardm&auml;ssig deaktiviert und muss aktiv vom Nutzer eingerichtet werden.</p>
+
+                <p><strong>Gelesene Daten (von Apple Health):</strong></p>
+                <ul>
+                    <li>Herzfrequenz (in Echtzeit w&auml;hrend des Trainings)</li>
+                    <li>Ruheherzfrequenz</li>
+                    <li>Herzfrequenzvariabilit&auml;t (HRV)</li>
+                    <li>K&ouml;rpergewicht</li>
+                    <li>K&ouml;rpergr&ouml;sse</li>
+                    <li>K&ouml;rperfettanteil</li>
+                    <li>Fettfreie Masse</li>
+                    <li>VO2 Max</li>
+                    <li>Atemfrequenz</li>
+                    <li>Schlafdaten</li>
+                    <li>Schrittzahl</li>
+                    <li>Aktive Kalorien</li>
+                    <li>Trainingsminuten</li>
+                    <li>Geburtsdatum (zur Altersberechnung)</li>
+                    <li>Trainingshistorie (externe Workouts anderer Apps)</li>
+                </ul>
+
+                <p><strong>Geschriebene Daten (an Apple Health):</strong></p>
+                <ul>
+                    <li>Abgeschlossene Trainingseinheiten mit:
+                        <ul>
+                            <li>Trainingstyp (Krafttraining, Cardio, Flexibilit&auml;t etc.)</li>
+                            <li>Start-/Endzeit und Dauer</li>
+                            <li>Gesch&auml;tzte verbrannte Kalorien</li>
+                            <li>Distanz (falls zutreffend)</li>
+                            <li>Trainingsname als Metadaten</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p><strong>Wichtig:</strong> HealthKit-Daten werden ausschliesslich auf deinem Ger&auml;t in der gesch&uuml;tzten Apple-Health-Datenbank gespeichert. Die App hat keinen Zugriff auf HealthKit-Daten anderer Apps, sofern du dies nicht explizit erlaubst. Wir &uuml;bertragen keine HealthKit-Daten an Server oder Dritte.</p>
+
+                <h3>3.3 iCloud-Synchronisierung (CloudKit)</h3>
+                <p>Die App nutzt Apple iCloud (CloudKit) zur Synchronisierung deiner Daten zwischen deinen Ger&auml;ten. Dabei werden folgende Daten in deiner pers&ouml;nlichen iCloud synchronisiert:</p>
+
+                <p><strong>Private Datenbank (nur f&uuml;r dich sichtbar):</strong></p>
+                <ul>
+                    <li>Profildaten und Einstellungen</li>
+                    <li>Trainingspl&auml;ne und &Uuml;bungen</li>
+                    <li>Trainingshistorie</li>
+                    <li>Pers&ouml;nliche Rekorde</li>
+                    <li>Fortschrittsfotos</li>
+                    <li>Gamification-Daten (XP, Level, Abzeichen, Streaks)</li>
+                    <li>K&ouml;rpermasse</li>
+                </ul>
+
+                <p><strong>&Ouml;ffentliche Datenbank (f&uuml;r soziale Funktionen, nur bei Nutzung):</strong></p>
+                <ul>
+                    <li>Soziales Profil (Benutzername, Anzeigename, Level, XP, Streak, ausgew&auml;hlte Abzeichen)</li>
+                    <li>Freundschaften</li>
+                    <li>Leaderboard-Eintr&auml;ge</li>
+                    <li>Geteilte Trainingsbeitr&auml;ge, Kommentare und Reaktionen</li>
+                </ul>
+
+                <p>Der CloudKit-Container lautet: <code>iCloud.com.gymbo.app</code></p>
+                <p>Die Daten werden auf Apple-Servern gespeichert und unterliegen den <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple-Datenschutzbestimmungen</a>. Die Synchronisierung erfolgt verschl&uuml;sselt.</p>
+
+                <h3>3.4 Lokale Datenspeicherung</h3>
+                <p>Die App speichert Daten lokal auf deinem Ger&auml;t:</p>
+                <ul>
+                    <li><strong>SwiftData-Datenbank:</strong> Alle Trainings-, Profil- und Fortschrittsdaten</li>
+                    <li><strong>UserDefaults:</strong> App-Einstellungen (Theme, Haptisches Feedback, Anzeige-Einstellungen, Widget-Daten, Streak-Daten)</li>
+                    <li><strong>Keychain:</strong> Apple-Benutzer-ID und Name (verschl&uuml;sselt)</li>
+                </ul>
+                <p>Lokal gespeicherte Daten sind durch die iOS-Ger&auml;teverschl&uuml;sselung gesch&uuml;tzt.</p>
+
+                <h3>3.5 Apple Watch</h3>
+                <p>Die App kann optional mit der Apple Watch synchronisiert werden. Dabei werden folgende Daten &uuml;ber das WatchConnectivity-Framework &uuml;bertragen:</p>
+                <ul>
+                    <li>Trainingspl&auml;ne und &Uuml;bungen</li>
+                    <li>Trainingssitzungsdaten</li>
+                    <li>Fortschrittsvorschl&auml;ge</li>
+                    <li>Health-Einstellungen</li>
+                </ul>
+                <p>Diese Kommunikation erfolgt direkt zwischen iPhone und Apple Watch &uuml;ber Apples verschl&uuml;sseltes Protokoll.</p>
+
+                <h3>3.6 Widgets und Live-Aktivit&auml;ten</h3>
+                <p>Die App stellt Widgets f&uuml;r den Sperrbildschirm und Homescreen bereit:</p>
+                <ul>
+                    <li>Quick-Start-Widget (Trainingsstart)</li>
+                    <li>Streak-Widget (aktuelle Trainingsserie)</li>
+                    <li>Wochen&uuml;bersicht-Widget</li>
+                </ul>
+                <p>W&auml;hrend eines aktiven Trainings wird eine Live-Aktivit&auml;t auf dem Sperrbildschirm angezeigt mit:</p>
+                <ul>
+                    <li>Aktuelle &Uuml;bung, Wiederholungen, Gewicht</li>
+                    <li>Pausenzeit</li>
+                </ul>
+                <p>Widget-Daten werden &uuml;ber eine App-Gruppe (<code>group.com.gymbo.app</code>) lokal auf dem Ger&auml;t geteilt.</p>
+
+                <h3>3.7 Benachrichtigungen</h3>
+                <ul>
+                    <li><strong>Lokale Benachrichtigungen:</strong> Pausentimer w&auml;hrend des Trainings</li>
+                    <li><strong>Push-Benachrichtigungen:</strong> Optional, f&uuml;r Updates und Erinnerungen</li>
+                </ul>
+
+                <h3>3.8 Backup und Datenexport</h3>
+                <p>Du kannst jederzeit ein vollst&auml;ndiges Backup deiner Daten erstellen. Das Backup enth&auml;lt:</p>
+                <ul>
+                    <li>Alle Trainingspl&auml;ne, &Uuml;bungen und Trainingshistorie</li>
+                    <li>Profil- und K&ouml;rpermassdaten</li>
+                    <li>Fortschrittsfotos</li>
+                    <li>Gamification-Daten</li>
+                </ul>
+                <p>Im Backup-Metadaten sind enthalten: Ger&auml;tename, Ger&auml;temodell, Betriebssystemversion, Backup-Gr&ouml;sse und Erstellungsdatum.</p>
+
+                <h3>3.9 Ger&auml;teberechtigungen</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Berechtigung</th>
+                            <th>Zweck</th>
+                            <th>Erforderlich</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Apple Health</td>
+                            <td>Lesen/Schreiben von Gesundheits- und Trainingsdaten</td>
+                            <td>Optional</td>
+                        </tr>
+                        <tr>
+                            <td>iCloud</td>
+                            <td>Synchronisierung zwischen Ger&auml;ten</td>
+                            <td>Optional</td>
+                        </tr>
+                        <tr>
+                            <td>Fotos</td>
+                            <td>Auswahl von Fortschrittsfotos und Beitragsbildern</td>
+                            <td>Optional</td>
+                        </tr>
+                        <tr>
+                            <td>Benachrichtigungen</td>
+                            <td>Pausentimer und Erinnerungen</td>
+                            <td>Optional</td>
+                        </tr>
+                        <tr>
+                            <td>Mit Apple anmelden</td>
+                            <td>Authentifizierung f&uuml;r soziale Funktionen</td>
+                            <td>Optional</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>3.10 Keine Tracker oder Analyse-Tools</h3>
+                <p>Die App enth&auml;lt <strong>keine</strong> Tracker, Werbe-SDKs, Analyse-Tools oder Crash-Reporting-Dienste von Drittanbietern. Es werden keine Daten an Drittanbieter &uuml;bermittelt. Alle externen Daten&uuml;bertragungen erfolgen ausschliesslich &uuml;ber Apple-Dienste (iCloud/CloudKit, HealthKit).</p>
+
+                <h3>3.11 Keine Standortdaten</h3>
+                <p>Die App erhebt <strong>keine</strong> Standortdaten. Es wird kein GPS, keine Geolocation und kein Standort-Tracking verwendet.</p>
+
+                <hr>
+
+                <h2>4. GymBo-Website</h2>
+
+                <h3>4.1 Hosting</h3>
+                <p>Die Website wird gehostet bei Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. Beim Besuch der Website werden automatisch durch den Webserver folgende Daten erfasst (Server-Logfiles):</p>
+                <ul>
+                    <li>IP-Adresse des anfragenden Ger&auml;ts</li>
+                    <li>Datum und Uhrzeit des Zugriffs</li>
+                    <li>Adresse der aufgerufenen Seite (URL)</li>
+                    <li>Adresse der zuvor besuchten Seite (Referrer-URL)</li>
+                    <li>Verwendeter Browser und Betriebssystem</li>
+                    <li>&Uuml;bertragene Datenmenge</li>
+                </ul>
+                <p>Diese Daten werden zur Sicherstellung des Betriebs und zur Erkennung von Missbrauch verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).</p>
+
+                <h3>4.2 Cookies</h3>
+                <p>Die Website verwendet <strong>keine</strong> Cookies und keine Analyse- oder Tracking-Tools von Drittanbietern.</p>
+
+                <hr>
+
+                <h2>5. Rechtsgrundlagen der Verarbeitung</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Verarbeitung</th>
+                            <th>Rechtsgrundlage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lokale Datenspeicherung in der App</td>
+                            <td>Art. 6 Abs. 1 lit. b DSGVO (Vertragserf&uuml;llung)</td>
+                        </tr>
+                        <tr>
+                            <td>iCloud-Synchronisierung</td>
+                            <td>Art. 6 Abs. 1 lit. b DSGVO (Vertragserf&uuml;llung)</td>
+                        </tr>
+                        <tr>
+                            <td>HealthKit-Integration</td>
+                            <td>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</td>
+                        </tr>
+                        <tr>
+                            <td>Soziale Funktionen</td>
+                            <td>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</td>
+                        </tr>
+                        <tr>
+                            <td>Server-Logfiles (Website)</td>
+                            <td>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <hr>
+
+                <h2>6. Datenweitergabe an Dritte</h2>
+
+                <h3>App</h3>
+                <p>Die App gibt <strong>keine</strong> personenbezogenen Daten an Dritte weiter. Alle Daten werden ausschliesslich &uuml;ber Apple-Dienste verarbeitet:</p>
+                <ul>
+                    <li><strong>Apple iCloud/CloudKit:</strong> Synchronisierung deiner Daten zwischen Ger&auml;ten. Apple verarbeitet diese Daten gem&auml;ss den <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple-Datenschutzrichtlinien</a>.</li>
+                    <li><strong>Apple HealthKit:</strong> Daten verbleiben auf deinem Ger&auml;t in der gesch&uuml;tzten Health-Datenbank.</li>
+                </ul>
+
+                <h3>Website</h3>
+                <p>Die Website gibt <strong>keine</strong> personenbezogenen Daten an Dritte weiter. Es werden keine Analyse- oder Tracking-Tools eingesetzt.</p>
+
+                <p>Es erfolgt <strong>kein</strong> Verkauf von Daten an Dritte.</p>
+
+                <hr>
+
+                <h2>7. Daten&uuml;bermittlung in Drittl&auml;nder</h2>
+
+                <h3>App</h3>
+                <p>Apple speichert iCloud-Daten auf Servern, die sich auch ausserhalb der EU befinden k&ouml;nnen. Apple hat sich zur Einhaltung europ&auml;ischer Datenschutzstandards verpflichtet und nutzt Standardvertragsklauseln gem&auml;ss Art. 46 Abs. 2 lit. c DSGVO.</p>
+
+                <h3>Website</h3>
+                <p>Die Website wird bei Vercel Inc. (USA) gehostet. Vercel setzt Standardvertragsklauseln gem&auml;ss Art. 46 Abs. 2 lit. c DSGVO ein, um ein angemessenes Datenschutzniveau zu gew&auml;hrleisten.</p>
+
+                <hr>
+
+                <h2>8. Speicherdauer</h2>
+
+                <h3>App</h3>
+                <ul>
+                    <li><strong>Trainingsdaten:</strong> Werden gespeichert, solange du die App nutzt. Gel&ouml;schte Daten werden auch aus iCloud entfernt.</li>
+                    <li><strong>Profildaten:</strong> Werden gespeichert, bis du sie &auml;nderst oder die App deinstallierst.</li>
+                    <li><strong>HealthKit-Daten:</strong> Werden von Apple Health verwaltet und unterliegen deren Aufbewahrungsregeln.</li>
+                    <li><strong>Soziale Daten:</strong> &Ouml;ffentliche Daten (Profil, Beitr&auml;ge) werden bei L&ouml;schung des Accounts entfernt.</li>
+                    <li><strong>Backup-Dateien:</strong> Werden lokal gespeichert und k&ouml;nnen jederzeit gel&ouml;scht werden.</li>
+                </ul>
+
+                <h3>Website</h3>
+                <ul>
+                    <li><strong>Server-Logfiles:</strong> Maximal 30 Tage</li>
+                </ul>
+
+                <hr>
+
+                <h2>9. Deine Rechte</h2>
+                <p>Du hast gem&auml;ss DSGVO folgende Rechte:</p>
+                <ul>
+                    <li><strong>Auskunftsrecht (Art. 15 DSGVO):</strong> Du kannst Auskunft &uuml;ber deine verarbeiteten Daten verlangen.</li>
+                    <li><strong>Berichtigungsrecht (Art. 16 DSGVO):</strong> Du kannst die Berichtigung unrichtiger Daten verlangen.</li>
+                    <li><strong>L&ouml;schungsrecht (Art. 17 DSGVO):</strong> Du kannst die L&ouml;schung deiner Daten verlangen.</li>
+                    <li><strong>Einschr&auml;nkung der Verarbeitung (Art. 18 DSGVO):</strong> Du kannst die Einschr&auml;nkung der Verarbeitung verlangen.</li>
+                    <li><strong>Daten&uuml;bertragbarkeit (Art. 20 DSGVO):</strong> Du kannst deine Daten in der App &uuml;ber die Backup-Funktion exportieren.</li>
+                    <li><strong>Widerspruchsrecht (Art. 21 DSGVO):</strong> Du kannst der Verarbeitung deiner Daten widersprechen.</li>
+                    <li><strong>Widerruf der Einwilligung (Art. 7 Abs. 3 DSGVO):</strong> Du kannst erteilte Einwilligungen (z.&nbsp;B. HealthKit) jederzeit widerrufen.</li>
+                </ul>
+
+                <h3>So &uuml;bst du deine Rechte in der App aus</h3>
+                <ul>
+                    <li><strong>Daten einsehen:</strong> Alle deine Daten sind in der App einsehbar.</li>
+                    <li><strong>Daten exportieren:</strong> Nutze die Backup-Funktion in den Einstellungen.</li>
+                    <li><strong>Daten l&ouml;schen:</strong> L&ouml;sche einzelne Eintr&auml;ge in der App oder deinstalliere die App und l&ouml;sche die iCloud-Daten &uuml;ber die iOS-Einstellungen (Einstellungen &gt; Apple-ID &gt; iCloud &gt; Speicher verwalten &gt; GymBo).</li>
+                    <li><strong>HealthKit widerrufen:</strong> Gehe zu Einstellungen &gt; Datenschutz &amp; Sicherheit &gt; Health &gt; GymBo und entziehe die Berechtigungen.</li>
+                    <li><strong>Soziale Daten l&ouml;schen:</strong> L&ouml;sche dein Profil &uuml;ber die Social-Einstellungen in der App.</li>
+                </ul>
+
+                <h3>Beschwerderecht</h3>
+                <p>Du hast das Recht, dich bei einer Datenschutz-Aufsichtsbeh&ouml;rde zu beschweren (Art. 77 DSGVO).</p>
+
+                <hr>
+
+                <h2>10. Datensicherheit</h2>
+                <p>Wir treffen folgende technische und organisatorische Massnahmen zum Schutz deiner Daten:</p>
+                <ul>
+                    <li><strong>Ger&auml;teverschl&uuml;sselung:</strong> Alle lokal gespeicherten Daten sind durch die iOS-Ger&auml;teverschl&uuml;sselung gesch&uuml;tzt.</li>
+                    <li><strong>Keychain:</strong> Authentifizierungsdaten werden im iOS Keychain verschl&uuml;sselt gespeichert.</li>
+                    <li><strong>iCloud-Verschl&uuml;sselung:</strong> Daten werden verschl&uuml;sselt zu Apple iCloud &uuml;bertragen und dort gespeichert.</li>
+                    <li><strong>HealthKit-Schutz:</strong> HealthKit-Daten sind in einer separaten, gesch&uuml;tzten Datenbank auf dem Ger&auml;t gespeichert.</li>
+                    <li><strong>Keine eigenen Server:</strong> Die App betreibt keine eigenen Server. Es gibt keinen zentralen Angriffspunkt.</li>
+                    <li><strong>Kein Account erforderlich:</strong> Die Kernfunktionen der App k&ouml;nnen ohne Erstellung eines Accounts genutzt werden.</li>
+                </ul>
+
+                <hr>
+
+                <h2>11. Kinder und Jugendliche</h2>
+                <p>Die App ist nicht speziell f&uuml;r Kinder unter 16 Jahren konzipiert. Wir erheben wissentlich keine Daten von Kindern unter 16 Jahren. Wenn du als Erziehungsberechtigter feststellst, dass dein Kind uns personenbezogene Daten &uuml;bermittelt hat, kontaktiere uns bitte.</p>
+
+                <hr>
+
+                <h2>12. &Auml;nderungen dieser Datenschutzerkl&auml;rung</h2>
+                <p>Wir behalten uns vor, diese Datenschutzerkl&auml;rung zu aktualisieren, um sie an ge&auml;nderte rechtliche Anforderungen oder &Auml;nderungen der App/Website anzupassen. Die aktuelle Version ist jeweils &uuml;ber die App-Einstellungen und auf der Website abrufbar.</p>
+
+                <hr>
+
+                <h2>13. Kontakt</h2>
+                <p>Bei Fragen zum Datenschutz erreichst du uns unter:</p>
+                <p>Benjamin Kohler<br>
+                E-Mail: <a href="mailto:mail@benkohler.de">mail@benkohler.de</a></p>
+
+                <hr>
+
+                <p><em>Letzte Aktualisierung: 27. Januar 2026</em></p>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="https://benkohler.de/impressum.html" class="footer-link" target="_blank" rel="noopener">Impressum</a>
+                <a href="datenschutz.html" class="footer-link">Datenschutz</a>
+            </div>
+            <p class="footer-copy">&copy; 2025 Ben Kohler</p>
+        </footer>
+
+        <script>
+            // Theme Toggle
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            const mobileThemeText = document.getElementById('mobileThemeText');
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            html.setAttribute('data-theme', savedTheme);
+            updateTheme(savedTheme);
+
+            function updateTheme(theme) {
+                themeIcon.textContent = theme === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
+                mobileThemeText.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+            }
+
+            function toggleTheme() {
+                const current = html.getAttribute('data-theme');
+                const next = current === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+                updateTheme(next);
+            }
+
+            themeToggle.addEventListener('click', toggleTheme);
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+
+            // Mobile Menu
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            function toggleMenu() {
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+            mobileMenuClose.addEventListener('click', toggleMenu);
+            mobileNavLinks.forEach(link => link.addEventListener('click', toggleMenu));
+        </script>
+    </body>
+</html>
