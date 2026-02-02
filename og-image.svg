@@ -34,11 +34,11 @@
   <text x="100" y="370" font-family="Inter, -apple-system, sans-serif" font-size="72" font-weight="800" fill="url(#accentGrad)">Ohne Bullshit.</text>
 
   <!-- Subline -->
-  <text x="100" y="440" font-family="Inter, -apple-system, sans-serif" font-size="28" font-weight="500" fill="#A3A3A3">Version 3.0 kommt bald — Kostenlos. Pro für 6,99€.</text>
+  <text x="100" y="440" font-family="Inter, -apple-system, sans-serif" font-size="28" font-weight="500" fill="#A3A3A3">Version 3.0 ist da — Kostenlos. Pro für 6,99€.</text>
 
   <!-- Price Badge -->
   <rect x="100" y="480" width="170" height="50" rx="25" fill="url(#accentGrad)"/>
-  <text x="185" y="513" font-family="Inter, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#000000" text-anchor="middle">Coming Soon</text>
+  <text x="185" y="513" font-family="Inter, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#000000" text-anchor="middle">Jetzt laden</text>
 
   <!-- Features -->
   <text x="310" y="513" font-family="Inter, -apple-system, sans-serif" font-size="18" font-weight="500" fill="#737373">217+ Übungen · Apple Watch · 100% Offline</text>
