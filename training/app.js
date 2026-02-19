@@ -39,6 +39,7 @@ const state = {
 const el = {
   status: document.getElementById("status"),
   authState: document.getElementById("authState"),
+  localOnlyHint: document.getElementById("localOnlyHint"),
   authEmail: document.getElementById("authEmail"),
   signInBtn: document.getElementById("signInBtn"),
   signOutBtn: document.getElementById("signOutBtn"),
@@ -112,6 +113,7 @@ function updateAuthUI() {
     el.signInBtn.hidden = true;
     el.signOutBtn.hidden = true;
     el.moderationLink.hidden = true;
+    el.localOnlyHint.hidden = false;
     return;
   }
 
@@ -120,6 +122,7 @@ function updateAuthUI() {
     el.signInBtn.hidden = false;
     el.signOutBtn.hidden = true;
     el.moderationLink.hidden = true;
+    el.localOnlyHint.hidden = false;
     return;
   }
 
@@ -127,6 +130,7 @@ function updateAuthUI() {
   el.signInBtn.hidden = true;
   el.signOutBtn.hidden = false;
   el.moderationLink.hidden = !isModerator();
+  el.localOnlyHint.hidden = true;
 }
 
 function mapCatalogExercise(raw) {
@@ -602,7 +606,7 @@ function loadBuilderPayload(payload, workoutId = null) {
 
 async function saveCurrentWorkout() {
   if (!isSupabaseEnabled() || !isLoggedIn()) {
-    showStatus("Bitte einloggen, um Workouts zu sichern.", true);
+    showStatus("Ohne Login kann das Workout nicht dauerhaft gesichert werden (nur aktuelle Sitzung im Browser-Tab).", true);
     return null;
   }
 
@@ -993,7 +997,7 @@ async function handleCustomExerciseSubmit(event) {
     }
   }
 
-  showStatus(`Lokal gespeichert: ${nameDe}. Für globale Freigabe bitte einloggen.`);
+  showStatus(`Lokal gespeichert: ${nameDe}. Ohne Login nur temporär im aktuellen Browser-Tab.`);
 }
 
 async function refreshAuth() {

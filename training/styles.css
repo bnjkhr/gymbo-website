@@ -145,6 +145,10 @@ body {
   font-size: 0.92rem;
 }
 
+.auth-warning {
+  color: #fcd34d;
+}
+
 .status {
   min-height: 24px;
   margin: 0;
