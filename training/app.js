@@ -249,7 +249,7 @@ async function handleReport(exercise) {
   const normalizedReason = reason.trim();
   const allowed = ["wrong_data", "duplicate", "unsafe", "spam", "other"];
   if (!allowed.includes(normalizedReason)) {
-    showStatus("Ungueltiger Report-Grund.", true);
+    showStatus("Ungültiger Report-Grund.", true);
     return;
   }
   const details = prompt("Details (optional)", "") || "";
@@ -314,7 +314,7 @@ function renderCatalog() {
 
   if (!filtered.length) {
     const empty = document.createElement("p");
-    empty.textContent = "Keine Uebungen gefunden.";
+    empty.textContent = "Keine Übungen gefunden.";
     empty.className = "catalog-meta";
     el.catalogList.appendChild(empty);
     return;
@@ -472,7 +472,7 @@ function renderWorkout() {
         <div class="item-actions">
           <button class="btn-ghost" data-action="up">Hoch</button>
           <button class="btn-ghost" data-action="down">Runter</button>
-          <button class="btn-danger" data-action="remove">Loeschen</button>
+          <button class="btn-danger" data-action="remove">Löschen</button>
         </div>
       </div>
       <div class="set-list"></div>
@@ -482,7 +482,7 @@ function renderWorkout() {
           <textarea rows="2" placeholder="Optional">${workoutExercise.notes || ""}</textarea>
         </label>
       </div>
-      <button class="btn btn-secondary full" data-action="add-set">Satz hinzufuegen</button>
+      <button class="btn btn-secondary full" data-action="add-set">Satz hinzufügen</button>
     `;
 
     const setList = li.querySelector(".set-list");
@@ -587,7 +587,7 @@ async function handleCustomExerciseSubmit(event) {
     name: nameDe,
     nameDe,
     nameEn,
-    muscleGroups: muscleGroups.length ? muscleGroups : ["Ganzkoerper"],
+    muscleGroups: muscleGroups.length ? muscleGroups : ["Ganzkörper"],
     equipmentType,
     difficultyLevel,
     description: descriptionDe,
@@ -622,7 +622,7 @@ async function handleCustomExerciseSubmit(event) {
         },
         state.session.user.id
       );
-      showStatus(`Uebung gespeichert und zur Moderation eingereicht: ${nameDe}`);
+      showStatus(`Übung gespeichert und zur Moderation eingereicht: ${nameDe}`);
       return;
     } catch (error) {
       showStatus(`Lokal gespeichert, Submission fehlgeschlagen: ${error.message}`, true);
@@ -630,7 +630,7 @@ async function handleCustomExerciseSubmit(event) {
     }
   }
 
-  showStatus(`Lokal gespeichert: ${nameDe}. Fuer globale Freigabe bitte einloggen.`);
+  showStatus(`Lokal gespeichert: ${nameDe}. Für globale Freigabe bitte einloggen.`);
 }
 
 function exportToGymboBundle() {
@@ -640,7 +640,7 @@ function exportToGymboBundle() {
   }
 
   if (state.workout.exercises.length === 0) {
-    throw new Error("Mindestens eine Uebung ist erforderlich.");
+    throw new Error("Mindestens eine Übung ist erforderlich.");
   }
 
   const now = new Date().toISOString();
@@ -793,7 +793,7 @@ function bindEvents() {
   el.signInBtn.addEventListener("click", async () => {
     const email = el.authEmail.value.trim();
     if (!email) {
-      showStatus("Bitte E-Mail fuer Login eintragen.", true);
+      showStatus("Bitte E-Mail für Login eintragen.", true);
       return;
     }
     try {
@@ -862,7 +862,7 @@ async function init() {
     renderCatalog();
     renderWorkout();
     bindEvents();
-    showStatus("Katalog geladen. Waehle Uebungen aus und exportiere dein Template.");
+    showStatus("Katalog geladen. Wähle Übungen aus und exportiere dein Template.");
   } catch (error) {
     showStatus(error.message || "Initialisierung fehlgeschlagen.", true);
   }

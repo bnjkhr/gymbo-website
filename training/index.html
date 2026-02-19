@@ -26,7 +26,7 @@
       <h1>Training Builder</h1>
       <p>Erstelle Workout-Templates und importiere sie direkt in GymBo auf dem iPhone.</p>
       <div class="auth-row">
-        <input id="authEmail" type="email" placeholder="E-Mail fuer Login-Link" />
+        <input id="authEmail" type="email" placeholder="E-Mail für Login-Link" />
         <button id="signInBtn" class="btn btn-secondary">Login-Link senden</button>
         <button id="signOutBtn" class="btn btn-secondary" hidden>Ausloggen</button>
         <a id="moderationLink" class="btn btn-secondary" href="/training/moderation.html" hidden>Moderation</a>
@@ -36,18 +36,18 @@
     </section>
 
     <nav class="mobile-tabs" aria-label="Builder Bereiche">
-      <button class="tab-btn active" data-tab="catalog">Uebungskatalog</button>
+      <button class="tab-btn active" data-tab="catalog">Übungskatalog</button>
       <button class="tab-btn" data-tab="builder">Workout Builder</button>
     </nav>
 
     <section class="layout">
       <aside id="catalogPanel" class="panel panel-catalog active-mobile">
         <div class="panel-head">
-          <h2>Uebungskatalog</h2>
+          <h2>Übungskatalog</h2>
         </div>
 
         <div class="filters">
-          <input id="searchInput" type="text" placeholder="Uebung suchen..." />
+          <input id="searchInput" type="text" placeholder="Übung suchen..." />
           <select id="muscleFilter">
             <option value="">Alle Muskelgruppen</option>
           </select>
@@ -58,7 +58,7 @@
 
         <div id="catalogList" class="catalog-list"></div>
 
-        <button id="openCustomModalBtn" class="btn btn-secondary full">Eigene Uebung erstellen</button>
+        <button id="openCustomModalBtn" class="btn btn-secondary full">Eigene Übung erstellen</button>
       </aside>
 
       <section id="builderPanel" class="panel panel-builder">
@@ -88,7 +88,7 @@
         </div>
 
         <div class="builder-list-head">
-          <h3>Uebungen</h3>
+          <h3>Übungen</h3>
           <span id="exerciseCount" class="count">0</span>
         </div>
 
@@ -100,8 +100,8 @@
   <div id="customModal" class="modal" aria-hidden="true">
     <div class="modal-card">
       <div class="modal-head">
-        <h3>Eigene Uebung erstellen</h3>
-        <button id="closeCustomModalBtn" class="icon-btn" type="button" aria-label="Schliessen">x</button>
+        <h3>Eigene Übung erstellen</h3>
+        <button id="closeCustomModalBtn" class="icon-btn" type="button" aria-label="Schließen">x</button>
       </div>
 
       <form id="customExerciseForm" class="modal-form">
@@ -128,7 +128,7 @@
         <label>
           Schwierigkeitsgrad
           <select id="customDifficulty">
-            <option>Anfaenger</option>
+            <option>Anfänger</option>
             <option>Fortgeschritten</option>
             <option>Profi</option>
           </select>
@@ -156,7 +156,7 @@
 
         <div class="modal-actions">
           <button type="button" id="cancelCustomBtn" class="btn btn-secondary">Abbrechen</button>
-          <button type="submit" class="btn btn-primary">Uebung speichern</button>
+          <button type="submit" class="btn btn-primary">Übung speichern</button>
         </div>
       </form>
     </div>
