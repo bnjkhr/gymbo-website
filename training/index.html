@@ -9,6 +9,10 @@
   <link rel="canonical" href="https://gymbo.pro/training/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="theme-color" content="#F59E0B" />
+  <meta property="og:title" content="GymBo Training Builder" />
+  <meta property="og:description" content="Erstelle Workout-Templates im Browser und importiere sie direkt in GymBo auf dem iPhone." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.gymbo.pro/training/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -46,8 +50,9 @@
     </section>
 
     <nav class="mobile-tabs" aria-label="Builder Bereiche">
-      <button class="tab-btn active" data-tab="catalog">Übungskatalog</button>
-      <button class="tab-btn" data-tab="builder">Workout Builder</button>
+      <button class="tab-btn active" data-tab="catalog">Katalog</button>
+      <button class="tab-btn" data-tab="builder">Builder</button>
+      <button class="tab-btn" data-tab="community">Community</button>
     </nav>
 
     <section class="layout">
@@ -191,6 +196,22 @@
           <button type="submit" class="btn btn-primary">Übung speichern</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <div id="promptModal" class="modal" aria-hidden="true">
+    <div class="modal-card" style="width: min(420px, calc(100vw - 24px));">
+      <div class="modal-head">
+        <h3 class="prompt-title"></h3>
+      </div>
+      <div style="display: grid; gap: 10px; margin-top: 10px;">
+        <select class="prompt-select"></select>
+        <input class="prompt-input" type="text" />
+        <div class="modal-actions">
+          <button class="btn btn-secondary" data-action="cancel">Abbrechen</button>
+          <button class="btn btn-primary" data-action="confirm">Senden</button>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -400,6 +400,10 @@ textarea:focus {
   gap: 6px;
 }
 
+.set-row-header {
+  display: none;
+}
+
 .set-row {
   display: grid;
   grid-template-columns: 40px 1fr 1fr 1fr auto;
@@ -596,12 +600,14 @@ textarea:focus {
   }
 
   #catalogPanel,
-  #builderPanel {
+  #builderPanel,
+  #community-workouts {
     display: none;
   }
 
   #catalogPanel.active-mobile,
-  #builderPanel.active-mobile {
+  #builderPanel.active-mobile,
+  #community-workouts.active-mobile {
     display: block;
   }
 
@@ -609,8 +615,18 @@ textarea:focus {
     grid-template-columns: 1fr;
   }
 
+  .set-row-header {
+    display: grid;
+    grid-template-columns: 30px 1fr 1fr 1fr auto;
+    gap: 6px;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    padding: 0 0 2px;
+  }
+
   .set-row {
-    grid-template-columns: 30px 1fr 1fr;
+    grid-template-columns: 30px 1fr 1fr 1fr auto;
   }
 
   .modal-form {
@@ -620,10 +636,5 @@ textarea:focus {
   .form-half,
   .form-full {
     grid-column: 1 / -1;
-  }
-
-  .set-row .rest-wrap,
-  .set-row .remove-wrap {
-    grid-column: span 1;
   }
 }

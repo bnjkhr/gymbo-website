@@ -84,6 +84,69 @@ function uuid() {
   return crypto.randomUUID();
 }
 
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function showPromptModal(title, options, placeholder) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("promptModal");
+    const titleEl = modal.querySelector(".prompt-title");
+    const select = modal.querySelector(".prompt-select");
+    const input = modal.querySelector(".prompt-input");
+    const confirmBtn = modal.querySelector("[data-action='confirm']");
+    const cancelBtn = modal.querySelector("[data-action='cancel']");
+
+    titleEl.textContent = title;
+    input.value = "";
+    input.placeholder = placeholder || "";
+
+    if (options) {
+      select.innerHTML = "";
+      options.forEach((opt) => {
+        const o = document.createElement("option");
+        o.value = opt.value;
+        o.textContent = opt.label;
+        select.appendChild(o);
+      });
+      select.hidden = false;
+    } else {
+      select.hidden = true;
+    }
+
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+
+    function cleanup() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      confirmBtn.removeEventListener("click", onConfirm);
+      cancelBtn.removeEventListener("click", onCancel);
+      modal.removeEventListener("click", onBackdrop);
+    }
+
+    function onConfirm() {
+      cleanup();
+      resolve({ confirmed: true, selected: select.hidden ? null : select.value, text: input.value });
+    }
+
+    function onCancel() {
+      cleanup();
+      resolve({ confirmed: false });
+    }
+
+    function onBackdrop(e) {
+      if (e.target === modal) onCancel();
+    }
+
+    confirmBtn.addEventListener("click", onConfirm);
+    cancelBtn.addEventListener("click", onCancel);
+    modal.addEventListener("click", onBackdrop);
+  });
+}
+
 function showStatus(message, isError = false) {
   el.status.textContent = message;
   el.status.style.color = isError ? "#fca5a5" : "#4ade80";
@@ -138,7 +201,7 @@ function mapCatalogExercise(raw) {
     source: "built-in",
     key: `catalog-${raw.id}`,
     nameDe: raw.name,
-    nameEn: raw.name,
+    nameEn: raw.nameEn || raw.name,
     muscleGroups: raw.muscleGroups || [],
     equipmentType: raw.equipmentType || "Freie Gewichte",
     difficultyLevel: raw.difficultyLevel || "Fortgeschritten",
@@ -201,6 +264,10 @@ function updateMobileTabs(tab) {
   });
   el.catalogPanel.classList.toggle("active-mobile", tab === "catalog");
   el.builderPanel.classList.toggle("active-mobile", tab === "builder");
+  const communityPanel = document.getElementById("community-workouts");
+  if (communityPanel) {
+    communityPanel.classList.toggle("active-mobile", tab === "community");
+  }
 }
 
 function renderFilters() {
@@ -271,15 +338,16 @@ async function handleReport(exercise) {
     return;
   }
 
-  const reason = prompt("Report-Grund (wrong_data, duplicate, unsafe, spam, other)", "wrong_data");
-  if (!reason) return;
-  const normalizedReason = reason.trim();
-  const allowed = ["wrong_data", "duplicate", "unsafe", "spam", "other"];
-  if (!allowed.includes(normalizedReason)) {
-    showStatus("Ungültiger Report-Grund.", true);
-    return;
-  }
-  const details = prompt("Details (optional)", "") || "";
+  const result = await showPromptModal("Report-Grund wählen", [
+    { value: "wrong_data", label: "Falsche Daten" },
+    { value: "duplicate", label: "Duplikat" },
+    { value: "unsafe", label: "Unsicher" },
+    { value: "spam", label: "Spam" },
+    { value: "other", label: "Sonstiges" }
+  ], "Details (optional)");
+  if (!result.confirmed) return;
+  const normalizedReason = result.selected;
+  const details = result.text || "";
 
   try {
     await reportExercise(exercise.communityId, state.session.user.id, normalizedReason, details);
@@ -303,7 +371,7 @@ function createCatalogItem(exercise) {
 
   const source = exercise.source === "community" ? "Community" : exercise.source === "custom" ? "Lokal" : "Built-in";
   const sourceClass = exercise.source === "community" ? "catalog-source community" : "catalog-source";
-  meta.innerHTML = `<span class="${sourceClass}">${source}</span>${exercise.equipmentType} - ${exercise.muscleGroups.join(", ")}`;
+  meta.innerHTML = `<span class="${sourceClass}">${source}</span>${escapeHtml(exercise.equipmentType)} - ${escapeHtml(exercise.muscleGroups.join(", "))}`;
 
   const addBtn = document.createElement("button");
   addBtn.className = "btn btn-secondary full";
@@ -485,8 +553,8 @@ function renderWorkout() {
     li.innerHTML = `
       <div class="workout-head">
         <div>
-          <p class="workout-title">${index + 1}. ${workoutExercise.exercise.nameDe}</p>
-          <p class="workout-sub">${workoutExercise.exercise.equipmentType}</p>
+          <p class="workout-title">${index + 1}. ${escapeHtml(workoutExercise.exercise.nameDe)}</p>
+          <p class="workout-sub">${escapeHtml(workoutExercise.exercise.equipmentType)}</p>
           ${groupId ? `<span class="group-badge">Gruppe ${groupLabel(groupIndex)}</span>` : ""}
         </div>
         <div class="item-actions">
@@ -497,12 +565,16 @@ function renderWorkout() {
       </div>
       <div class="set-list"></div>
       <div class="notes">
-        <label>Notizen<textarea rows="2" placeholder="Optional">${workoutExercise.notes || ""}</textarea></label>
+        <label>Notizen<textarea rows="2" placeholder="Optional">${escapeHtml(workoutExercise.notes || "")}</textarea></label>
       </div>
       <button class="btn btn-secondary full" data-action="add-set">Satz hinzufügen</button>
     `;
 
     const setList = li.querySelector(".set-list");
+    const setHeader = document.createElement("div");
+    setHeader.className = "set-row-header";
+    setHeader.innerHTML = `<span>#</span><span>Wdh.</span><span>Gew.</span><span>Pause</span><span></span>`;
+    setList.appendChild(setHeader);
     workoutExercise.sets.forEach((setItem, setIndex) => {
       const row = document.createElement("div");
       row.className = "set-row";
@@ -526,7 +598,11 @@ function renderWorkout() {
     });
     li.querySelector("[data-action='up']").addEventListener("click", () => moveExercise(index, -1));
     li.querySelector("[data-action='down']").addEventListener("click", () => moveExercise(index, 1));
-    li.querySelector("[data-action='remove']").addEventListener("click", () => removeExercise(workoutExercise.id));
+    li.querySelector("[data-action='remove']").addEventListener("click", () => {
+      if (confirm(`„${workoutExercise.exercise.nameDe}" aus dem Workout entfernen?`)) {
+        removeExercise(workoutExercise.id);
+      }
+    });
     li.querySelector("[data-action='add-set']").addEventListener("click", () => addSet(workoutExercise.id));
 
     el.workoutList.appendChild(li);
@@ -792,8 +868,8 @@ function renderMyWorkouts() {
     const item = document.createElement("article");
     item.className = "catalog-item";
     item.innerHTML = `
-      <h4>${workout.name}</h4>
-      <div class="catalog-meta">${workout.workout_type} · Aktualisiert ${new Date(workout.updated_at).toLocaleString("de-DE")}</div>
+      <h4>${escapeHtml(workout.name)}</h4>
+      <div class="catalog-meta">${escapeHtml(workout.workout_type)} · Aktualisiert ${new Date(workout.updated_at).toLocaleString("de-DE")}</div>
       <div class="vote-row">
         <button class="btn-ghost" data-action="load">Bearbeiten</button>
         <button class="btn-ghost" data-action="submit">Community</button>
@@ -863,8 +939,8 @@ function renderCommunityWorkouts() {
     item.className = "catalog-item";
     const exercisesCount = Array.isArray(workout.payload?.exercises) ? workout.payload.exercises.length : 0;
     item.innerHTML = `
-      <h4>${workout.name}</h4>
-      <div class="catalog-meta">${workout.workout_type} · ${exercisesCount} Übungen</div>
+      <h4>${escapeHtml(workout.name)}</h4>
+      <div class="catalog-meta">${escapeHtml(workout.workout_type)} · ${exercisesCount} Übungen</div>
       <div class="vote-row">
         <button class="btn-ghost" data-action="load">In Builder laden</button>
         <button class="btn-ghost" data-action="export">Exportieren</button>
@@ -1080,6 +1156,7 @@ function bindEvents() {
 
 async function init() {
   try {
+    showStatus("Lade Übungskatalog...");
     const response = await fetch("data/exercise_catalog.json", { cache: "no-store" });
     if (!response.ok) throw new Error("Katalog konnte nicht geladen werden.");
 
@@ -1092,10 +1169,13 @@ async function init() {
     renderFilters();
 
     if (isSupabaseEnabled()) {
+      showStatus("Lade Community-Daten...");
       await refreshAuth();
-      await refreshCommunityExercises();
-      await refreshMyWorkouts();
-      await refreshCommunityWorkouts();
+      await Promise.all([
+        refreshCommunityExercises(),
+        refreshMyWorkouts(),
+        refreshCommunityWorkouts()
+      ]);
     } else {
       updateAuthUI();
       renderMyWorkouts();

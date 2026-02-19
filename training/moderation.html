@@ -55,6 +55,21 @@
     </section>
   </main>
 
+  <div id="modPromptModal" class="modal" aria-hidden="true">
+    <div class="modal-card" style="width: min(420px, calc(100vw - 24px));">
+      <div class="modal-head">
+        <h3 class="prompt-title"></h3>
+      </div>
+      <div style="display: grid; gap: 10px; margin-top: 10px;">
+        <input class="prompt-input" type="text" />
+        <div class="modal-actions">
+          <button class="btn btn-secondary" data-action="cancel">Abbrechen</button>
+          <button class="btn btn-primary" data-action="confirm">Senden</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="supabase-config.js"></script>
   <script type="module" src="moderation.js"></script>
 </body>

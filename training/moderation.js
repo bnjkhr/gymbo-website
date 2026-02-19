@@ -27,6 +27,55 @@ const el = {
 let session = null;
 let profile = null;
 
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function showPromptModal(title, placeholder) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("modPromptModal");
+    const titleEl = modal.querySelector(".prompt-title");
+    const input = modal.querySelector(".prompt-input");
+    const confirmBtn = modal.querySelector("[data-action='confirm']");
+    const cancelBtn = modal.querySelector("[data-action='cancel']");
+
+    titleEl.textContent = title;
+    input.value = "";
+    input.placeholder = placeholder || "";
+
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+
+    function cleanup() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      confirmBtn.removeEventListener("click", onConfirm);
+      cancelBtn.removeEventListener("click", onCancel);
+      modal.removeEventListener("click", onBackdrop);
+    }
+
+    function onConfirm() {
+      cleanup();
+      resolve({ confirmed: true, text: input.value });
+    }
+
+    function onCancel() {
+      cleanup();
+      resolve({ confirmed: false });
+    }
+
+    function onBackdrop(e) {
+      if (e.target === modal) onCancel();
+    }
+
+    confirmBtn.addEventListener("click", onConfirm);
+    cancelBtn.addEventListener("click", onCancel);
+    modal.addEventListener("click", onBackdrop);
+  });
+}
+
 function showStatus(message, isError = false) {
   el.modStatus.textContent = message;
   el.modStatus.style.color = isError ? "#fca5a5" : "#4ade80";
@@ -71,8 +120,8 @@ async function refreshData() {
       const item = document.createElement("article");
       item.className = "catalog-item";
       item.innerHTML = `
-        <h4>${row.name_de} / ${row.name_en}</h4>
-        <div class="catalog-meta">${row.equipment_type} · ${row.difficulty} · ${row.muscle_groups.join(", ")}</div>
+        <h4>${escapeHtml(row.name_de)} / ${escapeHtml(row.name_en)}</h4>
+        <div class="catalog-meta">${escapeHtml(row.equipment_type)} · ${escapeHtml(row.difficulty)} · ${escapeHtml(row.muscle_groups.join(", "))}</div>
         <div class="vote-row">
           <button class="btn btn-primary" data-action="approve">Freigeben</button>
           <button class="btn btn-secondary" data-action="reject">Ablehnen</button>
@@ -90,9 +139,10 @@ async function refreshData() {
       });
 
       item.querySelector("[data-action='reject']").addEventListener("click", async () => {
-        const reason = prompt("Ablehnungsgrund (optional)", "");
+        const result = await showPromptModal("Ablehnungsgrund", "Grund (optional)");
+        if (!result.confirmed) return;
         try {
-          await rejectSubmission(row.id, reason || null);
+          await rejectSubmission(row.id, result.text || null);
           showStatus(`Übung abgelehnt: ${row.name_de}`);
           await refreshData();
         } catch (error) {
@@ -114,8 +164,8 @@ async function refreshData() {
       const item = document.createElement("article");
       item.className = "catalog-item";
       item.innerHTML = `
-        <h4>${row.name}</h4>
-        <div class="catalog-meta">${row.workout_type} · ${new Date(row.created_at).toLocaleString("de-DE")}</div>
+        <h4>${escapeHtml(row.name)}</h4>
+        <div class="catalog-meta">${escapeHtml(row.workout_type)} · ${new Date(row.created_at).toLocaleString("de-DE")}</div>
         <div class="vote-row">
           <button class="btn btn-primary" data-action="approve">Freigeben</button>
           <button class="btn btn-secondary" data-action="reject">Ablehnen</button>
@@ -133,9 +183,10 @@ async function refreshData() {
       });
 
       item.querySelector("[data-action='reject']").addEventListener("click", async () => {
-        const reason = prompt("Ablehnungsgrund (optional)", "");
+        const result = await showPromptModal("Ablehnungsgrund", "Grund (optional)");
+        if (!result.confirmed) return;
         try {
-          await rejectWorkoutSubmission(row.id, reason || null);
+          await rejectWorkoutSubmission(row.id, result.text || null);
           showStatus(`Workout abgelehnt: ${row.name}`);
           await refreshData();
         } catch (error) {
@@ -157,8 +208,8 @@ async function refreshData() {
       const item = document.createElement("article");
       item.className = "catalog-item";
       item.innerHTML = `
-        <h4>Exercise ${row.exercise_id}</h4>
-        <div class="catalog-meta">Grund: ${row.reason}${row.details ? ` · ${row.details}` : ""}</div>
+        <h4>Exercise ${escapeHtml(String(row.exercise_id))}</h4>
+        <div class="catalog-meta">Grund: ${escapeHtml(row.reason)}${row.details ? ` · ${escapeHtml(row.details)}` : ""}</div>
         <div class="vote-row">
           <button class="btn btn-primary" data-action="resolve">Erledigt</button>
           <button class="btn btn-secondary" data-action="dismiss">Verwerfen</button>
