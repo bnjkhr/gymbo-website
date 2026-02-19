@@ -14,7 +14,7 @@ import {
   deleteUserWorkout,
   submitWorkoutToCommunity,
   fetchCommunityWorkouts
-} from "./supabase-client.js";
+} from "/training/supabase-client.js";
 
 const state = {
   builtInCatalog: [],
@@ -1198,7 +1198,7 @@ function bindEvents() {
 async function init() {
   try {
     showStatus("Lade Übungskatalog...");
-    const response = await fetch("data/exercise_catalog.json", { cache: "no-store" });
+    const response = await fetch("/training/data/exercise_catalog.json", { cache: "no-store" });
     if (!response.ok) throw new Error("Katalog konnte nicht geladen werden.");
 
     const json = await response.json();
