@@ -8,6 +8,14 @@
                 document.documentElement.setAttribute('data-theme', theme);
             })();
         </script>
+        <script>
+            (function () {
+                var hash = window.location.hash || "";
+                if (hash.includes("access_token=") && hash.includes("refresh_token=")) {
+                    window.location.replace("/training/" + hash);
+                }
+            })();
+        </script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>GymBo 3.0 - Free Fitness App | Workout Tracker No Subscription</title>
 
