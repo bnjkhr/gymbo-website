@@ -134,27 +134,27 @@
       </div>
 
       <form id="customExerciseForm" class="modal-form">
-        <label>
+        <label class="form-half">
           Name (DE)
           <input id="customName" type="text" required />
         </label>
 
-        <label>
+        <label class="form-half">
           Name (EN)
           <input id="customNameEn" type="text" required />
         </label>
 
-        <label>
+        <label class="form-full">
           Muskelgruppen
           <div id="customMuscles" class="check-grid"></div>
         </label>
 
-        <label>
+        <label class="form-half">
           Equipment-Typ
           <select id="customEquipment"></select>
         </label>
 
-        <label>
+        <label class="form-half">
           Schwierigkeitsgrad
           <select id="customDifficulty">
             <option>Anfänger</option>
@@ -163,27 +163,27 @@
           </select>
         </label>
 
-        <label>
+        <label class="form-half">
           Beschreibung (DE)
-          <textarea id="customDescription" rows="3"></textarea>
+          <textarea id="customDescription" rows="2"></textarea>
         </label>
 
-        <label>
+        <label class="form-half">
           Description (EN)
-          <textarea id="customDescriptionEn" rows="3"></textarea>
+          <textarea id="customDescriptionEn" rows="2"></textarea>
         </label>
 
-        <label>
+        <label class="form-half">
           Anleitung (DE, eine Zeile pro Schritt)
-          <textarea id="customInstructions" rows="4"></textarea>
+          <textarea id="customInstructions" rows="3"></textarea>
         </label>
 
-        <label>
+        <label class="form-half">
           Instructions (EN, one line per step)
-          <textarea id="customInstructionsEn" rows="4"></textarea>
+          <textarea id="customInstructionsEn" rows="3"></textarea>
         </label>
 
-        <div class="modal-actions">
+        <div class="modal-actions form-full">
           <button type="button" id="cancelCustomBtn" class="btn btn-secondary">Abbrechen</button>
           <button type="submit" class="btn btn-primary">Übung speichern</button>
         </div>
