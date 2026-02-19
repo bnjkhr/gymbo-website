@@ -1,0 +1,2448 @@
+{
+  "version": 1,
+  "generatedAt": "2026-02-18",
+  "exercises": [
+    {
+      "id": 1,
+      "name": "Kniebeugen",
+      "muscleGroups": [
+        "Beine",
+        "Gesäß"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Kniebeuge mit Langhantel auf dem oberen Rücken",
+      "instructions": [
+        "Langhantel auf oberen Rücken legen",
+        "Füße schulterbreit aufstellen",
+        "Absenken bis Oberschenkel parallel",
+        "Durch Fersen nach oben drücken"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Kreuzheben",
+      "muscleGroups": [
+        "Rücken",
+        "Beine",
+        "Gesäß"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Langhantel vom Boden bis zum Stand heben",
+      "instructions": [
+        "Füße hüftbreit positionieren",
+        "Langhantel außerhalb der Beine greifen",
+        "Rücken gerade halten",
+        "Hüfte und Knie strecken"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Bankdrücken",
+      "muscleGroups": [
+        "Brust",
+        "Schultern",
+        "Trizeps"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Langhantel von der Brust nach oben drücken",
+      "instructions": [
+        "Auf flacher Bank liegen",
+        "Langhantel etwas breiter als schulterbreit greifen",
+        "Zur Brust absenken",
+        "Nach oben drücken bis Arme gestreckt"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Schulterdrücken",
+      "muscleGroups": [
+        "Schultern",
+        "Trizeps"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Langhantel über Kopf drücken",
+      "instructions": [
+        "Langhantel auf Schulterhöhe",
+        "Füße schulterbreit",
+        "Gerade nach oben drücken",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Vorgebeugtes Rudern",
+      "muscleGroups": [
+        "Rücken",
+        "Latissimus"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Langhantel zum Oberkörper ziehen",
+      "instructions": [
+        "In Hüfte vorbeugen mit geradem Rücken",
+        "Langhantel schulterbreit greifen",
+        "Zur unteren Brust ziehen",
+        "Schulterblätter zusammenziehen"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Hip Thrust",
+      "muscleGroups": [
+        "Gesäß",
+        "Beinbeuger"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Hüfte mit Gewicht nach oben drücken",
+      "instructions": [
+        "Schultern auf Bank ablegen",
+        "Langhantel auf Hüfte platzieren",
+        "Durch Fersen nach oben drücken",
+        "Gesäß oben anspannen"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Ausfallschritte",
+      "muscleGroups": [
+        "Beine",
+        "Gesäß"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Schritt nach vorne in Ausfallschritt",
+      "instructions": [
+        "Langhantel auf oberem Rücken",
+        "Mit einem Bein nach vorne treten",
+        "Absenken bis beide Knie 90 Grad",
+        "Zurück zur Ausgangsposition drücken"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Good Morning",
+      "muscleGroups": [
+        "Beinbeuger",
+        "Unterer Rücken"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "In Hüfte vorbeugen mit Langhantel",
+      "instructions": [
+        "Langhantel auf oberem Rücken",
+        "In Hüfte als Drehpunkt beugen",
+        "Rücken gerade halten",
+        "Zurück zur aufrechten Position"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Bizeps-Curls",
+      "muscleGroups": [
+        "Bizeps"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Langhantel zu Schultern curlen",
+      "instructions": [
+        "Stehend Langhantel in Händen",
+        "Handflächen nach vorne",
+        "Zur Schulter curlen",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Stirndrücken",
+      "muscleGroups": [
+        "Trizeps"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Langhantel zur Stirn absenken",
+      "instructions": [
+        "Auf Bank liegen",
+        "Arme über Kopf gestreckt",
+        "Zur Stirn absenken",
+        "Arme wieder nach oben strecken"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Sumo-Kreuzheben",
+      "muscleGroups": [
+        "Gesäß",
+        "Beinbeuger",
+        "Rücken"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Kreuzheben mit breitem Stand",
+      "instructions": [
+        "Füße breiter als schulterbreit",
+        "Zehenspitzen nach außen",
+        "Langhantel zwischen Beinen greifen",
+        "Hüfte und Knie strecken"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Rumänisches Kreuzheben",
+      "muscleGroups": [
+        "Beinbeuger",
+        "Gesäß"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Kreuzheben mit minimaler Kniebeugung",
+      "instructions": [
+        "Langhantel auf Oberschenkelhöhe",
+        "Leichte Kniebeugung",
+        "In Hüfte beugen",
+        "Dehnung in Beinbeugern spüren"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Frontkniebeugen",
+      "muscleGroups": [
+        "Beine",
+        "Rumpf"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Kniebeuge mit Langhantel vorne",
+      "instructions": [
+        "Langhantel auf vordere Schultern",
+        "Ellbogen hoch",
+        "Absenken mit aufrechter Brust",
+        "Durch Fersen nach oben drücken"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Enges Bankdrücken",
+      "muscleGroups": [
+        "Trizeps",
+        "Brust"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Bankdrücken mit engem Griff",
+      "instructions": [
+        "Auf Bank liegen",
+        "Hände schulterbreit oder enger",
+        "Zur Brust absenken",
+        "Nach oben drücken mit Ellbogen am Körper"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Landmine Press",
+      "muscleGroups": [
+        "Schultern",
+        "Brust"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Langhantelende schräg nach oben drücken",
+      "instructions": [
+        "Ein Ende der Langhantel fixiert",
+        "Anderes Ende auf Schulter",
+        "Nach oben und vorne drücken",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "T-Bar Rudern",
+      "muscleGroups": [
+        "Rücken",
+        "Latissimus"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "T-Bar zur Brust rudern",
+      "instructions": [
+        "Über T-Bar stehen",
+        "In Hüfte beugen",
+        "Zur Brust ziehen",
+        "Schulterblätter zusammenziehen"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Floor Press",
+      "muscleGroups": [
+        "Trizeps",
+        "Brust"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Bankdrücken vom Boden",
+      "instructions": [
+        "Auf Boden liegen",
+        "Absenken bis Ellbogen Boden berühren",
+        "Nach oben drücken",
+        "Reduzierter Bewegungsumfang"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Pendlay Rudern",
+      "muscleGroups": [
+        "Rücken",
+        "Latissimus"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Explosives Rudern vom Boden",
+      "instructions": [
+        "Langhantel startet jede Wiederholung am Boden",
+        "Explosiv zur Brust ziehen",
+        "Zurück zum Boden",
+        "Oberkörper parallel zum Boden"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Rack Pulls",
+      "muscleGroups": [
+        "Rücken",
+        "Trapez"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Kreuzheben von erhöhter Position",
+      "instructions": [
+        "Langhantel auf Rack-Pins",
+        "Vom Kniehöhe ziehen",
+        "Fokus auf oberen Rücken",
+        "Oben auslocken"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Schrägbankdrücken",
+      "muscleGroups": [
+        "Brust",
+        "Schultern"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Bankdrücken auf Schrägbank",
+      "instructions": [
+        "Bank auf 30-45 Grad einstellen",
+        "Zur oberen Brust absenken",
+        "Nach oben drücken",
+        "Trainiert obere Brust"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Negativbankdrücken",
+      "muscleGroups": [
+        "Brust",
+        "Trizeps"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Bankdrücken auf Negativbank",
+      "instructions": [
+        "Bank auf Negativwinkel einstellen",
+        "Zur unteren Brust absenken",
+        "Nach oben drücken",
+        "Trainiert untere Brust"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Schulterheben",
+      "muscleGroups": [
+        "Trapez"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Schultern mit Langhantel anheben",
+      "instructions": [
+        "Langhantel auf Oberschenkelhöhe",
+        "Schultern zu Ohren ziehen",
+        "Kurz halten",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Aufrechtes Rudern",
+      "muscleGroups": [
+        "Schultern",
+        "Trapez"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Langhantel am Körper hochziehen",
+      "instructions": [
+        "Langhantel auf Oberschenkelhöhe",
+        "Zur Brust hochziehen",
+        "Ellbogen führen nach oben",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Kurzhantel-Bankdrücken",
+      "muscleGroups": [
+        "Brust",
+        "Schultern",
+        "Trizeps"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Kurzhanteln von Brust drücken",
+      "instructions": [
+        "Auf flacher Bank liegen",
+        "Kurzhanteln auf Brusthöhe",
+        "Nach oben und zusammen drücken",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Kurzhantel-Schrägbankdrücken",
+      "muscleGroups": [
+        "Brust",
+        "Schultern"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Kurzhanteln auf Schrägbank drücken",
+      "instructions": [
+        "Bank auf 30-45 Grad einstellen",
+        "Kurzhanteln auf Brust",
+        "Nach oben drücken",
+        "Trainiert obere Brust"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Kurzhantel-Flys",
+      "muscleGroups": [
+        "Brust"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Kurzhanteln in Bogenbewegung",
+      "instructions": [
+        "Auf Bank liegen",
+        "Leichte Beugung in Ellbogen",
+        "In Bogen absenken",
+        "Oben zusammenführen"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Seitheben",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Kurzhanteln seitlich anheben",
+      "instructions": [
+        "Stehend mit Kurzhanteln an Seiten",
+        "Leichte Beugung in Ellbogen",
+        "Bis Schulterhöhe anheben",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Frontheben",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Kurzhanteln nach vorne anheben",
+      "instructions": [
+        "Stehend mit Kurzhanteln an Oberschenkeln",
+        "Nach vorne bis Schulterhöhe anheben",
+        "Abwechselnd oder zusammen",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Arnold Press",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Schulterdrücken mit Rotation",
+      "instructions": [
+        "Start mit Handflächen zu dir",
+        "Beim Hochdrücken rotieren",
+        "Ende mit Handflächen nach vorne",
+        "Beim Absenken umgekehrt"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Kurzhantelrudern",
+      "muscleGroups": [
+        "Rücken",
+        "Latissimus"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Kurzhantel zur Seite rudern",
+      "instructions": [
+        "Eine Hand und Knie auf Bank",
+        "Kurzhantel zur Hüfte ziehen",
+        "Schulterblatt zusammenziehen",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Goblet Squat",
+      "muscleGroups": [
+        "Beine",
+        "Gesäß"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Kniebeuge mit Kurzhantel vor Brust",
+      "instructions": [
+        "Kurzhantel vertikal halten",
+        "Auf Brusthöhe",
+        "Absenken",
+        "Brust oben halten"
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Bulgarische Split Squats",
+      "muscleGroups": [
+        "Beine",
+        "Gesäß"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Einbeinige Kniebeuge mit hinterem Fuß erhöht",
+      "instructions": [
+        "Hinterer Fuß auf Bank",
+        "Vorderer Fuß nach vorne",
+        "In Ausfallschritt absenken",
+        "Durch vorderen Fuß nach oben drücken"
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Hammer-Curls",
+      "muscleGroups": [
+        "Bizeps",
+        "Unterarme"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Curls mit neutralem Griff",
+      "instructions": [
+        "Kurzhanteln an Seiten",
+        "Handflächen zueinander",
+        "Nach oben curlen",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Konzentrations-Curls",
+      "muscleGroups": [
+        "Bizeps"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Curls mit abgestütztem Ellbogen",
+      "instructions": [
+        "Sitzend mit Ellbogen auf Oberschenkel",
+        "Kurzhantel nach oben curlen",
+        "Oben anspannen",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Trizeps-Kickbacks",
+      "muscleGroups": [
+        "Trizeps"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Arm mit Kurzhantel nach hinten strecken",
+      "instructions": [
+        "In Hüfte vorbeugen",
+        "Oberarm parallel zum Boden",
+        "Arm nach hinten strecken",
+        "Trizeps anspannen"
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Wadenheben",
+      "muscleGroups": [
+        "Waden"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Fersen mit Kurzhanteln anheben",
+      "instructions": [
+        "Kurzhanteln an Seiten",
+        "Auf Zehenspitzen steigen",
+        "Oben halten",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Reverse Curls",
+      "muscleGroups": [
+        "Unterarme",
+        "Bizeps"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Curls mit Obergriff",
+      "instructions": [
+        "Langhantel mit Handflächen nach unten",
+        "Zu Schultern curlen",
+        "Fokus auf Unterarme",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Schrägbank-Curls",
+      "muscleGroups": [
+        "Bizeps"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Curls auf Schrägbank",
+      "instructions": [
+        "Zurückgelehnt auf Schrägbank",
+        "Arme hängen nach unten",
+        "Kurzhanteln nach oben curlen",
+        "Volle Dehnung unten"
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Überkopf-Trizepsdrücken",
+      "muscleGroups": [
+        "Trizeps"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Kurzhantel über Kopf strecken",
+      "instructions": [
+        "Kurzhantel über Kopf",
+        "Hinter Kopf absenken",
+        "Wieder nach oben strecken",
+        "Ellbogen nah am Kopf"
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Überzüge",
+      "muscleGroups": [
+        "Brust",
+        "Latissimus"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Kurzhantel über Kopf ziehen",
+      "instructions": [
+        "Quer auf Bank liegen",
+        "Kurzhantel über Kopf",
+        "Hinter Kopf absenken",
+        "Zurück über Kopf ziehen"
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Farmers Walk",
+      "muscleGroups": [
+        "Griffkraft",
+        "Ganzkörper"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Mit schweren Kurzhanteln gehen",
+      "instructions": [
+        "Schwere Kurzhanteln halten",
+        "Nach vorne gehen",
+        "Rumpf angespannt",
+        "Gute Haltung beibehalten"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Kettlebell Swing",
+      "muscleGroups": [
+        "Gesäß",
+        "Beinbeuger",
+        "Unterer Rücken"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Kettlebell mit Hüftantrieb schwingen",
+      "instructions": [
+        "In Hüfte beugen",
+        "Kettlebell zwischen Beinen schwingen",
+        "Hüfte explosiv nach vorne",
+        "Bis Brusthöhe schwingen"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "Turkish Get-Up",
+      "muscleGroups": [
+        "Ganzkörper",
+        "Rumpf"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Profi",
+      "description": "Vom Liegen zum Stehen mit Gewicht",
+      "instructions": [
+        "Liegend mit Kettlebell über Kopf",
+        "Komplexe Mehrschritt-Bewegung",
+        "Arm gestreckt halten",
+        "Ganzkörper-Koordination erforderlich"
+      ]
+    },
+    {
+      "id": 44,
+      "name": "Kettlebell Goblet Squat",
+      "muscleGroups": [
+        "Beine",
+        "Gesäß",
+        "Rumpf"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Kniebeuge mit Kettlebell",
+      "instructions": [
+        "Kettlebell vor Brust",
+        "Ellbogen nach unten",
+        "Zwischen Beinen absenken",
+        "Brust oben halten"
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Kettlebell Snatch",
+      "muscleGroups": [
+        "Ganzkörper"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Profi",
+      "description": "Explosive Bewegung über Kopf",
+      "instructions": [
+        "Start mit Kettlebell am Boden",
+        "Schwingen und über Kopf ziehen",
+        "Mit gestrecktem Arm fangen",
+        "Hochexplosive Bewegung"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "Liegestütze",
+      "muscleGroups": [
+        "Brust",
+        "Schultern",
+        "Trizeps"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Körper vom Boden drücken",
+      "instructions": [
+        "Hände schulterbreit",
+        "Körper in gerader Linie",
+        "Brust zum Boden absenken",
+        "Wieder nach oben drücken"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "Klimmzüge",
+      "muscleGroups": [
+        "Rücken",
+        "Latissimus",
+        "Bizeps"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Körper zur Stange ziehen",
+      "instructions": [
+        "An Stange hängen",
+        "Hände breiter als Schultern",
+        "Hochziehen bis Kinn über Stange",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "Dips",
+      "muscleGroups": [
+        "Trizeps",
+        "Brust",
+        "Schultern"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Absenken und Drücken an Barren",
+      "instructions": [
+        "Körper an Barren stützen",
+        "Absenken bis Ellbogen 90 Grad",
+        "Wieder nach oben drücken",
+        "Nach vorne lehnen für Brust"
+      ]
+    },
+    {
+      "id": 49,
+      "name": "Kniebeugen ohne Gewicht",
+      "muscleGroups": [
+        "Beine",
+        "Gesäß"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Kniebeuge ohne Zusatzgewicht",
+      "instructions": [
+        "Füße schulterbreit",
+        "Absenken bis Oberschenkel parallel",
+        "Brust oben halten",
+        "Durch Fersen nach oben drücken"
+      ]
+    },
+    {
+      "id": 50,
+      "name": "Ausfallschritte ohne Gewicht",
+      "muscleGroups": [
+        "Beine",
+        "Gesäß"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Schritt nach vorne in Ausfallschritt",
+      "instructions": [
+        "Mit einem Bein nach vorne treten",
+        "Absenken bis beide Knie 90 Grad",
+        "Zurück zur Ausgangsposition",
+        "Beine abwechseln"
+      ]
+    },
+    {
+      "id": 51,
+      "name": "Unterarmstütz",
+      "muscleGroups": [
+        "Rumpf"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Körper gerade auf Unterarmen halten",
+      "instructions": [
+        "Unterarme am Boden",
+        "Körper in gerader Linie",
+        "Position halten",
+        "Rumpf angespannt"
+      ]
+    },
+    {
+      "id": 52,
+      "name": "Burpees",
+      "muscleGroups": [
+        "Ganzkörper"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Kniebeuge zu Liegestütz zu Sprung",
+      "instructions": [
+        "In Hocke gehen",
+        "Füße nach hinten in Liegestütz",
+        "Liegestütz ausführen",
+        "Füße nach vorne und hochspringen"
+      ]
+    },
+    {
+      "id": 53,
+      "name": "Bergsteiger",
+      "muscleGroups": [
+        "Rumpf",
+        "Kardio"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Knie abwechselnd zur Brust in Liegestütz",
+      "instructions": [
+        "In Liegestützposition starten",
+        "Ein Knie zur Brust ziehen",
+        "Beine schnell abwechseln",
+        "Hüfte auf gleicher Höhe"
+      ]
+    },
+    {
+      "id": 54,
+      "name": "Sit-Ups",
+      "muscleGroups": [
+        "Bauch"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Oberkörper vom Liegen aufrichten",
+      "instructions": [
+        "Auf Rücken liegen",
+        "Knie gebeugt",
+        "Oberkörper zu Knien aufrichten",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 55,
+      "name": "Crunches",
+      "muscleGroups": [
+        "Bauch"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Schultern vom Boden heben",
+      "instructions": [
+        "Auf Rücken liegen",
+        "Hände hinter Kopf",
+        "Schultern vom Boden heben",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 56,
+      "name": "Beinheben",
+      "muscleGroups": [
+        "Bauch"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Beine im Liegen anheben",
+      "instructions": [
+        "Auf Rücken liegen",
+        "Beine gestreckt",
+        "Beine bis senkrecht anheben",
+        "Absenken ohne Boden zu berühren"
+      ]
+    },
+    {
+      "id": 57,
+      "name": "Beckenheben",
+      "muscleGroups": [
+        "Gesäß",
+        "Unterer Rücken"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Hüfte vom Boden nach oben drücken",
+      "instructions": [
+        "Auf Rücken liegen",
+        "Füße flach am Boden",
+        "Hüfte nach oben drücken",
+        "Gesäß oben anspannen"
+      ]
+    },
+    {
+      "id": 58,
+      "name": "Pistol Squats",
+      "muscleGroups": [
+        "Beine",
+        "Gesäß"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Profi",
+      "description": "Einbeinige Kniebeuge",
+      "instructions": [
+        "Auf einem Bein stehen",
+        "Anderes Bein nach vorne gestreckt",
+        "Auf einem Bein absenken",
+        "Erfordert Kraft und Balance"
+      ]
+    },
+    {
+      "id": 59,
+      "name": "Handstand-Liegestütze",
+      "muscleGroups": [
+        "Schultern",
+        "Trizeps"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Profi",
+      "description": "Liegestütze im Handstand",
+      "instructions": [
+        "In Handstand hochkicken",
+        "An Wand zur Unterstützung",
+        "Kopf zum Boden absenken",
+        "Wieder nach oben drücken"
+      ]
+    },
+    {
+      "id": 60,
+      "name": "Muscle-Up",
+      "muscleGroups": [
+        "Rücken",
+        "Brust",
+        "Schultern",
+        "Arme"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Profi",
+      "description": "Klimmzug zu Dip Übergang",
+      "instructions": [
+        "Explosiv hochziehen",
+        "Über Stange übergang",
+        "Zum Stütz drücken",
+        "Sehr fortgeschrittene Bewegung"
+      ]
+    },
+    {
+      "id": 61,
+      "name": "Superman",
+      "muscleGroups": [
+        "Unterer Rücken"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Arme und Beine im Liegen anheben",
+      "instructions": [
+        "Auf Bauch liegen",
+        "Arme nach vorne gestreckt",
+        "Arme und Beine gleichzeitig anheben",
+        "Kurz halten"
+      ]
+    },
+    {
+      "id": 62,
+      "name": "Wandsitz",
+      "muscleGroups": [
+        "Beine"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Kniebeugeposition an Wand halten",
+      "instructions": [
+        "Rücken an Wand",
+        "In Hocke gleiten",
+        "Oberschenkel parallel zum Boden",
+        "Position halten"
+      ]
+    },
+    {
+      "id": 63,
+      "name": "Box Jumps",
+      "muscleGroups": [
+        "Beine"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Auf erhöhte Plattform springen",
+      "instructions": [
+        "Vor Box stehen",
+        "Arme nach hinten schwingen",
+        "Auf Box springen",
+        "Weich landen"
+      ]
+    },
+    {
+      "id": 64,
+      "name": "Diamond Push-Ups",
+      "muscleGroups": [
+        "Trizeps",
+        "Brust"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Liegestütze mit Händen zusammen",
+      "instructions": [
+        "Hände bilden Diamantform",
+        "Brust zu Händen absenken",
+        "Wieder nach oben drücken",
+        "Betont Trizeps"
+      ]
+    },
+    {
+      "id": 65,
+      "name": "Pike Push-Ups",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Liegestütze mit erhöhter Hüfte",
+      "instructions": [
+        "In herabschauendem Hund starten",
+        "Kopf zum Boden absenken",
+        "Wieder nach oben drücken",
+        "Trainiert Schultern"
+      ]
+    },
+    {
+      "id": 66,
+      "name": "Chin-Ups",
+      "muscleGroups": [
+        "Rücken",
+        "Latissimus",
+        "Bizeps"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Klimmzug mit Untergriff",
+      "instructions": [
+        "An Stange hängen",
+        "Handflächen zu dir",
+        "Hochziehen bis Kinn über Stange",
+        "Betont Bizeps"
+      ]
+    },
+    {
+      "id": 67,
+      "name": "Australische Klimmzüge",
+      "muscleGroups": [
+        "Rücken"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Körper zur Stange rudern",
+      "instructions": [
+        "Unter Stange hängen",
+        "Körper gerade",
+        "Brust zur Stange ziehen",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 68,
+      "name": "Sprung-Ausfallschritte",
+      "muscleGroups": [
+        "Beine"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Explosive abwechselnde Ausfallschritte",
+      "instructions": [
+        "In Ausfallschritt starten",
+        "Springen und Beine wechseln",
+        "In Ausfallschritt landen",
+        "Plyometrische Bewegung"
+      ]
+    },
+    {
+      "id": 69,
+      "name": "Step-Ups",
+      "muscleGroups": [
+        "Beine",
+        "Gesäß"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Auf erhöhte Plattform steigen",
+      "instructions": [
+        "Vor Plattform stehen",
+        "Mit einem Bein hochsteigen",
+        "Durch Ferse drücken",
+        "Beine abwechseln"
+      ]
+    },
+    {
+      "id": 70,
+      "name": "L-Sit",
+      "muscleGroups": [
+        "Rumpf",
+        "Hüftbeuger"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Profi",
+      "description": "Körper mit gestreckten Beinen halten",
+      "instructions": [
+        "An Barren oder am Boden stützen",
+        "Körper anheben",
+        "Beine nach vorne strecken",
+        "L-Position halten"
+      ]
+    },
+    {
+      "id": 71,
+      "name": "V-Ups",
+      "muscleGroups": [
+        "Bauch"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Hände zu Füßen führen",
+      "instructions": [
+        "Auf Rücken liegen",
+        "Gleichzeitig Arme und Beine anheben",
+        "In Mitte treffen und V bilden",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 72,
+      "name": "Russian Twists",
+      "muscleGroups": [
+        "Bauch",
+        "Seitlicher Rumpf"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Oberkörper seitlich drehen",
+      "instructions": [
+        "Sitzend mit gebeugten Knien",
+        "Leicht zurücklehnen",
+        "Oberkörper von Seite zu Seite",
+        "Kann Gewicht halten"
+      ]
+    },
+    {
+      "id": 73,
+      "name": "Hängendes Beinheben",
+      "muscleGroups": [
+        "Bauch",
+        "Hüftbeuger"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Beine im Hängen anheben",
+      "instructions": [
+        "An Stange hängen",
+        "Beine bis horizontal anheben",
+        "Kontrolliert absenken",
+        "Beine gestreckt halten"
+      ]
+    },
+    {
+      "id": 74,
+      "name": "Hängendes Knieheben",
+      "muscleGroups": [
+        "Bauch",
+        "Hüftbeuger"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Knie im Hängen anheben",
+      "instructions": [
+        "An Stange hängen",
+        "Knie zur Brust ziehen",
+        "Kontrolliert absenken",
+        "Leichter als Beinheben"
+      ]
+    },
+    {
+      "id": 75,
+      "name": "Dragon Flag",
+      "muscleGroups": [
+        "Rumpf"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Profi",
+      "description": "Körper kontrolliert absenken",
+      "instructions": [
+        "Auf Bank liegen",
+        "Bank hinter Kopf festhalten",
+        "Körper bis senkrecht anheben",
+        "Mit extremer Kontrolle absenken"
+      ]
+    },
+    {
+      "id": 76,
+      "name": "Nordic Hamstring Curls",
+      "muscleGroups": [
+        "Beinbeuger"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Profi",
+      "description": "Körper von Knien nach vorne absenken",
+      "instructions": [
+        "Knien mit fixierten Füßen",
+        "Oberkörper nach vorne absenken",
+        "Abstieg kontrollieren",
+        "Sehr intensiv für Beinbeuger"
+      ]
+    },
+    {
+      "id": 77,
+      "name": "Wadenheben ohne Gewicht",
+      "muscleGroups": [
+        "Waden"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Auf Zehenspitzen steigen",
+      "instructions": [
+        "Am Rand einer Stufe stehen",
+        "Fersen unter Stufe absenken",
+        "Auf Zehenspitzen steigen",
+        "Oben halten"
+      ]
+    },
+    {
+      "id": 78,
+      "name": "Weitsprung",
+      "muscleGroups": [
+        "Beine"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Nach vorne auf Distanz springen",
+      "instructions": [
+        "Stehend mit Füßen zusammen",
+        "Arme nach hinten schwingen",
+        "Explosiv nach vorne springen",
+        "Weich landen"
+      ]
+    },
+    {
+      "id": 79,
+      "name": "Tuck Jumps",
+      "muscleGroups": [
+        "Beine"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Hochspringen mit Knien zur Brust",
+      "instructions": [
+        "Stehend mit Füßen zusammen",
+        "Hochspringen",
+        "Knie zur Brust ziehen",
+        "Weich landen"
+      ]
+    },
+    {
+      "id": 80,
+      "name": "Bärenkrabbeln",
+      "muscleGroups": [
+        "Ganzkörper",
+        "Rumpf"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Auf Händen und Füßen krabbeln",
+      "instructions": [
+        "Auf Händen und Knien starten",
+        "Knie leicht anheben",
+        "Nach vorne krabbeln",
+        "Rumpf angespannt"
+      ]
+    },
+    {
+      "id": 81,
+      "name": "Decline Push-Ups",
+      "muscleGroups": [
+        "Brust",
+        "Schultern"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Liegestütze mit erhöhten Füßen",
+      "instructions": [
+        "Füße auf erhöhter Fläche",
+        "Hände am Boden",
+        "Brust zum Boden absenken",
+        "Wieder nach oben drücken"
+      ]
+    },
+    {
+      "id": 82,
+      "name": "Incline Push-Ups",
+      "muscleGroups": [
+        "Brust",
+        "Schultern",
+        "Trizeps"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Liegestütze mit erhöhten Händen",
+      "instructions": [
+        "Hände auf erhöhter Fläche",
+        "Körper gerade",
+        "Brust zur Fläche absenken",
+        "Wieder nach oben drücken"
+      ]
+    },
+    {
+      "id": 83,
+      "name": "Klatsch-Liegestütze",
+      "muscleGroups": [
+        "Brust",
+        "Schultern",
+        "Trizeps"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Profi",
+      "description": "Explosive Liegestütze mit Klatschen",
+      "instructions": [
+        "In Liegestützposition starten",
+        "Explosiv nach oben drücken",
+        "In Luft klatschen",
+        "Landen und wiederholen"
+      ]
+    },
+    {
+      "id": 84,
+      "name": "Seitstütz",
+      "muscleGroups": [
+        "Rumpf",
+        "Seitlicher Rumpf"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Körper seitlich auf einem Arm halten",
+      "instructions": [
+        "Auf Seite liegen",
+        "Auf einem Unterarm stützen",
+        "Hüfte anheben",
+        "Gerade Linie halten"
+      ]
+    },
+    {
+      "id": 85,
+      "name": "Hollow Body Hold",
+      "muscleGroups": [
+        "Rumpf"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Körper in hohler Position halten",
+      "instructions": [
+        "Auf Rücken liegen",
+        "Schultern und Beine anheben",
+        "Unteren Rücken zum Boden drücken",
+        "Position halten"
+      ]
+    },
+    {
+      "id": 86,
+      "name": "Arch Hold",
+      "muscleGroups": [
+        "Unterer Rücken"
+      ],
+      "equipmentType": "Körpergewicht",
+      "difficultyLevel": "Anfänger",
+      "description": "Körper in Bogenposition halten",
+      "instructions": [
+        "Auf Bauch liegen",
+        "Brust und Beine anheben",
+        "Bogen im Rücken erzeugen",
+        "Position halten"
+      ]
+    },
+    {
+      "id": 87,
+      "name": "Beinpresse",
+      "muscleGroups": [
+        "Beine",
+        "Gesäß",
+        "Beinbeuger"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Plattform mit Füßen wegdrücken",
+      "instructions": [
+        "In Maschine setzen",
+        "Füße auf Plattform",
+        "Plattform wegdrücken",
+        "Kontrolliert zurück"
+      ]
+    },
+    {
+      "id": 88,
+      "name": "Beinstrecker",
+      "muscleGroups": [
+        "Beine"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Beine gegen Widerstand strecken",
+      "instructions": [
+        "In Maschine setzen",
+        "Polster an Unterschenkeln",
+        "Beine vollständig strecken",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 89,
+      "name": "Beinbeuger",
+      "muscleGroups": [
+        "Beinbeuger"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Beine gegen Widerstand beugen",
+      "instructions": [
+        "Liegend oder sitzend in Maschine",
+        "Polster an Unterschenkeln",
+        "Beine zu Gesäß beugen",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 90,
+      "name": "Latzug",
+      "muscleGroups": [
+        "Rücken",
+        "Latissimus"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Stange zur Brust ziehen",
+      "instructions": [
+        "In Maschine sitzen",
+        "Stange breit greifen",
+        "Zur oberen Brust ziehen",
+        "Kontrolliert loslassen"
+      ]
+    },
+    {
+      "id": 91,
+      "name": "Rudern am Kabel",
+      "muscleGroups": [
+        "Rücken",
+        "Latissimus"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Griff zum Bauch rudern",
+      "instructions": [
+        "Am Kabelzug sitzen",
+        "Griff fassen",
+        "Zum Bauch ziehen",
+        "Schulterblätter zusammen"
+      ]
+    },
+    {
+      "id": 92,
+      "name": "Brustpresse",
+      "muscleGroups": [
+        "Brust",
+        "Schultern",
+        "Trizeps"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Griffe nach vorne drücken",
+      "instructions": [
+        "In Maschine setzen",
+        "Griffe fassen",
+        "Nach vorne drücken",
+        "Kontrolliert zurück"
+      ]
+    },
+    {
+      "id": 93,
+      "name": "Butterfly",
+      "muscleGroups": [
+        "Brust"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Polster vor Brust zusammenführen",
+      "instructions": [
+        "In Maschine setzen",
+        "Arme an Polstern",
+        "Polster zusammenführen",
+        "Kontrolliert zurück"
+      ]
+    },
+    {
+      "id": 94,
+      "name": "Schulterdrücken Maschine",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Griffe über Kopf drücken",
+      "instructions": [
+        "In Maschine setzen",
+        "Griffe auf Schulterhöhe",
+        "Über Kopf drücken",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 95,
+      "name": "Seitheben Maschine",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Arme seitlich anheben",
+      "instructions": [
+        "In Maschine setzen",
+        "Arme an Polstern",
+        "Bis Schulterhöhe anheben",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 96,
+      "name": "Bizeps-Curl Maschine",
+      "muscleGroups": [
+        "Bizeps"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Arme gegen Widerstand beugen",
+      "instructions": [
+        "In Maschine setzen",
+        "Griffe fassen",
+        "Zu Schultern curlen",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 97,
+      "name": "Trizepsdrücken Maschine",
+      "muscleGroups": [
+        "Trizeps"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Arme gegen Widerstand strecken",
+      "instructions": [
+        "In oder an Maschine stehen",
+        "Griffe fassen",
+        "Arme nach unten strecken",
+        "Kontrolliert zurück"
+      ]
+    },
+    {
+      "id": 98,
+      "name": "Wadenheben Maschine",
+      "muscleGroups": [
+        "Waden"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Fersen gegen Widerstand anheben",
+      "instructions": [
+        "Stehend in Maschine",
+        "Schultern unter Polstern",
+        "Auf Zehenspitzen steigen",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 99,
+      "name": "Hüftabduktion",
+      "muscleGroups": [
+        "Hüfte",
+        "Gesäß"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Beine nach außen drücken",
+      "instructions": [
+        "In Maschine setzen",
+        "Beine zusammen",
+        "Beine auseinander drücken",
+        "Kontrolliert zurück"
+      ]
+    },
+    {
+      "id": 100,
+      "name": "Hüftadduktion",
+      "muscleGroups": [
+        "Hüfte"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Beine zusammenführen",
+      "instructions": [
+        "In Maschine setzen",
+        "Beine auseinander",
+        "Beine zusammenführen",
+        "Kontrolliert zurück"
+      ]
+    },
+    {
+      "id": 101,
+      "name": "Smith-Maschine Kniebeugen",
+      "muscleGroups": [
+        "Beine",
+        "Gesäß"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Kniebeuge mit geführter Langhantel",
+      "instructions": [
+        "Langhantel auf oberem Rücken",
+        "Füße leicht nach vorne",
+        "Absenken",
+        "Nach oben drücken"
+      ]
+    },
+    {
+      "id": 102,
+      "name": "Smith-Maschine Bankdrücken",
+      "muscleGroups": [
+        "Brust",
+        "Schultern",
+        "Trizeps"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Bankdrücken mit geführter Stange",
+      "instructions": [
+        "Unter Stange liegen",
+        "Stange greifen",
+        "Zur Brust absenken",
+        "Nach oben drücken"
+      ]
+    },
+    {
+      "id": 103,
+      "name": "Kabelzug Crossover",
+      "muscleGroups": [
+        "Brust"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Kabel vor Brust zusammenführen",
+      "instructions": [
+        "Zwischen Kabeln stehen",
+        "Leicht nach vorne lehnen",
+        "Griffe zusammenführen",
+        "Kontrolliert zurück"
+      ]
+    },
+    {
+      "id": 104,
+      "name": "Trizepsdrücken am Kabel",
+      "muscleGroups": [
+        "Trizeps"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Kabel nach unten drücken",
+      "instructions": [
+        "An Kabelzug stehen",
+        "Stange oder Seil greifen",
+        "Nach unten drücken",
+        "Kontrolliert zurück"
+      ]
+    },
+    {
+      "id": 105,
+      "name": "Bizeps-Curls am Kabel",
+      "muscleGroups": [
+        "Bizeps"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Kabel nach oben curlen",
+      "instructions": [
+        "An Kabelzug stehen",
+        "Griff fassen",
+        "Zu Schultern curlen",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 106,
+      "name": "Hackenschmidt-Kniebeuge",
+      "muscleGroups": [
+        "Beine"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Kniebeuge an geneigter Maschine",
+      "instructions": [
+        "Rücken an Polster",
+        "Füße auf Plattform",
+        "Absenken",
+        "Nach oben drücken"
+      ]
+    },
+    {
+      "id": 107,
+      "name": "Rückenstrecker",
+      "muscleGroups": [
+        "Unterer Rücken"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Oberkörper gegen Widerstand aufrichten",
+      "instructions": [
+        "In Maschine positionieren",
+        "Nach vorne beugen",
+        "Zurück aufrichten",
+        "Bewegung kontrollieren"
+      ]
+    },
+    {
+      "id": 108,
+      "name": "Bauchpresse",
+      "muscleGroups": [
+        "Bauch"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Crunches gegen Widerstand",
+      "instructions": [
+        "In Maschine sitzen",
+        "Griffe fassen",
+        "Nach vorne crunchen",
+        "Kontrolliert zurück"
+      ]
+    },
+    {
+      "id": 109,
+      "name": "Assistierte Klimmzüge",
+      "muscleGroups": [
+        "Rücken",
+        "Bizeps"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Klimmzug mit Unterstützung",
+      "instructions": [
+        "Auf Plattform knien",
+        "Stange über Kopf greifen",
+        "Hochziehen",
+        "Plattform unterstützt"
+      ]
+    },
+    {
+      "id": 110,
+      "name": "Reverse Butterfly",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Griffe nach hinten ziehen",
+      "instructions": [
+        "Sitzend zur Maschine",
+        "Griffe fassen",
+        "Griffe nach hinten ziehen",
+        "Schulterblätter zusammen"
+      ]
+    },
+    {
+      "id": 111,
+      "name": "Scott-Bank Curls",
+      "muscleGroups": [
+        "Bizeps"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Curls mit Armauflage",
+      "instructions": [
+        "Sitzend mit Armen auf Polster",
+        "Griffe fassen",
+        "Nach oben curlen",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 112,
+      "name": "Face Pulls",
+      "muscleGroups": [
+        "Schultern",
+        "Oberer Rücken"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Seil zum Gesicht ziehen",
+      "instructions": [
+        "An Kabelzug stehen",
+        "Seil greifen",
+        "Zum Gesicht ziehen",
+        "Ellbogen hoch"
+      ]
+    },
+    {
+      "id": 113,
+      "name": "Kabel-Holzhacken",
+      "muscleGroups": [
+        "Bauch",
+        "Seitlicher Rumpf"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Kabel diagonal ziehen",
+      "instructions": [
+        "An Kabelzug stehen",
+        "Griff fassen",
+        "Diagonal über Körper ziehen",
+        "Oberkörper rotieren"
+      ]
+    },
+    {
+      "id": 114,
+      "name": "Beinbeuger sitzend",
+      "muscleGroups": [
+        "Beinbeuger"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Beine im Sitzen beugen",
+      "instructions": [
+        "In Maschine setzen",
+        "Polster an Unterschenkeln",
+        "Beine unter Sitz beugen",
+        "Kontrolliert zurück"
+      ]
+    },
+    {
+      "id": 115,
+      "name": "Wadenheben stehend",
+      "muscleGroups": [
+        "Waden"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Fersen im Stehen anheben",
+      "instructions": [
+        "Stehend in Maschine",
+        "Schultern unter Polstern",
+        "Auf Zehenspitzen steigen",
+        "Fersen unter Plattform absenken"
+      ]
+    },
+    {
+      "id": 116,
+      "name": "Wadenheben sitzend",
+      "muscleGroups": [
+        "Waden"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Fersen im Sitzen anheben",
+      "instructions": [
+        "In Maschine setzen",
+        "Knie unter Polster",
+        "Auf Zehenspitzen steigen",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 117,
+      "name": "Gesäß-Kickback",
+      "muscleGroups": [
+        "Gesäß"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Bein gegen Polster nach hinten drücken",
+      "instructions": [
+        "Stehend in Maschine",
+        "Ein Bein an Polster",
+        "Bein nach hinten drücken",
+        "Gesäß anspannen"
+      ]
+    },
+    {
+      "id": 118,
+      "name": "Rumpfdrehung",
+      "muscleGroups": [
+        "Bauch",
+        "Seitlicher Rumpf"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Oberkörper gegen Widerstand drehen",
+      "instructions": [
+        "In Maschine setzen",
+        "Griffe fassen",
+        "Zur Seite drehen",
+        "Seiten abwechseln"
+      ]
+    },
+    {
+      "id": 119,
+      "name": "Laufband",
+      "muscleGroups": [
+        "Kardio"
+      ],
+      "equipmentType": "Kardio",
+      "difficultyLevel": "Anfänger",
+      "description": "Auf bewegtem Band gehen oder laufen",
+      "instructions": [
+        "Auf Laufband steigen",
+        "Geschwindigkeit und Steigung einstellen",
+        "Gehen oder laufen",
+        "Herzfrequenz überwachen"
+      ]
+    },
+    {
+      "id": 120,
+      "name": "Ergometer",
+      "muscleGroups": [
+        "Kardio"
+      ],
+      "equipmentType": "Kardio",
+      "difficultyLevel": "Anfänger",
+      "description": "Im Sitzen treten",
+      "instructions": [
+        "Sitzhöhe einstellen",
+        "Bei gewünschtem Widerstand treten",
+        "Gleichmäßiges Tempo halten",
+        "Herzfrequenz überwachen"
+      ]
+    },
+    {
+      "id": 121,
+      "name": "Rudergerät",
+      "muscleGroups": [
+        "Kardio",
+        "Rücken",
+        "Beine"
+      ],
+      "equipmentType": "Kardio",
+      "difficultyLevel": "Anfänger",
+      "description": "Mit Armen und Beinen rudern",
+      "instructions": [
+        "Auf Rudergerät setzen",
+        "Füße festschnallen",
+        "Mit Beinen drücken dann mit Armen ziehen",
+        "In umgekehrter Reihenfolge zurück"
+      ]
+    },
+    {
+      "id": 122,
+      "name": "Crosstrainer",
+      "muscleGroups": [
+        "Kardio"
+      ],
+      "equipmentType": "Kardio",
+      "difficultyLevel": "Anfänger",
+      "description": "Pedale in elliptischer Bewegung",
+      "instructions": [
+        "Auf Pedale steigen",
+        "Griffe festhalten",
+        "In fließender Bewegung bewegen",
+        "Gelenkschonendes Kardio"
+      ]
+    },
+    {
+      "id": 123,
+      "name": "Treppensteiger",
+      "muscleGroups": [
+        "Kardio",
+        "Beine"
+      ],
+      "equipmentType": "Kardio",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Rotierende Treppen steigen",
+      "instructions": [
+        "Auf Maschine steigen",
+        "Kontinuierlich steigen",
+        "Gleichmäßiges Tempo halten",
+        "Intensives Beintraining"
+      ]
+    },
+    {
+      "id": 124,
+      "name": "Assault Bike",
+      "muscleGroups": [
+        "Kardio"
+      ],
+      "equipmentType": "Kardio",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Treten und Griffe bewegen",
+      "instructions": [
+        "Auf Bike setzen",
+        "Treten und Griffe bewegen",
+        "Hohe Intensität",
+        "Ganzkörper-Kardio"
+      ]
+    },
+    {
+      "id": 125,
+      "name": "Battle Ropes",
+      "muscleGroups": [
+        "Kardio",
+        "Schultern"
+      ],
+      "equipmentType": "Kardio",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Schwere Seile schwingen",
+      "instructions": [
+        "Seilenden halten",
+        "Wellen erzeugen",
+        "Abwechselnd oder zusammen",
+        "Hohe Intensität"
+      ]
+    },
+    {
+      "id": 126,
+      "name": "Seilspringen",
+      "muscleGroups": [
+        "Kardio"
+      ],
+      "equipmentType": "Kardio",
+      "difficultyLevel": "Anfänger",
+      "description": "Über rotierendes Seil springen",
+      "instructions": [
+        "Seilgriffe halten",
+        "Seil über Kopf schwingen",
+        "Springen wenn es unten durchgeht",
+        "Rhythmus halten"
+      ]
+    },
+    {
+      "id": 127,
+      "name": "Schlitten schieben",
+      "muscleGroups": [
+        "Beine",
+        "Ganzkörper"
+      ],
+      "equipmentType": "Kardio",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Gewichteten Schlitten schieben",
+      "instructions": [
+        "In Schlitten lehnen",
+        "Mit Beinen antreiben",
+        "Nach vorne schieben",
+        "Explosive Kraft"
+      ]
+    },
+    {
+      "id": 128,
+      "name": "Schlitten ziehen",
+      "muscleGroups": [
+        "Rücken",
+        "Beine"
+      ],
+      "equipmentType": "Kardio",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Gewichteten Schlitten ziehen",
+      "instructions": [
+        "Gurt befestigen",
+        "Rückwärts gehen",
+        "Schlitten ziehen",
+        "Spannung halten"
+      ]
+    },
+    {
+      "id": 129,
+      "name": "Box Step-Ups",
+      "muscleGroups": [
+        "Beine",
+        "Kardio"
+      ],
+      "equipmentType": "Kardio",
+      "difficultyLevel": "Anfänger",
+      "description": "Wiederholt auf Box steigen",
+      "instructions": [
+        "Vor Box stehen",
+        "Abwechselnd hochsteigen",
+        "Gleichmäßiges Tempo halten",
+        "Kardio und Kraft"
+      ]
+    },
+    {
+      "id": 130,
+      "name": "Kettlebell Clean",
+      "muscleGroups": [
+        "Ganzkörper"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Kettlebell zur Schulter cleanen",
+      "instructions": [
+        "Start mit Kettlebell am Boden",
+        "Schwingen und zur Schulter ziehen",
+        "Auf Schulter fangen",
+        "Explosive Bewegung"
+      ]
+    },
+    {
+      "id": 131,
+      "name": "Kurzhantel Snatch",
+      "muscleGroups": [
+        "Ganzkörper"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Kurzhantel über Kopf reißen",
+      "instructions": [
+        "Start mit Kurzhantel am Boden",
+        "Explosiv über Kopf ziehen",
+        "Mit gestrecktem Arm fangen",
+        "Einarmige Bewegung"
+      ]
+    },
+    {
+      "id": 132,
+      "name": "Langhantel Hip Thrust",
+      "muscleGroups": [
+        "Gesäß"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Mit Langhantel auf Hüfte heben",
+      "instructions": [
+        "Schultern auf Bank",
+        "Langhantel auf Hüfte",
+        "Hüfte nach oben drücken",
+        "Gesäß fest anspannen"
+      ]
+    },
+    {
+      "id": 133,
+      "name": "Seitheben am Kabel",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Kabel seitlich anheben",
+      "instructions": [
+        "An Kabelzug stehen",
+        "Griff unten fassen",
+        "Bis Schulterhöhe anheben",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 134,
+      "name": "Frontheben am Kabel",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Kabel nach vorne anheben",
+      "instructions": [
+        "An Kabelzug stehen",
+        "Griff unten fassen",
+        "Nach vorne anheben",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 135,
+      "name": "Kurzhantel-Schulterheben",
+      "muscleGroups": [
+        "Trapez"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Schultern mit Kurzhanteln anheben",
+      "instructions": [
+        "Kurzhanteln an Seiten",
+        "Schultern nach oben ziehen",
+        "Kurz halten",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 136,
+      "name": "Langhantel-Frontheben",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Langhantel nach vorne anheben",
+      "instructions": [
+        "Langhantel an Oberschenkeln",
+        "Nach vorne bis Schulterhöhe anheben",
+        "Arme gestreckt halten",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 137,
+      "name": "Kurzhantel-Seitheben",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Kurzhanteln seitlich anheben",
+      "instructions": [
+        "Stehend mit Kurzhanteln an Seiten",
+        "Bis Schulterhöhe anheben",
+        "Leichte Beugung in Ellbogen",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 138,
+      "name": "Kurzhantel-Frontheben",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Kurzhanteln nach vorne anheben",
+      "instructions": [
+        "Kurzhanteln an Oberschenkeln",
+        "Nach vorne anheben",
+        "Bis Schulterhöhe",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 139,
+      "name": "Reverse Flys am Kabel",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Kabel nach hinten ziehen",
+      "instructions": [
+        "An Kabelzug stehen",
+        "Kabel kreuzen",
+        "Griffe nach hinten ziehen",
+        "Schulterblätter zusammen"
+      ]
+    },
+    {
+      "id": 140,
+      "name": "Langhantel-Schulterdrücken",
+      "muscleGroups": [
+        "Schultern",
+        "Trizeps"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Langhantel über Kopf drücken",
+      "instructions": [
+        "Start auf Schultern",
+        "Gerade nach oben drücken",
+        "Oben auslocken",
+        "Zu Schultern absenken"
+      ]
+    },
+    {
+      "id": 141,
+      "name": "Kurzhantel-Schulterdrücken",
+      "muscleGroups": [
+        "Schultern",
+        "Trizeps"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Kurzhanteln über Kopf drücken",
+      "instructions": [
+        "Kurzhanteln auf Schultern",
+        "Nach oben drücken",
+        "Oben zusammenführen",
+        "Zu Schultern absenken"
+      ]
+    },
+    {
+      "id": 142,
+      "name": "Schulterdrücken sitzend",
+      "muscleGroups": [
+        "Schultern"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Griffe in Maschine über Kopf drücken",
+      "instructions": [
+        "In Maschine setzen",
+        "Griffe auf Schultern",
+        "Über Kopf drücken",
+        "Kontrolliert absenken"
+      ]
+    },
+    {
+      "id": 143,
+      "name": "Kurzhantel-Flys Schrägbank",
+      "muscleGroups": [
+        "Brust"
+      ],
+      "equipmentType": "Freie Gewichte",
+      "difficultyLevel": "Anfänger",
+      "description": "Flys auf Schrägbank",
+      "instructions": [
+        "Auf Schrägbank liegen",
+        "Kurzhanteln über Brust",
+        "In Bogen absenken",
+        "Oben zusammenführen"
+      ]
+    },
+    {
+      "id": 144,
+      "name": "Kabel-Flys",
+      "muscleGroups": [
+        "Brust"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Fortgeschritten",
+      "description": "Kabel vor Brust zusammenführen",
+      "instructions": [
+        "Zwischen Kabeln stehen",
+        "Arme seitlich",
+        "Griffe zusammenführen",
+        "Brust anspannen"
+      ]
+    },
+    {
+      "id": 145,
+      "name": "Butterfly-Flys",
+      "muscleGroups": [
+        "Brust"
+      ],
+      "equipmentType": "Maschine",
+      "difficultyLevel": "Anfänger",
+      "description": "Griffe in Maschine zusammenführen",
+      "instructions": [
+        "In Maschine setzen",
+        "Arme an Polstern",
+        "Polster zusammenführen",
+        "Kontrolliert zurück"
+      ]
+    }
+  ],
+  "muscleGroups": [
+    "Arme",
+    "Bauch",
+    "Beinbeuger",
+    "Beine",
+    "Bizeps",
+    "Brust",
+    "Ganzkörper",
+    "Gesäß",
+    "Griffkraft",
+    "Hüftbeuger",
+    "Hüfte",
+    "Kardio",
+    "Latissimus",
+    "Oberer Rücken",
+    "Rumpf",
+    "Rücken",
+    "Schultern",
+    "Seitlicher Rumpf",
+    "Trapez",
+    "Trizeps",
+    "Unterarme",
+    "Unterer Rücken",
+    "Waden"
+  ],
+  "equipmentTypes": [
+    "Freie Gewichte",
+    "Kardio",
+    "Körpergewicht",
+    "Maschine"
+  ]
+}

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GymBo Training Builder</title>
+  <meta name="description" content="Erstelle GymBo Workout-Templates im Browser und exportiere sie als .gymbo Datei." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://gymbo.pro/training/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="theme-color" content="#F59E0B" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="/index.html" class="brand"><span>Gym</span><span class="brand-accent">Bo</span></a>
+      <div class="topbar-actions">
+        <button id="exportBtn" class="btn btn-primary">Exportieren (.gymbo)</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Training Builder</h1>
+      <p>Erstelle Workout-Templates und importiere sie direkt in GymBo auf dem iPhone.</p>
+      <div class="auth-row">
+        <input id="authEmail" type="email" placeholder="E-Mail fuer Login-Link" />
+        <button id="signInBtn" class="btn btn-secondary">Login-Link senden</button>
+        <button id="signOutBtn" class="btn btn-secondary" hidden>Ausloggen</button>
+        <a id="moderationLink" class="btn btn-secondary" href="/training/moderation.html" hidden>Moderation</a>
+      </div>
+      <p id="authState" class="auth-state">Nicht eingeloggt. Community-Submit/Vote/Report ist deaktiviert.</p>
+      <p id="status" class="status" aria-live="polite"></p>
+    </section>
+
+    <nav class="mobile-tabs" aria-label="Builder Bereiche">
+      <button class="tab-btn active" data-tab="catalog">Uebungskatalog</button>
+      <button class="tab-btn" data-tab="builder">Workout Builder</button>
+    </nav>
+
+    <section class="layout">
+      <aside id="catalogPanel" class="panel panel-catalog active-mobile">
+        <div class="panel-head">
+          <h2>Uebungskatalog</h2>
+        </div>
+
+        <div class="filters">
+          <input id="searchInput" type="text" placeholder="Uebung suchen..." />
+          <select id="muscleFilter">
+            <option value="">Alle Muskelgruppen</option>
+          </select>
+          <select id="equipmentFilter">
+            <option value="">Alle Equipment-Typen</option>
+          </select>
+        </div>
+
+        <div id="catalogList" class="catalog-list"></div>
+
+        <button id="openCustomModalBtn" class="btn btn-secondary full">Eigene Uebung erstellen</button>
+      </aside>
+
+      <section id="builderPanel" class="panel panel-builder">
+        <div class="panel-head">
+          <h2>Workout Builder</h2>
+        </div>
+
+        <div class="builder-config">
+          <label>
+            Workout-Name
+            <input id="workoutName" type="text" placeholder="z. B. Push Day" />
+          </label>
+
+          <label>
+            Typ
+            <select id="workoutType">
+              <option value="standard">Standard</option>
+              <option value="superset">Superset</option>
+              <option value="circuit">Circuit</option>
+            </select>
+          </label>
+
+          <label>
+            Standard-Pause (Sek.)
+            <input id="defaultRest" type="number" min="30" max="300" step="5" value="90" />
+          </label>
+        </div>
+
+        <div class="builder-list-head">
+          <h3>Uebungen</h3>
+          <span id="exerciseCount" class="count">0</span>
+        </div>
+
+        <ul id="workoutList" class="workout-list"></ul>
+      </section>
+    </section>
+  </main>
+
+  <div id="customModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Eigene Uebung erstellen</h3>
+        <button id="closeCustomModalBtn" class="icon-btn" type="button" aria-label="Schliessen">x</button>
+      </div>
+
+      <form id="customExerciseForm" class="modal-form">
+        <label>
+          Name (DE)
+          <input id="customName" type="text" required />
+        </label>
+
+        <label>
+          Name (EN)
+          <input id="customNameEn" type="text" required />
+        </label>
+
+        <label>
+          Muskelgruppen
+          <div id="customMuscles" class="check-grid"></div>
+        </label>
+
+        <label>
+          Equipment-Typ
+          <select id="customEquipment"></select>
+        </label>
+
+        <label>
+          Schwierigkeitsgrad
+          <select id="customDifficulty">
+            <option>Anfaenger</option>
+            <option>Fortgeschritten</option>
+            <option>Profi</option>
+          </select>
+        </label>
+
+        <label>
+          Beschreibung (DE)
+          <textarea id="customDescription" rows="3"></textarea>
+        </label>
+
+        <label>
+          Description (EN)
+          <textarea id="customDescriptionEn" rows="3"></textarea>
+        </label>
+
+        <label>
+          Anleitung (DE, eine Zeile pro Schritt)
+          <textarea id="customInstructions" rows="4"></textarea>
+        </label>
+
+        <label>
+          Instructions (EN, one line per step)
+          <textarea id="customInstructionsEn" rows="4"></textarea>
+        </label>
+
+        <div class="modal-actions">
+          <button type="button" id="cancelCustomBtn" class="btn btn-secondary">Abbrechen</button>
+          <button type="submit" class="btn btn-primary">Uebung speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="supabase-config.js"></script>
+  <script src="app.js" type="module"></script>
+</body>
+</html>
