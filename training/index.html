@@ -21,119 +21,124 @@
 <body>
   <div class="bg-gradient"></div>
   <div class="bg-noise"></div>
+
   <header class="topbar">
     <div class="topbar-inner">
       <a href="/index.html" class="brand"><span>Gym</span><span class="brand-accent">Bo</span></a>
       <div class="topbar-actions">
-        <a href="#community-workouts" class="btn btn-secondary">Community-Workouts</a>
-        <button id="exportBtn" class="btn btn-primary">Exportieren (.gymbo)</button>
+        <div class="auth-row">
+          <input id="authEmail" type="email" placeholder="E-Mail" />
+          <button id="signInBtn" class="btn btn-secondary btn-sm">Login</button>
+          <button id="signOutBtn" class="btn btn-secondary btn-sm" hidden>Ausloggen</button>
+          <a id="moderationLink" class="btn btn-secondary btn-sm" href="/training/moderation.html" hidden>Mod</a>
+        </div>
+        <span id="authState" class="auth-state"></span>
       </div>
     </div>
   </header>
 
   <main class="page">
+    <!-- Hero -->
     <section class="hero">
-      <p class="hero-kicker">GymBo Web Tools</p>
-      <h1>Training Builder</h1>
-      <p>Erstelle Workout-Templates und importiere sie direkt in GymBo auf dem iPhone.</p>
-      <div class="auth-row">
-        <input id="authEmail" type="email" placeholder="E-Mail für Login-Link" />
-        <button id="signInBtn" class="btn btn-secondary">Login-Link senden</button>
-        <button id="signOutBtn" class="btn btn-secondary" hidden>Ausloggen</button>
-        <a id="moderationLink" class="btn btn-secondary" href="/training/moderation.html" hidden>Moderation</a>
-      </div>
-      <p id="authState" class="auth-state">Nicht eingeloggt. Community-Submit/Vote/Report ist deaktiviert.</p>
-      <p id="localOnlyHint" class="auth-state auth-warning">
-        Hinweis: Ohne Login werden neue Übungen und Workouts nur lokal im aktuellen Browser-Tab gehalten und nicht dauerhaft gespeichert.
+      <h1>Dein Workout. <span class="highlight">Dein Plan.</span></h1>
+      <p class="hero-sub">Stelle dein Training zusammen und importiere es mit einem Tap in GymBo.</p>
+      <p id="localOnlyHint" class="local-hint" hidden>
+        Ohne Login werden Daten nur im aktuellen Browser-Tab gehalten.
       </p>
       <p id="status" class="status" aria-live="polite"></p>
     </section>
 
-    <nav class="mobile-tabs" aria-label="Builder Bereiche">
-      <button class="tab-btn active" data-tab="catalog">Katalog</button>
-      <button class="tab-btn" data-tab="builder">Builder</button>
-      <button class="tab-btn" data-tab="community">Community</button>
-    </nav>
-
-    <section class="layout">
-      <aside id="catalogPanel" class="panel panel-catalog active-mobile">
-        <div class="panel-head">
-          <h2>Übungskatalog</h2>
+    <!-- 1. Workout konfigurieren -->
+    <section class="step-section">
+      <div class="step-header">
+        <span class="step-number">1</span>
+        <h2>Workout konfigurieren</h2>
+      </div>
+      <div class="config-row">
+        <div class="config-field config-field-grow">
+          <label for="workoutName">Name</label>
+          <input id="workoutName" type="text" placeholder="z. B. Push Day" />
         </div>
-
-        <div class="filters">
-          <input id="searchInput" type="text" placeholder="Übung suchen..." />
-          <select id="muscleFilter">
-            <option value="">Alle Muskelgruppen</option>
-          </select>
-          <select id="equipmentFilter">
-            <option value="">Alle Equipment-Typen</option>
-          </select>
-        </div>
-
-        <div id="catalogList" class="catalog-list"></div>
-
-        <button id="openCustomModalBtn" class="btn btn-secondary full">Eigene Übung erstellen</button>
-      </aside>
-
-      <section id="builderPanel" class="panel panel-builder">
-        <div class="panel-head">
-          <h2>Workout Builder</h2>
-        </div>
-
-        <div class="builder-config">
-          <label>
-            Workout-Name
-            <input id="workoutName" type="text" placeholder="z. B. Push Day" />
-          </label>
-
-          <label>
-            Typ
-            <select id="workoutType">
-              <option value="standard">Standard</option>
-              <option value="superset">Superset</option>
-              <option value="circuit">Circuit</option>
-            </select>
-          </label>
-
-          <label>
-            Standard-Pause (Sek.)
-            <input id="defaultRest" type="number" min="30" max="300" step="5" value="90" />
-          </label>
-        </div>
-
-        <div class="builder-actions">
-          <button id="saveWorkoutBtn" class="btn btn-secondary">Workout sichern</button>
-          <button id="submitWorkoutBtn" class="btn btn-secondary">Für Community einreichen</button>
-          <button id="deleteWorkoutBtn" class="btn btn-secondary" hidden>Workout löschen</button>
-        </div>
-
-        <div class="builder-list-head">
-          <h3>Übungen</h3>
-          <span id="exerciseCount" class="count">0</span>
-        </div>
-
-        <ul id="workoutList" class="workout-list"></ul>
-
-        <div class="saved-workouts">
-          <div class="builder-list-head">
-            <h3>Meine Workouts</h3>
-            <span id="myWorkoutCount" class="count">0</span>
+        <div class="config-field">
+          <label>Typ</label>
+          <div class="pill-group" id="workoutTypePills">
+            <button class="pill active" data-value="standard">Standard</button>
+            <button class="pill" data-value="superset">Superset</button>
+            <button class="pill" data-value="circuit">Circuit</button>
           </div>
-          <div id="myWorkoutsList" class="catalog-list"></div>
         </div>
-      </section>
+        <div class="config-field config-field-sm">
+          <label for="defaultRest">Pause</label>
+          <div class="rest-chip">
+            <input id="defaultRest" type="number" min="30" max="300" step="5" value="90" />
+            <span>Sek.</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="community-workouts" class="panel community-workouts-panel">
-      <div class="panel-head">
-        <h2>Community-Workouts</h2>
+    <!-- 2. Übungen wählen -->
+    <section class="step-section">
+      <div class="step-header">
+        <span class="step-number">2</span>
+        <h2>Übungen wählen</h2>
+      </div>
+
+      <div class="filter-bar">
+        <input id="searchInput" type="text" placeholder="Übung suchen..." class="search-input" />
+        <button id="openCustomModalBtn" class="btn btn-secondary btn-sm">+ Eigene Übung</button>
+      </div>
+
+      <div class="chip-filters">
+        <div class="chip-group" id="muscleChips">
+          <span class="chip-label">Muskelgruppe</span>
+        </div>
+        <div class="chip-group" id="equipmentChips">
+          <span class="chip-label">Equipment</span>
+        </div>
+      </div>
+
+      <div id="catalogList" class="exercise-grid"></div>
+    </section>
+
+    <!-- 3. Dein Workout -->
+    <section class="step-section">
+      <div class="step-header">
+        <span class="step-number">3</span>
+        <h2>Dein Workout</h2>
+        <span id="exerciseCount" class="count">0</span>
+      </div>
+
+      <ul id="workoutList" class="workout-list"></ul>
+
+      <div class="workout-actions">
+        <button id="exportBtn" class="btn btn-primary">In GymBo importieren</button>
+        <button id="saveWorkoutBtn" class="btn btn-secondary">Speichern</button>
+        <button id="submitWorkoutBtn" class="btn btn-secondary">Mit anderen teilen</button>
+        <button id="deleteWorkoutBtn" class="btn btn-secondary" hidden>Löschen</button>
+      </div>
+    </section>
+
+    <!-- 4. Meine Workouts (nur eingeloggt) -->
+    <section class="step-section" id="myWorkoutsSection">
+      <div class="step-header">
+        <h2>Meine Workouts</h2>
+        <span id="myWorkoutCount" class="count">0</span>
+      </div>
+      <div id="myWorkoutsList" class="exercise-grid"></div>
+    </section>
+
+    <!-- 5. Community -->
+    <section class="step-section" id="community-workouts">
+      <div class="step-header">
+        <h2>Community-Workouts entdecken</h2>
         <span id="communityWorkoutCount" class="count">0</span>
       </div>
-      <div id="communityWorkoutsList" class="catalog-list"></div>
+      <div id="communityWorkoutsList" class="exercise-grid"></div>
     </section>
   </main>
 
+  <!-- Custom Exercise Modal -->
   <div id="customModal" class="modal" aria-hidden="true">
     <div class="modal-card">
       <div class="modal-head">
@@ -199,6 +204,7 @@
     </div>
   </div>
 
+  <!-- Prompt Modal -->
   <div id="promptModal" class="modal" aria-hidden="true">
     <div class="modal-card" style="width: min(420px, calc(100vw - 24px));">
       <div class="modal-head">

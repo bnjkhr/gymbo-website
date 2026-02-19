@@ -28,6 +28,8 @@ const state = {
   myWorkouts: [],
   communityWorkouts: [],
   editingWorkoutId: null,
+  activeMuscleFilters: [],
+  activeEquipmentFilters: [],
   workout: {
     name: "",
     workoutType: "standard",
@@ -45,11 +47,11 @@ const el = {
   signOutBtn: document.getElementById("signOutBtn"),
   moderationLink: document.getElementById("moderationLink"),
   searchInput: document.getElementById("searchInput"),
-  muscleFilter: document.getElementById("muscleFilter"),
-  equipmentFilter: document.getElementById("equipmentFilter"),
+  muscleChips: document.getElementById("muscleChips"),
+  equipmentChips: document.getElementById("equipmentChips"),
   catalogList: document.getElementById("catalogList"),
   workoutName: document.getElementById("workoutName"),
-  workoutType: document.getElementById("workoutType"),
+  workoutTypePills: document.getElementById("workoutTypePills"),
   defaultRest: document.getElementById("defaultRest"),
   workoutList: document.getElementById("workoutList"),
   exerciseCount: document.getElementById("exerciseCount"),
@@ -57,6 +59,7 @@ const el = {
   saveWorkoutBtn: document.getElementById("saveWorkoutBtn"),
   submitWorkoutBtn: document.getElementById("submitWorkoutBtn"),
   deleteWorkoutBtn: document.getElementById("deleteWorkoutBtn"),
+  myWorkoutsSection: document.getElementById("myWorkoutsSection"),
   myWorkoutCount: document.getElementById("myWorkoutCount"),
   myWorkoutsList: document.getElementById("myWorkoutsList"),
   communityWorkoutCount: document.getElementById("communityWorkoutCount"),
@@ -74,10 +77,7 @@ const el = {
   customDescription: document.getElementById("customDescription"),
   customDescriptionEn: document.getElementById("customDescriptionEn"),
   customInstructions: document.getElementById("customInstructions"),
-  customInstructionsEn: document.getElementById("customInstructionsEn"),
-  tabs: document.querySelectorAll(".tab-btn"),
-  catalogPanel: document.getElementById("catalogPanel"),
-  builderPanel: document.getElementById("builderPanel")
+  customInstructionsEn: document.getElementById("customInstructionsEn")
 };
 
 function uuid() {
@@ -172,7 +172,7 @@ function isModerator() {
 
 function updateAuthUI() {
   if (!isSupabaseEnabled()) {
-    el.authState.textContent = "Supabase ist nicht konfiguriert. Nutze training/supabase-config.js.";
+    el.authState.textContent = "";
     el.signInBtn.hidden = true;
     el.signOutBtn.hidden = true;
     el.moderationLink.hidden = true;
@@ -181,7 +181,7 @@ function updateAuthUI() {
   }
 
   if (!isLoggedIn()) {
-    el.authState.textContent = "Nicht eingeloggt. Community- und Workout-Cloud-Funktionen sind deaktiviert.";
+    el.authState.textContent = "";
     el.signInBtn.hidden = false;
     el.signOutBtn.hidden = true;
     el.moderationLink.hidden = true;
@@ -189,8 +189,9 @@ function updateAuthUI() {
     return;
   }
 
-  el.authState.textContent = `Eingeloggt als ${state.session.user.email} (${state.profile?.role || "user"}).`;
+  el.authState.textContent = state.session.user.email;
   el.signInBtn.hidden = true;
+  el.authEmail.hidden = true;
   el.signOutBtn.hidden = false;
   el.moderationLink.hidden = !isModerator();
   el.localOnlyHint.hidden = true;
@@ -258,31 +259,48 @@ function rebuildCatalog() {
   ];
 }
 
-function updateMobileTabs(tab) {
-  el.tabs.forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.tab === tab);
-  });
-  el.catalogPanel.classList.toggle("active-mobile", tab === "catalog");
-  el.builderPanel.classList.toggle("active-mobile", tab === "builder");
-  const communityPanel = document.getElementById("community-workouts");
-  if (communityPanel) {
-    communityPanel.classList.toggle("active-mobile", tab === "community");
-  }
-}
+/* ── Chip Filters ── */
 
-function renderFilters() {
-  const appendOptions = (selectEl, values) => {
-    values.forEach((value) => {
-      const option = document.createElement("option");
-      option.value = value;
-      option.textContent = value;
-      selectEl.appendChild(option);
+function renderChipFilters() {
+  // Muscle chips
+  state.muscleGroups.forEach((muscle) => {
+    const chip = document.createElement("button");
+    chip.className = "chip";
+    chip.textContent = muscle;
+    chip.addEventListener("click", () => {
+      const idx = state.activeMuscleFilters.indexOf(muscle);
+      if (idx >= 0) {
+        state.activeMuscleFilters.splice(idx, 1);
+        chip.classList.remove("active");
+      } else {
+        state.activeMuscleFilters.push(muscle);
+        chip.classList.add("active");
+      }
+      renderCatalog();
     });
-  };
+    el.muscleChips.appendChild(chip);
+  });
 
-  appendOptions(el.muscleFilter, state.muscleGroups);
-  appendOptions(el.equipmentFilter, state.equipmentTypes);
+  // Equipment chips
+  state.equipmentTypes.forEach((equipment) => {
+    const chip = document.createElement("button");
+    chip.className = "chip";
+    chip.textContent = equipment;
+    chip.addEventListener("click", () => {
+      const idx = state.activeEquipmentFilters.indexOf(equipment);
+      if (idx >= 0) {
+        state.activeEquipmentFilters.splice(idx, 1);
+        chip.classList.remove("active");
+      } else {
+        state.activeEquipmentFilters.push(equipment);
+        chip.classList.add("active");
+      }
+      renderCatalog();
+    });
+    el.equipmentChips.appendChild(chip);
+  });
 
+  // Custom modal muscle checkboxes
   state.muscleGroups.forEach((muscle) => {
     const wrapper = document.createElement("label");
     wrapper.className = "check-item";
@@ -296,6 +314,7 @@ function renderFilters() {
     el.customMuscles.appendChild(wrapper);
   });
 
+  // Custom modal equipment select
   state.equipmentTypes.forEach((equipment) => {
     const option = document.createElement("option");
     option.value = equipment;
@@ -306,13 +325,13 @@ function renderFilters() {
 
 function getFilteredCatalog() {
   const q = el.searchInput.value.trim().toLowerCase();
-  const muscle = el.muscleFilter.value;
-  const equipment = el.equipmentFilter.value;
+  const muscles = state.activeMuscleFilters;
+  const equipments = state.activeEquipmentFilters;
 
   return state.catalog.filter((exercise) => {
     const nameMatch = exercise.nameDe.toLowerCase().includes(q) || exercise.nameEn.toLowerCase().includes(q);
-    const muscleMatch = !muscle || exercise.muscleGroups.includes(muscle);
-    const equipmentMatch = !equipment || exercise.equipmentType === equipment;
+    const muscleMatch = !muscles.length || muscles.some((m) => exercise.muscleGroups.includes(m));
+    const equipmentMatch = !equipments.length || equipments.includes(exercise.equipmentType);
     return nameMatch && muscleMatch && equipmentMatch;
   });
 }
@@ -359,31 +378,31 @@ async function handleReport(exercise) {
   }
 }
 
-function createCatalogItem(exercise) {
-  const item = document.createElement("article");
-  item.className = "catalog-item";
-
-  const title = document.createElement("h4");
-  title.textContent = exercise.nameDe;
-
-  const meta = document.createElement("div");
-  meta.className = "catalog-meta";
+function createExerciseCard(exercise) {
+  const card = document.createElement("article");
+  card.className = "exercise-card";
 
   const source = exercise.source === "community" ? "Community" : exercise.source === "custom" ? "Lokal" : "Built-in";
-  const sourceClass = exercise.source === "community" ? "catalog-source community" : "catalog-source";
-  meta.innerHTML = `<span class="${sourceClass}">${source}</span>${escapeHtml(exercise.equipmentType)} - ${escapeHtml(exercise.muscleGroups.join(", "))}`;
+  const sourceClass = exercise.source === "community" ? "exercise-card-source community" : "exercise-card-source";
 
-  const addBtn = document.createElement("button");
-  addBtn.className = "btn btn-secondary full";
-  addBtn.textContent = "Zum Workout";
-  addBtn.addEventListener("click", () => {
+  card.innerHTML = `
+    <div class="exercise-card-head">
+      <div>
+        <h4>${escapeHtml(exercise.nameDe)}</h4>
+        <div class="exercise-card-meta">
+          <span class="${sourceClass}">${source}</span>
+          ${escapeHtml(exercise.equipmentType)} · ${escapeHtml(exercise.muscleGroups.join(", "))}
+        </div>
+      </div>
+      <button class="add-btn" title="Zum Workout hinzufügen">+</button>
+    </div>
+  `;
+
+  card.querySelector(".add-btn").addEventListener("click", () => {
     addExerciseToWorkout(exercise);
-    updateMobileTabs("builder");
+    const workoutSection = document.querySelector(".step-section:nth-child(4)");
+    if (workoutSection) workoutSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
-
-  item.appendChild(title);
-  item.appendChild(meta);
-  item.appendChild(addBtn);
 
   if (exercise.source === "community") {
     const voteRow = document.createElement("div");
@@ -397,10 +416,10 @@ function createCatalogItem(exercise) {
     voteRow.querySelector("[data-action='upvote']").addEventListener("click", () => handleVote(exercise, 1));
     voteRow.querySelector("[data-action='downvote']").addEventListener("click", () => handleVote(exercise, -1));
     voteRow.querySelector("[data-action='report']").addEventListener("click", () => handleReport(exercise));
-    item.appendChild(voteRow);
+    card.appendChild(voteRow);
   }
 
-  return item;
+  return card;
 }
 
 function renderCatalog() {
@@ -408,15 +427,15 @@ function renderCatalog() {
   el.catalogList.innerHTML = "";
 
   if (!filtered.length) {
-    const empty = document.createElement("p");
-    empty.textContent = "Keine Übungen gefunden.";
-    empty.className = "catalog-meta";
+    const empty = document.createElement("div");
+    empty.className = "empty-state";
+    empty.textContent = "Keine Übungen für diese Filter. Versuch eine andere Kombination.";
     el.catalogList.appendChild(empty);
     return;
   }
 
   filtered.forEach((exercise) => {
-    el.catalogList.appendChild(createCatalogItem(exercise));
+    el.catalogList.appendChild(createExerciseCard(exercise));
   });
 }
 
@@ -512,6 +531,14 @@ function renderWorkout() {
   el.exerciseCount.textContent = String(state.workout.exercises.length);
   el.deleteWorkoutBtn.hidden = !state.editingWorkoutId;
 
+  if (!state.workout.exercises.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty-state";
+    empty.textContent = "Wähle Übungen aus dem Katalog, um loszulegen.";
+    el.workoutList.appendChild(empty);
+    return;
+  }
+
   const { groupByExerciseId } = computeWorkoutGroups(
     state.workout.exercises,
     state.workout.workoutType,
@@ -558,16 +585,16 @@ function renderWorkout() {
           ${groupId ? `<span class="group-badge">Gruppe ${groupLabel(groupIndex)}</span>` : ""}
         </div>
         <div class="item-actions">
-          <button class="btn-ghost" data-action="up">Hoch</button>
-          <button class="btn-ghost" data-action="down">Runter</button>
-          <button class="btn-danger" data-action="remove">Löschen</button>
+          <button class="btn-ghost" data-action="up">&#8593;</button>
+          <button class="btn-ghost" data-action="down">&#8595;</button>
+          <button class="btn-danger" data-action="remove">&#10005;</button>
         </div>
       </div>
       <div class="set-list"></div>
       <div class="notes">
         <label>Notizen<textarea rows="2" placeholder="Optional">${escapeHtml(workoutExercise.notes || "")}</textarea></label>
       </div>
-      <button class="btn btn-secondary full" data-action="add-set">Satz hinzufügen</button>
+      <button class="btn btn-secondary btn-sm" data-action="add-set" style="margin-top:8px">+ Satz</button>
     `;
 
     const setList = li.querySelector(".set-list");
@@ -675,24 +702,27 @@ function loadBuilderPayload(payload, workoutId = null) {
   }));
 
   el.workoutName.value = state.workout.name;
-  el.workoutType.value = state.workout.workoutType;
+  // Update pill selection
+  el.workoutTypePills.querySelectorAll(".pill").forEach((pill) => {
+    pill.classList.toggle("active", pill.dataset.value === state.workout.workoutType);
+  });
   el.defaultRest.value = String(state.workout.defaultRestTime);
   renderWorkout();
 }
 
 async function saveCurrentWorkout() {
   if (!isSupabaseEnabled() || !isLoggedIn()) {
-    showStatus("Ohne Login kann das Workout nicht dauerhaft gesichert werden (nur aktuelle Sitzung im Browser-Tab).", true);
+    showStatus("Zum Speichern bitte einloggen.", true);
     return null;
   }
 
   const payload = getBuilderPayload();
   if (!payload.name) {
-    showStatus("Workout-Name ist leer.", true);
+    showStatus("Bitte gib deinem Workout einen Namen.", true);
     return null;
   }
   if (payload.exercises.length === 0) {
-    showStatus("Mindestens eine Übung ist erforderlich.", true);
+    showStatus("Füge mindestens eine Übung hinzu.", true);
     return null;
   }
 
@@ -701,10 +731,10 @@ async function saveCurrentWorkout() {
     state.editingWorkoutId = workoutId;
     await refreshMyWorkouts();
     renderWorkout();
-    showStatus("Workout gesichert.");
+    showStatus("Workout gespeichert.");
     return workoutId;
   } catch (error) {
-    showStatus(error.message || "Workout konnte nicht gesichert werden.", true);
+    showStatus(error.message || "Speichern fehlgeschlagen.", true);
     return null;
   }
 }
@@ -717,19 +747,21 @@ async function deleteCurrentWorkout() {
     state.editingWorkoutId = null;
     state.workout = { name: "", workoutType: "standard", defaultRestTime: 90, exercises: [] };
     el.workoutName.value = "";
-    el.workoutType.value = "standard";
+    el.workoutTypePills.querySelectorAll(".pill").forEach((pill) => {
+      pill.classList.toggle("active", pill.dataset.value === "standard");
+    });
     el.defaultRest.value = "90";
     renderWorkout();
     await refreshMyWorkouts();
     showStatus("Workout gelöscht.");
   } catch (error) {
-    showStatus(error.message || "Workout konnte nicht gelöscht werden.", true);
+    showStatus(error.message || "Löschen fehlgeschlagen.", true);
   }
 }
 
 async function submitCurrentWorkoutToCommunity() {
   if (!isSupabaseEnabled() || !isLoggedIn()) {
-    showStatus("Bitte einloggen, um Workouts einzureichen.", true);
+    showStatus("Bitte einloggen, um Workouts zu teilen.", true);
     return;
   }
 
@@ -741,7 +773,7 @@ async function submitCurrentWorkoutToCommunity() {
 
   try {
     await submitWorkoutToCommunity(workoutId, state.session.user.id, getBuilderPayload());
-    showStatus("Workout zur Community-Moderation eingereicht.");
+    showStatus("Workout zur Community eingereicht.");
   } catch (error) {
     showStatus(error.message || "Einreichung fehlgeschlagen.", true);
   }
@@ -749,8 +781,8 @@ async function submitCurrentWorkoutToCommunity() {
 
 function exportToGymboBundle(payload) {
   const name = (payload.name || "").trim();
-  if (!name) throw new Error("Workout-Name ist leer.");
-  if (!payload.exercises?.length) throw new Error("Mindestens eine Übung ist erforderlich.");
+  if (!name) throw new Error("Bitte gib deinem Workout einen Namen.");
+  if (!payload.exercises?.length) throw new Error("Füge mindestens eine Übung hinzu.");
 
   const now = new Date().toISOString();
   const exerciseMap = new Map();
@@ -856,23 +888,29 @@ function renderMyWorkouts() {
   el.myWorkoutsList.innerHTML = "";
   el.myWorkoutCount.textContent = String(state.myWorkouts.length);
 
+  if (!isLoggedIn()) {
+    el.myWorkoutsSection.hidden = true;
+    return;
+  }
+  el.myWorkoutsSection.hidden = false;
+
   if (!state.myWorkouts.length) {
-    const empty = document.createElement("p");
-    empty.className = "catalog-meta";
-    empty.textContent = "Noch keine gespeicherten Workouts.";
+    const empty = document.createElement("div");
+    empty.className = "empty-state";
+    empty.textContent = "Dein erstes Workout wartet. Erstelle eins und speichere es.";
     el.myWorkoutsList.appendChild(empty);
     return;
   }
 
   state.myWorkouts.forEach((workout) => {
     const item = document.createElement("article");
-    item.className = "catalog-item";
+    item.className = "exercise-card";
     item.innerHTML = `
       <h4>${escapeHtml(workout.name)}</h4>
-      <div class="catalog-meta">${escapeHtml(workout.workout_type)} · Aktualisiert ${new Date(workout.updated_at).toLocaleString("de-DE")}</div>
+      <div class="exercise-card-meta">${escapeHtml(workout.workout_type)} · ${new Date(workout.updated_at).toLocaleDateString("de-DE")}</div>
       <div class="vote-row">
         <button class="btn-ghost" data-action="load">Bearbeiten</button>
-        <button class="btn-ghost" data-action="submit">Community</button>
+        <button class="btn-ghost" data-action="submit">Teilen</button>
         <button class="btn-ghost" data-action="export">Exportieren</button>
         <button class="btn-danger" data-action="delete">Löschen</button>
       </div>
@@ -881,15 +919,15 @@ function renderMyWorkouts() {
     item.querySelector("[data-action='load']").addEventListener("click", () => {
       loadBuilderPayload(workout.payload, workout.id);
       showStatus(`Workout geladen: ${workout.name}`);
-      updateMobileTabs("builder");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     item.querySelector("[data-action='submit']").addEventListener("click", async () => {
       try {
         await submitWorkoutToCommunity(workout.id, state.session.user.id, workout.payload);
-        showStatus(`Workout eingereicht: ${workout.name}`);
+        showStatus(`Workout geteilt: ${workout.name}`);
       } catch (error) {
-        showStatus(error.message || "Einreichung fehlgeschlagen.", true);
+        showStatus(error.message || "Teilen fehlgeschlagen.", true);
       }
     });
 
@@ -904,7 +942,7 @@ function renderMyWorkouts() {
     });
 
     item.querySelector("[data-action='delete']").addEventListener("click", async () => {
-      if (!confirm(`Workout „${workout.name}“ löschen?`)) return;
+      if (!confirm(`Workout „${workout.name}" löschen?`)) return;
       try {
         await deleteUserWorkout(workout.id, state.session.user.id);
         if (state.editingWorkoutId === workout.id) {
@@ -927,22 +965,22 @@ function renderCommunityWorkouts() {
   el.communityWorkoutCount.textContent = String(state.communityWorkouts.length);
 
   if (!state.communityWorkouts.length) {
-    const empty = document.createElement("p");
-    empty.className = "catalog-meta";
-    empty.textContent = "Noch keine Community-Workouts verfügbar.";
+    const empty = document.createElement("div");
+    empty.className = "empty-state";
+    empty.textContent = "Noch keine Community-Workouts. Sei der Erste!";
     el.communityWorkoutsList.appendChild(empty);
     return;
   }
 
   state.communityWorkouts.forEach((workout) => {
     const item = document.createElement("article");
-    item.className = "catalog-item";
+    item.className = "exercise-card";
     const exercisesCount = Array.isArray(workout.payload?.exercises) ? workout.payload.exercises.length : 0;
     item.innerHTML = `
       <h4>${escapeHtml(workout.name)}</h4>
-      <div class="catalog-meta">${escapeHtml(workout.workout_type)} · ${exercisesCount} Übungen</div>
+      <div class="exercise-card-meta">${escapeHtml(workout.workout_type)} · ${exercisesCount} Übungen</div>
       <div class="vote-row">
-        <button class="btn-ghost" data-action="load">In Builder laden</button>
+        <button class="btn-ghost" data-action="load">Übernehmen</button>
         <button class="btn-ghost" data-action="export">Exportieren</button>
       </div>
     `;
@@ -950,7 +988,7 @@ function renderCommunityWorkouts() {
     item.querySelector("[data-action='load']").addEventListener("click", () => {
       loadBuilderPayload(workout.payload, null);
       showStatus(`Community-Workout geladen: ${workout.name}`);
-      updateMobileTabs("builder");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     item.querySelector("[data-action='export']").addEventListener("click", () => {
@@ -1065,7 +1103,7 @@ async function handleCustomExerciseSubmit(event) {
         },
         state.session.user.id
       );
-      showStatus(`Übung gespeichert und zur Moderation eingereicht: ${nameDe}`);
+      showStatus(`Übung gespeichert und eingereicht: ${nameDe}`);
       return;
     } catch (error) {
       showStatus(`Lokal gespeichert, Einreichung fehlgeschlagen: ${error.message}`, true);
@@ -1073,7 +1111,7 @@ async function handleCustomExerciseSubmit(event) {
     }
   }
 
-  showStatus(`Lokal gespeichert: ${nameDe}. Ohne Login nur temporär im aktuellen Browser-Tab.`);
+  showStatus(`Lokal gespeichert: ${nameDe}. Ohne Login nur temporär.`);
 }
 
 async function refreshAuth() {
@@ -1084,14 +1122,19 @@ async function refreshAuth() {
 
 function bindEvents() {
   el.searchInput.addEventListener("input", renderCatalog);
-  el.muscleFilter.addEventListener("change", renderCatalog);
-  el.equipmentFilter.addEventListener("change", renderCatalog);
 
   el.workoutName.addEventListener("input", () => (state.workout.name = el.workoutName.value));
-  el.workoutType.addEventListener("change", () => {
-    state.workout.workoutType = el.workoutType.value;
+
+  // Workout type pills
+  el.workoutTypePills.addEventListener("click", (e) => {
+    const pill = e.target.closest(".pill");
+    if (!pill) return;
+    el.workoutTypePills.querySelectorAll(".pill").forEach((p) => p.classList.remove("active"));
+    pill.classList.add("active");
+    state.workout.workoutType = pill.dataset.value;
     renderWorkout();
   });
+
   el.defaultRest.addEventListener("change", () => {
     const value = Number(el.defaultRest.value);
     state.workout.defaultRestTime = Math.max(30, Math.min(300, Number.isFinite(value) ? value : 90));
@@ -1115,14 +1158,14 @@ function bindEvents() {
   el.signInBtn.addEventListener("click", async () => {
     const email = el.authEmail.value.trim();
     if (!email) {
-      showStatus("Bitte E-Mail für Login eintragen.", true);
+      showStatus("Bitte E-Mail eintragen.", true);
       return;
     }
     try {
       await signInWithOtp(email);
       showStatus("Login-Link wurde per E-Mail gesendet.");
     } catch (error) {
-      showStatus(error.message || "Login-Link konnte nicht gesendet werden.", true);
+      showStatus(error.message || "Login fehlgeschlagen.", true);
     }
   });
 
@@ -1145,8 +1188,6 @@ function bindEvents() {
     if (event.target === el.customModal) closeCustomModal();
   });
 
-  el.tabs.forEach((btn) => btn.addEventListener("click", () => updateMobileTabs(btn.dataset.tab)));
-
   onAuthStateChange(async () => {
     await refreshAuth();
     await refreshMyWorkouts();
@@ -1166,7 +1207,7 @@ async function init() {
     state.equipmentTypes = json.equipmentTypes || [];
 
     rebuildCatalog();
-    renderFilters();
+    renderChipFilters();
 
     if (isSupabaseEnabled()) {
       showStatus("Lade Community-Daten...");
@@ -1185,7 +1226,7 @@ async function init() {
     renderCatalog();
     renderWorkout();
     bindEvents();
-    showStatus("Katalog geladen. Wähle Übungen aus, sichere Workouts und exportiere Templates.");
+    showStatus("");
   } catch (error) {
     showStatus(error.message || "Initialisierung fehlgeschlagen.", true);
   }
