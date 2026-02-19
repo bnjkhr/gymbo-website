@@ -534,21 +534,37 @@ textarea:focus {
 
 .check-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 6px;
+  grid-template-columns: 1fr;
+  gap: 2px;
   max-height: 180px;
   overflow: auto;
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 8px;
+  padding: 8px 10px;
   background: rgba(0, 0, 0, 0.24);
 }
 
 .check-item {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.86rem;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text);
+  font-weight: 500;
+  padding: 6px 2px;
+}
+
+.check-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  margin: 0;
+  flex: 0 0 auto;
+  accent-color: var(--amber);
+}
+
+.check-item span {
+  line-height: 1.2;
 }
 
 .modal-actions {
