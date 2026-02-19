@@ -1,8 +1,8 @@
 # gymbo-website - Session Summary
 
-**Generated:** 2026-02-01 21:08
+**Generated:** 2026-02-19 11:37
 **Branch:** main
-**Latest Commit:** 03ea5dd - feat: add Mastodon verification link to footer (4 minutes ago)
+**Latest Commit:** 5be10ca - fix: harden training section against XSS, improve UX and mobile layout (65 seconds ago)
 
 ## 📊 Change Statistics
 
@@ -12,39 +12,43 @@
 0 files
 - ➖ Deleted: 0
 0 files
-- ❓ Untracked: 0
-0 files
+- ❓ Untracked: 7 files
 
 ## 🎯 Affected Areas
 - General changes
 
 ## 📂 Changes by Category
 
-### "Configuration"
-```
-D .DS_Store
-
-```
-
 ### "Other"
 ```
-D screenshots/.DS_Store
+?? training-custom-modal.png
+?? training-desktop-full.png
+?? training-filtered.png
+?? training-mobile-full.png
+?? training-mobile-hero.png
+?? training-mobile-top.png
+?? training-mobile-workout.png
 
 ```
 
 ## 🔍 Detailed Git Status
 ```
- D .DS_Store
- D screenshots/.DS_Store
+?? training-custom-modal.png
+?? training-desktop-full.png
+?? training-filtered.png
+?? training-mobile-full.png
+?? training-mobile-hero.png
+?? training-mobile-top.png
+?? training-mobile-workout.png
 ```
 
 ## 📝 Recent Activity
 ```
-03ea5dd (HEAD -> main, origin/main, origin/HEAD) feat: add Mastodon verification link to footer
-de85024 feat: update roadmap - iOS Deep Integration completed, Social Features beta in v3
-9bd71c6 feat: add privacy policy page and update footer links
-9436df2 iCloud wieder raus
-08c551d feat: add iCloud Sync, Social Features & modern marquee layout
+5be10ca (HEAD -> main, origin/main, origin/HEAD) fix: harden training section against XSS, improve UX and mobile layout
+6c5a25a layout: side-by-side catalog + workout builder panels
+050d3a8 fix: use absolute paths for CSS, JS and data assets
+d7b89fc redesign: vertical guided builder flow for training page
+15676c5 fix: harden training section against XSS, improve UX and mobile layout
 ```
 
 ## 🔄 Next Steps
