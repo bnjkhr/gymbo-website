@@ -21,6 +21,7 @@
     <div class="topbar-inner">
       <a href="/index.html" class="brand"><span>Gym</span><span class="brand-accent">Bo</span></a>
       <div class="topbar-actions">
+        <a href="#community-workouts" class="btn btn-secondary">Community-Workouts</a>
         <button id="exportBtn" class="btn btn-primary">Exportieren (.gymbo)</button>
       </div>
     </div>
@@ -45,6 +46,14 @@
       <button class="tab-btn active" data-tab="catalog">Übungskatalog</button>
       <button class="tab-btn" data-tab="builder">Workout Builder</button>
     </nav>
+
+    <section id="community-workouts" class="panel community-workouts-panel">
+      <div class="panel-head">
+        <h2>Community-Workouts</h2>
+        <span id="communityWorkoutCount" class="count">0</span>
+      </div>
+      <div id="communityWorkoutsList" class="catalog-list"></div>
+    </section>
 
     <section class="layout">
       <aside id="catalogPanel" class="panel panel-catalog active-mobile">
@@ -114,14 +123,6 @@
           <div id="myWorkoutsList" class="catalog-list"></div>
         </div>
       </section>
-    </section>
-
-    <section class="panel community-workouts-panel">
-      <div class="panel-head">
-        <h2>Community-Workouts</h2>
-        <span id="communityWorkoutCount" class="count">0</span>
-      </div>
-      <div id="communityWorkoutsList" class="catalog-list"></div>
     </section>
   </main>
 
