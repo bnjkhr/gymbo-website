@@ -87,13 +87,35 @@
           </label>
         </div>
 
+        <div class="builder-actions">
+          <button id="saveWorkoutBtn" class="btn btn-secondary">Workout sichern</button>
+          <button id="submitWorkoutBtn" class="btn btn-secondary">Für Community einreichen</button>
+          <button id="deleteWorkoutBtn" class="btn btn-secondary" hidden>Workout löschen</button>
+        </div>
+
         <div class="builder-list-head">
           <h3>Übungen</h3>
           <span id="exerciseCount" class="count">0</span>
         </div>
 
         <ul id="workoutList" class="workout-list"></ul>
+
+        <div class="saved-workouts">
+          <div class="builder-list-head">
+            <h3>Meine Workouts</h3>
+            <span id="myWorkoutCount" class="count">0</span>
+          </div>
+          <div id="myWorkoutsList" class="catalog-list"></div>
+        </div>
       </section>
+    </section>
+
+    <section class="panel community-workouts-panel">
+      <div class="panel-head">
+        <h2>Community-Workouts</h2>
+        <span id="communityWorkoutCount" class="count">0</span>
+      </div>
+      <div id="communityWorkoutsList" class="catalog-list"></div>
     </section>
   </main>
 

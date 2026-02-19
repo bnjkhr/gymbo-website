@@ -8,7 +8,12 @@ import {
   fetchCommunityExercises,
   submitExerciseSubmission,
   upsertVote,
-  reportExercise
+  reportExercise,
+  fetchUserWorkouts,
+  upsertUserWorkout,
+  deleteUserWorkout,
+  submitWorkoutToCommunity,
+  fetchCommunityWorkouts
 } from "./supabase-client.js";
 
 const state = {
@@ -20,6 +25,9 @@ const state = {
   equipmentTypes: [],
   session: null,
   profile: null,
+  myWorkouts: [],
+  communityWorkouts: [],
+  editingWorkoutId: null,
   workout: {
     name: "",
     workoutType: "standard",
@@ -45,6 +53,13 @@ const el = {
   workoutList: document.getElementById("workoutList"),
   exerciseCount: document.getElementById("exerciseCount"),
   exportBtn: document.getElementById("exportBtn"),
+  saveWorkoutBtn: document.getElementById("saveWorkoutBtn"),
+  submitWorkoutBtn: document.getElementById("submitWorkoutBtn"),
+  deleteWorkoutBtn: document.getElementById("deleteWorkoutBtn"),
+  myWorkoutCount: document.getElementById("myWorkoutCount"),
+  myWorkoutsList: document.getElementById("myWorkoutsList"),
+  communityWorkoutCount: document.getElementById("communityWorkoutCount"),
+  communityWorkoutsList: document.getElementById("communityWorkoutsList"),
   openCustomModalBtn: document.getElementById("openCustomModalBtn"),
   closeCustomModalBtn: document.getElementById("closeCustomModalBtn"),
   cancelCustomBtn: document.getElementById("cancelCustomBtn"),
@@ -93,7 +108,7 @@ function isModerator() {
 
 function updateAuthUI() {
   if (!isSupabaseEnabled()) {
-    el.authState.textContent = "Supabase nicht konfiguriert. Nutze training/supabase-config.js.";
+    el.authState.textContent = "Supabase ist nicht konfiguriert. Nutze training/supabase-config.js.";
     el.signInBtn.hidden = true;
     el.signOutBtn.hidden = true;
     el.moderationLink.hidden = true;
@@ -101,7 +116,7 @@ function updateAuthUI() {
   }
 
   if (!isLoggedIn()) {
-    el.authState.textContent = "Nicht eingeloggt. Community-Submit/Vote/Report ist deaktiviert.";
+    el.authState.textContent = "Nicht eingeloggt. Community- und Workout-Cloud-Funktionen sind deaktiviert.";
     el.signInBtn.hidden = false;
     el.signOutBtn.hidden = true;
     el.moderationLink.hidden = true;
@@ -118,16 +133,13 @@ function mapCatalogExercise(raw) {
   return {
     source: "built-in",
     key: `catalog-${raw.id}`,
-    name: raw.name,
     nameDe: raw.name,
     nameEn: raw.name,
     muscleGroups: raw.muscleGroups || [],
     equipmentType: raw.equipmentType || "Freie Gewichte",
     difficultyLevel: raw.difficultyLevel || "Fortgeschritten",
-    description: raw.description || "",
     descriptionDe: raw.description || "",
     descriptionEn: raw.description || "",
-    instructions: raw.instructions || [],
     instructionsDe: raw.instructions || [],
     instructionsEn: raw.instructions || [],
     score: 0,
@@ -140,20 +152,34 @@ function mapCommunityExercise(raw) {
     source: "community",
     communityId: raw.id,
     key: `community-${raw.id}`,
-    name: raw.name_de,
     nameDe: raw.name_de,
     nameEn: raw.name_en,
     muscleGroups: raw.muscle_groups || [],
     equipmentType: raw.equipment_type,
     difficultyLevel: raw.difficulty,
-    description: raw.description_de || "",
     descriptionDe: raw.description_de || "",
     descriptionEn: raw.description_en || "",
-    instructions: raw.instructions_de || [],
     instructionsDe: raw.instructions_de || [],
     instructionsEn: raw.instructions_en || [],
     score: raw.score || 0,
     reportsCount: raw.reports_count || 0
+  };
+}
+
+function cloneExerciseForStorage(exercise) {
+  return {
+    source: exercise.source,
+    communityId: exercise.communityId || null,
+    key: exercise.key,
+    nameDe: exercise.nameDe,
+    nameEn: exercise.nameEn,
+    muscleGroups: [...exercise.muscleGroups],
+    equipmentType: exercise.equipmentType,
+    difficultyLevel: exercise.difficultyLevel,
+    descriptionDe: exercise.descriptionDe,
+    descriptionEn: exercise.descriptionEn,
+    instructionsDe: [...exercise.instructionsDe],
+    instructionsEn: [...exercise.instructionsEn]
   };
 }
 
@@ -189,14 +215,11 @@ function renderFilters() {
   state.muscleGroups.forEach((muscle) => {
     const wrapper = document.createElement("label");
     wrapper.className = "check-item";
-
     const input = document.createElement("input");
     input.type = "checkbox";
     input.value = muscle;
-
     const span = document.createElement("span");
     span.textContent = muscle;
-
     wrapper.appendChild(input);
     wrapper.appendChild(span);
     el.customMuscles.appendChild(wrapper);
@@ -339,7 +362,7 @@ function addExerciseToWorkout(exercise) {
   const rest = state.workout.defaultRestTime;
   state.workout.exercises.push({
     id: uuid(),
-    exercise,
+    exercise: cloneExerciseForStorage(exercise),
     notes: "",
     sets: [createDefaultSet(rest), createDefaultSet(rest), createDefaultSet(rest)]
   });
@@ -415,6 +438,7 @@ function computeWorkoutGroups(exercises, workoutType, restAfterGroup) {
 function renderWorkout() {
   el.workoutList.innerHTML = "";
   el.exerciseCount.textContent = String(state.workout.exercises.length);
+  el.deleteWorkoutBtn.hidden = !state.editingWorkoutId;
 
   const { groupByExerciseId } = computeWorkoutGroups(
     state.workout.exercises,
@@ -433,21 +457,13 @@ function renderWorkout() {
     const li = document.createElement("li");
     li.className = "workout-item";
     li.draggable = true;
-    li.dataset.exerciseId = workoutExercise.id;
 
     li.addEventListener("dragstart", (event) => {
       li.classList.add("dragging");
       event.dataTransfer.setData("text/plain", workoutExercise.id);
     });
-
-    li.addEventListener("dragend", () => {
-      li.classList.remove("dragging");
-    });
-
-    li.addEventListener("dragover", (event) => {
-      event.preventDefault();
-    });
-
+    li.addEventListener("dragend", () => li.classList.remove("dragging"));
+    li.addEventListener("dragover", (event) => event.preventDefault());
     li.addEventListener("drop", (event) => {
       event.preventDefault();
       const draggedId = event.dataTransfer.getData("text/plain");
@@ -477,10 +493,7 @@ function renderWorkout() {
       </div>
       <div class="set-list"></div>
       <div class="notes">
-        <label>
-          Notizen
-          <textarea rows="2" placeholder="Optional">${workoutExercise.notes || ""}</textarea>
-        </label>
+        <label>Notizen<textarea rows="2" placeholder="Optional">${workoutExercise.notes || ""}</textarea></label>
       </div>
       <button class="btn btn-secondary full" data-action="add-set">Satz hinzufügen</button>
     `;
@@ -496,30 +509,17 @@ function renderWorkout() {
         <input class="rest-wrap" type="number" min="0" step="5" value="${setItem.restTime}" aria-label="Pause" />
         <button class="btn-danger remove-wrap" type="button">x</button>
       `;
-
       const [repsInput, weightInput, restInput, removeBtn] = row.querySelectorAll("input, button");
-
-      repsInput.addEventListener("change", () => {
-        setItem.reps = Number(repsInput.value) || 0;
-      });
-      weightInput.addEventListener("change", () => {
-        setItem.weight = Number(weightInput.value) || 0;
-      });
-      restInput.addEventListener("change", () => {
-        setItem.restTime = Number(restInput.value) || 0;
-      });
-      removeBtn.addEventListener("click", () => {
-        removeSet(workoutExercise.id, setItem.id);
-      });
-
+      repsInput.addEventListener("change", () => (setItem.reps = Number(repsInput.value) || 0));
+      weightInput.addEventListener("change", () => (setItem.weight = Number(weightInput.value) || 0));
+      restInput.addEventListener("change", () => (setItem.restTime = Number(restInput.value) || 0));
+      removeBtn.addEventListener("click", () => removeSet(workoutExercise.id, setItem.id));
       setList.appendChild(row);
     });
 
-    const noteField = li.querySelector("textarea");
-    noteField.addEventListener("change", () => {
-      workoutExercise.notes = noteField.value;
+    li.querySelector("textarea").addEventListener("change", (e) => {
+      workoutExercise.notes = e.target.value;
     });
-
     li.querySelector("[data-action='up']").addEventListener("click", () => moveExercise(index, -1));
     li.querySelector("[data-action='down']").addEventListener("click", () => moveExercise(index, 1));
     li.querySelector("[data-action='remove']").addEventListener("click", () => removeExercise(workoutExercise.id));
@@ -527,6 +527,15 @@ function renderWorkout() {
 
     el.workoutList.appendChild(li);
   });
+}
+
+function getSelectedCustomMuscles() {
+  const checked = Array.from(el.customMuscles.querySelectorAll("input:checked"));
+  return checked.map((input) => input.value);
+}
+
+function parseLines(value) {
+  return value.split("\n").map((line) => line.trim()).filter(Boolean);
 }
 
 function openCustomModal() {
@@ -540,9 +549,342 @@ function closeCustomModal() {
   el.customExerciseForm.reset();
 }
 
-function getSelectedCustomMuscles() {
-  const checked = Array.from(el.customMuscles.querySelectorAll("input:checked"));
-  return checked.map((input) => input.value);
+function getBuilderPayload() {
+  return {
+    name: state.workout.name.trim(),
+    workoutType: state.workout.workoutType,
+    defaultRestTime: state.workout.defaultRestTime,
+    exercises: state.workout.exercises.map((we) => ({
+      id: we.id,
+      notes: we.notes || "",
+      exercise: cloneExerciseForStorage(we.exercise),
+      sets: we.sets.map((s) => ({ ...s }))
+    }))
+  };
+}
+
+function loadBuilderPayload(payload, workoutId = null) {
+  state.editingWorkoutId = workoutId;
+  state.workout.name = payload.name || "";
+  state.workout.workoutType = payload.workoutType || "standard";
+  state.workout.defaultRestTime = Number(payload.defaultRestTime) || 90;
+  state.workout.exercises = (payload.exercises || []).map((we) => ({
+    id: we.id || uuid(),
+    notes: we.notes || "",
+    exercise: {
+      source: we.exercise?.source || "custom",
+      communityId: we.exercise?.communityId || null,
+      key: we.exercise?.key || `loaded-${uuid()}`,
+      nameDe: we.exercise?.nameDe || "Unbekannt",
+      nameEn: we.exercise?.nameEn || we.exercise?.nameDe || "Unknown",
+      muscleGroups: we.exercise?.muscleGroups || ["Ganzkörper"],
+      equipmentType: we.exercise?.equipmentType || "Freie Gewichte",
+      difficultyLevel: we.exercise?.difficultyLevel || "Fortgeschritten",
+      descriptionDe: we.exercise?.descriptionDe || "",
+      descriptionEn: we.exercise?.descriptionEn || "",
+      instructionsDe: we.exercise?.instructionsDe || [],
+      instructionsEn: we.exercise?.instructionsEn || []
+    },
+    sets: (we.sets || []).map((s) => ({
+      id: s.id || uuid(),
+      reps: Number(s.reps) || 0,
+      weight: Number(s.weight) || 0,
+      restTime: Number(s.restTime) || 0,
+      completed: false
+    }))
+  }));
+
+  el.workoutName.value = state.workout.name;
+  el.workoutType.value = state.workout.workoutType;
+  el.defaultRest.value = String(state.workout.defaultRestTime);
+  renderWorkout();
+}
+
+async function saveCurrentWorkout() {
+  if (!isSupabaseEnabled() || !isLoggedIn()) {
+    showStatus("Bitte einloggen, um Workouts zu sichern.", true);
+    return null;
+  }
+
+  const payload = getBuilderPayload();
+  if (!payload.name) {
+    showStatus("Workout-Name ist leer.", true);
+    return null;
+  }
+  if (payload.exercises.length === 0) {
+    showStatus("Mindestens eine Übung ist erforderlich.", true);
+    return null;
+  }
+
+  try {
+    const workoutId = await upsertUserWorkout(state.session.user.id, state.editingWorkoutId, payload);
+    state.editingWorkoutId = workoutId;
+    await refreshMyWorkouts();
+    renderWorkout();
+    showStatus("Workout gesichert.");
+    return workoutId;
+  } catch (error) {
+    showStatus(error.message || "Workout konnte nicht gesichert werden.", true);
+    return null;
+  }
+}
+
+async function deleteCurrentWorkout() {
+  if (!state.editingWorkoutId || !isLoggedIn()) return;
+  if (!confirm("Dieses Workout wirklich löschen?")) return;
+  try {
+    await deleteUserWorkout(state.editingWorkoutId, state.session.user.id);
+    state.editingWorkoutId = null;
+    state.workout = { name: "", workoutType: "standard", defaultRestTime: 90, exercises: [] };
+    el.workoutName.value = "";
+    el.workoutType.value = "standard";
+    el.defaultRest.value = "90";
+    renderWorkout();
+    await refreshMyWorkouts();
+    showStatus("Workout gelöscht.");
+  } catch (error) {
+    showStatus(error.message || "Workout konnte nicht gelöscht werden.", true);
+  }
+}
+
+async function submitCurrentWorkoutToCommunity() {
+  if (!isSupabaseEnabled() || !isLoggedIn()) {
+    showStatus("Bitte einloggen, um Workouts einzureichen.", true);
+    return;
+  }
+
+  let workoutId = state.editingWorkoutId;
+  if (!workoutId) {
+    workoutId = await saveCurrentWorkout();
+    if (!workoutId) return;
+  }
+
+  try {
+    await submitWorkoutToCommunity(workoutId, state.session.user.id, getBuilderPayload());
+    showStatus("Workout zur Community-Moderation eingereicht.");
+  } catch (error) {
+    showStatus(error.message || "Einreichung fehlgeschlagen.", true);
+  }
+}
+
+function exportToGymboBundle(payload) {
+  const name = (payload.name || "").trim();
+  if (!name) throw new Error("Workout-Name ist leer.");
+  if (!payload.exercises?.length) throw new Error("Mindestens eine Übung ist erforderlich.");
+
+  const now = new Date().toISOString();
+  const exerciseMap = new Map();
+
+  payload.exercises.forEach((we) => {
+    const key = we.exercise.key;
+    if (!exerciseMap.has(key)) {
+      exerciseMap.set(key, {
+        id: uuid(),
+        exercise: we.exercise
+      });
+    }
+  });
+
+  const { groups, groupByExerciseId } = computeWorkoutGroups(payload.exercises, payload.workoutType, payload.defaultRestTime);
+
+  const workoutExercises = payload.exercises.map((we, order) => ({
+    id: we.id,
+    exerciseId: exerciseMap.get(we.exercise.key).id,
+    order,
+    notes: we.notes || null,
+    groupId: groupByExerciseId.get(we.id) || null,
+    sets: we.sets.map((s) => ({
+      id: s.id,
+      reps: Number(s.reps) || 0,
+      weight: Number(s.weight) || 0,
+      restTime: Number(s.restTime) || 0,
+      completed: false
+    }))
+  }));
+
+  const backupExercises = Array.from(exerciseMap.values()).map((entry) => ({
+    id: entry.id,
+    name: entry.exercise.nameDe,
+    muscleGroupsRaw: entry.exercise.muscleGroups,
+    equipmentTypeRaw: entry.exercise.equipmentType,
+    difficultyLevelRaw: entry.exercise.difficultyLevel,
+    descriptionText: entry.exercise.descriptionDe || "",
+    instructions: entry.exercise.instructionsDe || [],
+    createdAt: now,
+    isBuiltIn: entry.exercise.source === "built-in",
+    lastUsedWeight: null,
+    lastUsedReps: null,
+    lastUsedSetCount: null,
+    lastUsedDate: null,
+    lastUsedRestTime: null
+  }));
+
+  return {
+    version: 10,
+    createdAt: now,
+    appVersion: "web-1.2",
+    metadata: {
+      deviceName: "GymBo Web",
+      deviceModel: "Web",
+      osVersion: "Web",
+      totalWorkouts: 1,
+      totalSessions: 0,
+      totalExercises: backupExercises.length,
+      backupSizeBytes: null
+    },
+    workouts: [{
+      id: uuid(),
+      name,
+      date: now,
+      defaultRestTime: payload.defaultRestTime,
+      duration: null,
+      notes: "",
+      isFavorite: false,
+      difficultyLevel: null,
+      equipmentType: null,
+      workoutType: payload.workoutType,
+      warmupStrategy: null,
+      exercises: workoutExercises,
+      exerciseGroups: groups,
+      folderId: null,
+      orderInFolder: null,
+      exerciseCount: workoutExercises.length
+    }],
+    workoutFolders: [],
+    exercises: backupExercises,
+    sessions: [],
+    userProfile: null,
+    exerciseRecords: [],
+    progressionSuggestions: []
+  };
+}
+
+function downloadBundle(bundle, filename) {
+  const json = JSON.stringify(bundle, null, 2);
+  const blob = new Blob([json], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function renderMyWorkouts() {
+  el.myWorkoutsList.innerHTML = "";
+  el.myWorkoutCount.textContent = String(state.myWorkouts.length);
+
+  if (!state.myWorkouts.length) {
+    const empty = document.createElement("p");
+    empty.className = "catalog-meta";
+    empty.textContent = "Noch keine gespeicherten Workouts.";
+    el.myWorkoutsList.appendChild(empty);
+    return;
+  }
+
+  state.myWorkouts.forEach((workout) => {
+    const item = document.createElement("article");
+    item.className = "catalog-item";
+    item.innerHTML = `
+      <h4>${workout.name}</h4>
+      <div class="catalog-meta">${workout.workout_type} · Aktualisiert ${new Date(workout.updated_at).toLocaleString("de-DE")}</div>
+      <div class="vote-row">
+        <button class="btn-ghost" data-action="load">Bearbeiten</button>
+        <button class="btn-ghost" data-action="submit">Community</button>
+        <button class="btn-ghost" data-action="export">Exportieren</button>
+        <button class="btn-danger" data-action="delete">Löschen</button>
+      </div>
+    `;
+
+    item.querySelector("[data-action='load']").addEventListener("click", () => {
+      loadBuilderPayload(workout.payload, workout.id);
+      showStatus(`Workout geladen: ${workout.name}`);
+      updateMobileTabs("builder");
+    });
+
+    item.querySelector("[data-action='submit']").addEventListener("click", async () => {
+      try {
+        await submitWorkoutToCommunity(workout.id, state.session.user.id, workout.payload);
+        showStatus(`Workout eingereicht: ${workout.name}`);
+      } catch (error) {
+        showStatus(error.message || "Einreichung fehlgeschlagen.", true);
+      }
+    });
+
+    item.querySelector("[data-action='export']").addEventListener("click", () => {
+      try {
+        const bundle = exportToGymboBundle(workout.payload);
+        downloadBundle(bundle, sanitizeFilename(workout.name));
+        showStatus(`Exportiert: ${workout.name}`);
+      } catch (error) {
+        showStatus(error.message || "Export fehlgeschlagen.", true);
+      }
+    });
+
+    item.querySelector("[data-action='delete']").addEventListener("click", async () => {
+      if (!confirm(`Workout „${workout.name}“ löschen?`)) return;
+      try {
+        await deleteUserWorkout(workout.id, state.session.user.id);
+        if (state.editingWorkoutId === workout.id) {
+          state.editingWorkoutId = null;
+        }
+        await refreshMyWorkouts();
+        renderWorkout();
+        showStatus(`Gelöscht: ${workout.name}`);
+      } catch (error) {
+        showStatus(error.message || "Löschen fehlgeschlagen.", true);
+      }
+    });
+
+    el.myWorkoutsList.appendChild(item);
+  });
+}
+
+function renderCommunityWorkouts() {
+  el.communityWorkoutsList.innerHTML = "";
+  el.communityWorkoutCount.textContent = String(state.communityWorkouts.length);
+
+  if (!state.communityWorkouts.length) {
+    const empty = document.createElement("p");
+    empty.className = "catalog-meta";
+    empty.textContent = "Noch keine Community-Workouts verfügbar.";
+    el.communityWorkoutsList.appendChild(empty);
+    return;
+  }
+
+  state.communityWorkouts.forEach((workout) => {
+    const item = document.createElement("article");
+    item.className = "catalog-item";
+    const exercisesCount = Array.isArray(workout.payload?.exercises) ? workout.payload.exercises.length : 0;
+    item.innerHTML = `
+      <h4>${workout.name}</h4>
+      <div class="catalog-meta">${workout.workout_type} · ${exercisesCount} Übungen</div>
+      <div class="vote-row">
+        <button class="btn-ghost" data-action="load">In Builder laden</button>
+        <button class="btn-ghost" data-action="export">Exportieren</button>
+      </div>
+    `;
+
+    item.querySelector("[data-action='load']").addEventListener("click", () => {
+      loadBuilderPayload(workout.payload, null);
+      showStatus(`Community-Workout geladen: ${workout.name}`);
+      updateMobileTabs("builder");
+    });
+
+    item.querySelector("[data-action='export']").addEventListener("click", () => {
+      try {
+        const bundle = exportToGymboBundle(workout.payload);
+        downloadBundle(bundle, sanitizeFilename(workout.name));
+        showStatus(`Exportiert: ${workout.name}`);
+      } catch (error) {
+        showStatus(error.message || "Export fehlgeschlagen.", true);
+      }
+    });
+
+    el.communityWorkoutsList.appendChild(item);
+  });
 }
 
 async function refreshCommunityExercises() {
@@ -556,11 +898,34 @@ async function refreshCommunityExercises() {
   }
 }
 
-function parseLines(value) {
-  return value
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean);
+async function refreshMyWorkouts() {
+  if (!isSupabaseEnabled() || !isLoggedIn()) {
+    state.myWorkouts = [];
+    renderMyWorkouts();
+    return;
+  }
+  try {
+    state.myWorkouts = await fetchUserWorkouts(state.session.user.id);
+  } catch (error) {
+    state.myWorkouts = [];
+    showStatus(`Meine Workouts konnten nicht geladen werden: ${error.message}`, true);
+  }
+  renderMyWorkouts();
+}
+
+async function refreshCommunityWorkouts() {
+  if (!isSupabaseEnabled()) {
+    state.communityWorkouts = [];
+    renderCommunityWorkouts();
+    return;
+  }
+  try {
+    state.communityWorkouts = await fetchCommunityWorkouts();
+  } catch (error) {
+    state.communityWorkouts = [];
+    showStatus(`Community-Workouts konnten nicht geladen werden: ${error.message}`, true);
+  }
+  renderCommunityWorkouts();
 }
 
 async function handleCustomExerciseSubmit(event) {
@@ -583,17 +948,15 @@ async function handleCustomExerciseSubmit(event) {
 
   const exercise = {
     source: "custom",
+    communityId: null,
     key: `custom-${uuid()}`,
-    name: nameDe,
     nameDe,
     nameEn,
     muscleGroups: muscleGroups.length ? muscleGroups : ["Ganzkörper"],
     equipmentType,
     difficultyLevel,
-    description: descriptionDe,
     descriptionDe,
     descriptionEn,
-    instructions: instructionsDe,
     instructionsDe,
     instructionsEn,
     score: 0,
@@ -625,132 +988,12 @@ async function handleCustomExerciseSubmit(event) {
       showStatus(`Übung gespeichert und zur Moderation eingereicht: ${nameDe}`);
       return;
     } catch (error) {
-      showStatus(`Lokal gespeichert, Submission fehlgeschlagen: ${error.message}`, true);
+      showStatus(`Lokal gespeichert, Einreichung fehlgeschlagen: ${error.message}`, true);
       return;
     }
   }
 
   showStatus(`Lokal gespeichert: ${nameDe}. Für globale Freigabe bitte einloggen.`);
-}
-
-function exportToGymboBundle() {
-  const name = state.workout.name.trim();
-  if (!name) {
-    throw new Error("Workout-Name ist leer.");
-  }
-
-  if (state.workout.exercises.length === 0) {
-    throw new Error("Mindestens eine Übung ist erforderlich.");
-  }
-
-  const now = new Date().toISOString();
-
-  const uniqueExercises = [];
-  const seen = new Set();
-  state.workout.exercises.forEach((we) => {
-    if (seen.has(we.exercise.key)) return;
-    seen.add(we.exercise.key);
-    uniqueExercises.push(we.exercise);
-  });
-
-  const exerciseIdMap = new Map();
-  const backupExercises = uniqueExercises.map((exercise) => {
-    const exerciseUuid = uuid();
-    exerciseIdMap.set(exercise.key, exerciseUuid);
-    return {
-      id: exerciseUuid,
-      name: exercise.nameDe,
-      muscleGroupsRaw: exercise.muscleGroups,
-      equipmentTypeRaw: exercise.equipmentType,
-      difficultyLevelRaw: exercise.difficultyLevel,
-      descriptionText: exercise.descriptionDe || "",
-      instructions: Array.isArray(exercise.instructionsDe) ? exercise.instructionsDe : [],
-      createdAt: now,
-      isBuiltIn: exercise.source === "built-in",
-      lastUsedWeight: null,
-      lastUsedReps: null,
-      lastUsedSetCount: null,
-      lastUsedDate: null,
-      lastUsedRestTime: null
-    };
-  });
-
-  const { groups, groupByExerciseId } = computeWorkoutGroups(
-    state.workout.exercises,
-    state.workout.workoutType,
-    state.workout.defaultRestTime
-  );
-
-  const workoutExercises = state.workout.exercises.map((we, order) => {
-    return {
-      id: we.id,
-      exerciseId: exerciseIdMap.get(we.exercise.key),
-      order,
-      notes: we.notes || null,
-      groupId: groupByExerciseId.get(we.id) || null,
-      sets: we.sets.map((setItem) => ({
-        id: setItem.id,
-        reps: Number(setItem.reps) || 0,
-        weight: Number(setItem.weight) || 0,
-        restTime: Number(setItem.restTime) || 0,
-        completed: false
-      }))
-    };
-  });
-
-  return {
-    version: 10,
-    createdAt: now,
-    appVersion: "web-1.1",
-    metadata: {
-      deviceName: "GymBo Web",
-      deviceModel: "Web",
-      osVersion: "Web",
-      totalWorkouts: 1,
-      totalSessions: 0,
-      totalExercises: backupExercises.length,
-      backupSizeBytes: null
-    },
-    workouts: [
-      {
-        id: uuid(),
-        name,
-        date: now,
-        defaultRestTime: state.workout.defaultRestTime,
-        duration: null,
-        notes: "",
-        isFavorite: false,
-        difficultyLevel: null,
-        equipmentType: null,
-        workoutType: state.workout.workoutType,
-        warmupStrategy: null,
-        exercises: workoutExercises,
-        exerciseGroups: groups,
-        folderId: null,
-        orderInFolder: null,
-        exerciseCount: workoutExercises.length
-      }
-    ],
-    workoutFolders: [],
-    exercises: backupExercises,
-    sessions: [],
-    userProfile: null,
-    exerciseRecords: [],
-    progressionSuggestions: []
-  };
-}
-
-function downloadBundle(bundle, filename) {
-  const json = JSON.stringify(bundle, null, 2);
-  const blob = new Blob([json], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
 }
 
 async function refreshAuth() {
@@ -764,15 +1007,11 @@ function bindEvents() {
   el.muscleFilter.addEventListener("change", renderCatalog);
   el.equipmentFilter.addEventListener("change", renderCatalog);
 
-  el.workoutName.addEventListener("input", () => {
-    state.workout.name = el.workoutName.value;
-  });
-
+  el.workoutName.addEventListener("input", () => (state.workout.name = el.workoutName.value));
   el.workoutType.addEventListener("change", () => {
     state.workout.workoutType = el.workoutType.value;
     renderWorkout();
   });
-
   el.defaultRest.addEventListener("change", () => {
     const value = Number(el.defaultRest.value);
     state.workout.defaultRestTime = Math.max(30, Math.min(300, Number.isFinite(value) ? value : 90));
@@ -781,14 +1020,17 @@ function bindEvents() {
 
   el.exportBtn.addEventListener("click", () => {
     try {
-      const bundle = exportToGymboBundle();
-      const filename = sanitizeFilename(state.workout.name);
-      downloadBundle(bundle, filename);
-      showStatus("Export erfolgreich. Oeffne die Datei auf deinem iPhone mit GymBo.");
+      const bundle = exportToGymboBundle(getBuilderPayload());
+      downloadBundle(bundle, sanitizeFilename(state.workout.name));
+      showStatus("Export erfolgreich. Öffne die Datei auf deinem iPhone mit GymBo.");
     } catch (error) {
       showStatus(error.message || "Export fehlgeschlagen.", true);
     }
   });
+
+  el.saveWorkoutBtn.addEventListener("click", saveCurrentWorkout);
+  el.deleteWorkoutBtn.addEventListener("click", deleteCurrentWorkout);
+  el.submitWorkoutBtn.addEventListener("click", submitCurrentWorkoutToCommunity);
 
   el.signInBtn.addEventListener("click", async () => {
     const email = el.authEmail.value.trim();
@@ -808,6 +1050,7 @@ function bindEvents() {
     try {
       await signOut();
       await refreshAuth();
+      await refreshMyWorkouts();
       showStatus("Ausgeloggt.");
     } catch (error) {
       showStatus(error.message || "Logout fehlgeschlagen.", true);
@@ -818,21 +1061,15 @@ function bindEvents() {
   el.closeCustomModalBtn.addEventListener("click", closeCustomModal);
   el.cancelCustomBtn.addEventListener("click", closeCustomModal);
   el.customExerciseForm.addEventListener("submit", handleCustomExerciseSubmit);
-
   el.customModal.addEventListener("click", (event) => {
-    if (event.target === el.customModal) {
-      closeCustomModal();
-    }
+    if (event.target === el.customModal) closeCustomModal();
   });
 
-  el.tabs.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      updateMobileTabs(btn.dataset.tab);
-    });
-  });
+  el.tabs.forEach((btn) => btn.addEventListener("click", () => updateMobileTabs(btn.dataset.tab)));
 
   onAuthStateChange(async () => {
     await refreshAuth();
+    await refreshMyWorkouts();
     renderCatalog();
   });
 }
@@ -840,9 +1077,7 @@ function bindEvents() {
 async function init() {
   try {
     const response = await fetch("data/exercise_catalog.json", { cache: "no-store" });
-    if (!response.ok) {
-      throw new Error("Katalog konnte nicht geladen werden.");
-    }
+    if (!response.ok) throw new Error("Katalog konnte nicht geladen werden.");
 
     const json = await response.json();
     state.builtInCatalog = (json.exercises || []).map(mapCatalogExercise);
@@ -855,14 +1090,18 @@ async function init() {
     if (isSupabaseEnabled()) {
       await refreshAuth();
       await refreshCommunityExercises();
+      await refreshMyWorkouts();
+      await refreshCommunityWorkouts();
     } else {
       updateAuthUI();
+      renderMyWorkouts();
+      renderCommunityWorkouts();
     }
 
     renderCatalog();
     renderWorkout();
     bindEvents();
-    showStatus("Katalog geladen. Wähle Übungen aus und exportiere dein Template.");
+    showStatus("Katalog geladen. Wähle Übungen aus, sichere Workouts und exportiere Templates.");
   } catch (error) {
     showStatus(error.message || "Initialisierung fehlgeschlagen.", true);
   }

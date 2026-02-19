@@ -200,6 +200,13 @@ textarea {
   margin-bottom: 10px;
 }
 
+.builder-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
 .count {
   display: inline-flex;
   width: 28px;
@@ -218,6 +225,16 @@ textarea {
   padding: 0;
   display: grid;
   gap: 12px;
+}
+
+.saved-workouts {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--card-border);
+}
+
+.community-workouts-panel {
+  margin-top: 20px;
 }
 
 .workout-item {

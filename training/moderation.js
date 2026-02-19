@@ -3,9 +3,12 @@ import {
   getSession,
   getCurrentProfile,
   fetchModerationQueue,
+  fetchWorkoutModerationQueue,
   fetchOpenReports,
   approveSubmission,
   rejectSubmission,
+  approveWorkoutSubmission,
+  rejectWorkoutSubmission,
   updateReportStatus
 } from "./supabase-client.js";
 
@@ -16,6 +19,8 @@ const el = {
   pendingList: document.getElementById("pendingList"),
   reportCount: document.getElementById("reportCount"),
   reportList: document.getElementById("reportList"),
+  workoutPendingCount: document.getElementById("workoutPendingCount"),
+  workoutPendingList: document.getElementById("workoutPendingList"),
   refreshBtn: document.getElementById("refreshBtn")
 };
 
@@ -32,58 +37,55 @@ function isModerator() {
 }
 
 function assertAllowed() {
-  if (!isSupabaseEnabled()) {
-    throw new Error("Supabase nicht konfiguriert.");
-  }
-  if (!session?.user?.id) {
-    throw new Error("Nicht eingeloggt.");
-  }
-  if (!isModerator()) {
-    throw new Error("Keine Moderationsrechte.");
-  }
+  if (!isSupabaseEnabled()) throw new Error("Supabase nicht konfiguriert.");
+  if (!session?.user?.id) throw new Error("Nicht eingeloggt.");
+  if (!isModerator()) throw new Error("Keine Moderationsrechte.");
 }
 
 async function refreshData() {
   try {
     assertAllowed();
 
-    const [pending, reports] = await Promise.all([
+    const [pendingExercises, reports, pendingWorkouts] = await Promise.all([
       fetchModerationQueue(),
-      fetchOpenReports()
+      fetchOpenReports(),
+      fetchWorkoutModerationQueue()
     ]);
 
-    el.pendingCount.textContent = String(pending.length);
+    el.pendingCount.textContent = String(pendingExercises.length);
     el.reportCount.textContent = String(reports.length);
+    el.workoutPendingCount.textContent = String(pendingWorkouts.length);
 
     el.pendingList.innerHTML = "";
     el.reportList.innerHTML = "";
+    el.workoutPendingList.innerHTML = "";
 
-    if (!pending.length) {
+    if (!pendingExercises.length) {
       const p = document.createElement("p");
       p.className = "catalog-meta";
-      p.textContent = "Keine offenen Submissions.";
+      p.textContent = "Keine offenen Übungs-Submissions.";
       el.pendingList.appendChild(p);
     }
 
-    pending.forEach((row) => {
+    pendingExercises.forEach((row) => {
       const item = document.createElement("article");
       item.className = "catalog-item";
       item.innerHTML = `
         <h4>${row.name_de} / ${row.name_en}</h4>
-        <div class="catalog-meta">${row.equipment_type} - ${row.difficulty} - ${row.muscle_groups.join(", ")}</div>
+        <div class="catalog-meta">${row.equipment_type} · ${row.difficulty} · ${row.muscle_groups.join(", ")}</div>
         <div class="vote-row">
-          <button class="btn btn-primary" data-action="approve">Approve</button>
-          <button class="btn btn-secondary" data-action="reject">Reject</button>
+          <button class="btn btn-primary" data-action="approve">Freigeben</button>
+          <button class="btn btn-secondary" data-action="reject">Ablehnen</button>
         </div>
       `;
 
       item.querySelector("[data-action='approve']").addEventListener("click", async () => {
         try {
           await approveSubmission(row.id);
-          showStatus(`Approved: ${row.name_de}`);
+          showStatus(`Übung freigegeben: ${row.name_de}`);
           await refreshData();
         } catch (error) {
-          showStatus(error.message || "Approve fehlgeschlagen.", true);
+          showStatus(error.message || "Freigabe fehlgeschlagen.", true);
         }
       });
 
@@ -91,14 +93,57 @@ async function refreshData() {
         const reason = prompt("Ablehnungsgrund (optional)", "");
         try {
           await rejectSubmission(row.id, reason || null);
-          showStatus(`Rejected: ${row.name_de}`);
+          showStatus(`Übung abgelehnt: ${row.name_de}`);
           await refreshData();
         } catch (error) {
-          showStatus(error.message || "Reject fehlgeschlagen.", true);
+          showStatus(error.message || "Ablehnung fehlgeschlagen.", true);
         }
       });
 
       el.pendingList.appendChild(item);
+    });
+
+    if (!pendingWorkouts.length) {
+      const p = document.createElement("p");
+      p.className = "catalog-meta";
+      p.textContent = "Keine offenen Workout-Submissions.";
+      el.workoutPendingList.appendChild(p);
+    }
+
+    pendingWorkouts.forEach((row) => {
+      const item = document.createElement("article");
+      item.className = "catalog-item";
+      item.innerHTML = `
+        <h4>${row.name}</h4>
+        <div class="catalog-meta">${row.workout_type} · ${new Date(row.created_at).toLocaleString("de-DE")}</div>
+        <div class="vote-row">
+          <button class="btn btn-primary" data-action="approve">Freigeben</button>
+          <button class="btn btn-secondary" data-action="reject">Ablehnen</button>
+        </div>
+      `;
+
+      item.querySelector("[data-action='approve']").addEventListener("click", async () => {
+        try {
+          await approveWorkoutSubmission(row.id);
+          showStatus(`Workout freigegeben: ${row.name}`);
+          await refreshData();
+        } catch (error) {
+          showStatus(error.message || "Freigabe fehlgeschlagen.", true);
+        }
+      });
+
+      item.querySelector("[data-action='reject']").addEventListener("click", async () => {
+        const reason = prompt("Ablehnungsgrund (optional)", "");
+        try {
+          await rejectWorkoutSubmission(row.id, reason || null);
+          showStatus(`Workout abgelehnt: ${row.name}`);
+          await refreshData();
+        } catch (error) {
+          showStatus(error.message || "Ablehnung fehlgeschlagen.", true);
+        }
+      });
+
+      el.workoutPendingList.appendChild(item);
     });
 
     if (!reports.length) {
@@ -113,30 +158,30 @@ async function refreshData() {
       item.className = "catalog-item";
       item.innerHTML = `
         <h4>Exercise ${row.exercise_id}</h4>
-        <div class="catalog-meta">Reason: ${row.reason}${row.details ? ` - ${row.details}` : ""}</div>
+        <div class="catalog-meta">Grund: ${row.reason}${row.details ? ` · ${row.details}` : ""}</div>
         <div class="vote-row">
-          <button class="btn btn-primary" data-action="resolve">Resolve</button>
-          <button class="btn btn-secondary" data-action="dismiss">Dismiss</button>
+          <button class="btn btn-primary" data-action="resolve">Erledigt</button>
+          <button class="btn btn-secondary" data-action="dismiss">Verwerfen</button>
         </div>
       `;
 
       item.querySelector("[data-action='resolve']").addEventListener("click", async () => {
         try {
           await updateReportStatus(row.id, "resolved");
-          showStatus(`Report resolved: ${row.id}`);
+          showStatus(`Report erledigt: ${row.id}`);
           await refreshData();
         } catch (error) {
-          showStatus(error.message || "Resolve fehlgeschlagen.", true);
+          showStatus(error.message || "Statusupdate fehlgeschlagen.", true);
         }
       });
 
       item.querySelector("[data-action='dismiss']").addEventListener("click", async () => {
         try {
           await updateReportStatus(row.id, "dismissed");
-          showStatus(`Report dismissed: ${row.id}`);
+          showStatus(`Report verworfen: ${row.id}`);
           await refreshData();
         } catch (error) {
-          showStatus(error.message || "Dismiss fehlgeschlagen.", true);
+          showStatus(error.message || "Statusupdate fehlgeschlagen.", true);
         }
       });
 
@@ -174,8 +219,6 @@ async function init() {
   }
 }
 
-el.refreshBtn.addEventListener("click", () => {
-  refreshData();
-});
+el.refreshBtn.addEventListener("click", refreshData);
 
 init();
