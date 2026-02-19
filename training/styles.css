@@ -541,7 +541,7 @@ textarea:focus {
   padding: 0;
   display: grid;
   gap: 12px;
-  margin-bottom: 20px;
+  padding-bottom: 12px;
   max-height: 60vh;
   overflow-y: auto;
   padding-right: 4px;
@@ -834,6 +834,10 @@ textarea:focus {
   }
 
   .catalog-scroll {
+    max-height: none;
+  }
+
+  .workout-list {
     max-height: none;
   }
 }

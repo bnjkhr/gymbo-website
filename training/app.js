@@ -182,6 +182,7 @@ function updateAuthUI() {
 
   if (!isLoggedIn()) {
     el.authState.textContent = "";
+    el.authEmail.hidden = false;
     el.signInBtn.hidden = false;
     el.signOutBtn.hidden = true;
     el.moderationLink.hidden = true;
@@ -385,20 +386,33 @@ function createExerciseCard(exercise) {
   const source = exercise.source === "community" ? "Community" : exercise.source === "custom" ? "Lokal" : "Built-in";
   const sourceClass = exercise.source === "community" ? "exercise-card-source community" : "exercise-card-source";
 
-  card.innerHTML = `
-    <div class="exercise-card-head">
-      <div>
-        <h4>${escapeHtml(exercise.nameDe)}</h4>
-        <div class="exercise-card-meta">
-          <span class="${sourceClass}">${source}</span>
-          ${escapeHtml(exercise.equipmentType)} · ${escapeHtml(exercise.muscleGroups.join(", "))}
-        </div>
-      </div>
-      <button class="add-btn" title="Zum Workout hinzufügen">+</button>
-    </div>
-  `;
+  const head = document.createElement("div");
+  head.className = "exercise-card-head";
 
-  card.querySelector(".add-btn").addEventListener("click", () => {
+  const info = document.createElement("div");
+  const h4 = document.createElement("h4");
+  h4.textContent = exercise.nameDe;
+  info.appendChild(h4);
+
+  const meta = document.createElement("div");
+  meta.className = "exercise-card-meta";
+  const sourceSpan = document.createElement("span");
+  sourceSpan.className = sourceClass;
+  sourceSpan.textContent = source;
+  meta.appendChild(sourceSpan);
+  meta.append(` ${exercise.equipmentType} · ${exercise.muscleGroups.join(", ")}`);
+  info.appendChild(meta);
+
+  const addBtn = document.createElement("button");
+  addBtn.className = "add-btn";
+  addBtn.title = "Zum Workout hinzufügen";
+  addBtn.textContent = "+";
+
+  head.appendChild(info);
+  head.appendChild(addBtn);
+  card.appendChild(head);
+
+  addBtn.addEventListener("click", () => {
     addExerciseToWorkout(exercise);
     // Scroll workout list to bottom to show newly added exercise
     const wl = document.getElementById("workoutList");
@@ -613,7 +627,10 @@ function renderWorkout() {
         <input class="rest-wrap" type="number" min="0" step="5" value="${setItem.restTime}" aria-label="Pause" />
         <button class="btn-danger remove-wrap" type="button">x</button>
       `;
-      const [repsInput, weightInput, restInput, removeBtn] = row.querySelectorAll("input, button");
+      const repsInput = row.querySelector("[aria-label='Wiederholungen']");
+      const weightInput = row.querySelector("[aria-label='Gewicht']");
+      const restInput = row.querySelector("[aria-label='Pause']");
+      const removeBtn = row.querySelector(".remove-wrap");
       repsInput.addEventListener("change", () => (setItem.reps = Number(repsInput.value) || 0));
       weightInput.addEventListener("change", () => (setItem.weight = Number(weightInput.value) || 0));
       restInput.addEventListener("change", () => (setItem.restTime = Number(restInput.value) || 0));
@@ -1191,7 +1208,11 @@ function bindEvents() {
 
   onAuthStateChange(async () => {
     await refreshAuth();
-    await refreshMyWorkouts();
+    await Promise.all([
+      refreshMyWorkouts(),
+      refreshCommunityWorkouts(),
+      refreshCommunityExercises()
+    ]);
     renderCatalog();
   });
 }
