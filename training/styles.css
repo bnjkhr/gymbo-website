@@ -83,7 +83,7 @@ body {
 }
 
 .topbar-inner {
-  max-width: 900px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 12px 24px;
   display: flex;
@@ -141,7 +141,7 @@ body {
 /* ── Page ── */
 
 .page {
-  max-width: 900px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 0 24px 60px;
 }
@@ -182,6 +182,42 @@ body {
   font-weight: 600;
   font-size: 0.88rem;
   color: var(--green);
+}
+
+/* ── Builder Layout (side-by-side) ── */
+
+.builder-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 32px;
+  align-items: start;
+}
+
+.builder-panel {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.catalog-scroll {
+  max-height: 60vh;
+  overflow-y: auto;
+  display: grid;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+.catalog-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.catalog-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
 }
 
 /* ── Step Sections ── */
@@ -506,6 +542,18 @@ textarea:focus {
   display: grid;
   gap: 12px;
   margin-bottom: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.workout-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.workout-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
 }
 
 .workout-item {
@@ -779,6 +827,16 @@ textarea:focus {
 }
 
 /* ── Responsive ── */
+
+@media (max-width: 980px) {
+  .builder-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-scroll {
+    max-height: none;
+  }
+}
 
 @media (max-width: 640px) {
   .topbar-inner {

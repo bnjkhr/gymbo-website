@@ -77,47 +77,50 @@
       </div>
     </section>
 
-    <!-- 2. Übungen wählen -->
-    <section class="step-section">
-      <div class="step-header">
-        <span class="step-number">2</span>
-        <h2>Übungen wählen</h2>
-      </div>
-
-      <div class="filter-bar">
-        <input id="searchInput" type="text" placeholder="Übung suchen..." class="search-input" />
-        <button id="openCustomModalBtn" class="btn btn-secondary btn-sm">+ Eigene Übung</button>
-      </div>
-
-      <div class="chip-filters">
-        <div class="chip-group" id="muscleChips">
-          <span class="chip-label">Muskelgruppe</span>
+    <!-- Builder: Katalog + Workout side-by-side -->
+    <div class="builder-layout">
+      <!-- Katalog (links) -->
+      <section class="builder-panel">
+        <div class="step-header">
+          <span class="step-number">2</span>
+          <h2>Übungen wählen</h2>
         </div>
-        <div class="chip-group" id="equipmentChips">
-          <span class="chip-label">Equipment</span>
+
+        <div class="filter-bar">
+          <input id="searchInput" type="text" placeholder="Übung suchen..." class="search-input" />
+          <button id="openCustomModalBtn" class="btn btn-secondary btn-sm">+ Eigene Übung</button>
         </div>
-      </div>
 
-      <div id="catalogList" class="exercise-grid"></div>
-    </section>
+        <div class="chip-filters">
+          <div class="chip-group" id="muscleChips">
+            <span class="chip-label">Muskelgruppe</span>
+          </div>
+          <div class="chip-group" id="equipmentChips">
+            <span class="chip-label">Equipment</span>
+          </div>
+        </div>
 
-    <!-- 3. Dein Workout -->
-    <section class="step-section">
-      <div class="step-header">
-        <span class="step-number">3</span>
-        <h2>Dein Workout</h2>
-        <span id="exerciseCount" class="count">0</span>
-      </div>
+        <div id="catalogList" class="catalog-scroll"></div>
+      </section>
 
-      <ul id="workoutList" class="workout-list"></ul>
+      <!-- Workout (rechts) -->
+      <section class="builder-panel">
+        <div class="step-header">
+          <span class="step-number">3</span>
+          <h2>Dein Workout</h2>
+          <span id="exerciseCount" class="count">0</span>
+        </div>
 
-      <div class="workout-actions">
-        <button id="exportBtn" class="btn btn-primary">In GymBo importieren</button>
-        <button id="saveWorkoutBtn" class="btn btn-secondary">Speichern</button>
-        <button id="submitWorkoutBtn" class="btn btn-secondary">Mit anderen teilen</button>
-        <button id="deleteWorkoutBtn" class="btn btn-secondary" hidden>Löschen</button>
-      </div>
-    </section>
+        <ul id="workoutList" class="workout-list"></ul>
+
+        <div class="workout-actions">
+          <button id="exportBtn" class="btn btn-primary">In GymBo importieren</button>
+          <button id="saveWorkoutBtn" class="btn btn-secondary">Speichern</button>
+          <button id="submitWorkoutBtn" class="btn btn-secondary">Mit anderen teilen</button>
+          <button id="deleteWorkoutBtn" class="btn btn-secondary" hidden>Löschen</button>
+        </div>
+      </section>
+    </div>
 
     <!-- 4. Meine Workouts (nur eingeloggt) -->
     <section class="step-section" id="myWorkoutsSection">

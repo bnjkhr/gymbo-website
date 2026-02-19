@@ -400,8 +400,9 @@ function createExerciseCard(exercise) {
 
   card.querySelector(".add-btn").addEventListener("click", () => {
     addExerciseToWorkout(exercise);
-    const workoutSection = document.querySelector(".step-section:nth-child(4)");
-    if (workoutSection) workoutSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    // Scroll workout list to bottom to show newly added exercise
+    const wl = document.getElementById("workoutList");
+    if (wl) wl.scrollTop = wl.scrollHeight;
   });
 
   if (exercise.source === "community") {
