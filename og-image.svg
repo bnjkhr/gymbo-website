@@ -6,11 +6,11 @@
     </linearGradient>
     <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#FBBF24"/>
-      <stop offset="100%" style="stop-color:#D97706"/>
+      <stop offset="100%" style="stop-color:#22C55E"/>
     </linearGradient>
     <linearGradient id="glowGrad" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:0.3"/>
-      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:0"/>
+      <stop offset="0%" style="stop-color:#4ADE80;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#4ADE80;stop-opacity:0"/>
     </linearGradient>
   </defs>
 

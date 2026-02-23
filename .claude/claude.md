@@ -6,20 +6,23 @@ Die offizielle Farbpalette für die Gymbo-Website:
 
 | Farbe  | Hex-Code  | Verwendung                    |
 |--------|-----------|-------------------------------|
-| Amber  | #F59E0B   | **Primärfarbe**, Hauptakzent  |
-| Grün   | #4ADE80   | Akzentfarbe, Erfolg           |
+| Grün   | #4ADE80   | **Primärfarbe**, Hauptakzent  |
 | Purple | #A855F7   | Akzentfarbe, Hervorhebungen   |
 
 ### CSS-Variablen
 ```css
---accent: #F59E0B;        /* Amber - Primärfarbe */
---color-green: #4ADE80;   /* Akzent */
+--accent: #4ADE80;        /* Grün - Primärfarbe */
+--color-green: #4ADE80;   /* Primärfarbe */
 --color-purple: #A855F7;  /* Akzent */
 ```
 
 ### Verwendung auf der Webseite
 
-**Grün (#4ADE80)** wird verwendet für:
+**Grün (#4ADE80)** ist die Primärfarbe für:
+- Pro/Premium Pricing Card Hintergrund
+- Hauptbuttons und CTAs
+- Logo-Akzent
+- Allgemeine Highlights
 - "Kostenlos" Texte und Labels
 - Free-Tier Pricing Card (Border, Badge, Checkmarks)
 - Privacy/Sicherheits-Icons (Shield, Lock, etc.)
@@ -30,12 +33,6 @@ Die offizielle Farbpalette für die Gymbo-Website:
 - "Bald verfügbar" Badges
 - "In Development" Status auf der Roadmap
 - Spezielle Hervorhebungen
-
-**Amber (#F59E0B)** bleibt die Primärfarbe für:
-- Pro/Premium Pricing Card Hintergrund
-- Hauptbuttons und CTAs
-- Logo-Akzent
-- Allgemeine Highlights
 
 ## Technologie
 - Statische HTML/CSS Website

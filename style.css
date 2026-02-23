@@ -2,10 +2,10 @@
     /* Colors - Brand Palette */
     --color-green: #4ADE80;  /* Akzentfarbe */
     --color-purple: #A855F7; /* Akzentfarbe */
-    --color-amber: #F59E0B;  /* Primärfarbe */
+    --color-amber: #4ADE80;  /* Primärfarbe */
 
-    --primary: #F59E0B; /* Amber - Primary Brand Color */
-    --primary-darker: #D97706; /* Darker amber for hover states */
+    --primary: #4ADE80; /* Green - Primary Brand Color */
+    --primary-darker: #22C55E; /* Darker green for hover states */
 
     --bg-body: #ffffff;
     --bg-surface: #f5f5f7;
