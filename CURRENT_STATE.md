@@ -1,8 +1,8 @@
 # gymbo-website - Session Summary
 
-**Generated:** 2026-02-19 11:37
-**Branch:** main
-**Latest Commit:** 5be10ca - fix: harden training section against XSS, improve UX and mobile layout (65 seconds ago)
+**Generated:** 2026-02-23 12:06
+**Branch:** session-end-20260219-113710
+**Latest Commit:** e2480f9 - chore: Session end auto-commit 2026-02-19 11:37 (4 days ago)
 
 ## 📊 Change Statistics
 
@@ -12,7 +12,8 @@
 0 files
 - ➖ Deleted: 0
 0 files
-- ❓ Untracked: 7 files
+- ❓ Untracked: 0
+0 files
 
 ## 🎯 Affected Areas
 - General changes
@@ -21,34 +22,22 @@
 
 ### "Other"
 ```
-?? training-custom-modal.png
-?? training-desktop-full.png
-?? training-filtered.png
-?? training-mobile-full.png
-?? training-mobile-hero.png
-?? training-mobile-top.png
-?? training-mobile-workout.png
+M roadmap.html
 
 ```
 
 ## 🔍 Detailed Git Status
 ```
-?? training-custom-modal.png
-?? training-desktop-full.png
-?? training-filtered.png
-?? training-mobile-full.png
-?? training-mobile-hero.png
-?? training-mobile-top.png
-?? training-mobile-workout.png
+ M roadmap.html
 ```
 
 ## 📝 Recent Activity
 ```
-5be10ca (HEAD -> main, origin/main, origin/HEAD) fix: harden training section against XSS, improve UX and mobile layout
+e2480f9 (HEAD -> session-end-20260219-113710, origin/session-end-20260219-113710, main) chore: Session end auto-commit 2026-02-19 11:37
+5be10ca (origin/main, origin/HEAD) fix: harden training section against XSS, improve UX and mobile layout
 6c5a25a layout: side-by-side catalog + workout builder panels
 050d3a8 fix: use absolute paths for CSS, JS and data assets
 d7b89fc redesign: vertical guided builder flow for training page
-15676c5 fix: harden training section against XSS, improve UX and mobile layout
 ```
 
 ## 🔄 Next Steps
