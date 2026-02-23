@@ -1,8 +1,8 @@
 # gymbo-website - Session Summary
 
-**Generated:** 2026-02-01 21:08
-**Branch:** main
-**Latest Commit:** 03ea5dd - feat: add Mastodon verification link to footer (4 minutes ago)
+**Generated:** 2026-02-23 12:06
+**Branch:** session-end-20260219-113710
+**Latest Commit:** e2480f9 - chore: Session end auto-commit 2026-02-19 11:37 (4 days ago)
 
 ## 📊 Change Statistics
 
@@ -20,31 +20,24 @@
 
 ## 📂 Changes by Category
 
-### "Configuration"
-```
-D .DS_Store
-
-```
-
 ### "Other"
 ```
-D screenshots/.DS_Store
+M roadmap.html
 
 ```
 
 ## 🔍 Detailed Git Status
 ```
- D .DS_Store
- D screenshots/.DS_Store
+ M roadmap.html
 ```
 
 ## 📝 Recent Activity
 ```
-03ea5dd (HEAD -> main, origin/main, origin/HEAD) feat: add Mastodon verification link to footer
-de85024 feat: update roadmap - iOS Deep Integration completed, Social Features beta in v3
-9bd71c6 feat: add privacy policy page and update footer links
-9436df2 iCloud wieder raus
-08c551d feat: add iCloud Sync, Social Features & modern marquee layout
+e2480f9 (HEAD -> session-end-20260219-113710, origin/session-end-20260219-113710, main) chore: Session end auto-commit 2026-02-19 11:37
+5be10ca (origin/main, origin/HEAD) fix: harden training section against XSS, improve UX and mobile layout
+6c5a25a layout: side-by-side catalog + workout builder panels
+050d3a8 fix: use absolute paths for CSS, JS and data assets
+d7b89fc redesign: vertical guided builder flow for training page
 ```
 
 ## 🔄 Next Steps
