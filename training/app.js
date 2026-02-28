@@ -152,6 +152,54 @@ function showStatus(message, isError = false) {
   el.status.style.color = isError ? "#fca5a5" : "#4ade80";
 }
 
+function saveBuilderStateToStorage() {
+  try {
+    const data = {
+      workout: state.workout,
+      editingWorkoutId: state.editingWorkoutId
+    };
+    localStorage.setItem("gymbo_builder_state", JSON.stringify(data));
+  } catch (_) {}
+}
+
+function restoreBuilderStateFromStorage() {
+  try {
+    const raw = localStorage.getItem("gymbo_builder_state");
+    if (!raw) return false;
+    localStorage.removeItem("gymbo_builder_state");
+    const data = JSON.parse(raw);
+    if (data.workout && data.workout.exercises && data.workout.exercises.length > 0) {
+      state.workout = data.workout;
+      state.editingWorkoutId = data.editingWorkoutId || null;
+      el.workoutName.value = state.workout.name || "";
+      el.defaultRest.value = String(state.workout.defaultRestTime || 90);
+      const activePill = el.workoutTypePills.querySelector(`[data-value="${state.workout.workoutType}"]`);
+      if (activePill) {
+        el.workoutTypePills.querySelectorAll(".pill").forEach((p) => p.classList.remove("active"));
+        activePill.classList.add("active");
+      }
+      renderWorkout();
+      return true;
+    }
+  } catch (_) {}
+  return false;
+}
+
+function showMagicLinkNotice(email) {
+  const existing = document.querySelector(".magic-link-notice");
+  if (existing) existing.remove();
+  const notice = document.createElement("div");
+  notice.className = "magic-link-notice";
+  notice.innerHTML = `
+    <div class="magic-link-notice-icon">&#9993;</div>
+    <p class="magic-link-notice-title">Magic-Link gesendet!</p>
+    <p class="magic-link-notice-text">Wir haben einen Login-Link an <strong>${escapeHtml(email)}</strong> gesendet. Prüfe dein Postfach und klicke auf den Link, um dich einzuloggen.</p>
+    <button class="btn btn-secondary btn-sm magic-link-notice-close" type="button">Verstanden</button>
+  `;
+  notice.querySelector(".magic-link-notice-close").addEventListener("click", () => notice.remove());
+  document.querySelector(".hero").appendChild(notice);
+}
+
 function sanitizeFilename(name) {
   const fallback = "gymbo-template";
   const clean = name
@@ -615,7 +663,7 @@ function renderWorkout() {
     const setList = li.querySelector(".set-list");
     const setHeader = document.createElement("div");
     setHeader.className = "set-row-header";
-    setHeader.innerHTML = `<span>#</span><span>Wdh.</span><span>Gew.</span><span>Pause</span><span></span>`;
+    setHeader.innerHTML = `<span>#</span><span>Wdh.</span><span>Gewicht</span><span>Pause</span><span></span>`;
     setList.appendChild(setHeader);
     workoutExercise.sets.forEach((setItem, setIndex) => {
       const row = document.createElement("div");
@@ -1180,8 +1228,9 @@ function bindEvents() {
       return;
     }
     try {
+      saveBuilderStateToStorage();
       await signInWithOtp(email);
-      showStatus("Login-Link wurde per E-Mail gesendet.");
+      showMagicLinkNotice(email);
     } catch (error) {
       showStatus(error.message || "Login fehlgeschlagen.", true);
     }
@@ -1248,6 +1297,7 @@ async function init() {
     renderCatalog();
     renderWorkout();
     bindEvents();
+    restoreBuilderStateFromStorage();
     showStatus("");
   } catch (error) {
     showStatus(error.message || "Initialisierung fehlgeschlagen.", true);
