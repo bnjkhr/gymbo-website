@@ -663,15 +663,15 @@ function renderWorkout() {
     const setList = li.querySelector(".set-list");
     const setHeader = document.createElement("div");
     setHeader.className = "set-row-header";
-    setHeader.innerHTML = `<span>#</span><span>Wdh.</span><span>Gewicht</span><span>Pause</span><span></span>`;
+    setHeader.innerHTML = `<span>#</span><span>Gewicht</span><span>Wdh.</span><span>Pause</span><span></span>`;
     setList.appendChild(setHeader);
     workoutExercise.sets.forEach((setItem, setIndex) => {
       const row = document.createElement("div");
       row.className = "set-row";
       row.innerHTML = `
         <span>${setIndex + 1}</span>
-        <input type="number" min="1" value="${setItem.reps}" aria-label="Wiederholungen" />
         <input type="number" min="0" step="0.5" value="${setItem.weight}" aria-label="Gewicht" />
+        <input type="number" min="1" value="${setItem.reps}" aria-label="Wiederholungen" />
         <input class="rest-wrap" type="number" min="0" step="5" value="${setItem.restTime}" aria-label="Pause" />
         <button class="btn-danger remove-wrap" type="button">x</button>
       `;
