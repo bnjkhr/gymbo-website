@@ -4,6 +4,7 @@
   "framework": null,
   "redirects": [
     { "source": "/training", "destination": "/", "permanent": false },
+    { "source": "/training/", "destination": "/", "permanent": false },
     { "source": "/training/:path*", "destination": "/", "permanent": false }
   ]
 }
