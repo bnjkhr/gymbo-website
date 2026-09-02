@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "exerciseCatalogCount": 145,
+  "watch": {
+    "workoutExecutionIsFree": true,
+    "worksWithoutPhonePresentDuringWorkout": true,
+    "independentInstallationVerified": false
+  },
+  "monetization": {
+    "productType": "non-consumable",
+    "subscription": false,
+    "priceSource": "App Store"
+  },
+  "privacy": {
+    "accountRequired": false,
+    "analyticsOptOutAvailable": true,
+    "personalWorkoutContentExcludedFromAnalytics": true
+  }
+}
