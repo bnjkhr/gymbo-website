@@ -1,3 +1,5 @@
 .vercel
 .env*.local
 training/supabase-config.js
+__pycache__/
+*.py[cod]
