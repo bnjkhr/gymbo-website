@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>GymBo – App-Store-Linktest</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; }
+    body { max-width: 36rem; margin: auto; padding: 24px; background: #101010; color: #fff; }
+    h1 { font-size: 1.7rem; }
+    p, li { line-height: 1.55; }
+    .test { display: block; box-sizing: border-box; width: 100%; margin: 12px 0;
+      padding: 18px; border: 2px solid #4ade80; border-radius: 12px;
+      color: #fff; background: #161616; font: inherit; text-align: left; text-decoration: none; }
+    .test:focus-visible { outline: 3px solid #a855f7; outline-offset: 3px; }
+    strong { color: #4ade80; }
+    code { overflow-wrap: anywhere; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .8rem; }
+  </style>
+</head>
+<body>
+  <h1>App-Store-Linktest</h1>
+  <p>Bitte diese Seite im betroffenen In-App-Browser öffnen. Die drei Varianten führen zur gleichen GymBo-Produktseite.</p>
+  <p>Zuerst <strong>B kurz antippen</strong>. Falls der App Store sichtbar erscheint, zur Testseite zurückkehren und A vergleichen. Bleibt B ohne sichtbaren Wechsel, C testen. Einen eventuell angezeigten Öffnen-Dialog bestätigen.</p>
+  <a class="test" data-test="A" href="https://apps.apple.com/de/app/gymbo-pro/id6756262310" target="_self"><strong>A</strong> – Normaler Weblink</a>
+  <a class="test" data-test="B" href="itms-appss://apps.apple.com/de/app/gymbo-pro/id6756262310" target="_self"><strong>B</strong> – Direkter App-Store-Aufruf</a>
+  <button class="test" data-test="C" id="script-open" type="button"><strong>C</strong> – Weblink über JavaScript</button>
+  <noscript><p>JavaScript ist aus. A und B funktionieren ohne JavaScript; C benötigt es.</p></noscript>
+  <p>Für jede getestete Variante bitte unterscheiden: <strong>Store sichtbar</strong>, <strong>nur im Hintergrund geladen</strong> oder <strong>keine Reaktion / Fehlermeldung</strong>. Zum Kontrollieren im App Store vorher eine andere Seite öffnen.</p>
+  <p>Dies ist eine Diagnoseseite, kein bestätigter Fix. Keine automatischen Weiterleitungen oder automatischen Wiederholungen. Die Diagnosedaten unten werden durch diese Seite nicht versendet.</p>
+  <details>
+    <summary>Lokale Diagnose</summary>
+    <pre id="diagnostics"></pre>
+  </details>
+  <script>
+    (() => {
+      const output = document.getElementById('diagnostics');
+      const lines = [];
+      const record = (message) => {
+        lines.push(`${new Date().toISOString()} ${message}`);
+        output.textContent = lines.slice(-30).join('\n');
+      };
+      record(`Browser: ${navigator.userAgent}`);
+      document.addEventListener('click', (event) => {
+        const link = event.target instanceof Element && event.target.closest('[data-test]');
+        if (link) record(`Tap ${link.dataset.test}; trusted=${event.isTrusted}; defaultPrevented=${event.defaultPrevented}`);
+      }, true);
+      document.addEventListener('visibilitychange', () => record(`visibility=${document.visibilityState}`));
+      window.addEventListener('pagehide', () => record('pagehide'));
+      window.addEventListener('pageshow', () => record('pageshow'));
+      document.getElementById('script-open').addEventListener('click', () => {
+        window.location.assign('https://apps.apple.com/de/app/gymbo-pro/id6756262310');
+      });
+    })();
+  </script>
+</body>
+</html>
