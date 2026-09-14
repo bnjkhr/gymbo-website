@@ -3,6 +3,8 @@
   "outputDirectory": ".",
   "framework": null,
   "redirects": [
+    { "source": "/go/app-store", "destination": "https://apps.apple.com/de/app/gymbo-pro/id6756262310", "permanent": false },
+    { "source": "/en/go/app-store", "destination": "https://apps.apple.com/app/gymbo-pro/id6756262310", "permanent": false },
     { "source": "/training", "destination": "/", "permanent": false },
     { "source": "/training/", "destination": "/", "permanent": false },
     { "source": "/training/:path*", "destination": "/", "permanent": false }
