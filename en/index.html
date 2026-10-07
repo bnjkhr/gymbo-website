@@ -375,7 +375,6 @@
 
             .content-overlay .features-section,
             .content-overlay .final-cta,
-            .content-overlay .testflight-section,
             .content-overlay .type-statement {
                 max-width: 1200px;
                 margin-left: auto;
@@ -1606,113 +1605,6 @@
                 color: var(--text-muted);
             }
 
-            /* Testflight Section - Sleek */
-            .testflight-section {
-                text-align: center;
-                padding: 80px 24px;
-                border-top: 1px solid var(--border);
-            }
-
-            .testflight-section h3 {
-                font-size: clamp(1.5rem, 4vw, 2.5rem);
-                font-weight: 800;
-                letter-spacing: -0.02em;
-                margin-bottom: 12px;
-            }
-
-            .testflight-section p {
-                color: var(--text-secondary);
-                font-size: 1.1rem;
-                margin-bottom: 32px;
-            }
-
-            /* Subscribe Form - Inline */
-            .subscribe-form {
-                display: flex;
-                gap: 0;
-                justify-content: center;
-                max-width: 420px;
-                margin: 0 auto;
-                background: var(--bg-surface);
-                border-radius: 14px;
-                border: 1px solid var(--border);
-                overflow: hidden;
-                transition: border-color 0.2s;
-            }
-
-            .subscribe-form:focus-within {
-                border-color: var(--accent);
-            }
-
-            #emailInput {
-                flex: 1;
-                min-width: 0;
-                padding: 16px 20px;
-                border: none;
-                font-size: 1rem;
-                font-family: inherit;
-                background: transparent;
-                color: var(--text);
-            }
-
-            #emailInput:focus {
-                outline: none;
-            }
-
-            #emailInput::placeholder {
-                color: var(--text-muted);
-            }
-
-            .subscribe-form .btn-primary {
-                border-radius: 0;
-                padding: 16px 24px;
-                font-size: 0.95rem;
-            }
-
-            .subscribe-message {
-                margin-top: 16px;
-                padding: 12px 20px;
-                border-radius: 10px;
-                font-size: 0.9rem;
-                font-weight: 500;
-                display: none;
-            }
-
-            .subscribe-message.success {
-                display: inline-block;
-                background: rgba(245, 158, 11, 0.1);
-                color: var(--accent);
-                border: 1px solid var(--accent-soft);
-            }
-
-            .subscribe-message.error {
-                display: inline-block;
-                background: rgba(239, 68, 68, 0.1);
-                color: #ef4444;
-                border: 1px solid rgba(239, 68, 68, 0.2);
-            }
-
-            @media (max-width: 480px) {
-                .subscribe-form {
-                    flex-direction: column;
-                    background: transparent;
-                    border: none;
-                    gap: 12px;
-                }
-
-                #emailInput {
-                    background: var(--bg-surface);
-                    border: 1px solid var(--border);
-                    border-radius: 14px;
-                    padding: 16px 20px;
-                }
-
-                .subscribe-form .btn-primary {
-                    border-radius: 14px;
-                    width: 100%;
-                }
-            }
-
             /* Version Banner - Subtle Floating Pill */
             .version-banner {
                 display: flex;
@@ -2073,18 +1965,6 @@
 
                 .version-text {
                     display: none;
-                }
-
-                .subscribe-form {
-                    flex-direction: column;
-                }
-
-                #emailInput {
-                    width: 100%;
-                }
-
-                .subscribe-form button {
-                    width: 100%;
                 }
 
                 .screenshot-item {

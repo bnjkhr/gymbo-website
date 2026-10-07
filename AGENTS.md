@@ -21,7 +21,7 @@ Dieses Dokument beschreibt, wie in diesem Repository gearbeitet werden soll.
 - Die Seiten sind weitgehend self-contained mit viel Inline-CSS pro Datei.
 - Die Seiten enthalten viel Inline-JS pro Datei (Theme Toggle, Mobile Menu, Animationen).
 - `style.css` ist aktuell nicht die primaere Source of Truth fuer die Hauptseiten.
-- Es gibt Legacy-Backend-Dateien (`app.py`, `subscribe.php`), aber die Website wird primaer statisch betrieben.
+- Die Website ist rein statisch (Vercel); es gibt kein Backend und kein Anmeldeformular mehr.
 
 ## 4) Verbindliche Edit-Regeln
 - DE/EN konsistent halten: Aenderungen an einer DE-Seite immer gegen das EN-Pendant pruefen und spiegeln (wo inhaltlich passend).
@@ -46,9 +46,8 @@ Dieses Dokument beschreibt, wie in diesem Repository gearbeitet werden soll.
 - Bei SEO-Aenderungen: Canonical + `hreflang` + Sitemap querchecken.
 
 ## 7) Bekannte Inkonsistenzen (Stand jetzt)
-- `index.html` und `en/index.html` enthalten Subscribe-JS (`subscribeForm`), aber kein entsprechendes Formular-Markup mit dieser ID.
 - Es gibt keine separate englische Datenschutz-Seite; EN-Footer verlinkt auf die deutsche Datenschutzseite.
-- `style.css` und `app.py` existieren, werden aber vom aktuellen statischen Haupt-Setup nicht zentral genutzt.
+- `style.css` existiert, wird aber vom aktuellen statischen Haupt-Setup nicht zentral genutzt.
 
 ## 8) Empfohlene lokale Vorschau
 - Schnelltest statisch: `python3 -m http.server 8080`
