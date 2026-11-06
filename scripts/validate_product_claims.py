@@ -35,8 +35,8 @@ BLOCKED_PATTERNS = {
 }
 
 REQUIRED_PHRASES = {
-    "index.html": ("145 Übungen", "ohne iPhone in der Nähe", "Watch-Training ist kostenlos"),
-    "en/index.html": ("145 exercises", "without your iPhone nearby", "Watch training is free"),
+    "index.html": ("Neu in GymBo 4.0", "145 Übungen", "ohne iPhone in der Nähe", "Watch-Training ist kostenlos"),
+    "en/index.html": ("What's new in GymBo 4.0", "145 exercises", "without your iPhone nearby", "Watch training is free"),
     "faq.html": ("145 vorinstallierte Übungen", "Watch-Training gehört zur kostenlosen Basis"),
     "en/faq.html": ("145 pre-installed exercises", "Watch training is part of the free core"),
     "manifest.html": ("Watch-Training", "kostenlosen Basis"),
