@@ -38,7 +38,7 @@
         <meta property="og:url" content="https://gymbo.pro/">
         <meta property="og:title" content="GymBo – Krafttraining am Handgelenk">
         <meta property="og:description" content="Vollständige Workouts auf iPhone und Apple Watch. Watch-Training kostenlos, Pro als einmaliger Kauf statt Abo.">
-        <meta property="og:image" content="https://gymbo.pro/og-preview.png?v=2">
+        <meta property="og:image" content="https://gymbo.pro/og-preview.png?v=3">
         <meta property="og:locale" content="de_DE">
         <meta property="og:locale:alternate" content="en_US">
         <meta property="og:site_name" content="GymBo">
@@ -48,7 +48,7 @@
         <meta name="twitter:url" content="https://gymbo.pro/">
         <meta name="twitter:title" content="GymBo – Krafttraining am Handgelenk">
         <meta name="twitter:description" content="Vollständige Workouts auf iPhone und Apple Watch. Watch-Training kostenlos, Pro als einmaliger Kauf statt Abo.">
-        <meta name="twitter:image" content="https://gymbo.pro/og-preview.png?v=2">
+        <meta name="twitter:image" content="https://gymbo.pro/og-preview.png?v=3">
 
         <!-- Favicon -->
         <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -73,7 +73,7 @@
                 "name": "GymBo Free"
             },
             "description": "Watch-first Krafttracker für iPhone und Apple Watch mit 145 Übungen. Watch-Training kostenlos, Pro als einmaliger Kauf statt Abo.",
-            "screenshot": "https://gymbo.pro/og-preview.png?v=2",
+            "screenshot": "https://gymbo.pro/og-preview.png?v=3",
             "author": {
                 "@type": "Person",
                 "name": "Ben Kohler",
@@ -1774,6 +1774,17 @@
                 content: '→';
             }
 
+
+            /* Neu in 4.0 */
+            .whatsnew-section { max-width: 1100px; margin: 0 auto; padding: 96px 24px 8px; }
+            .whatsnew-section h2 { text-align: center; margin-bottom: 12px; }
+            .whatsnew-intro { text-align: center; color: var(--text-secondary); max-width: 560px; margin: 0 auto 40px; }
+            .whatsnew-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+            .whatsnew-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px; }
+            .whatsnew-card i { font-size: 1.5rem; color: var(--accent); display: block; margin-bottom: 12px; }
+            .whatsnew-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+            .whatsnew-card p { color: var(--text-secondary); font-size: 0.925rem; line-height: 1.55; margin: 0; }
+
             /* Footer - Minimal Single Line */
             .footer {
                 padding: 32px 24px;
@@ -2217,10 +2228,10 @@
             <section class="hero">
                 <div class="hero-content animate-in">
                     <!-- Version Announcement Pill -->
-                    <a href="/go/app-store" class="version-banner-content" target="_self">
-                        <span class="version-badge">Watch-first</span>
-                        <span class="version-text">Jetzt im App Store</span>
-                        <span class="version-link">Laden</span>
+                    <a href="#neu-in-4" class="version-banner-content">
+                        <span class="version-badge">Neu in 4.0</span>
+                        <span class="version-text">Watch, Supersätze und Zirkel</span>
+                        <span class="version-link">Entdecken</span>
                     </a>
                     <h1>Training.<br><span class="highlight">Ohne Bullshit.</span></h1>
                     <p class="hero-subtitle">
@@ -2260,6 +2271,21 @@
 
             <!-- Content Overlay - Scrolls over Hero -->
             <div class="content-overlay">
+
+            <!-- Neu in 4.0 -->
+            <section class="whatsnew-section animate-in" id="neu-in-4">
+                <h2>Neu in GymBo 4.0</h2>
+                <p class="whatsnew-intro">Das größte Update bisher: Training an der Watch, Supersätze und Zirkel im Wechsel und viele Verbesserungen im Alltag.</p>
+                <div class="whatsnew-grid">
+                    <div class="whatsnew-card"><i class="ph ph-watch"></i><h3>Training an der Apple Watch</h3><p>Starte und absolviere komplette Workouts direkt an der Watch.</p></div>
+                    <div class="whatsnew-card"><i class="ph ph-arrows-left-right"></i><h3>Supersätze und Zirkel im Wechsel</h3><p>Die Übungen einer Gruppe laufen abwechselnd durch, sind im Training und im Plan markiert und lassen sich als Block umsortieren.</p></div>
+                    <div class="whatsnew-card"><i class="ph ph-scales"></i><h3>Links und Rechts wechseln automatisch</h3><p>Einseitige Übungen wechseln die Seite von selbst, auch an der Watch.</p></div>
+                    <div class="whatsnew-card"><i class="ph ph-trend-up"></i><h3>Fortschritts-Feedback</h3><p>Nach jeder abgeschlossenen Übung. In den Einstellungen abschaltbar.</p></div>
+                    <div class="whatsnew-card"><i class="ph ph-chart-line-up"></i><h3>Statistik direkt aus dem Plan</h3><p>Die Statistik einer Übung öffnest du mit einem Tipp im Plan.</p></div>
+                    <div class="whatsnew-card"><i class="ph ph-share-network"></i><h3>Workout teilen</h3><p>Als Grafik für Story oder Beitrag.</p></div>
+                    <div class="whatsnew-card"><i class="ph ph-sun"></i><h3>Besser lesbar im hellen Modus</h3><p>Dazu viele Korrekturen bei Pausentimer, Gewichtseinheiten und Plänen.</p></div>
+                </div>
+            </section>
 
             <!-- Features Section -->
             <section class="features-section" id="features">
@@ -2375,7 +2401,7 @@
                             <i class="ph ph-plus-circle"></i>
                         </div>
                         <h3>Workout erstellen</h3>
-                        <p>Leeres Workout, Quick-Setup, Supersätze, Circuit Training oder der Workout Wizard — erstelle dein perfektes Training genau so, wie du es brauchst.</p>
+                        <p>Leeres Workout, Quick-Setup, Supersätze, Zirkeltraining oder der Workout Wizard. Die Übungen einer Gruppe laufen im Training abwechselnd durch und lassen sich im Plan als Block umsortieren.</p>
                     </div>
                     <div class="feature-visual">
                         <div class="device-frame">
@@ -2395,14 +2421,14 @@
                 <div class="feature-marquee-container">
                     <!-- Row 1 - scrolls left -->
                     <div class="feature-marquee">
-                        <div class="feature-pill"><i class="ph ph-arrows-left-right"></i><span>Supersätze & Circuits</span></div>
+                        <div class="feature-pill"><i class="ph ph-arrows-left-right"></i><span>Supersätze & Zirkel</span></div>
                         <div class="feature-pill"><i class="ph ph-scales"></i><span>Links/Rechts Tracking</span></div>
                         <div class="feature-pill"><i class="ph ph-share-network"></i><span>Export & Backup</span></div>
                         <div class="feature-pill"><i class="ph ph-scissors"></i><span>Trainings splitten</span></div>
                         <div class="feature-pill highlight"><i class="ph ph-star"></i><span>Star-Workout-Vorlagen</span></div>
                         <div class="feature-pill"><i class="ph ph-git-merge"></i><span>Kraft & Cardio mixen</span></div>
                         <!-- Duplicate for seamless loop -->
-                        <div class="feature-pill"><i class="ph ph-arrows-left-right"></i><span>Supersätze & Circuits</span></div>
+                        <div class="feature-pill"><i class="ph ph-arrows-left-right"></i><span>Supersätze & Zirkel</span></div>
                         <div class="feature-pill"><i class="ph ph-scales"></i><span>Links/Rechts Tracking</span></div>
                         <div class="feature-pill"><i class="ph ph-share-network"></i><span>Export & Backup</span></div>
                         <div class="feature-pill"><i class="ph ph-scissors"></i><span>Trainings splitten</span></div>
@@ -2463,7 +2489,7 @@
                             <div class="price-card-period">für immer kostenlos</div>
                             <ul class="price-features">
                                 <li><i class="ph ph-check-circle"></i> Workouts erstellen & bearbeiten</li>
-                                <li><i class="ph ph-check-circle"></i> Alle Workout-Typen (Standard, Superset, Circuit, Sectioned)</li>
+                                <li><i class="ph ph-check-circle"></i> Alle Workout-Typen (Standard, Supersatz, Zirkel, Sectioned)</li>
                                 <li><i class="ph ph-check-circle"></i> Volles Workout-Tracking mit Sets, Gewichten, Reps</li>
                                 <li><i class="ph ph-check-circle"></i> Übungsbibliothek mit 145 Übungen</li>
                                 <li><i class="ph ph-check-circle"></i> Eigene Übungen erstellen</li>

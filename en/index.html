@@ -38,7 +38,7 @@
         <meta property="og:url" content="https://gymbo.pro/en/">
         <meta property="og:title" content="GymBo – Strength training on your wrist">
         <meta property="og:description" content="Complete workouts on iPhone and Apple Watch. Watch training is free, Pro is a one-time purchase instead of a subscription.">
-        <meta property="og:image" content="https://gymbo.pro/en/og-preview.png?v=2">
+        <meta property="og:image" content="https://gymbo.pro/en/og-preview.png?v=3">
         <meta property="og:locale" content="en_US">
         <meta property="og:locale:alternate" content="de_DE">
         <meta property="og:site_name" content="GymBo">
@@ -48,7 +48,7 @@
         <meta name="twitter:url" content="https://gymbo.pro/en/">
         <meta name="twitter:title" content="GymBo – Strength training on your wrist">
         <meta name="twitter:description" content="Complete workouts on iPhone and Apple Watch. Watch training is free, Pro is a one-time purchase instead of a subscription.">
-        <meta name="twitter:image" content="https://gymbo.pro/en/og-preview.png?v=2">
+        <meta name="twitter:image" content="https://gymbo.pro/en/og-preview.png?v=3">
 
         <!-- Favicon -->
         <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -73,7 +73,7 @@
                 "name": "GymBo Free"
             },
             "description": "Watch-first strength tracker for iPhone and Apple Watch with 145 exercises. Watch training is free, Pro is a one-time purchase instead of a subscription.",
-            "screenshot": "https://gymbo.pro/og-preview.png?v=2",
+            "screenshot": "https://gymbo.pro/og-preview.png?v=3",
             "author": {
                 "@type": "Person",
                 "name": "Ben Kohler",
@@ -1774,6 +1774,17 @@
                 content: '→';
             }
 
+
+            /* Neu in 4.0 */
+            .whatsnew-section { max-width: 1100px; margin: 0 auto; padding: 96px 24px 8px; }
+            .whatsnew-section h2 { text-align: center; margin-bottom: 12px; }
+            .whatsnew-intro { text-align: center; color: var(--text-secondary); max-width: 560px; margin: 0 auto 40px; }
+            .whatsnew-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+            .whatsnew-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px; }
+            .whatsnew-card i { font-size: 1.5rem; color: var(--accent); display: block; margin-bottom: 12px; }
+            .whatsnew-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+            .whatsnew-card p { color: var(--text-secondary); font-size: 0.925rem; line-height: 1.55; margin: 0; }
+
             /* Footer - Minimal Single Line */
             .footer {
                 padding: 32px 24px;
@@ -2217,10 +2228,10 @@
             <section class="hero">
                 <div class="hero-content animate-in">
                     <!-- Version Announcement Pill -->
-                    <a href="/en/go/app-store" class="version-banner-content" target="_self">
-                        <span class="version-badge">Watch-first</span>
-                        <span class="version-text">Now in App Store</span>
-                        <span class="version-link">Get it</span>
+                    <a href="#whats-new-4" class="version-banner-content">
+                        <span class="version-badge">New in 4.0</span>
+                        <span class="version-text">Watch, supersets and circuits</span>
+                        <span class="version-link">Explore</span>
                     </a>
                     <h1>Training.<br><span class="highlight">No Bullshit.</span></h1>
                     <p class="hero-subtitle">
@@ -2260,6 +2271,21 @@
 
             <!-- Content Overlay - Scrolls over Hero -->
             <div class="content-overlay">
+
+            <!-- Neu in 4.0 -->
+            <section class="whatsnew-section animate-in" id="whats-new-4">
+                <h2>What's new in GymBo 4.0</h2>
+                <p class="whatsnew-intro">The biggest update yet: training on the Watch, supersets and circuits that alternate, and many everyday improvements.</p>
+                <div class="whatsnew-grid">
+                    <div class="whatsnew-card"><i class="ph ph-watch"></i><h3>Train on Apple Watch</h3><p>Start and complete full workouts right on your wrist.</p></div>
+                    <div class="whatsnew-card"><i class="ph ph-arrows-left-right"></i><h3>Alternating supersets and circuits</h3><p>Grouped exercises run back and forth, are marked in training and in your plan, and can be reordered as one block.</p></div>
+                    <div class="whatsnew-card"><i class="ph ph-scales"></i><h3>Left and right switch automatically</h3><p>One-sided exercises change sides on their own, on the Watch too.</p></div>
+                    <div class="whatsnew-card"><i class="ph ph-trend-up"></i><h3>Progress feedback</h3><p>After each completed exercise. You can turn it off in Settings.</p></div>
+                    <div class="whatsnew-card"><i class="ph ph-chart-line-up"></i><h3>Statistics straight from your plan</h3><p>Open an exercise's statistics with one tap in your plan.</p></div>
+                    <div class="whatsnew-card"><i class="ph ph-share-network"></i><h3>Share your workout</h3><p>As a graphic for stories or posts.</p></div>
+                    <div class="whatsnew-card"><i class="ph ph-sun"></i><h3>Better readability in Light Mode</h3><p>Plus many fixes for the rest timer, weight units, and plans.</p></div>
+                </div>
+            </section>
 
             <!-- Features Section -->
             <section class="features-section" id="features">
@@ -2375,7 +2401,7 @@
                             <i class="ph ph-plus-circle"></i>
                         </div>
                         <h3>Create Workout</h3>
-                        <p>Empty workout, quick setup, supersets, circuit training or the workout wizard — create your perfect training exactly the way you need it.</p>
+                        <p>Empty workout, quick setup, supersets, circuit training or the workout wizard. Grouped exercises alternate during training and can be reordered as one block in your plan.</p>
                     </div>
                     <div class="feature-visual">
                         <div class="device-frame">
