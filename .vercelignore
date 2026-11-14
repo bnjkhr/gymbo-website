@@ -1,0 +1,8 @@
+# Nicht ausliefern: Quellen, Entwürfe, Doku, Tests, Skripte (outputDirectory ist ".")
+marketing/
+design/
+docs/
+tests/
+scripts/
+supabase/
+venv/
